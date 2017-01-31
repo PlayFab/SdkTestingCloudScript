@@ -1,0 +1,10 @@
+{
+  "name": "playfab-cloudscriptexample",
+  "version": "0.0.170130",
+  "description": "PlayFab CloudScriptExample",
+  "main": "ExampleCloudScript.js",
+  "author": {
+    "name": "PlayFab",
+    "email": "devrel@playfab.com"
+  }
+}

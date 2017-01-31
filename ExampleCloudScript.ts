@@ -21,21 +21,24 @@ interface IHelloWorldResult {
     messageValue: string
 }
 
-handlers.throwError = function (args: any): void {
+handlers.throwError = function (args: void): void {
     var testObject: any = undefined;
     var failureObj: any = testObject.doesnotexist.doesnotexist;
     return failureObj; // Can't get to here
 }
 
-handlers.easyLogEvent = function (args): void {
+handlers.easyLogEvent = function (args: IEasyLogEvent): void {
     log.info(JSON.stringify(args.logMessage));
 };
+interface IEasyLogEvent {
+    logMessage: string
+}
 
 ///////////////////////////////////////////////
 // JenkinsConsoleUtility CloudScript functions
 ///////////////////////////////////////////////
 
-handlers.TestDataExists = function (args: any): boolean {
+handlers.TestDataExists = function (args: void): boolean {
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
         Keys: [TEST_DATA_KEY]
@@ -43,7 +46,7 @@ handlers.TestDataExists = function (args: any): boolean {
     return playerData.Data.hasOwnProperty(TEST_DATA_KEY);
 };
 
-handlers.GetTestData = function (args: any): ITestReport {
+handlers.GetTestData = function (args: void): ITestReport {
     var testResults: ITestReport = null;
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
