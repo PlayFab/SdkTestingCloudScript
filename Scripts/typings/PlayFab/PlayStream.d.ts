@@ -8,10 +8,10 @@ declare namespace PlayStreamModels {
      */
 
     /** 
-     * This event is triggererd when a developer logs in.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/devloper_logged_in
+     * This event is triggered when a developer logs in.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/developer_logged_in
      */
-    interface devloper_logged_in extends IBasePlayStreamEvent {
+    interface developer_logged_in extends IBasePlayStreamEvent {
         /** PlayFab ID for this user */
         PlayFabId?: string,
         /** User's email */
@@ -25,10 +25,10 @@ declare namespace PlayStreamModels {
     }
 
     /** 
-     * This event is triggererd when a developer registers.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/devloper_registered
+     * This event is triggered when a developer registers.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/developer_registered
      */
-    interface devloper_registered extends IBasePlayStreamEvent {
+    interface developer_registered extends IBasePlayStreamEvent {
         /** PlayFab ID for this user */
         PlayFabId?: string,
         /** User's email */
@@ -466,6 +466,19 @@ declare namespace PlayStreamModels {
         BanId?: string,
         /** The reason why the player was banned. */
         BanReason?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
+     * This event is triggered when a player's avatar URL is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_changed_avatar
+     */
+    interface player_changed_avatar extends IBasePlayStreamEvent {
+        /** URL of the avatar image. */
+        ImageUrl?: string,
+        /** Previous URL of the avatar image. */
+        PreviousImageUrl?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1473,7 +1486,8 @@ declare namespace PlayStreamModels {
         | "Facebook"
         | "IOSDevice"
         | "AndroidDevice"
-        | "Twitch";
+        | "Twitch"
+        | "WindowsHello";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
     type PasswordResetInitiationSource = "Self"
@@ -2053,6 +2067,8 @@ declare namespace PlayStreamModels {
          * original ban date.
          */
         BannedUntil?: string,
+        /** Image URL of the player's avatar. */
+        AvatarUrl?: string,
         /** Dictionary of player's statistics using only the latest version's value */
         Statistics?: { [key: string]: number },
         /** A sum of player's total purchases in USD across all currencies. */

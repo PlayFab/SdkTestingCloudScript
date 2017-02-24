@@ -34,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="DefaultCloudScript.ts" />
-    <TypeScriptCompile Include="UnicornBattle.ts" />
     <TypeScriptCompile Include="ExampleCloudScript.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
