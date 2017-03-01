@@ -227,6 +227,22 @@ function SubtractLife(): PlayFabServerModels.ModifyUserVirtualCurrencyResult {
     return server.SubtractUserVirtualCurrency(subtractVcRequest);
 }
 
+function EnableValentinesEvent(): void {
+    SetEventActive("evalentine", true);
+}
+
+function DisableValentinesEvent(): void {
+    SetEventActive("evalentine", false);
+}
+
+function EnablePresEvent(): void {
+    SetEventActive("epresident", true);
+}
+
+function DisablePresEvent(): void {
+    SetEventActive("epresident", false);
+}
+
 ///////////////////////// HELPER FUNCTIONS (NOT DIRECTLY CALLABLE FROM THE CLIENT) /////////////////////////
 function InitializeNewCharacterData(characterId: string, catalogItemId: string): void {
     var cDetails: IClassDetail = GetBaseClassForType({ cCode: catalogItemId });
@@ -350,6 +366,28 @@ function EvaluateAchievements(characterId: string): void {
         };
         server.UpdateCharacterReadOnlyData(updateCharDataRequest);
     }
+}
+
+var EVENT_TITLE_DATA_KEY: string = "ActiveEventKeys";
+function SetEventActive(eventKey: string, isActive: boolean): void {
+    var getRequest: PlayFabServerModels.GetTitleDataRequest = { Keys: [EVENT_TITLE_DATA_KEY] };
+    var serverData = server.GetTitleData(getRequest);
+    var eventKeys: Array<string> = JSON.parse(serverData.Data[EVENT_TITLE_DATA_KEY]);
+    if (isActive)
+        eventKeys.push(eventKey);
+    else {
+        var temp: Array<string> = [];
+        for (var idx in eventKeys)
+            if (eventKeys[idx] != eventKey)
+                temp.push(eventKeys[idx]);
+        eventKeys = temp;
+    }
+
+    var setRequest: PlayFabServerModels.SetTitleDataRequest = {
+        Key: EVENT_TITLE_DATA_KEY,
+        Value: JSON.stringify(eventKeys)
+    };
+    server.SetTitleData(setRequest);
 }
 
 ///////////////////////// Define the handlers /////////////////////////
