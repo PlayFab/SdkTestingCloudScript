@@ -85,6 +85,16 @@ declare namespace PlayFabServerModels {
         AttributedAt: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AdCampaignAttributionModel */
+    interface AdCampaignAttributionModel {
+        /** Attribution network name */
+        Platform?: string,
+        /** Attribution campaign identifier */
+        CampaignId?: string,
+        /** UTC time stamp of attribution */
+        AttributedAt: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddCharacterVirtualCurrencyRequest */
     interface AddCharacterVirtualCurrencyRequest {
         /** 
@@ -1275,7 +1285,8 @@ declare namespace PlayFabServerModels {
         UseSpecificVersion: boolean,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names.
+         * null, playfab will only include display names. On client, only
+         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
     }
@@ -1332,7 +1343,8 @@ declare namespace PlayFabServerModels {
         MaxResultsCount: number,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names.
+         * null, playfab will only include display names. On client, only
+         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
@@ -1380,7 +1392,8 @@ declare namespace PlayFabServerModels {
         MaxResultsCount: number,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names.
+         * null, playfab will only include display names. On client, only
+         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
@@ -1966,6 +1979,18 @@ declare namespace PlayFabServerModels {
         CustomData?: { [key: string]: string },
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkedPlatformAccountModel */
+    interface LinkedPlatformAccountModel {
+        /** Authentication platform */
+        Platform?: LoginIdentityProvider,
+        /** Unique account identifier of the user on the platform */
+        PlatformUserId?: string,
+        /** Linked account username of the user on the platform, if available */
+        Username?: string,
+        /** Linked account email of the user on the platform, if available */
+        Email?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersRequest */
     interface ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -1976,6 +2001,23 @@ declare namespace PlayFabServerModels {
     interface ListUsersCharactersResult {
         /** The requested list of characters. */
         Characters?: CharacterResult[],
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocationModel */
+    interface LocationModel {
+        /** The two-character continent code for this location */
+        ContinentCode?: ContinentCode,
+        /** 
+         * The two-character ISO 3166-1 country code for the country associated with the
+         * location
+         */
+        CountryCode?: CountryCode,
+        /** City name. */
+        City?: string,
+        /** Latitude coordinate of the geographic location. */
+        Latitude?: number,
+        /** Longitude coordinate of the geographic location. */
+        Longitude?: number,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginIdentityProvider */
@@ -2128,11 +2170,8 @@ declare namespace PlayFabServerModels {
         StatValue: number,
         /** User's overall position in the leaderboard. */
         Position: number,
-        /** 
-         * The profile of the user, if requested. Note that this profile may have
-         * sensitive fields scrubbed.
-         */
-        Profile?: PlayerProfile,
+        /** The profile of the user, if requested. */
+        Profile?: PlayerProfileModel,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerLinkedAccount */
@@ -2209,6 +2248,52 @@ declare namespace PlayFabServerModels {
         PlayerStatistics?: PlayerStatistic[],
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileModel */
+    interface PlayerProfileModel {
+        /** Publisher this player belongs to */
+        PublisherId?: string,
+        /** Title ID this profile applies to */
+        TitleId?: string,
+        /** PlayFab Player ID */
+        PlayerId?: string,
+        /** Player record created */
+        Created?: string,
+        /** Player account origination */
+        Origination?: LoginIdentityProvider,
+        /** Last login */
+        LastLogin?: string,
+        /** If the player is currently banned, the UTC Date when the ban expires */
+        BannedUntil?: string,
+        /** List of geographic locations where the player has logged-in */
+        Locations?: LocationModel[],
+        /** Player Display Name */
+        DisplayName?: string,
+        /** Image URL of the player's avatar */
+        AvatarUrl?: string,
+        /** List of player's tags for segmentation */
+        Tags?: TagModel[],
+        /** 
+         * List of configured end points registered for sending the player push
+         * notifications
+         */
+        PushNotificationRegistrations?: PushNotificationRegistrationModel[],
+        /** List of third party accounts linked to this player */
+        LinkedAccounts?: LinkedPlatformAccountModel[],
+        /** List of advertising campaigns the player has been attributed to */
+        AdCampaignAttributions?: AdCampaignAttributionModel[],
+        /** 
+         * A sum of player's total purchases across all real-money currencies, converted
+         * to US Dollars equivalent
+         */
+        TotalValueToDateInUSD?: number,
+        /** List of player's total lifetime real-money purchases by currency */
+        ValuesToDate?: ValueToDateModel[],
+        /** List of player's virtual currency balances */
+        VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[],
+        /** List of leaderboard statistic values for the player */
+        Statistics?: StatisticModel[],
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileViewConstraints */
     interface PlayerProfileViewConstraints {
         /** Whether to show the display name. Defaults to false */
@@ -2227,7 +2312,7 @@ declare namespace PlayFabServerModels {
          */
         ShowStatistics: boolean,
         /** Whether to show campaign attributions. Defaults to false */
-        ShowCampaignAtributions: boolean,
+        ShowCampaignAttributions: boolean,
         /** Whether to show push notification registrations. Defaults to false */
         ShowPushNotificationRegistrations: boolean,
         /** Whether to show the linked accounts. Defaults to false */
@@ -2238,8 +2323,6 @@ declare namespace PlayFabServerModels {
         ShowValuesToDate: boolean,
         /** Whether to show tags. Defaults to false */
         ShowTags: boolean,
-        /** Whether to show the virtual currency balances. Defaults to false */
-        ShowVirtualCurrencyBalances: boolean,
         /** Whether to show player's locations. Defaults to false */
         ShowLocations: boolean,
         /** Whether to show player's avatar URL. Defaults to false */
@@ -2289,6 +2372,14 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationRegistration */
     interface PushNotificationRegistration {
+        /** Push notification platform */
+        Platform?: PushNotificationPlatform,
+        /** Notification configured endpoint */
+        NotificationEndpointARN?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationRegistrationModel */
+    interface PushNotificationRegistrationModel {
         /** Push notification platform */
         Platform?: PushNotificationPlatform,
         /** Notification configured endpoint */
@@ -2633,6 +2724,16 @@ declare namespace PlayFabServerModels {
         Permission?: UserDataPermission,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticModel */
+    interface StatisticModel {
+        /** Statistic name */
+        Name?: string,
+        /** Statistic version (0 if not a versioned statistic) */
+        Version: number,
+        /** Statistic value */
+        Value: number,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticNameVersion */
     interface StatisticNameVersion {
         /** unique name of the statistic */
@@ -2702,6 +2803,12 @@ declare namespace PlayFabServerModels {
         VirtualCurrency: string,
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TagModel */
+    interface TagModel {
+        /** Full value of the tag, including namespace */
+        TagValue?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TaskInstanceStatus */
@@ -3180,6 +3287,32 @@ declare namespace PlayFabServerModels {
     interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ValueToDateModel */
+    interface ValueToDateModel {
+        /** ISO 4217 code of the currency used in the purchases */
+        Currency?: string,
+        /** 
+         * Total value of the purchases in a whole number of 1/100 monetary units. For
+         * example 999 indicates nine dollars and ninety-nine cents when Currency is
+         * 'USD')
+         */
+        TotalValue: number,
+        /** 
+         * Total value of the purchases in a string representation of decimal monetary
+         * units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency
+         * is 'USD'))
+         */
+        TotalValueAsDecimal?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.VirtualCurrencyBalanceModel */
+    interface VirtualCurrencyBalanceModel {
+        /** Name of the virtual currency */
+        Currency?: string,
+        /** Balance of the virtual currency */
+        TotalValue: number,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.VirtualCurrencyRechargeTime */

@@ -747,6 +747,32 @@ declare namespace PlayStreamModels {
     }
 
     /** 
+     * This event is triggered for the top-ranked players on a leaderboard when the
+     * leaderboard version changes (e.g. when a leaderboard statistic version is
+     * incremented).  The maximum number of leaderboard entries for which the event
+     * is generated is controlled by the "Leaderboard version change top rank events
+     * sent" title limit.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ranked_on_leaderboard_version
+     */
+    interface player_ranked_on_leaderboard_version extends IBasePlayStreamEvent {
+        /** Player's rank on the leaderboard. */
+        Rank: number,
+        /** Player's leaderboard value. */
+        Value: number,
+        /** 
+         * Version of the leaderboard on which the player is ranked. For player statistic
+         * leaderboards, this matches the version of the statistic.
+         */
+        Version: number,
+        /** Behavior with respect to the leaderboard values when the version changed. */
+        VersionChangeBehavior?: LeaderboardVersionChangeBehavior,
+        /** Source of the values for the leaderboard. */
+        LeaderboardSource?: LeaderboardSource,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
      * This event is triggered when a player makes a real money purchase, and
      * generates revenue for the game.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_realmoney_purchase
@@ -1472,6 +1498,30 @@ declare namespace PlayStreamModels {
     /*
      * PlayStream Group: child types
      */
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardVersionChangeBehavior */
+    type LeaderboardVersionChangeBehavior = "ResetValues"
+
+    /** 
+     * Statistic used as the source of leaderboard values.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticLeaderboardSource
+     */
+    interface StatisticLeaderboardSource {
+        /** Name of the statistic. */
+        StatisticName?: string,
+        /** Unique ID of the statistic. */
+        StatisticId: number,
+    }
+
+    /** 
+     * The source of values for the leaderboard. The properties are mutually exclusive
+     * - only one of them will be set and the rest will be null.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardSource
+     */
+    interface LeaderboardSource {
+        /** Statistic associated with the leaderboard. */
+        Statistic?: StatisticLeaderboardSource,
+    }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LoginIdentityProvider */
     type LoginIdentityProvider = "Unknown"
