@@ -1280,9 +1280,9 @@ declare namespace PlayFabServerModels {
          */
         IncludeFacebookFriends?: boolean,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
-        Version: number,
+        Version?: number,
         /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion: boolean,
+        UseSpecificVersion?: boolean,
         /** 
          * If non-null, this determines which properties of the profile to return. If
          * null, playfab will only include display names. On client, only
@@ -1348,9 +1348,9 @@ declare namespace PlayFabServerModels {
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
-        Version: number,
+        Version?: number,
         /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion: boolean,
+        UseSpecificVersion?: boolean,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserResult */
@@ -1397,9 +1397,9 @@ declare namespace PlayFabServerModels {
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
-        Version: number,
+        Version?: number,
         /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion: boolean,
+        UseSpecificVersion?: boolean,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult */
