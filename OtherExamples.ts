@@ -99,3 +99,47 @@ handlers.CheckCrossTitleRewards = function () {
     // Tell the client the reward
     return actualRewards;
 }
+
+const MY_GAME_GROUP_KEYS: Array<string> = ["gameState", "currentPlayerTurn"];
+interface PlayerTurnArgs {
+    sharedGroupId: string;
+    nextPlayerTurn: string;
+    turnData: any;
+}
+handlers.TakePlayerTurn = function (args: PlayerTurnArgs) {
+    var getRequest: PlayFabServerModels.GetSharedGroupDataRequest = { SharedGroupId: args.sharedGroupId, GetMembers: true, Keys: MY_GAME_GROUP_KEYS };
+    var gameData: PlayFabServerModels.GetSharedGroupDataResult = server.GetSharedGroupData(getRequest);
+    CheckValidPlayer(currentPlayerId, args.sharedGroupId, gameData.Members, gameData.Data["currentPlayerTurn"].Value, args.nextPlayerTurn);
+    var newGameStateJson = UpdateGameState(args.turnData, gameData.Data["gameState"].Value);
+    var updateRequest: PlayFabServerModels.UpdateSharedGroupDataRequest = {
+        SharedGroupId: args.sharedGroupId,
+        Data: {
+            "gameState": newGameStateJson,
+            "currentPlayerTurn": args.nextPlayerTurn
+        }
+    };
+    server.UpdateSharedGroupData(updateRequest);
+}
+function CheckValidPlayer(playFabId: string, sharedGroupId: string, members: Array<string>, currentPlayerTurn: string, nextPlayerTurn: string): void {
+    var validCurPlayer = false;
+    var validNextPlayer = false;
+    for (var m = 0; m < members.length; m++) {
+        if (members[m] === playFabId)
+            validCurPlayer = true;
+        if (members[m] === nextPlayerTurn)
+            validNextPlayer = true;
+    }
+    if (!validCurPlayer || !validNextPlayer) // Take extreme action against a player trying to cheat
+    {
+        server.BanUsers({ Bans: [{ PlayFabId: playFabId, Reason: "Trying to play a game you don't belong to: " + sharedGroupId }] });
+        throw "You have been banned";
+    }
+
+    if (playFabId !== currentPlayerTurn)
+        // May wish to additionally implement a spam-counter here and potentially take more extreme action for high-spam count
+        throw "Not your turn";
+}
+function UpdateGameState(turnData: any, currentState: string): string {
+    // PSEUDO-CODE-STUB: Update the turn-based game state according to the rules of this game
+    return JSON.stringify({});
+}
