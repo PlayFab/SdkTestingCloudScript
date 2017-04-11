@@ -37,10 +37,8 @@
     <TypeScriptCompile Include="ExampleCloudScript.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <TypeScriptCompile Include="OtherExamples.ts" />
     <TypeScriptCompile Include="Scripts\typings\PlayFab\CloudScript.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\PlayFab\PlayStream.d.ts" />
-    <TypeScriptCompile Include="UnicornBattle.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\" />

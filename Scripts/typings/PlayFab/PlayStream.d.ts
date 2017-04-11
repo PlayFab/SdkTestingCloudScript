@@ -275,7 +275,11 @@ declare namespace PlayStreamModels {
         DisplayName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/player_display_name_filtered */
+    /** 
+     * This event is triggered when a display name is filtered by community sift only
+     * if there is an associated player EntityId for the event.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/player_display_name_filtered
+     */
     interface player_display_name_filtered extends IBasePlayStreamEvent {
         /** Value of the display name that was filtered */
         DisplayName?: string,
@@ -803,6 +807,26 @@ declare namespace PlayStreamModels {
         OrderId?: string,
         /** The name of the purchased item, if applicable. */
         PurchasedProduct?: string[],
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
+     * This event is triggered when a player attempts to make a real money purchase
+     * and the purchase receipt is being validated.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_receipt_validation
+     */
+    interface player_receipt_validation extends IBasePlayStreamEvent {
+        /** Payment provider used to make the purchase attempt. */
+        PaymentProvider?: string,
+        /** Type of payment used to make the purchase attempt. */
+        PaymentType?: PaymentType,
+        /** The receipt data during a real money purchase event attempt. */
+        ReceiptContent?: string,
+        /** Indicates if the receipt is valid. */
+        Valid: boolean,
+        /** The error that occured during a receipt validation. */
+        Error?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1788,6 +1812,10 @@ declare namespace PlayStreamModels {
         Longitude?: number,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
+    type PaymentType = "Purchase"
+        | "ReceiptValidation";
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardVersionChangeBehavior */
     type LeaderboardVersionChangeBehavior = "ResetValues"
 
@@ -1841,10 +1869,6 @@ declare namespace PlayStreamModels {
         /** Catalog version of the inventory item. */
         CatalogVersion?: string,
     }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
-    type PaymentType = "Purchase"
-        | "ReceiptValidation";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Currency */
     type Currency = "AED"

@@ -2306,10 +2306,7 @@ declare namespace PlayFabServerModels {
         ShowLastLogin: boolean,
         /** Whether to show the banned until time. Defaults to false */
         ShowBannedUntil: boolean,
-        /** 
-         * Whether to show statistics, the most recent version of each stat. Defaults to
-         * false
-         */
+        /** Reserved for future development */
         ShowStatistics: boolean,
         /** Whether to show campaign attributions. Defaults to false */
         ShowCampaignAttributions: boolean,
