@@ -45,7 +45,7 @@ handlers.TrackTitleUsage = function () {
     // Get the User Publisher Data for this player, and convert it into our expected format
     var getRequest: PlayFabServerModels.GetUserDataRequest = { Keys: [PUBLISHER_USED_TITLES_KEY], PlayFabId: currentPlayerId };
     var getResult: PlayFabServerModels.GetUserDataResult = server.GetUserPublisherInternalData(getRequest);
-    var playedTitlesList: Array<string> = JSON.parse(getResult.Data[PUBLISHER_USED_TITLES_KEY].Value); // format is arbitrary, but this example assumes Array<string>
+    var playedTitlesList: string[] = JSON.parse(getResult.Data[PUBLISHER_USED_TITLES_KEY].Value); // format is arbitrary, but this example assumes string[]
     if (!playedTitlesList)
         playedTitlesList = [];
 
@@ -68,15 +68,15 @@ handlers.CheckCrossTitleRewards = function () {
     // Get the publisher data concerning cross-title rewards for this player
     var getRequest: PlayFabServerModels.GetUserDataRequest = { Keys: [PUBLISHER_USED_TITLES_KEY, PUBLISHER_REDEEMED_TITLES_KEY], PlayFabId: currentPlayerId };
     var getResult: PlayFabServerModels.GetUserDataResult = server.GetUserPublisherInternalData(getRequest);
-    var redeemedTitleRewards: { [key: string]: Array<string> } = JSON.parse(getResult.Data[PUBLISHER_REDEEMED_TITLES_KEY].Value); // format is arbitrary, but this example assumes { [key: string]: Array<string> }
+    var redeemedTitleRewards: { [key: string]: string[] } = JSON.parse(getResult.Data[PUBLISHER_REDEEMED_TITLES_KEY].Value); // format is arbitrary, but this example assumes { [key: string]: string[] }
     if (!redeemedTitleRewards)
         redeemedTitleRewards = {};
-    var playedTitlesList: Array<string> = JSON.parse(getResult.Data[PUBLISHER_USED_TITLES_KEY].Value); // format is arbitrary, but this example assumes Array<string>
+    var playedTitlesList: string[] = JSON.parse(getResult.Data[PUBLISHER_USED_TITLES_KEY].Value); // format is arbitrary, but this example assumes string[]
     if (!playedTitlesList)
         playedTitlesList = [];
 
     // Determine which titles are un-redeemed
-    var unredeemedTitleIds: Array<string> = [];
+    var unredeemedTitleIds: string[] = [];
     for (var i = 0; i < playedTitlesList.length; i++) {
         if (!redeemedTitleRewards.hasOwnProperty(playedTitlesList[i]) && playedTitlesList[i] !== script.titleId)
             unredeemedTitleIds.push(playedTitlesList[i]);
@@ -100,7 +100,7 @@ handlers.CheckCrossTitleRewards = function () {
     return actualRewards;
 }
 
-const MY_GAME_GROUP_KEYS: Array<string> = ["gameState", "currentPlayerTurn"];
+const MY_GAME_GROUP_KEYS: string[] = ["gameState", "currentPlayerTurn"];
 interface PlayerTurnArgs {
     sharedGroupId: string;
     nextPlayerTurn: string;
@@ -120,7 +120,7 @@ handlers.TakePlayerTurn = function (args: PlayerTurnArgs) {
     };
     server.UpdateSharedGroupData(updateRequest);
 }
-function CheckValidPlayer(playFabId: string, sharedGroupId: string, members: Array<string>, currentPlayerTurn: string, nextPlayerTurn: string): void {
+function CheckValidPlayer(playFabId: string, sharedGroupId: string, members: string[], currentPlayerTurn: string, nextPlayerTurn: string): void {
     var validCurPlayer = false;
     var validNextPlayer = false;
     for (var m = 0; m < members.length; m++) {
