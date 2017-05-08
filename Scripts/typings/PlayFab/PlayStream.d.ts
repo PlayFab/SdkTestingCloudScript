@@ -230,6 +230,8 @@ declare namespace PlayStreamModels {
         ItemId?: string,
         /** Version of the catalog from which the item was purchased. */
         CatalogVersion?: string,
+        /** The StoreId where the item was purchased. */
+        StoreId?: string,
         /** Currency that was used to purchase the item. */
         CurrencyCode?: string,
         /** Quantity of items that were purchased. */
@@ -996,6 +998,8 @@ declare namespace PlayStreamModels {
         ItemId?: string,
         /** Version of the catalog from which the item was purchased. */
         CatalogVersion?: string,
+        /** The StoreId where the item was purchased. */
+        StoreId?: string,
         /** Currency that was used to purchase the item. */
         CurrencyCode?: string,
         /** Quantity of items that were purchased. */
@@ -1382,6 +1386,21 @@ declare namespace PlayStreamModels {
         PolicyName?: string,
         /** The contents new policy. */
         NewPolicy?: string,
+        UserId?: string,
+        DeveloperId?: string,
+    }
+
+    /** 
+     * This event is triggered when a profile view constraint is changed for the title.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_profile_view_constraints_changed
+     */
+    interface title_profile_view_constraints_changed extends IBasePlayStreamEvent {
+        /** The profile type of the profile view constraints. */
+        ProfileType?: string,
+        /** Profile view constraints before the change as a JSON string. */
+        PreviousProfileViewConstraints?: string,
+        /** Profile view constraints after the change as a JSON string. */
+        ProfileViewConstraints?: string,
         UserId?: string,
         DeveloperId?: string,
     }
@@ -2066,11 +2085,21 @@ declare namespace PlayStreamModels {
         /** The object returned from the CloudScript function, if any */
         FunctionResult?: any,
         /** 
+         * Flag indicating if the FunctionResult was too large and was subsequently
+         * dropped from this event
+         */
+        FunctionResultTooLarge?: boolean,
+        /** 
          * Entries logged during the function execution. These include both entries logged
          * in the function code using log.info() and log.error() and error entries for
          * API and HTTP request failures.
          */
         Logs?: LogStatement[],
+        /** 
+         * Flag indicating if the logs were too large and were subsequently dropped from
+         * this event
+         */
+        LogsTooLarge?: boolean,
         ExecutionTimeSeconds: number,
         /** 
          * Processor time consumed while executing the function. This does not include
@@ -2082,7 +2111,7 @@ declare namespace PlayStreamModels {
         APIRequestsIssued: number,
         /** Number of external HTTP requests issued by the CloudScript function */
         HttpRequestsIssued: number,
-        /** Information about the error, if any, that occured during execution */
+        /** Information about the error, if any, that occurred during execution */
         Error?: ScriptExecutionError,
     }
 
