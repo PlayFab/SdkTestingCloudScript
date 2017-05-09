@@ -1,13 +1,11 @@
-Sdk-Testing Cloud Script README
-========
+# Sdk-Testing Cloud Script README
 
 Cloud Script example, and TypeScript typings for PlayFab Cloud Script Environment
 
 Cloud Script is optional.  It allows you to define logic that runs on a secure PlayFab server.  TypeScript is additionally optional, as it allows you to write your Cloud Script with additional validation.
 
 
-1. Overview:
-----
+## 1. Overview:
 
 This project serves several purposes:
 
@@ -17,35 +15,32 @@ This project serves several purposes:
 3. Demonstrate the [Cloud Script typings file](/src/typings/CloudScript.d.ts) which will define the PlayFab environment for you
 
 
-2. Using Cloud Script
-----
+## 2. Using Cloud Script
 
 For more information about Cloud Script, consult [our guide](https://api.playfab.com/docs/using-cloud-script/)
 
 
-3. TypeScript
-----
+## 3. TypeScript
 
 The PlayFab Cloud Script feature does not utilize TypeScript directly.  TypeScript is a superset of JavaScript, which provides strong typing and validation for JavaScript.  You can write your Cloud Script in TypeScript, generate the corresponding JavaScript, and submit the JavaScript to your title.
 
 [Here is a starting place if you wish to learn TypeScript](http://www.typescriptlang.org/)
 
 
-4. Acknowledgements
-----
+## 4. Acknowledgements
 
 [CloudScript.d.ts](/src/typings/CloudScript.d.ts) was created using our SdkGenerator by [Joshua Strunk](https://joshuastrunk.com/) @ [Flying Car Games Inc](http://flyingcargames.com/)
 
 
-5. Troubleshooting:
-----
+## 5. Troubleshooting:
 
 Our Developer Success Team can assist with answering any questions as well as process any feedback you have about PlayFab services.
 
 [Forums, Support and Knowledge Base](https://community.playfab.com/index.html)
 
-6. Copyright and Licensing Information:
-----
+
+## 6. Copyright and Licensing Information:
+
   Apache License -- 
   Version 2.0, January 2004
   http://www.apache.org/licenses/
