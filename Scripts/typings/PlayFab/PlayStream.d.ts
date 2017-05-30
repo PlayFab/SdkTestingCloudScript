@@ -834,8 +834,7 @@ declare namespace PlayStreamModels {
     }
 
     /** 
-     * This event is triggered when a player makes a real money purchase, and
-     * generates revenue for the game.
+     * This event is triggered when a player redeems a coupon.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_redeemed_coupon
      */
     interface player_redeemed_coupon extends IBasePlayStreamEvent {
@@ -869,6 +868,20 @@ declare namespace PlayStreamModels {
         ReportedByPlayer?: string,
         /** Comment submitted by the player who made the report. */
         Comment?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
+     * This event is triggered when PlayFab makes an internal adjustment to a player
+     * profile.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_set_profile_property
+     */
+    interface player_set_profile_property extends IBasePlayStreamEvent {
+        /** Property of the profile to be set */
+        Property?: PlayerProfileProperty,
+        /** Value to set to */
+        Value?: any,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1044,9 +1057,12 @@ declare namespace PlayStreamModels {
         Region?: string,
         /** Build version of the custom game server running the lobby. */
         ServerBuildVersion?: string,
-        /** Host name of the machine running the custom game server. */
+        /** 
+         * Publicly visible domain name or IP address of the host running the custom game
+         * server.
+         */
         ServerHost?: string,
-        /** Network port assigned to the custom game server. */
+        /** Network port of the host assigned to the custom game server. */
         ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
@@ -1078,14 +1094,67 @@ declare namespace PlayStreamModels {
         Region?: string,
         /** Build version of the custom game server running the lobby. */
         ServerBuildVersion?: string,
-        /** Host name of the machine running the custom game server. */
+        /** 
+         * Publicly visible domain name or IP address of the host running the custom game
+         * server.
+         */
         ServerHost?: string,
-        /** Network port assigned to the custom game server. */
+        /** Network port of the host assigned to the custom game server. */
         ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
         /** Custom tags associated with the game lobby. */
         Tags?: { [key: string]: string },
+    }
+
+    /** 
+     * This event is triggered when a multiplayer game lobby starts.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_started
+     */
+    interface gameserverhost_started extends IBasePlayStreamEvent {
+        /** Time that the host was started. */
+        StartTime: string,
+        /** The ID of the title associated with this host */
+        TitleId?: string,
+        /** Region in which the host is running. */
+        Region?: string,
+        /** Build version of the custom game server installed on the host. */
+        ServerBuildVersion?: string,
+        /** Publicly visible domain name or IP address of the host. */
+        ServerHost?: string,
+        /** Unique identifier of the host. */
+        InstanceId?: string,
+        /** Server hosting provider of host machine or VM. */
+        InstanceProvider?: string,
+        /** Provider specific type of the host machine or VM. */
+        InstanceType?: string,
+    }
+
+    /** 
+     * This event is triggered when a multiplayer game lobby stops.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_stopped
+     */
+    interface gameserverhost_stopped extends IBasePlayStreamEvent {
+        /** Time that the host was started. */
+        StartTime: string,
+        /** Time that the host was stopped. */
+        StopTime: string,
+        /** Reason that the host was stopped. */
+        StopReason?: GameServerHostStopReason,
+        /** The ID of the title associated with this host */
+        TitleId?: string,
+        /** Region in which the host is running. */
+        Region?: string,
+        /** Build version of the custom game server installed on the host. */
+        ServerBuildVersion?: string,
+        /** Publicly visible domain name or IP address of the host. */
+        ServerHost?: string,
+        /** Unique identifier of the host. */
+        InstanceId?: string,
+        /** Server hosting provider of host machine or VM. */
+        InstanceProvider?: string,
+        /** Provider specific type of the host machine or VM. */
+        InstanceType?: string,
     }
 
     /** 
@@ -1550,6 +1619,10 @@ declare namespace PlayStreamModels {
      * PlayStream Group: child types
      */
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfileProperty */
+    type PlayerProfileProperty = "TotalValueToDateInUSD"
+        | "PlayerValuesToDate";
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
     type AuthenticationProvider = "PlayFab"
         | "SAML";
@@ -1831,6 +1904,12 @@ declare namespace PlayStreamModels {
         Longitude?: number,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GameServerHostStopReason */
+    type GameServerHostStopReason = "Other"
+        | "ExcessCapacity"
+        | "LimitExceeded"
+        | "BuildNotActiveInRegion";
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
     type PaymentType = "Purchase"
         | "ReceiptValidation";
@@ -2086,7 +2165,8 @@ declare namespace PlayStreamModels {
         FunctionResult?: any,
         /** 
          * Flag indicating if the FunctionResult was too large and was subsequently
-         * dropped from this event
+         * dropped from this event. This only occurs if the total event size is larger
+         * than 350KB.
          */
         FunctionResultTooLarge?: boolean,
         /** 
@@ -2097,7 +2177,8 @@ declare namespace PlayStreamModels {
         Logs?: LogStatement[],
         /** 
          * Flag indicating if the logs were too large and were subsequently dropped from
-         * this event
+         * this event. This only occurs if the total event size is larger than 350KB
+         * after the FunctionResult was removed.
          */
         LogsTooLarge?: boolean,
         ExecutionTimeSeconds: number,

@@ -1002,7 +1002,8 @@ declare namespace PlayFabServerModels {
         FunctionResult?: any,
         /** 
          * Flag indicating if the FunctionResult was too large and was subsequently
-         * dropped from this event
+         * dropped from this event. This only occurs if the total event size is larger
+         * than 350KB.
          */
         FunctionResultTooLarge?: boolean,
         /** 
@@ -1013,7 +1014,8 @@ declare namespace PlayFabServerModels {
         Logs?: LogStatement[],
         /** 
          * Flag indicating if the logs were too large and were subsequently dropped from
-         * this event
+         * this event. This only occurs if the total event size is larger than 350KB
+         * after the FunctionResult was removed.
          */
         LogsTooLarge?: boolean,
         ExecutionTimeSeconds: number,
@@ -1473,6 +1475,13 @@ declare namespace PlayFabServerModels {
          * GetPlayerStatistics is false
          */
         PlayerStatisticNames?: string[],
+        /** Whether to get player profile. Defaults to false. */
+        GetPlayerProfile: boolean,
+        /** 
+         * Specifies the properties to return from the player profile. Defaults to
+         * returning the player's display name.
+         */
+        ProfileConstraints?: PlayerProfileViewConstraints,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResult */
@@ -1509,6 +1518,32 @@ declare namespace PlayFabServerModels {
         TitleData?: { [key: string]: string },
         /** List of statistics for this player. */
         PlayerStatistics?: StatisticValue[],
+        /** 
+         * The profile of the players. This profile is not guaranteed to be up-to-date.
+         * For a new player, this profile will not exist.
+         */
+        PlayerProfile?: PlayerProfileModel,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileRequest */
+    interface GetPlayerProfileRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+        /** 
+         * If non-null, this determines which properties of the profile to return. If
+         * null, playfab will only include display names. On client, only
+         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         */
+        ProfileConstraints?: PlayerProfileViewConstraints,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileResult */
+    interface GetPlayerProfileResult {
+        /** 
+         * The profile of the player. This profile is not guaranteed to be up-to-date. For
+         * a new player, this profile will not exist.
+         */
+        PlayerProfile?: PlayerProfileModel,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerSegmentsResult */
@@ -2537,18 +2572,16 @@ declare namespace PlayFabServerModels {
     interface ReportPlayerServerRequest {
         /** PlayFabId of the reporting player. */
         ReporterId: string,
-        /** PlayFabId of the reported player. */
+        /** Unique PlayFab identifier of the reported player. */
         ReporteeId: string,
-        /** Title player was reported in, optional if report not for specific title. */
-        TitleId?: string,
         /** Optional additional comment by reporting player. */
         Comment?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerResult */
     interface ReportPlayerServerResult {
-        /** Indicates whether this action completed successfully. */
-        Updated: boolean,
+        /** Deprecated: Always true */
+        Updated?: boolean,
         /** 
          * The number of remaining reports which may be filed today by this reporting
          * player.
@@ -3440,6 +3473,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/BanUsers
      */
     BanUsers(request: PlayFabServerModels.BanUsersRequest): PlayFabServerModels.BanUsersResult;
+
+    /** 
+     * Retrieves the player's profile
+     * https://api.playfab.com/Documentation/Server/method/GetPlayerProfile
+     */
+    GetPlayerProfile(request: PlayFabServerModels.GetPlayerProfileRequest): PlayFabServerModels.GetPlayerProfileResult;
 
     /** 
      * Retrieves the unique PlayFab identifiers for the given set of Facebook
