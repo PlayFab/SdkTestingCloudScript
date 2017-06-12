@@ -1297,8 +1297,8 @@ declare namespace PlayFabServerModels {
         UseSpecificVersion?: boolean,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. On client, only
-         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * null, playfab will only include display names. For API calls from the client,
+         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
     }
@@ -1355,8 +1355,8 @@ declare namespace PlayFabServerModels {
         MaxResultsCount: number,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. On client, only
-         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * null, playfab will only include display names. For API calls from the client,
+         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
@@ -1404,8 +1404,8 @@ declare namespace PlayFabServerModels {
         MaxResultsCount: number,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. On client, only
-         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * null, playfab will only include display names. For API calls from the client,
+         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get, when UseSpecificVersion is true. */
@@ -1531,8 +1531,8 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
         /** 
          * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. On client, only
-         * ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * null, playfab will only include display names. For API calls from the client,
+         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
     }
@@ -1837,7 +1837,10 @@ declare namespace PlayFabServerModels {
     interface GrantCharacterToUserRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
-        /** Non-unique display name of the character being granted. */
+        /** 
+         * Non-unique display name of the character being granted (1-20 characters in
+         * length).
+         */
         CharacterName: string,
         /** 
          * Type of the character being granted; statistics can be sliced based on this
@@ -2298,23 +2301,23 @@ declare namespace PlayFabServerModels {
     interface PlayerProfileModel {
         /** Publisher this player belongs to */
         PublisherId?: string,
-        /** Title ID this profile applies to */
+        /** Title ID this player profile applies to */
         TitleId?: string,
-        /** PlayFab Player ID */
+        /** PlayFab player account unique identifier */
         PlayerId?: string,
         /** Player record created */
         Created?: string,
         /** Player account origination */
         Origination?: LoginIdentityProvider,
-        /** Last login */
+        /** UTC time when the player most recently logged in to the title */
         LastLogin?: string,
         /** If the player is currently banned, the UTC Date when the ban expires */
         BannedUntil?: string,
-        /** List of geographic locations where the player has logged-in */
+        /** List of geographic locations from which the player has logged in to the title */
         Locations?: LocationModel[],
-        /** Player Display Name */
+        /** Player display name */
         DisplayName?: string,
-        /** Image URL of the player's avatar */
+        /** URL of the player's avatar image */
         AvatarUrl?: string,
         /** List of player's tags for segmentation */
         Tags?: TagModel[],
@@ -2323,18 +2326,19 @@ declare namespace PlayFabServerModels {
          * notifications
          */
         PushNotificationRegistrations?: PushNotificationRegistrationModel[],
-        /** List of third party accounts linked to this player */
+        /** List of all authentication systems linked to this player account */
         LinkedAccounts?: LinkedPlatformAccountModel[],
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[],
         /** 
-         * A sum of player's total purchases across all real-money currencies, converted
-         * to US Dollars equivalent
+         * Sum of the player's purchases made with real-money currencies, converted to US
+         * dollars equivalent and represented as a whole number of cents (1/100 USD).
+         * For example, 999 indicates nine dollars and ninety-nine cents.
          */
         TotalValueToDateInUSD?: number,
-        /** List of player's total lifetime real-money purchases by currency */
+        /** List of the player's lifetime purchase totals, summed by real-money currency */
         ValuesToDate?: ValueToDateModel[],
-        /** List of player's virtual currency balances */
+        /** List of the player's virtual currency balances */
         VirtualCurrencyBalances?: VirtualCurrencyBalanceModel[],
         /** List of leaderboard statistic values for the player */
         Statistics?: StatisticModel[],
@@ -3341,14 +3345,14 @@ declare namespace PlayFabServerModels {
         Currency?: string,
         /** 
          * Total value of the purchases in a whole number of 1/100 monetary units. For
-         * example 999 indicates nine dollars and ninety-nine cents when Currency is
+         * example, 999 indicates nine dollars and ninety-nine cents when Currency is
          * 'USD')
          */
         TotalValue: number,
         /** 
          * Total value of the purchases in a string representation of decimal monetary
-         * units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency
-         * is 'USD'))
+         * units. For example, '9.99' indicates nine dollars and ninety-nine cents when
+         * Currency is 'USD'.
          */
         TotalValueAsDecimal?: string,
     }
@@ -3966,12 +3970,6 @@ interface IPlayFabServerAPI {
     SetGameServerInstanceTags(request: PlayFabServerModels.SetGameServerInstanceTagsRequest): PlayFabServerModels.SetGameServerInstanceTagsResult;
 
     /** 
-     * Awards the specified users the specified Steam achievements
-     * https://api.playfab.com/Documentation/Server/method/AwardSteamAchievement
-     */
-    AwardSteamAchievement(request: PlayFabServerModels.AwardSteamAchievementRequest): PlayFabServerModels.AwardSteamAchievementResult;
-
-    /** 
      * Writes a character-based event into PlayStream.
      * https://api.playfab.com/Documentation/Server/method/WriteCharacterEvent
      */
@@ -4208,6 +4206,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
      */
     RemovePlayerTag(request: PlayFabServerModels.RemovePlayerTagRequest): PlayFabServerModels.RemovePlayerTagResult;
+
+    /** 
+     * Awards the specified users the specified Steam achievements
+     * https://api.playfab.com/Documentation/Server/method/AwardSteamAchievement
+     */
+    AwardSteamAchievement(request: PlayFabServerModels.AwardSteamAchievementRequest): PlayFabServerModels.AwardSteamAchievementResult;
 
 
 }
