@@ -1,5 +1,9 @@
 /** Static object you add your CloudScript endpoints to */
-declare var handlers: any;
+declare var handlers: IPlayFabHandlers;
+interface IPlayFabHandlers {
+  [handlerId:string]: (args?:any, context?:IPlayFabContext) => any;
+}
+
 /** The playfab id for the user who called into CloudScript */
 declare var currentPlayerId: string;
 
@@ -1291,10 +1295,8 @@ declare namespace PlayFabServerModels {
          * is true.
          */
         IncludeFacebookFriends?: boolean,
-        /** The version of the leaderboard to get, when UseSpecificVersion is true. */
+        /** The version of the leaderboard to get. */
         Version?: number,
-        /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion?: boolean,
         /** 
          * If non-null, this determines which properties of the profile to return. If
          * null, playfab will only include display names. For API calls from the client,
@@ -1359,10 +1361,8 @@ declare namespace PlayFabServerModels {
          * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
-        /** The version of the leaderboard to get, when UseSpecificVersion is true. */
+        /** The version of the leaderboard to get. */
         Version?: number,
-        /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion?: boolean,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserResult */
@@ -1408,10 +1408,8 @@ declare namespace PlayFabServerModels {
          * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
-        /** The version of the leaderboard to get, when UseSpecificVersion is true. */
+        /** The version of the leaderboard to get. */
         Version?: number,
-        /** If true, uses the specified version. If false, gets the most recent version. */
-        UseSpecificVersion?: boolean,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult */
@@ -2413,6 +2411,30 @@ declare namespace PlayFabServerModels {
         DeactivationTime?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPackage */
+    interface PushNotificationPackage {
+        /** 
+         * If set, represents a timestamp for when the device should display the message.
+         * Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp
+         * formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is
+         * expected to be handled by the device.
+         */
+        ScheduleDate?: string,
+        /** Title/Subject of the message */
+        Title: string,
+        /** Content of the message */
+        Message: string,
+        /** Icon file to display with the message */
+        Icon?: string,
+        /** Sound file to play with the message */
+        Sound?: string,
+        /** 
+         * Arbitrary string that will be delivered with the message. Suggested use: JSON
+         * formatted object
+         */
+        CustomData?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPlatform */
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
@@ -2509,6 +2531,8 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameRequest */
     interface RegisterGameRequest {
+        /** Previous lobby id if re-registering an existing game. */
+        LobbyId?: string,
         /** IP address of the Game Server Instance. */
         ServerHost: string,
         /** Port number for communication with the Game Server Instance. */
@@ -2533,7 +2557,11 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse */
     interface RegisterGameResponse {
-        /** Unique identifier generated for the Game Server Instance that is registered. */
+        /** 
+         * Unique identifier generated for the Game Server Instance that is registered. If
+         * LobbyId is specified in request and the game still exists in PlayFab, the
+         * LobbyId in request is returned. Otherwise a new lobby id will be returned.
+         */
         LobbyId?: string,
     }
 
@@ -2664,7 +2692,9 @@ declare namespace PlayFabServerModels {
         /** PlayFabId of the recipient of the push notification. */
         Recipient: string,
         /** Text of message to send. */
-        Message: string,
+        Message?: string,
+        /** Defines all possible push attributes like message, title, icon, etc */
+        Package?: PushNotificationPackage,
         /** Subject of message to send (may not be displayed in all platforms. */
         Subject?: string,
     }
@@ -2720,6 +2750,18 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult */
     interface SetGameServerInstanceTagsResult {
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest */
+    interface SetPlayerSecretRequest {
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        PlayerSecret: string,
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretResult */
+    interface SetPlayerSecretResult {
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPublisherDataRequest */
@@ -3470,6 +3512,14 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/AuthenticateSessionTicket
      */
     AuthenticateSessionTicket(request: PlayFabServerModels.AuthenticateSessionTicketRequest): PlayFabServerModels.AuthenticateSessionTicketResult;
+
+    /** 
+     * Sets the player's secret if it is not already set. Player secrets are used to
+     * sign API requests. To reset a player's secret use the Admin or Server API
+     * method SetPlayerSecret.
+     * https://api.playfab.com/Documentation/Server/method/SetPlayerSecret
+     */
+    SetPlayerSecret(request: PlayFabServerModels.SetPlayerSecretRequest): PlayFabServerModels.SetPlayerSecretResult;
 
     /** 
      * Bans users by PlayFab ID with optional IP address, or MAC address for the
