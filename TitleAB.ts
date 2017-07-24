@@ -1,7 +1,7 @@
 // Special key in the Title Data that contains an array of AB buckets that participate in the testing
 var TITLE_AB_TEST_TITLE_KEY = "TitleDataAbTestSegmentIds";
 
-handlers.GetTitleDataAB = function (args, ctx): string {
+var GetTitleDataAB = function (args, ctx): string {
     // The data key the player originally requested.
     var dataKey: string = args.TitleKey;
 
@@ -47,3 +47,4 @@ handlers.GetTitleDataAB = function (args, ctx): string {
     else // Otherwise, we return the value for the original key
         return defaultValue;
 }
+handlers["GetTitleDataAB"] = GetTitleDataAB;

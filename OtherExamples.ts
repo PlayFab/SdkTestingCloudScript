@@ -33,15 +33,16 @@ interface ISellItemArgs {
     soldItemInstanceId: string;
     requestedVcType: string;
 };
-handlers.SellItem = function (args: ISellItemArgs) {
+var SellItem = function (args: ISellItemArgs) {
     if (!args || !args.soldItemInstanceId || !args.requestedVcType)
         throw "Invalid input parameters, expected soldItemInstanceId and requestedVcType";
     SellItem_internal(args.soldItemInstanceId, args.requestedVcType);
 }
+handlers["SellItem"] = SellItem;
 
 // Publisher data Examples
 const PUBLISHER_USED_TITLES_KEY = "playedTitleIds";
-handlers.TrackTitleUsage = function () {
+var TrackTitleUsage = function () {
     // Get the User Publisher Data for this player, and convert it into our expected format
     var getRequest: PlayFabServerModels.GetUserDataRequest = { Keys: [PUBLISHER_USED_TITLES_KEY], PlayFabId: currentPlayerId };
     var getResult: PlayFabServerModels.GetUserDataResult = server.GetUserPublisherInternalData(getRequest);
@@ -61,10 +62,11 @@ handlers.TrackTitleUsage = function () {
     var setRequest: PlayFabServerModels.UpdateUserDataRequest = { PlayFabId: currentPlayerId, Data: { PUBLISHER_USED_TITLES_KEY: JSON.stringify(playedTitlesList) } };
     server.UpdateUserPublisherInternalData(setRequest);
 }
+handlers["TrackTitleUsage"] = TrackTitleUsage;
 
 const PUBLISHER_REDEEMED_TITLES_KEY = "redeemedTitleIds";
 const MY_CROSS_TITLE_REWARDS: { [key: string]: number } = { "AU": 10 };
-handlers.CheckCrossTitleRewards = function () {
+var CheckCrossTitleRewards = function () {
     // Get the publisher data concerning cross-title rewards for this player
     var getRequest: PlayFabServerModels.GetUserDataRequest = { Keys: [PUBLISHER_USED_TITLES_KEY, PUBLISHER_REDEEMED_TITLES_KEY], PlayFabId: currentPlayerId };
     var getResult: PlayFabServerModels.GetUserDataResult = server.GetUserPublisherInternalData(getRequest);
@@ -99,6 +101,7 @@ handlers.CheckCrossTitleRewards = function () {
     // Tell the client the reward
     return actualRewards;
 }
+handlers["CheckCrossTitleRewards"] = CheckCrossTitleRewards;
 
 const MY_GAME_GROUP_KEYS: string[] = ["gameState", "currentPlayerTurn"];
 interface PlayerTurnArgs {
@@ -106,7 +109,7 @@ interface PlayerTurnArgs {
     nextPlayerTurn: string;
     turnData: any;
 }
-handlers.TakePlayerTurn = function (args: PlayerTurnArgs) {
+var TakePlayerTurn = function (args: PlayerTurnArgs) {
     var getRequest: PlayFabServerModels.GetSharedGroupDataRequest = { SharedGroupId: args.sharedGroupId, GetMembers: true, Keys: MY_GAME_GROUP_KEYS };
     var gameData: PlayFabServerModels.GetSharedGroupDataResult = server.GetSharedGroupData(getRequest);
     CheckValidPlayer(currentPlayerId, args.sharedGroupId, gameData.Members, gameData.Data["currentPlayerTurn"].Value, args.nextPlayerTurn);
@@ -120,6 +123,8 @@ handlers.TakePlayerTurn = function (args: PlayerTurnArgs) {
     };
     server.UpdateSharedGroupData(updateRequest);
 }
+handlers["TakePlayerTurn"] = TakePlayerTurn;
+
 function CheckValidPlayer(playFabId: string, sharedGroupId: string, members: string[], currentPlayerTurn: string, nextPlayerTurn: string): void {
     var validCurPlayer = false;
     var validNextPlayer = false;

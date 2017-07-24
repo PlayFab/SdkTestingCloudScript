@@ -5,7 +5,7 @@
 var TEST_TITLE_ID: string = "6195"; // NOTE: Replace this with your own titleID - DeleteUsers has an additional security check to avoid accidents
 var TEST_DATA_KEY: string = "TEST_DATA_KEY"; // Used to reuse args.customId, but it was kindof a pain, and made things fragile
 
-handlers.helloWorld = function (args: IHelloWorldRequest, context): IHelloWorldResult {
+var HelloWorld = function (args: IHelloWorldRequest, context): IHelloWorldResult {
     var message: string = "Hello " + currentPlayerId + "!";
     log.info(message);
     var inputValue: any = null;
@@ -20,33 +20,37 @@ interface IHelloWorldRequest {
 interface IHelloWorldResult {
     messageValue: string
 }
+handlers["helloWorld"] = HelloWorld;
 
-handlers.throwError = function (args: void): void {
+var ThrowError = function (args: void): void {
     var testObject: any = undefined;
     var failureObj: any = testObject.doesnotexist.doesnotexist;
     return failureObj; // Can't get to here
 }
+handlers["throwError"] = ThrowError;
 
-handlers.easyLogEvent = function (args: IEasyLogEvent): void {
+var EasyLogEvent = function (args: IEasyLogEvent): void {
     log.info(JSON.stringify(args.logMessage));
 };
 interface IEasyLogEvent {
     logMessage: string
 }
+handlers["easyLogEvent"] = EasyLogEvent;
 
 ///////////////////////////////////////////////
 // JenkinsConsoleUtility CloudScript functions
 ///////////////////////////////////////////////
 
-handlers.TestDataExists = function (args: void): boolean {
+var TestDataExists = function (args: void): boolean {
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
         Keys: [TEST_DATA_KEY]
     });
     return playerData.Data.hasOwnProperty(TEST_DATA_KEY);
 };
+handlers["TestDataExists"] = TestDataExists;
 
-handlers.GetTestData = function (args: void): ITestReport {
+var GetTestData = function (args: void): ITestReport {
     var testResults: ITestReport = null;
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
@@ -67,8 +71,9 @@ handlers.GetTestData = function (args: void): ITestReport {
 
     return testResults;
 };
+handlers["GetTestData"] = GetTestData;
 
-handlers.SaveTestData = function (args: ITestReportPackage): void {
+var SaveTestData = function (args: ITestReportPackage): void {
     var data: { [key: string]: string } = {};
     data[TEST_DATA_KEY] = JSON.stringify(args.testReport);
     log.info("Saving Data (" + currentPlayerId + "): " + JSON.stringify(data));
@@ -83,3 +88,4 @@ interface ITestReportPackage {
 interface ITestReport {
     // Actually very big/complicated, but not inspected at all in this code.
 }
+handlers["SaveTestData"] = SaveTestData;

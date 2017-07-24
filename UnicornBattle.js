@@ -247,10 +247,10 @@ function SetEventActive(eventKey, isActive) {
     server.SetTitleData(setRequest);
 }
 ///////////////////////// Define the handlers /////////////////////////
-handlers.GetBaseClassForType = GetBaseClassForType;
-handlers.CreateCharacter = CreateCharacter;
-handlers.DeleteCharacter = DeleteCharacter;
-handlers.SaveProgress = SaveProgress;
-handlers.RetriveQuestItems = RetriveQuestItems;
-handlers.SubtractLife = SubtractLife;
+handlers["GetBaseClassForType"] = GetBaseClassForType;
+handlers["CreateCharacter"] = CreateCharacter;
+handlers["DeleteCharacter"] = DeleteCharacter;
+handlers["SaveProgress"] = SaveProgress;
+handlers["RetriveQuestItems"] = RetriveQuestItems;
+handlers["SubtractLife"] = SubtractLife;
 //# sourceMappingURL=UnicornBattle.js.map

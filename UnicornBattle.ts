@@ -391,9 +391,9 @@ function SetEventActive(eventKey: string, isActive: boolean): void {
 }
 
 ///////////////////////// Define the handlers /////////////////////////
-handlers.GetBaseClassForType = GetBaseClassForType;
-handlers.CreateCharacter = CreateCharacter;
-handlers.DeleteCharacter = DeleteCharacter;
-handlers.SaveProgress = SaveProgress;
-handlers.RetriveQuestItems = RetriveQuestItems;
-handlers.SubtractLife = SubtractLife;
+handlers["GetBaseClassForType"] = GetBaseClassForType;
+handlers["CreateCharacter"] = CreateCharacter;
+handlers["DeleteCharacter"] = DeleteCharacter;
+handlers["SaveProgress"] = SaveProgress;
+handlers["RetriveQuestItems"] = RetriveQuestItems;
+handlers["SubtractLife"] = SubtractLife;

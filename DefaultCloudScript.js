@@ -32,7 +32,7 @@
 // parameter of the ExecuteCloudScript API.
 // (https://api.playfab.com/Documentation/Client/method/ExecuteCloudScript)
 // "context" contains additional information when the Cloud Script function is called from a PlayStream action.
-handlers.helloWorld = function (args, context) {
+var HelloWorldDefault = function (args, context) {
     // The pre-defined "currentPlayerId" variable is initialized to the PlayFab ID of the player logged-in on the game client. 
     // Cloud Script handles authenticating the player automatically.
     var message = "Hello " + currentPlayerId + "!";
@@ -52,8 +52,9 @@ handlers.helloWorld = function (args, context) {
     // (https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_executed_cloudscript)
     return { messageValue: message };
 };
+handlers["helloWorld"] = HelloWorldDefault;
 // This is a simple example of making a PlayFab server API call
-handlers.makeAPICall = function (args, context) {
+var MakeApiCall = function (args, context) {
     var request = {
         PlayFabId: currentPlayerId, Statistics: [{
                 StatisticName: "Level",
@@ -66,8 +67,9 @@ handlers.makeAPICall = function (args, context) {
     // the PlayFab API, so you don't have to write extra code to issue HTTP requests. 
     var playerStatResult = server.UpdatePlayerStatistics(request);
 };
+handlers["makeAPICall"] = MakeApiCall;
 // This is a simple example of making a web request to an external HTTP API.
-handlers.makeHTTPRequest = function (args, context) {
+var MakeHttpRequest = function (args, context) {
     var headers = {
         "X-MyCustomHeader": "Some Value"
     };
@@ -84,9 +86,10 @@ handlers.makeHTTPRequest = function (args, context) {
     var response = http.request(url, httpMethod, content, contentType, headers);
     return { responseContent: response };
 };
+handlers["makeHTTPRequest"] = MakeHttpRequest;
 // This is a simple example of a function that is called from a
 // PlayStream event action. (https://playfab.com/introducing-playstream/)
-handlers.handlePlayStreamEventAndProfile = function (args, context) {
+var HandlePlayStreamEventAndProfile = function (args, context) {
     // The event that triggered the action 
     // (https://api.playfab.com/playstream/docs/PlayStreamEventModels)
     var psEvent = context.playStreamEvent;
@@ -98,6 +101,7 @@ handlers.handlePlayStreamEventAndProfile = function (args, context) {
     var response = http.request('https://httpbin.org/status/200', 'post', content, 'application/json', null);
     return { externalAPIResponse: response };
 };
+handlers["handlePlayStreamEventAndProfile"] = HandlePlayStreamEventAndProfile;
 // Below are some examples of using Cloud Script in slightly more realistic scenarios
 // This is a function that the game client would call whenever a player completes
 // a level. It updates a setting in the player's data that only game server
@@ -107,7 +111,7 @@ handlers.handlePlayStreamEventAndProfile = function (args, context) {
 // A funtion like this could be extended to perform validation on the 
 // level completion data to detect cheating. It could also do things like 
 // award the player items from the game catalog based on their performance.
-handlers.completedLevel = function (args, context) {
+var CompletedLevel = function (args, context) {
     var level = args.levelName;
     var monstersKilled = args.monstersKilled;
     var updateUserDataResult = server.UpdateUserInternalData({
@@ -126,12 +130,14 @@ handlers.completedLevel = function (args, context) {
     server.UpdatePlayerStatistics(request);
     log.debug("Updated level_monster_kills stat for player " + currentPlayerId + " to " + monstersKilled);
 };
+handlers["completedLevel"] = CompletedLevel;
 // In addition to the Cloud Script handlers, you can define your own functions and call them from your handlers. 
 // This makes it possible to share code between multiple handlers and to improve code organization.
-handlers.updatePlayerMove = function (args) {
+var UpdatePlayerMove = function (args) {
     var validMove = processPlayerMove(args);
     return { validMove: validMove };
 };
+handlers["updatePlayerMove"] = UpdatePlayerMove;
 // This is a helper function that verifies that the player's move wasn't made
 // too quickly following their previous move, according to the rules of the game.
 // If the move is valid, then it updates the player's statistics and profile data.
@@ -191,7 +197,7 @@ function processPlayerMove(playerMove) {
 // The function is called when a player_statistic_changed PlayStream event causes a player 
 // to enter a segment defined for high skill players. It sets a key value in
 // the player's internal data which unlocks some new content for the player.
-handlers.unlockHighSkillContent = function (args, context) {
+var UnlockHighSkillContent = function (args, context) {
     var playerStatUpdatedEvent = context.playStreamEvent;
     var request = {
         PlayFabId: currentPlayerId,
@@ -204,6 +210,7 @@ handlers.unlockHighSkillContent = function (args, context) {
     log.info('Unlocked HighSkillContent for ' + context.playerProfile.DisplayName);
     return { profile: context.playerProfile };
 };
+handlers["unlockHighSkillContent"] = UnlockHighSkillContent;
 // Photon Webhooks Integration
 //
 // The following functions are examples of Photon Cloud Webhook handlers. 
@@ -213,31 +220,36 @@ handlers.unlockHighSkillContent = function (args, context) {
 // trigger your Cloud Script Webhook handlers, if defined. 
 // This makes it easier than ever to incorporate multiplayer server logic into your game.
 // Triggered automatically when a Photon room is first created
-handlers.RoomCreated = function (args) {
+var RoomCreated = function (args) {
     log.debug("Room Created - Game: " + args.GameId + " MaxPlayers: " + args.CreateOptions.MaxPlayers);
 };
+handlers["RoomCreated"] = RoomCreated;
 // Triggered automatically when a player joins a Photon room
-handlers.RoomJoined = function (args) {
+var RoomJoined = function (args) {
     log.debug("Room Joined - Game: " + args.GameId + " PlayFabId: " + args.UserId);
 };
+handlers["RoomJoined"] = RoomJoined;
 // Triggered automatically when a player leaves a Photon room
-handlers.RoomLeft = function (args) {
+var RoomLeft = function (args) {
     log.debug("Room Left - Game: " + args.GameId + " PlayFabId: " + args.UserId);
 };
+handlers["RoomLeft"] = RoomLeft;
 // Triggered automatically when a Photon room closes
 // Note: currentPlayerId is undefined in this function
-handlers.RoomClosed = function (args) {
+var RoomClosed = function (args) {
     log.debug("Room Closed - Game: " + args.GameId);
 };
+handlers["RoomClosed"] = RoomClosed;
 // Triggered automatically when a Photon room game property is updated.
 // Note: currentPlayerId is undefined in this function
-handlers.RoomPropertyUpdated = function (args) {
+var RoomPropertyUpdated = function (args) {
     log.debug("Room Property Updated - Game: " + args.GameId);
 };
+handlers["RoomPropertyUpdated"] = RoomPropertyUpdated;
 // Triggered by calling "OpRaiseEvent" on the Photon client. The "args.Data" property is 
 // set to the value of the "customEventContent" HashTable parameter, so you can use
 // it to pass in arbitrary data.
-handlers.RoomEventRaised = function (args) {
+var RoomEventRaised = function (args) {
     var eventData = args.Data;
     log.debug("Event Raised - Game: " + args.GameId + " Event Type: " + eventData.eventType);
     switch (eventData.eventType) {
@@ -248,4 +260,5 @@ handlers.RoomEventRaised = function (args) {
             break;
     }
 };
+handlers["RoomEventRaised"] = RoomEventRaised;
 //# sourceMappingURL=DefaultCloudScript.js.map

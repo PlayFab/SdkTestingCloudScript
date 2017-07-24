@@ -61,24 +61,28 @@ function CycleEvent(cycleType: string, cycleTo: string = null): string[] {
     return eventInfo.activeEvents;
 }
 
-handlers.CycleDailyEvent = function (args: any, context: any) {
+var CycleDailyEvent = function (args: any, context: any) {
     if (!DEBUG_ENABLED && !context) throw "This can only be called from PlayStream"; // Safety check to prevent Clients from changing events, and/or accidents
     return CycleEvent("daily");
 }
+handlers["CycleDailyEvent"] = CycleDailyEvent;
 
-handlers.CycleWeeklyEvent = function (args: any, context: any) {
+var CycleWeeklyEvent = function (args: any, context: any) {
     if (!DEBUG_ENABLED && !context) throw "This can only be called from PlayStream"; // Safety check to prevent Clients from changing events, and/or accidents
     return CycleEvent("weekly");
 }
+handlers["CycleWeeklyEvent"] = CycleWeeklyEvent;
 
-handlers.DisableHoliday = function (args: any, context: any) {
+var DisableHoliday = function (args: any, context: any) {
     if (!DEBUG_ENABLED && !context) throw "This can only be called from PlayStream"; // Safety check to prevent Clients from changing events, and/or accidents
     return CycleEvent("holiday", null);
 }
+handlers["DisableHoliday"] = DisableHoliday;
 
 // Each Holiday-Enable needs its own handler since context cannot contain any parameters.
 // You could use additional title-data to determine when to activate/deactivate holidays
-handlers.EnableThanksgiving = function (args: any, context: any) {
+var EnableThanksgiving = function (args: any, context: any) {
     if (!DEBUG_ENABLED && !context) throw "This can only be called from PlayStream"; // Safety check to prevent Clients from changing events, and/or accidents
     return CycleEvent("holiday", "Thanksgiving");
 }
+handlers["EnableThanksgiving"] = EnableThanksgiving;

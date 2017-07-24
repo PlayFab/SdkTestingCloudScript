@@ -29,12 +29,11 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 // This is a Cloud Script function. "args" is set to the value of the "FunctionParameter" 
 // parameter of the ExecuteCloudScript API.
 // (https://api.playfab.com/Documentation/Client/method/ExecuteCloudScript)
 // "context" contains additional information when the Cloud Script function is called from a PlayStream action.
-handlers.helloWorld = function (args: any, context: IPlayFabContext): IHelloWorldResponse {
+var HelloWorldDefault = function (args: any, context: IPlayFabContext): IHelloWorldResponse {
 
     // The pre-defined "currentPlayerId" variable is initialized to the PlayFab ID of the player logged-in on the game client. 
     // Cloud Script handles authenticating the player automatically.
@@ -60,9 +59,10 @@ handlers.helloWorld = function (args: any, context: IPlayFabContext): IHelloWorl
 interface IHelloWorldResponse {
     messageValue: string;
 }
+handlers["helloWorld"] = HelloWorldDefault;
 
 // This is a simple example of making a PlayFab server API call
-handlers.makeAPICall = function (args: any, context: IPlayFabContext): void {
+var MakeApiCall = function (args: any, context: IPlayFabContext): void {
     var request: PlayFabServerModels.UpdatePlayerStatisticsRequest = {
         PlayFabId: currentPlayerId, Statistics: [{
             StatisticName: "Level",
@@ -76,9 +76,10 @@ handlers.makeAPICall = function (args: any, context: IPlayFabContext): void {
     // the PlayFab API, so you don't have to write extra code to issue HTTP requests. 
     var playerStatResult = server.UpdatePlayerStatistics(request);
 }
+handlers["makeAPICall"] = MakeApiCall;
 
 // This is a simple example of making a web request to an external HTTP API.
-handlers.makeHTTPRequest = function (args: any, context: IPlayFabContext): IMakeHttpRequestResponse {
+var MakeHttpRequest = function (args: any, context: IPlayFabContext): IMakeHttpRequestResponse {
     var headers: { [key: string]: string } = {
         "X-MyCustomHeader": "Some Value"
     };
@@ -101,10 +102,11 @@ handlers.makeHTTPRequest = function (args: any, context: IPlayFabContext): IMake
 interface IMakeHttpRequestResponse {
     responseContent: string;
 }
+handlers["makeHTTPRequest"] = MakeHttpRequest;
 
 // This is a simple example of a function that is called from a
 // PlayStream event action. (https://playfab.com/introducing-playstream/)
-handlers.handlePlayStreamEventAndProfile = function (args: any, context: IPlayFabContext): IHandlePlayStreamEventAndProfileResponse {
+var HandlePlayStreamEventAndProfile = function (args: any, context: IPlayFabContext): IHandlePlayStreamEventAndProfileResponse {
 
     // The event that triggered the action 
     // (https://api.playfab.com/playstream/docs/PlayStreamEventModels)
@@ -123,7 +125,7 @@ handlers.handlePlayStreamEventAndProfile = function (args: any, context: IPlayFa
 interface IHandlePlayStreamEventAndProfileResponse {
     externalAPIResponse: string;
 }
-
+handlers["handlePlayStreamEventAndProfile"] = HandlePlayStreamEventAndProfile;
 
 // Below are some examples of using Cloud Script in slightly more realistic scenarios
 
@@ -135,7 +137,7 @@ interface IHandlePlayStreamEventAndProfileResponse {
 // A funtion like this could be extended to perform validation on the 
 // level completion data to detect cheating. It could also do things like 
 // award the player items from the game catalog based on their performance.
-handlers.completedLevel = function (args: any, context: IPlayFabContext): void {
+var CompletedLevel = function (args: any, context: IPlayFabContext): void {
     var level = args.levelName;
     var monstersKilled = args.monstersKilled;
 
@@ -158,18 +160,18 @@ handlers.completedLevel = function (args: any, context: IPlayFabContext): void {
 
     log.debug("Updated level_monster_kills stat for player " + currentPlayerId + " to " + monstersKilled);
 }
-
+handlers["completedLevel"] = CompletedLevel;
 
 // In addition to the Cloud Script handlers, you can define your own functions and call them from your handlers. 
 // This makes it possible to share code between multiple handlers and to improve code organization.
-handlers.updatePlayerMove = function (args): IUpdatePlayerMoveResponse {
+var UpdatePlayerMove = function (args): IUpdatePlayerMoveResponse {
     var validMove = processPlayerMove(args);
     return { validMove: validMove };
 }
 interface IUpdatePlayerMoveResponse {
     validMove: boolean;
 }
-
+handlers["updatePlayerMove"] = UpdatePlayerMove;
 
 // This is a helper function that verifies that the player's move wasn't made
 // too quickly following their previous move, according to the rules of the game.
@@ -240,7 +242,7 @@ function processPlayerMove(playerMove): boolean {
 // The function is called when a player_statistic_changed PlayStream event causes a player 
 // to enter a segment defined for high skill players. It sets a key value in
 // the player's internal data which unlocks some new content for the player.
-handlers.unlockHighSkillContent = function (args: any, context: IPlayFabContext): IUnlockHighSkillContentResponse {
+var UnlockHighSkillContent = function (args: any, context: IPlayFabContext): IUnlockHighSkillContentResponse {
     var playerStatUpdatedEvent = (context.playStreamEvent as PlayStreamModels.player_statistic_changed);
 
     var request: PlayFabServerModels.UpdateUserInternalDataRequest = {
@@ -258,6 +260,7 @@ handlers.unlockHighSkillContent = function (args: any, context: IPlayFabContext)
 interface IUnlockHighSkillContentResponse {
     profile: IPlayFabPlayerProfile;
 }
+handlers["unlockHighSkillContent"] = UnlockHighSkillContent;
 
 // Photon Webhooks Integration
 //
@@ -270,36 +273,41 @@ interface IUnlockHighSkillContentResponse {
 
 
 // Triggered automatically when a Photon room is first created
-handlers.RoomCreated = function (args): void {
+var RoomCreated = function (args): void {
     log.debug("Room Created - Game: " + args.GameId + " MaxPlayers: " + args.CreateOptions.MaxPlayers);
 }
+handlers["RoomCreated"] = RoomCreated;
 
 // Triggered automatically when a player joins a Photon room
-handlers.RoomJoined = function (args): void {
+var RoomJoined = function (args): void {
     log.debug("Room Joined - Game: " + args.GameId + " PlayFabId: " + args.UserId);
 }
+handlers["RoomJoined"] = RoomJoined;
 
 // Triggered automatically when a player leaves a Photon room
-handlers.RoomLeft = function (args): void {
+var RoomLeft = function (args): void {
     log.debug("Room Left - Game: " + args.GameId + " PlayFabId: " + args.UserId);
 }
+handlers["RoomLeft"] = RoomLeft;
 
 // Triggered automatically when a Photon room closes
 // Note: currentPlayerId is undefined in this function
-handlers.RoomClosed = function (args): void {
+var RoomClosed = function (args): void {
     log.debug("Room Closed - Game: " + args.GameId);
 }
+handlers["RoomClosed"] = RoomClosed;
 
 // Triggered automatically when a Photon room game property is updated.
 // Note: currentPlayerId is undefined in this function
-handlers.RoomPropertyUpdated = function (args): void {
+var RoomPropertyUpdated = function (args): void {
     log.debug("Room Property Updated - Game: " + args.GameId);
 }
+handlers["RoomPropertyUpdated"] = RoomPropertyUpdated;
 
 // Triggered by calling "OpRaiseEvent" on the Photon client. The "args.Data" property is 
 // set to the value of the "customEventContent" HashTable parameter, so you can use
 // it to pass in arbitrary data.
-handlers.RoomEventRaised = function (args): void {
+var RoomEventRaised = function (args): void {
     var eventData = args.Data;
     log.debug("Event Raised - Game: " + args.GameId + " Event Type: " + eventData.eventType);
 
@@ -312,3 +320,4 @@ handlers.RoomEventRaised = function (args): void {
             break;
     }
 }
+handlers["RoomEventRaised"] = RoomEventRaised;

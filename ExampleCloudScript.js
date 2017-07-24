@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////
 var TEST_TITLE_ID = "6195"; // NOTE: Replace this with your own titleID - DeleteUsers has an additional security check to avoid accidents
 var TEST_DATA_KEY = "TEST_DATA_KEY"; // Used to reuse args.customId, but it was kindof a pain, and made things fragile
-handlers.helloWorld = function (args, context) {
+var HelloWorld = function (args, context) {
     var message = "Hello " + currentPlayerId + "!";
     log.info(message);
     var inputValue = null;
@@ -12,25 +12,29 @@ handlers.helloWorld = function (args, context) {
     log.debug("helloWorld:", { input: inputValue });
     return { messageValue: message };
 };
-handlers.throwError = function (args) {
+handlers["helloWorld"] = HelloWorld;
+var ThrowError = function (args) {
     var testObject = undefined;
     var failureObj = testObject.doesnotexist.doesnotexist;
     return failureObj; // Can't get to here
 };
-handlers.easyLogEvent = function (args) {
+handlers["throwError"] = ThrowError;
+var EasyLogEvent = function (args) {
     log.info(JSON.stringify(args.logMessage));
 };
+handlers["easyLogEvent"] = EasyLogEvent;
 ///////////////////////////////////////////////
 // JenkinsConsoleUtility CloudScript functions
 ///////////////////////////////////////////////
-handlers.TestDataExists = function (args) {
+var TestDataExists = function (args) {
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
         Keys: [TEST_DATA_KEY]
     });
     return playerData.Data.hasOwnProperty(TEST_DATA_KEY);
 };
-handlers.GetTestData = function (args) {
+handlers["TestDataExists"] = TestDataExists;
+var GetTestData = function (args) {
     var testResults = null;
     var playerData = server.GetUserInternalData({
         PlayFabId: currentPlayerId,
@@ -51,7 +55,8 @@ handlers.GetTestData = function (args) {
     }
     return testResults;
 };
-handlers.SaveTestData = function (args) {
+handlers["GetTestData"] = GetTestData;
+var SaveTestData = function (args) {
     var data = {};
     data[TEST_DATA_KEY] = JSON.stringify(args.testReport);
     log.info("Saving Data (" + currentPlayerId + "): " + JSON.stringify(data));
@@ -60,4 +65,5 @@ handlers.SaveTestData = function (args) {
         Data: data
     });
 };
+handlers["SaveTestData"] = SaveTestData;
 //# sourceMappingURL=ExampleCloudScript.js.map
