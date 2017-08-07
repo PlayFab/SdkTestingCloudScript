@@ -311,6 +311,17 @@ declare namespace PlayStreamModels {
      */
 
     /** 
+     * This event is triggered when an email confirmation link is clicked.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/auth_token_validated
+     */
+    interface auth_token_validated extends IBasePlayStreamEvent {
+        /** The email token in the confirmation link that was clicked. */
+        Token?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
      * This event is triggered by an attribution tracking Add-on when a player is
      * matched to a paid acquisition campaign.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_campaign_attribution
@@ -807,6 +818,8 @@ declare namespace PlayStreamModels {
         TransactionCurrency?: Currency,
         /** Unique identifier of the order. */
         OrderId?: string,
+        /** Unique identifier of the transaction. */
+        TransactionId?: string,
         /** The name of the purchased item, if applicable. */
         PurchasedProduct?: string[],
         /** The ID of the title to which this player event applies. */
@@ -855,6 +868,16 @@ declare namespace PlayStreamModels {
         Platform?: PushNotificationPlatform,
         /** Unique device token registered for push notifications. */
         DeviceToken?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
+     * This event is triggered when a player account for a title is removed. Note:
+     * this event is triggered once per title rather than once per publisher.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_removed_title
+     */
+    interface player_removed_title extends IBasePlayStreamEvent {
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1001,6 +1024,21 @@ declare namespace PlayStreamModels {
     }
 
     /** 
+     * This event is triggered when a player updates a contact email on their profile.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_updated_contact_email
+     */
+    interface player_updated_contact_email extends IBasePlayStreamEvent {
+        /** The name of the contact email that was updated or added in the player's profile. */
+        EmailName?: string,
+        /** The previous contact email updated in the player's profile. */
+        PreviousEmailAddress?: string,
+        /** The contact email updated or added in the player's profile. */
+        NewEmailAddress?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
      * This event is triggered when the player makes a purchase using virtual currency.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_vc_item_purchased
      */
@@ -1024,6 +1062,19 @@ declare namespace PlayStreamModels {
     }
 
     /** 
+     * This event is triggered when a contact email is verified for a player.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_verified_contact_email
+     */
+    interface player_verified_contact_email extends IBasePlayStreamEvent {
+        /** The name of the player's contact email that was verified. */
+        EmailName?: string,
+        /** The email address of the player's contact email that was verified. */
+        EmailAddress?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
      * This event is triggered when a player's virtual currency balance changes.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_virtual_currency_balance_changed
      */
@@ -1036,6 +1087,27 @@ declare namespace PlayStreamModels {
         VirtualCurrencyPreviousBalance: number,
         /** Id of the order that triggered the balance changes */
         OrderId?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /** 
+     * This event is triggered when an email is sent or fails to send to a player.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
+     */
+    interface sent_email extends IBasePlayStreamEvent {
+        /** The email template name during a send email attempt. */
+        EmailTemplateName?: string,
+        /** The email template type during a send email attempt. */
+        EmailTemplateType?: EmailTemplateType,
+        /** Indicates if the email was successfully sent. */
+        Success: boolean,
+        /** The name of the error that occurred if an email failed to send. */
+        ErrorName?: string,
+        /** The error that occurred if an email failed to send. */
+        ErrorMessage?: string,
+        /** The name of the player's contact email the email was sent to. */
+        EmailName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1623,6 +1695,11 @@ declare namespace PlayStreamModels {
     type PlayerProfileProperty = "TotalValueToDateInUSD"
         | "PlayerValuesToDate";
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailTemplateType */
+    type EmailTemplateType = "EmailVerification"
+        | "Custom"
+        | "AccountRecovery";
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
     type AuthenticationProvider = "PlayFab"
         | "SAML";
@@ -1908,7 +1985,8 @@ declare namespace PlayStreamModels {
     type GameServerHostStopReason = "Other"
         | "ExcessCapacity"
         | "LimitExceeded"
-        | "BuildNotActiveInRegion";
+        | "BuildNotActiveInRegion"
+        | "Unresponsive";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
     type PaymentType = "Purchase"
@@ -2259,6 +2337,21 @@ declare namespace PlayStreamModels {
         Name?: string,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailVerificationStatus */
+    type EmailVerificationStatus = "Unverified"
+        | "Pending"
+        | "Confirmed";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContactEmailInfo */
+    interface ContactEmailInfo {
+        /** The name of the email info data */
+        Name?: string,
+        /** The email address */
+        EmailAddress?: string,
+        /** The verification status of the email */
+        VerificationStatus?: EmailVerificationStatus,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfile */
     interface PlayerProfile {
         /** PlayFab Player ID */
@@ -2302,6 +2395,8 @@ declare namespace PlayStreamModels {
         LinkedAccounts?: PlayerLinkedAccount[],
         /** Array of player statistics */
         PlayerStatistics?: PlayerStatistic[],
+        /** Array of contact email addresses associated with the player */
+        ContactEmailAddresses?: ContactEmailInfo[],
     }
 
     /** 

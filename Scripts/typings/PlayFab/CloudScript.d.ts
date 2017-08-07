@@ -482,6 +482,16 @@ declare namespace PlayFabServerModels {
         RemainingUses: number,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContactEmailInfo */
+    interface ContactEmailInfo {
+        /** The name of the email info data */
+        Name?: string,
+        /** The email address */
+        EmailAddress?: string,
+        /** The verification status of the email */
+        VerificationStatus?: EmailVerificationStatus,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContinentCode */
     type ContinentCode = "AF"
         | "AN"
@@ -971,6 +981,11 @@ declare namespace PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameResponse */
     interface DeregisterGameResponse {
     }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmailVerificationStatus */
+    type EmailVerificationStatus = "Unverified"
+        | "Pending"
+        | "Confirmed";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult */
     interface EmptyResult {
@@ -2293,6 +2308,8 @@ declare namespace PlayFabServerModels {
         LinkedAccounts?: PlayerLinkedAccount[],
         /** Array of player statistics */
         PlayerStatistics?: PlayerStatistic[],
+        /** Array of contact email addresses associated with the player */
+        ContactEmailAddresses?: ContactEmailInfo[],
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileModel */
@@ -4186,7 +4203,7 @@ interface IPlayFabServerAPI {
     GetCharacterReadOnlyData(request: PlayFabServerModels.GetCharacterDataRequest): PlayFabServerModels.GetCharacterDataResult;
 
     /** 
-     * Updates the title-specific custom data for the user's chjaracter which is
+     * Updates the title-specific custom data for the user's character which is
      * readable and writable by the client
      * https://api.playfab.com/Documentation/Server/method/UpdateCharacterData
      */
