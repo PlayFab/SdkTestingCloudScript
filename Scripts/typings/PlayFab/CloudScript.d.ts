@@ -1122,6 +1122,8 @@ declare namespace PlayFabServerModels {
          * connected in Game Center).
          */
         GameCenterInfo?: UserGameCenterInfo,
+        /** The profile of the user, if requested. */
+        Profile?: PlayerProfileModel,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GameInstanceState */
@@ -1313,9 +1315,11 @@ declare namespace PlayFabServerModels {
         /** The version of the leaderboard to get. */
         Version?: number,
         /** 
-         * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. For API calls from the client,
-         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
+         * If non-null, this determines which properties of the resulting player profiles
+         * to return. For API calls from the client, only the allowed client profile
+         * properties for the title may be requested. These allowed properties are
+         * configured in the Game Manager "Client Profile Options" tab in the "Settings"
+         * section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
     }
@@ -1334,6 +1338,14 @@ declare namespace PlayFabServerModels {
          * is true.
          */
         IncludeFacebookFriends?: boolean,
+        /** 
+         * If non-null, this determines which properties of the resulting player profiles
+         * to return. For API calls from the client, only the allowed client profile
+         * properties for the title may be requested. These allowed properties are
+         * configured in the Game Manager "Client Profile Options" tab in the "Settings"
+         * section.
+         */
+        ProfileConstraints?: PlayerProfileViewConstraints,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult */
@@ -1371,9 +1383,11 @@ declare namespace PlayFabServerModels {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
         /** 
-         * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. For API calls from the client,
-         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
+         * If non-null, this determines which properties of the resulting player profiles
+         * to return. For API calls from the client, only the allowed client profile
+         * properties for the title may be requested. These allowed properties are
+         * configured in the Game Manager "Client Profile Options" tab in the "Settings"
+         * section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get. */
@@ -1418,9 +1432,11 @@ declare namespace PlayFabServerModels {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
         /** 
-         * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. For API calls from the client,
-         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
+         * If non-null, this determines which properties of the resulting player profiles
+         * to return. For API calls from the client, only the allowed client profile
+         * properties for the title may be requested. These allowed properties are
+         * configured in the Game Manager "Client Profile Options" tab in the "Settings"
+         * section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
         /** The version of the leaderboard to get. */
@@ -1543,9 +1559,11 @@ declare namespace PlayFabServerModels {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /** 
-         * If non-null, this determines which properties of the profile to return. If
-         * null, playfab will only include display names. For API calls from the client,
-         * only ShowDisplayName, ShowAvatarUrl are allowed at this time.
+         * If non-null, this determines which properties of the resulting player profiles
+         * to return. For API calls from the client, only the allowed client profile
+         * properties for the title may be requested. These allowed properties are
+         * configured in the Game Manager "Client Profile Options" tab in the "Settings"
+         * section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
     }

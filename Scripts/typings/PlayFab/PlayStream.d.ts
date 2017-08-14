@@ -1096,6 +1096,8 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
      */
     interface sent_email extends IBasePlayStreamEvent {
+        /** The email template id during a send email attempt. */
+        EmailTemplateId?: string,
         /** The email template name during a send email attempt. */
         EmailTemplateName?: string,
         /** The email template type during a send email attempt. */
@@ -2447,6 +2449,8 @@ declare namespace PlayStreamModels {
         RequireCustomDataJSONFormat: boolean,
         /** Disable API access by returning errors to all API requests. */
         DisableAPIAccess: boolean,
+        /** Display name randomly-generated suffix length. */
+        DisplayNameRandomSuffixLength?: number,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TaskInstanceStatus */
