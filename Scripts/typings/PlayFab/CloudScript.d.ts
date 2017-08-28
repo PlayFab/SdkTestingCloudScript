@@ -492,6 +492,14 @@ declare namespace PlayFabServerModels {
         VerificationStatus?: EmailVerificationStatus,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContactEmailInfoModel */
+    interface ContactEmailInfoModel {
+        /** The name of the email info data */
+        Name?: string,
+        /** The email address */
+        EmailAddress?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContinentCode */
     type ContinentCode = "AF"
         | "AN"
@@ -2361,6 +2369,8 @@ declare namespace PlayFabServerModels {
         PushNotificationRegistrations?: PushNotificationRegistrationModel[],
         /** List of all authentication systems linked to this player account */
         LinkedAccounts?: LinkedPlatformAccountModel[],
+        /** List of all contact email info associated with the player account */
+        ContactEmailAddresses?: ContactEmailInfoModel[],
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[],
         /** 
@@ -2397,6 +2407,8 @@ declare namespace PlayFabServerModels {
         ShowPushNotificationRegistrations: boolean,
         /** Whether to show the linked accounts. Defaults to false */
         ShowLinkedAccounts: boolean,
+        /** Whether to show contact email addresses. Defaults to false */
+        ShowContactEmailAddresses: boolean,
         /** Whether to show the total value to date in usd. Defaults to false */
         ShowTotalValueToDateInUsd: boolean,
         /** Whether to show the values to date. Defaults to false */
@@ -2647,8 +2659,6 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerResult */
     interface ReportPlayerServerResult {
-        /** Deprecated: Always true */
-        Updated?: boolean,
         /** 
          * The number of remaining reports which may be filed today by this reporting
          * player.
@@ -2728,10 +2738,21 @@ declare namespace PlayFabServerModels {
         Recipient: string,
         /** Text of message to send. */
         Message?: string,
-        /** Defines all possible push attributes like message, title, icon, etc */
+        /** 
+         * Defines all possible push attributes like message, title, icon, etc. Not
+         * supported for iOS devices.
+         */
         Package?: PushNotificationPackage,
-        /** Subject of message to send (may not be displayed in all platforms. */
+        /** 
+         * Subject of message to send (may not be displayed in all platforms. Not
+         * supported for Android devices (use Package instead).
+         */
         Subject?: string,
+        /** 
+         * Platforms that should receive the message. If omitted, we will send to all
+         * available platforms.
+         */
+        TargetPlatforms?: PushNotificationPlatform[],
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult */
@@ -4074,30 +4095,39 @@ interface IPlayFabServerAPI {
 
     /** 
      * Adds users to the set of those able to update both the shared data, as well as
-     * the set of users in the group. Only users in the group (and the server) can
-     * add new members.
+     * the set of users  in the group. Only users in the group (and the server) can
+     * add new members. Shared Groups are designed for sharing data  between a very
+     * small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/AddSharedGroupMembers
      */
     AddSharedGroupMembers(request: PlayFabServerModels.AddSharedGroupMembersRequest): PlayFabServerModels.AddSharedGroupMembersResult;
 
     /** 
      * Requests the creation of a shared group object, containing key/value pairs
-     * which may be updated by all members of the group. When created by a server,
-     * the group will initially have no members.
+     * which may  be updated by all members of the group. When created by a server,
+     * the group will initially have no members.  Shared Groups are designed for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/CreateSharedGroup
      */
     CreateSharedGroup(request: PlayFabServerModels.CreateSharedGroupRequest): PlayFabServerModels.CreateSharedGroupResult;
 
     /** 
      * Deletes a shared group, freeing up the shared group ID to be reused for a new
-     * group
+     * group.  Shared Groups are designed for sharing data between a very small
+     * number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
      */
     DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest): PlayFabServerModels.EmptyResult;
 
     /** 
      * Retrieves data stored in a shared group object, as well as the list of members
-     * in the group. The server can access all public and private group data.
+     * in the group.  The server can access all public and private group data. Shared
+     * Groups are designed for sharing data between a very  small number of players,
+     * please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/GetSharedGroupData
      */
     GetSharedGroupData(request: PlayFabServerModels.GetSharedGroupDataRequest): PlayFabServerModels.GetSharedGroupDataResult;
@@ -4106,7 +4136,9 @@ interface IPlayFabServerAPI {
      * Removes users from the set of those able to update the shared data and the set
      * of users in the group. Only users in the group can remove members. If as a
      * result of the call, zero users remain with access, the group and its
-     * associated data will be deleted.
+     * associated data will be deleted. Shared Groups are designed for sharing data
+     * between a very small number of players,  please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/RemoveSharedGroupMembers
      */
     RemoveSharedGroupMembers(request: PlayFabServerModels.RemoveSharedGroupMembersRequest): PlayFabServerModels.RemoveSharedGroupMembersResult;
@@ -4116,7 +4148,9 @@ interface IPlayFabServerAPI {
      * permission is set to Public, all fields updated or added in this call will be
      * readable by users not in the group. By default, data permissions are set to
      * Private. Regardless of the permission setting, only members of the group (and
-     * the server) can update the data.
+     * the server) can update the data.  Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * https://api.playfab.com/Documentation/Server/method/UpdateSharedGroupData
      */
     UpdateSharedGroupData(request: PlayFabServerModels.UpdateSharedGroupDataRequest): PlayFabServerModels.UpdateSharedGroupDataResult;

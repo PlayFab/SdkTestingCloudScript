@@ -41,6 +41,16 @@ declare namespace PlayStreamModels {
         Location?: EventLocation,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_created */
+    interface entity_created extends IBasePlayStreamEvent {
+        EntityChain?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
+    interface entity_logged_in extends IBasePlayStreamEvent {
+        EntityChain?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_created */
     interface studio_created extends IBasePlayStreamEvent {
         /** Name of the new studio */
@@ -820,7 +830,7 @@ declare namespace PlayStreamModels {
         OrderId?: string,
         /** Unique identifier of the transaction. */
         TransactionId?: string,
-        /** The name of the purchased item, if applicable. */
+        /** The ItemIds from the catalog of the purchased items, if applicable. */
         PurchasedProduct?: string[],
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
