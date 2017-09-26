@@ -7,40 +7,6 @@ declare namespace PlayStreamModels {
      * PlayStream Group: none
      */
 
-    /** 
-     * This event is triggered when a developer logs in.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/developer_logged_in
-     */
-    interface developer_logged_in extends IBasePlayStreamEvent {
-        /** PlayFab ID for this user */
-        PlayFabId?: string,
-        /** User's email */
-        Email?: string,
-        /** Authentication provider for the user */
-        AuthenticationProvider?: AuthenticationProvider,
-        /** Authentication provider entity id, if needed by the provider */
-        AuthenticationProviderId?: string,
-        /** Developer's IP geo location */
-        Location?: EventLocation,
-    }
-
-    /** 
-     * This event is triggered when a developer registers.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/developer_registered
-     */
-    interface developer_registered extends IBasePlayStreamEvent {
-        /** PlayFab ID for this user */
-        PlayFabId?: string,
-        /** User's email */
-        Email?: string,
-        /** Authentication provider for the user */
-        AuthenticationProvider?: AuthenticationProvider,
-        /** Authentication provider entity id, if needed by the provider */
-        AuthenticationProviderId?: string,
-        /** Developer's IP geo location */
-        Location?: EventLocation,
-    }
-
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_created */
     interface entity_created extends IBasePlayStreamEvent {
         EntityChain?: string,
@@ -53,12 +19,12 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_created */
     interface studio_created extends IBasePlayStreamEvent {
-        /** Name of the new studio */
-        StudioName?: string,
-        /** PlayFab id of the user who created the studio */
-        CreatorPlayFabId?: string,
         /** Authentication provider's id for the user who created the studio */
         CreatorAuthenticationId?: string,
+        /** PlayFab id of the user who created the studio */
+        CreatorPlayFabId?: string,
+        /** Name of the new studio */
+        StudioName?: string,
     }
 
     /** 
@@ -66,18 +32,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_user_added
      */
     interface studio_user_added extends IBasePlayStreamEvent {
-        /** Id of the invitation record if user needed to register */
-        InvitationId?: string,
         /** Authentication provider's ID for this user */
         AuthenticationId?: string,
-        /** PlayFab ID for this user */
-        PlayFabId?: string,
-        /** User's email */
-        Email?: string,
         /** Authentication provider for the user */
         AuthenticationProvider?: AuthenticationProvider,
         /** Authentication provider entity id, if needed by the provider */
         AuthenticationProviderId?: string,
+        /** User's email */
+        Email?: string,
+        /** Id of the invitation record if user needed to register */
+        InvitationId?: string,
+        /** PlayFab ID for this user */
+        PlayFabId?: string,
         /** Array of studio permissions that were be granted to the user */
         StudioPermissions?: string[],
         /** Dictionary of title id, title permissions that were granted to the user */
@@ -89,23 +55,23 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_user_invited
      */
     interface studio_user_invited extends IBasePlayStreamEvent {
-        /** Identity of the user who created the invitation */
-        InvitorPlayFabId?: string,
-        /** Id of the invitation if user needed to register */
-        InvitationId?: string,
-        /** Expiration of the invitation */
-        InvitationExpires?: string,
+        /** Authentication provider type required for user to register with */
+        AuthenticationProvider?: AuthenticationProvider,
+        /** Authentication provider entity id, if needed by the provider. */
+        AuthenticationProviderId?: string,
         /** Email the invitation was sent to */
         Email?: string,
+        /** Expiration of the invitation */
+        InvitationExpires?: string,
+        /** Id of the invitation if user needed to register */
+        InvitationId?: string,
         /** 
          * Indicates if the user invited already existed, if so no invitation record was
          * created and the user was automatically attached
          */
         InvitedExistingUser: boolean,
-        /** Authentication provider type required for user to register with */
-        AuthenticationProvider?: AuthenticationProvider,
-        /** Authentication provider entity id, if needed by the provider. */
-        AuthenticationProviderId?: string,
+        /** Identity of the user who created the invitation */
+        InvitorPlayFabId?: string,
         /** Array of studio permissions which will be granted to the user when registering */
         StudioPermissions?: string[],
         /** 
@@ -119,12 +85,12 @@ declare namespace PlayStreamModels {
     interface studio_user_removed extends IBasePlayStreamEvent {
         /** Authentication provider's ID for this user */
         AuthenticationId?: string,
-        /** PlayFab ID for this user */
-        PlayFabId?: string,
         /** Authentication provider for the user */
         AuthenticationProvider?: AuthenticationProvider,
         /** Authentication provider entity id, if needed by the provider */
         AuthenticationProviderId?: string,
+        /** PlayFab ID for this user */
+        PlayFabId?: string,
         /** Array of studio permissions that the user had */
         StudioPermissions?: string[],
         /** Dictionary of title id, title permissions that the user had */
@@ -140,6 +106,8 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_consumed_item
      */
     interface character_consumed_item extends IBasePlayStreamEvent {
+        /** Version of the catalog from which the consumed inventory item was created. */
+        CatalogVersion?: string,
         /** 
          * ID of the catalog item from which the consumed inventory item was created. This
          * can be used to look up the item from the catalog.
@@ -147,20 +115,18 @@ declare namespace PlayStreamModels {
         ItemId?: string,
         /** The specific ID of the item that was consumed. */
         ItemInstanceId?: string,
-        /** Version of the catalog from which the consumed inventory item was created. */
-        CatalogVersion?: string,
+        PlayerId?: string,
         /** 
          * For multiple use items, the number of uses that remained before the item was
          * consumed.
          */
         PreviousUsesRemaining: number,
+        TitleId?: string,
         /** 
          * For multiple use items, the number of uses remaining after the item was
          * consumed.
          */
         UsesRemaining: number,
-        TitleId?: string,
-        PlayerId?: string,
     }
 
     /** 
@@ -168,12 +134,12 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_created
      */
     interface character_created extends IBasePlayStreamEvent {
-        /** When the character was created. */
-        Created: string,
         /** Name of the character. */
         CharacterName?: string,
-        TitleId?: string,
+        /** When the character was created. */
+        Created: string,
         PlayerId?: string,
+        TitleId?: string,
     }
 
     /** 
@@ -181,31 +147,31 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_inventory_item_added
      */
     interface character_inventory_item_added extends IBasePlayStreamEvent {
-        /** Unique instance ID of the inventory item that was added. */
-        InstanceId?: string,
-        /** Catalog item ID of the inventory item that was added. */
-        ItemId?: string,
-        /** Display name of the item that was added. */
-        DisplayName?: string,
-        /** Class of the item that was added. */
-        Class?: string,
-        /** Catalog version in which the item that was added is defined. */
-        CatalogVersion?: string,
-        /** When the item expires. The value is null if the item does not expire. */
-        Expiration?: string,
-        /** How many uses the item has, if it has a limited number of uses. */
-        RemainingUses?: number,
         /** Optional details about the inventory item. */
         Annotation?: string,
-        /** Redeemed coupon (if any) that granted the item. */
-        CouponCode?: string,
         /** 
          * Catalog item IDs of any other items granted to the character along with this
          * one as part of a bundle.
          */
         BundleContents?: string[],
-        TitleId?: string,
+        /** Catalog version in which the item that was added is defined. */
+        CatalogVersion?: string,
+        /** Class of the item that was added. */
+        Class?: string,
+        /** Redeemed coupon (if any) that granted the item. */
+        CouponCode?: string,
+        /** Display name of the item that was added. */
+        DisplayName?: string,
+        /** When the item expires. The value is null if the item does not expire. */
+        Expiration?: string,
+        /** Unique instance ID of the inventory item that was added. */
+        InstanceId?: string,
+        /** Catalog item ID of the inventory item that was added. */
+        ItemId?: string,
         PlayerId?: string,
+        /** How many uses the item has, if it has a limited number of uses. */
+        RemainingUses?: number,
+        TitleId?: string,
     }
 
     /** 
@@ -213,19 +179,19 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_statistic_changed
      */
     interface character_statistic_changed extends IBasePlayStreamEvent {
+        PlayerId?: string,
         /** Name of the statistic that changed. */
         StatisticName?: string,
+        /** Old value of the statistic, before the change. */
+        StatisticPreviousValue?: number,
+        /** New value of the statistic, after the change. */
+        StatisticValue: number,
+        TitleId?: string,
         /** 
          * Version of the statistic that changed. This is relevant for statistics that
          * reset, since each time the statistic resets the version increments.
          */
         Version: number,
-        /** New value of the statistic, after the change. */
-        StatisticValue: number,
-        /** Old value of the statistic, before the change. */
-        StatisticPreviousValue?: number,
-        TitleId?: string,
-        PlayerId?: string,
     }
 
     /** 
@@ -234,22 +200,22 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_vc_item_purchased
      */
     interface character_vc_item_purchased extends IBasePlayStreamEvent {
-        /** Unique identifier of the purchase transaction. */
-        PurchaseId?: string,
-        /** Identifier of the catalog item that was purchased. */
-        ItemId?: string,
         /** Version of the catalog from which the item was purchased. */
         CatalogVersion?: string,
-        /** The StoreId where the item was purchased. */
-        StoreId?: string,
         /** Currency that was used to purchase the item. */
         CurrencyCode?: string,
+        /** Identifier of the catalog item that was purchased. */
+        ItemId?: string,
+        PlayerId?: string,
+        /** Unique identifier of the purchase transaction. */
+        PurchaseId?: string,
         /** Quantity of items that were purchased. */
         Quantity: number,
+        /** The StoreId where the item was purchased. */
+        StoreId?: string,
+        TitleId?: string,
         /** Price paid per item, expressed in the virtual currency. */
         UnitPrice: number,
-        TitleId?: string,
-        PlayerId?: string,
     }
 
     /** 
@@ -257,16 +223,16 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_virtual_currency_balance_changed
      */
     interface character_virtual_currency_balance_changed extends IBasePlayStreamEvent {
-        /** Virtual currency whose balance changed. */
-        VirtualCurrencyName?: string,
-        /** New virtual currency balance after the change. */
-        VirtualCurrencyBalance: number,
-        /** Old virtual currency balance before the change. */
-        VirtualCurrencyPreviousBalance: number,
         /** Id of the order that triggered the balance changes */
         OrderId?: string,
-        TitleId?: string,
         PlayerId?: string,
+        TitleId?: string,
+        /** New virtual currency balance after the change. */
+        VirtualCurrencyBalance: number,
+        /** Virtual currency whose balance changed. */
+        VirtualCurrencyName?: string,
+        /** Old virtual currency balance before the change. */
+        VirtualCurrencyPreviousBalance: number,
     }
 
     /*
@@ -278,13 +244,13 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/display_name_filtered
      */
     interface display_name_filtered extends IBasePlayStreamEvent {
+        /** Value of the display name that was filtered */
+        DisplayName?: string,
         /** 
          * If event occurs at account creation, then no player exists yet. Otherwise, the
          * player whose displayname update was filtered
          */
         PlayerId?: string,
-        /** Value of the display name that was filtered */
-        DisplayName?: string,
     }
 
     /** 
@@ -321,17 +287,6 @@ declare namespace PlayStreamModels {
      */
 
     /** 
-     * This event is triggered when an email confirmation link is clicked.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/auth_token_validated
-     */
-    interface auth_token_validated extends IBasePlayStreamEvent {
-        /** The email token in the confirmation link that was clicked. */
-        Token?: string,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
-    }
-
-    /** 
      * This event is triggered by an attribution tracking Add-on when a player is
      * matched to a paid acquisition campaign.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_campaign_attribution
@@ -352,12 +307,12 @@ declare namespace PlayStreamModels {
         AdPlacementId?: string,
         /** Name of the placement */
         AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -368,6 +323,8 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_added_title
      */
     interface player_added_title extends IBasePlayStreamEvent {
+        /** Player's display name when they added this title. */
+        DisplayName?: string,
         /** Authentication method used to register player's account. */
         Platform?: LoginIdentityProvider,
         /** 
@@ -375,8 +332,6 @@ declare namespace PlayStreamModels {
          * authentication method.
          */
         PlatformUserId?: string,
-        /** Player's display name when they added this title. */
-        DisplayName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -390,12 +345,12 @@ declare namespace PlayStreamModels {
         AdPlacementId?: string,
         /** Name of the placement */
         AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -409,12 +364,12 @@ declare namespace PlayStreamModels {
         AdPlacementId?: string,
         /** Name of the placement */
         AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -424,22 +379,22 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_rewarded
      */
     interface player_ad_rewarded extends IBasePlayStreamEvent {
-        /** Views this player has remaining for the placement's window, if applicable */
-        ViewsRemainingThisPeriod?: number,
         /** Debug messages from the reward actions */
         ActionGroupDebugMessages?: string[],
         /** Id of the placement */
         AdPlacementId?: string,
         /** Name of the placement */
         AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
+        /** Views this player has remaining for the placement's window, if applicable */
+        ViewsRemainingThisPeriod?: number,
     }
 
     /** 
@@ -447,21 +402,21 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_activity_valued
      */
     interface player_ad_activity_valued extends IBasePlayStreamEvent {
+        /** Id of the placement */
+        AdPlacementId?: string,
+        /** Name of the placement */
+        AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** 
          * Share of the revenue for this ad view (calculated as total revenue for
          * placement devided by total views for that placement in that time window)
          */
         RevenueShare: number,
-        /** Id of the placement */
-        AdPlacementId?: string,
-        /** Name of the placement */
-        AdPlacementName?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -475,12 +430,12 @@ declare namespace PlayStreamModels {
         AdPlacementId?: string,
         /** Name of the placement */
         AdPlacementName?: string,
+        /** Ad unit type */
+        AdUnit?: string,
         /** Id of the reward */
         RewardId?: string,
         /** Name of the reward */
         RewardName?: string,
-        /** Ad unit type */
-        AdUnit?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -492,8 +447,6 @@ declare namespace PlayStreamModels {
     interface player_banned extends IBasePlayStreamEvent {
         /** When the ban expires. The value is null if the ban is permanent. */
         BanExpiration?: string,
-        /** Whether this ban is permanent. */
-        PermanentBan: boolean,
         /** 
          * ID of the ban. Useful for tracking unique bans, if the player has been banned
          * before.
@@ -501,6 +454,8 @@ declare namespace PlayStreamModels {
         BanId?: string,
         /** The reason why the player was banned. */
         BanReason?: string,
+        /** Whether this ban is permanent. */
+        PermanentBan: boolean,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -524,25 +479,25 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_completed_password_reset
      */
     interface player_completed_password_reset extends IBasePlayStreamEvent {
-        /** Email address to which the password reset link was sent. */
-        RecoveryEmailAddress?: string,
+        /** IP address from which the password reset process was completed. */
+        CompletedFromIPAddress?: string,
+        /** When the password reset process was completed. */
+        CompletionTimestamp: string,
+        /** Source that initiated the password reset process. */
+        InitiatedBy?: PasswordResetInitiationSource,
+        /** IP address from which the password reset process was initiated. */
+        InitiatedFromIPAddress?: string,
+        /** When the password reset process was initiated. */
+        InitiationTimestamp: string,
+        /** Expiration time for the password reset link. */
+        LinkExpiration: string,
         /** 
          * Unique identifier for the password reset link. This cannot be used to complete
          * the reset.
          */
         PasswordResetId?: string,
-        /** IP address from which the password reset process was initiated. */
-        InitiatedFromIPAddress?: string,
-        /** When the password reset process was initiated. */
-        InitiationTimestamp: string,
-        /** Source that initiated the password reset process. */
-        InitiatedBy?: PasswordResetInitiationSource,
-        /** Expiration time for the password reset link. */
-        LinkExpiration: string,
-        /** IP address from which the password reset process was completed. */
-        CompletedFromIPAddress?: string,
-        /** When the password reset process was completed. */
-        CompletionTimestamp: string,
+        /** Email address to which the password reset link was sent. */
+        RecoveryEmailAddress?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -552,13 +507,13 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_consumed_item
      */
     interface player_consumed_item extends IBasePlayStreamEvent {
+        /** Version of the catalog from which the consumed inventory item was created. */
+        CatalogVersion?: string,
         /** 
          * ID of the catalog item from which the consumed inventory item was created. This
          * can be used to look up the item from the catalog.
          */
         ItemId?: string,
-        /** Version of the catalog from which the consumed inventory item was created. */
-        CatalogVersion?: string,
         /** The specific ID of the item that was consumed. */
         ItemInstanceId?: string,
         /** 
@@ -566,13 +521,13 @@ declare namespace PlayStreamModels {
          * consumed.
          */
         PreviousUsesRemaining: number,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
         /** 
          * For multiple use items, the number of uses remaining after the item was
          * consumed.
          */
         UsesRemaining: number,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -594,10 +549,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_displayname_changed
      */
     interface player_displayname_changed extends IBasePlayStreamEvent {
-        /** Previous display name before the change. */
-        PreviousDisplayName?: string,
         /** New display name after the change. */
         DisplayName?: string,
+        /** Previous display name before the change. */
+        PreviousDisplayName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -610,13 +565,13 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_executed_cloudscript
      */
     interface player_executed_cloudscript extends IBasePlayStreamEvent {
-        /** Name of the CloudScript function that was called. */
-        FunctionName?: string,
         /** 
          * Result of the CloudScript function, including diagnostic information that is
          * useful for debugging.
          */
         CloudScriptExecutionResult?: ExecuteCloudScriptResult,
+        /** Name of the CloudScript function that was called. */
+        FunctionName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -626,29 +581,29 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_inventory_item_added
      */
     interface player_inventory_item_added extends IBasePlayStreamEvent {
-        /** Unique instance ID of the inventory item that was added. */
-        InstanceId?: string,
-        /** Catalog item ID of the inventory item that was added. */
-        ItemId?: string,
-        /** Display name of the item that was added. */
-        DisplayName?: string,
-        /** Class of the item that was added. */
-        Class?: string,
-        /** Catalog version in which the item that was added is defined. */
-        CatalogVersion?: string,
-        /** When the item expires. The value is null if the item does not expire. */
-        Expiration?: string,
-        /** How many uses the item has, if it has a limited number of uses. */
-        RemainingUses?: number,
         /** Optional details about the inventory item. */
         Annotation?: string,
-        /** Redeemed coupon (if any) that granted the item. */
-        CouponCode?: string,
         /** 
          * Catalog item IDs of any other items granted to the player along with this one
          * as part of a bundle.
          */
         BundleContents?: string[],
+        /** Catalog version in which the item that was added is defined. */
+        CatalogVersion?: string,
+        /** Class of the item that was added. */
+        Class?: string,
+        /** Redeemed coupon (if any) that granted the item. */
+        CouponCode?: string,
+        /** Display name of the item that was added. */
+        DisplayName?: string,
+        /** When the item expires. The value is null if the item does not expire. */
+        Expiration?: string,
+        /** Unique instance ID of the inventory item that was added. */
+        InstanceId?: string,
+        /** Catalog item ID of the inventory item that was added. */
+        ItemId?: string,
+        /** How many uses the item has, if it has a limited number of uses. */
+        RemainingUses?: number,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -658,20 +613,20 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_joined_lobby
      */
     interface player_joined_lobby extends IBasePlayStreamEvent {
-        /** Unique ID of the game lobby the player joined. */
-        LobbyId?: string,
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
+        /** Unique ID of the game lobby the player joined. */
+        LobbyId?: string,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
         ServerBuildVersion?: string,
         /** Host name of the machine running the custom game server. */
         ServerHost?: string,
-        /** Network port assigned to the custom game server. */
-        ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Network port assigned to the custom game server. */
+        ServerPort: number,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -681,20 +636,20 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_left_lobby
      */
     interface player_left_lobby extends IBasePlayStreamEvent {
-        /** Unique ID of the game session the player joined. */
-        LobbyId?: string,
         /** Game mode of the game session the player joined. */
         GameMode?: string,
+        /** Unique ID of the game session the player joined. */
+        LobbyId?: string,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
         ServerBuildVersion?: string,
         /** Host name of the machine running the custom game server. */
         ServerHost?: string,
-        /** Network port assigned to the custom game server. */
-        ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Network port assigned to the custom game server. */
+        ServerPort: number,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -705,16 +660,16 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_linked_account
      */
     interface player_linked_account extends IBasePlayStreamEvent {
+        /** Player's email linked with the given provider */
+        Email?: string,
         /** Authentication method being linked to a player's account. */
         Origination?: LoginIdentityProvider,
         /** Player's identity under authentication method being linked to player's account. */
         OriginationUserId?: string,
-        /** Player's username linked with the given provider */
-        Username?: string,
-        /** Player's email linked with the given provider */
-        Email?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
+        /** Player's username linked with the given provider */
+        Username?: string,
     }
 
     /** 
@@ -722,15 +677,15 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_logged_in
      */
     interface player_logged_in extends IBasePlayStreamEvent {
-        /** Authentication method used to login the player. */
-        Platform?: LoginIdentityProvider,
-        /** Player's identity under the authentication method used to login the player. */
-        PlatformUserId?: string,
         /** 
          * Player's geographic location, if known. Location is estimated from factors such
          * as IP address and is not always available or accurate.
          */
         Location?: EventLocation,
+        /** Authentication method used to login the player. */
+        Platform?: LoginIdentityProvider,
+        /** Player's identity under the authentication method used to login the player. */
+        PlatformUserId?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -741,20 +696,20 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_matched_with_lobby
      */
     interface player_matched_with_lobby extends IBasePlayStreamEvent {
-        /** Unique ID of the game lobby the player was assigned to. */
-        LobbyId?: string,
         /** Game mode of the game lobby the player was assigned to. */
         GameMode?: string,
+        /** Unique ID of the game lobby the player was assigned to. */
+        LobbyId?: string,
         /** Region in which the game server lives that the player was assigned to. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
         ServerBuildVersion?: string,
         /** Host name of the machine running the custom game server. */
         ServerHost?: string,
-        /** Network port assigned to the custom game server. */
-        ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Network port assigned to the custom game server. */
+        ServerPort: number,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -764,19 +719,19 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_password_reset_link_sent
      */
     interface player_password_reset_link_sent extends IBasePlayStreamEvent {
-        /** Email address to which the password reset link was sent. */
-        RecoveryEmailAddress?: string,
-        /** IP address from which the password reset process was initiated. */
-        InitiatedFromIPAddress?: string,
         /** Source that initiated the password reset process. */
         InitiatedBy?: PasswordResetInitiationSource,
+        /** IP address from which the password reset process was initiated. */
+        InitiatedFromIPAddress?: string,
+        /** Expiration time for the password reset link. */
+        LinkExpiration: string,
         /** 
          * Unique identifier for the password reset link. This cannot be used to complete
          * the reset.
          */
         PasswordResetId?: string,
-        /** Expiration time for the password reset link. */
-        LinkExpiration: string,
+        /** Email address to which the password reset link was sent. */
+        RecoveryEmailAddress?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -790,8 +745,12 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ranked_on_leaderboard_version
      */
     interface player_ranked_on_leaderboard_version extends IBasePlayStreamEvent {
+        /** Source of the values for the leaderboard. */
+        LeaderboardSource?: LeaderboardSource,
         /** Player's rank on the leaderboard. */
         Rank: number,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
         /** Player's leaderboard value. */
         Value: number,
         /** 
@@ -801,10 +760,6 @@ declare namespace PlayStreamModels {
         Version: number,
         /** Behavior with respect to the leaderboard values when the version changed. */
         VersionChangeBehavior?: LeaderboardVersionChangeBehavior,
-        /** Source of the values for the leaderboard. */
-        LeaderboardSource?: LeaderboardSource,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -813,27 +768,27 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_realmoney_purchase
      */
     interface player_realmoney_purchase extends IBasePlayStreamEvent {
+        /** Unique identifier of the order. */
+        OrderId?: string,
+        /** Total value of the purchase in the system currency (defaults to USD). */
+        OrderTotal: number,
         /** Payment provider used to make the purchase. */
         PaymentProvider?: string,
         /** Type of payment used to make the purchase. */
         PaymentType?: PaymentType,
-        /** Total value of the purchase in the system currency (defaults to USD). */
-        OrderTotal: number,
+        /** The ItemIds from the catalog of the purchased items, if applicable. */
+        PurchasedProduct?: string[],
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+        /** Local currency used to make the purchase, if applicable. */
+        TransactionCurrency?: Currency,
+        /** Unique identifier of the transaction. */
+        TransactionId?: string,
         /** 
          * Total value of the purchase in the local currency used to make the purchase, if
          * applicable.
          */
         TransactionTotal?: number,
-        /** Local currency used to make the purchase, if applicable. */
-        TransactionCurrency?: Currency,
-        /** Unique identifier of the order. */
-        OrderId?: string,
-        /** Unique identifier of the transaction. */
-        TransactionId?: string,
-        /** The ItemIds from the catalog of the purchased items, if applicable. */
-        PurchasedProduct?: string[],
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -842,18 +797,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_receipt_validation
      */
     interface player_receipt_validation extends IBasePlayStreamEvent {
+        /** The error that occured during a receipt validation. */
+        Error?: string,
         /** Payment provider used to make the purchase attempt. */
         PaymentProvider?: string,
         /** Type of payment used to make the purchase attempt. */
         PaymentType?: PaymentType,
         /** The receipt data during a real money purchase event attempt. */
         ReceiptContent?: string,
-        /** Indicates if the receipt is valid. */
-        Valid: boolean,
-        /** The error that occured during a receipt validation. */
-        Error?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
+        /** Indicates if the receipt is valid. */
+        Valid: boolean,
     }
 
     /** 
@@ -874,10 +829,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_registered_push_notifications
      */
     interface player_registered_push_notifications extends IBasePlayStreamEvent {
-        /** Platform on which the player is registering for push notifications. */
-        Platform?: PushNotificationPlatform,
         /** Unique device token registered for push notifications. */
         DeviceToken?: string,
+        /** Platform on which the player is registering for push notifications. */
+        Platform?: PushNotificationPlatform,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -897,10 +852,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_reported_as_abusive
      */
     interface player_reported_as_abusive extends IBasePlayStreamEvent {
-        /** Player ID of the player who made the report. */
-        ReportedByPlayer?: string,
         /** Comment submitted by the player who made the report. */
         Comment?: string,
+        /** Player ID of the player who made the report. */
+        ReportedByPlayer?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -913,10 +868,10 @@ declare namespace PlayStreamModels {
     interface player_set_profile_property extends IBasePlayStreamEvent {
         /** Property of the profile to be set */
         Property?: PlayerProfileProperty,
-        /** Value to set to */
-        Value?: any,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
+        /** Value to set to */
+        Value?: any,
     }
 
     /** 
@@ -924,23 +879,23 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_statistic_changed
      */
     interface player_statistic_changed extends IBasePlayStreamEvent {
-        /** Name of the statistic that changed. */
-        StatisticName?: string,
+        /** Aggregation method applied for calculating the new value of the statistic. */
+        AggregationMethod?: StatisticAggregationMethod,
         /** Unique ID of the statistic that changed. */
         StatisticId: number,
+        /** Name of the statistic that changed. */
+        StatisticName?: string,
+        /** Old value of the statistic, before the change. */
+        StatisticPreviousValue?: number,
+        /** New value of the statistic, after the change. */
+        StatisticValue: number,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
         /** 
          * Version of the statistic that changed. This is relevant for statistics that
          * reset, since each time the statistic resets the version increments.
          */
         Version: number,
-        /** New value of the statistic, after the change. */
-        StatisticValue: number,
-        /** Old value of the statistic, before the change. */
-        StatisticPreviousValue?: number,
-        /** Aggregation method applied for calculating the new value of the statistic. */
-        AggregationMethod?: StatisticAggregationMethod,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -948,19 +903,19 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_statistic_deleted
      */
     interface player_statistic_deleted extends IBasePlayStreamEvent {
-        /** Name of the statistic that was deleted. */
-        StatisticName?: string,
         /** Unique ID of the statistic that was deleted. */
         StatisticId: number,
+        /** Name of the statistic that was deleted. */
+        StatisticName?: string,
+        /** Old value of the statistic, before being deleted. */
+        StatisticPreviousValue?: number,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
         /** 
          * Version of the statistic. This is relevant for statistics that reset, since
          * each time the statistic resets the version increments.
          */
         Version: number,
-        /** Old value of the statistic, before being deleted. */
-        StatisticPreviousValue?: number,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -968,10 +923,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_tag_added
      */
     interface player_tag_added extends IBasePlayStreamEvent {
-        /** Name of the tag that is added. */
-        TagName?: string,
         /** Namespace for this tag */
         Namespace?: string,
+        /** Name of the tag that is added. */
+        TagName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -981,10 +936,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_tag_removed
      */
     interface player_tag_removed extends IBasePlayStreamEvent {
-        /** Name of the tag that is removed. */
-        TagName?: string,
         /** Namespace for this tag */
         Namespace?: string,
+        /** Name of the tag that is removed. */
+        TagName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -996,13 +951,15 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_triggered_action_executed_cloudscript
      */
     interface player_triggered_action_executed_cloudscript extends IBasePlayStreamEvent {
-        /** Name of the CloudScript function that was called. */
-        FunctionName?: string,
         /** 
          * Result of the CloudScript function, including an error information. Useful for
          * debugging.
          */
         CloudScriptExecutionResult?: ExecuteCloudScriptResult,
+        /** Name of the CloudScript function that was called. */
+        FunctionName?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
         /** 
          * The full JSON data of the event that triggered this CloudScript function to
          * run. Useful for debugging.
@@ -1012,8 +969,6 @@ declare namespace PlayStreamModels {
         TriggeringEventName?: string,
         /** JSON data profile of the player that triggered this CloudScript function to run. */
         TriggeringPlayer?: PlayerProfile,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
     }
 
     /** 
@@ -1034,41 +989,26 @@ declare namespace PlayStreamModels {
     }
 
     /** 
-     * This event is triggered when a player updates a contact email on their profile.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_updated_contact_email
-     */
-    interface player_updated_contact_email extends IBasePlayStreamEvent {
-        /** The name of the contact email that was updated or added in the player's profile. */
-        EmailName?: string,
-        /** The previous contact email updated in the player's profile. */
-        PreviousEmailAddress?: string,
-        /** The contact email updated or added in the player's profile. */
-        NewEmailAddress?: string,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
-    }
-
-    /** 
      * This event is triggered when the player makes a purchase using virtual currency.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_vc_item_purchased
      */
     interface player_vc_item_purchased extends IBasePlayStreamEvent {
-        /** Unique identifier of the purchase transaction. */
-        PurchaseId?: string,
-        /** Identifier of the catalog item that was purchased. */
-        ItemId?: string,
         /** Version of the catalog from which the item was purchased. */
         CatalogVersion?: string,
-        /** The StoreId where the item was purchased. */
-        StoreId?: string,
         /** Currency that was used to purchase the item. */
         CurrencyCode?: string,
+        /** Identifier of the catalog item that was purchased. */
+        ItemId?: string,
+        /** Unique identifier of the purchase transaction. */
+        PurchaseId?: string,
         /** Quantity of items that were purchased. */
         Quantity: number,
-        /** Price paid per item, expressed in the virtual currency. */
-        UnitPrice: number,
+        /** The StoreId where the item was purchased. */
+        StoreId?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
+        /** Price paid per item, expressed in the virtual currency. */
+        UnitPrice: number,
     }
 
     /** 
@@ -1076,10 +1016,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_verified_contact_email
      */
     interface player_verified_contact_email extends IBasePlayStreamEvent {
-        /** The name of the player's contact email that was verified. */
-        EmailName?: string,
         /** The email address of the player's contact email that was verified. */
         EmailAddress?: string,
+        /** The name of the player's contact email that was verified. */
+        EmailName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -1089,39 +1029,16 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_virtual_currency_balance_changed
      */
     interface player_virtual_currency_balance_changed extends IBasePlayStreamEvent {
-        /** Virtual currency whose balance changed. */
-        VirtualCurrencyName?: string,
-        /** New virtual currency balance after the change. */
-        VirtualCurrencyBalance: number,
-        /** Old virtual currency balance before the change. */
-        VirtualCurrencyPreviousBalance: number,
         /** Id of the order that triggered the balance changes */
         OrderId?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
-    }
-
-    /** 
-     * This event is triggered when an email is sent or fails to send to a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
-     */
-    interface sent_email extends IBasePlayStreamEvent {
-        /** The email template id during a send email attempt. */
-        EmailTemplateId?: string,
-        /** The email template name during a send email attempt. */
-        EmailTemplateName?: string,
-        /** The email template type during a send email attempt. */
-        EmailTemplateType?: EmailTemplateType,
-        /** Indicates if the email was successfully sent. */
-        Success: boolean,
-        /** The name of the error that occurred if an email failed to send. */
-        ErrorName?: string,
-        /** The error that occurred if an email failed to send. */
-        ErrorMessage?: string,
-        /** The name of the player's contact email the email was sent to. */
-        EmailName?: string,
-        /** The ID of the title to which this player event applies. */
-        TitleId?: string,
+        /** New virtual currency balance after the change. */
+        VirtualCurrencyBalance: number,
+        /** Virtual currency whose balance changed. */
+        VirtualCurrencyName?: string,
+        /** Old virtual currency balance before the change. */
+        VirtualCurrencyPreviousBalance: number,
     }
 
     /*
@@ -1133,8 +1050,6 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_ended
      */
     interface gamelobby_ended extends IBasePlayStreamEvent {
-        /** The ID of the title associated with this game lobby */
-        TitleId?: string,
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
         /** Region in which the game server lives that the player joined. */
@@ -1146,12 +1061,14 @@ declare namespace PlayStreamModels {
          * server.
          */
         ServerHost?: string,
-        /** Network port of the host assigned to the custom game server. */
-        ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Network port of the host assigned to the custom game server. */
+        ServerPort: number,
         /** Custom tags associated with the game lobby. */
         Tags?: { [key: string]: string },
+        /** The ID of the title associated with this game lobby */
+        TitleId?: string,
     }
 
     /** 
@@ -1159,8 +1076,6 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_started
      */
     interface gamelobby_started extends IBasePlayStreamEvent {
-        /** Configuration data passed to the server process running the game lobby. */
-        GameServerData?: string,
         /** 
          * Custom command line arguments passed to the server process running the game
          * lobby.
@@ -1168,12 +1083,12 @@ declare namespace PlayStreamModels {
         CustomCommandLineData?: string,
         /** Webhook endpoint of the custom matchmaker (if any) that started the game lobby. */
         CustomMatchmakerEndpoint?: string,
-        /** Maximum number of players that may be connected to the game lobby. */
-        MaxPlayers?: number,
-        /** The ID of the title associated with this game lobby */
-        TitleId?: string,
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
+        /** Configuration data passed to the server process running the game lobby. */
+        GameServerData?: string,
+        /** Maximum number of players that may be connected to the game lobby. */
+        MaxPlayers?: number,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
@@ -1183,12 +1098,14 @@ declare namespace PlayStreamModels {
          * server.
          */
         ServerHost?: string,
-        /** Network port of the host assigned to the custom game server. */
-        ServerPort: number,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Network port of the host assigned to the custom game server. */
+        ServerPort: number,
         /** Custom tags associated with the game lobby. */
         Tags?: { [key: string]: string },
+        /** The ID of the title associated with this game lobby */
+        TitleId?: string,
     }
 
     /** 
@@ -1196,22 +1113,22 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_started
      */
     interface gameserverhost_started extends IBasePlayStreamEvent {
-        /** Time that the host was started. */
-        StartTime: string,
-        /** The ID of the title associated with this host */
-        TitleId?: string,
-        /** Region in which the host is running. */
-        Region?: string,
-        /** Build version of the custom game server installed on the host. */
-        ServerBuildVersion?: string,
-        /** Publicly visible domain name or IP address of the host. */
-        ServerHost?: string,
         /** Unique identifier of the host. */
         InstanceId?: string,
         /** Server hosting provider of host machine or VM. */
         InstanceProvider?: string,
         /** Provider specific type of the host machine or VM. */
         InstanceType?: string,
+        /** Region in which the host is running. */
+        Region?: string,
+        /** Build version of the custom game server installed on the host. */
+        ServerBuildVersion?: string,
+        /** Publicly visible domain name or IP address of the host. */
+        ServerHost?: string,
+        /** Time that the host was started. */
+        StartTime: string,
+        /** The ID of the title associated with this host */
+        TitleId?: string,
     }
 
     /** 
@@ -1219,26 +1136,26 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_stopped
      */
     interface gameserverhost_stopped extends IBasePlayStreamEvent {
-        /** Time that the host was started. */
-        StartTime: string,
-        /** Time that the host was stopped. */
-        StopTime: string,
-        /** Reason that the host was stopped. */
-        StopReason?: GameServerHostStopReason,
-        /** The ID of the title associated with this host */
-        TitleId?: string,
-        /** Region in which the host is running. */
-        Region?: string,
-        /** Build version of the custom game server installed on the host. */
-        ServerBuildVersion?: string,
-        /** Publicly visible domain name or IP address of the host. */
-        ServerHost?: string,
         /** Unique identifier of the host. */
         InstanceId?: string,
         /** Server hosting provider of host machine or VM. */
         InstanceProvider?: string,
         /** Provider specific type of the host machine or VM. */
         InstanceType?: string,
+        /** Region in which the host is running. */
+        Region?: string,
+        /** Build version of the custom game server installed on the host. */
+        ServerBuildVersion?: string,
+        /** Publicly visible domain name or IP address of the host. */
+        ServerHost?: string,
+        /** Time that the host was started. */
+        StartTime: string,
+        /** Reason that the host was stopped. */
+        StopReason?: GameServerHostStopReason,
+        /** Time that the host was stopped. */
+        StopTime: string,
+        /** The ID of the title associated with this host */
+        TitleId?: string,
     }
 
     /** 
@@ -1246,21 +1163,21 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/session_ended
      */
     interface session_ended extends IBasePlayStreamEvent {
+        /** Whether or not the session was marked as a crash */
+        Crashed: boolean,
         /** 
          * The time the session was explicitly ended at, clamped to 24 hours. This can
          * differ significantly from the event timestamp if the game crashed
          */
         EndTime: string,
-        /** The ID of the user associated with this session */
-        UserId?: string,
         /** The total kilobytes written to the S3 file associated with this session */
         KilobytesWritten?: number,
         /** The length of the session in milliseconds */
         SessionLengthMs: number,
-        /** Whether or not the session was marked as a crash */
-        Crashed: boolean,
         /** The ID of the title associated with this session */
         TitleId?: string,
+        /** The ID of the user associated with this session */
+        UserId?: string,
     }
 
     /** 
@@ -1283,10 +1200,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_aborted_task
      */
     interface title_aborted_task extends IBasePlayStreamEvent {
+        DeveloperId?: string,
         /** ID of the aborted task instance */
         TaskInstanceId?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1294,19 +1211,19 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_added_cloudscript
      */
     interface title_added_cloudscript extends IBasePlayStreamEvent {
-        /** Version number of the CloudScript file that was added. */
-        Version: number,
-        /** Revision number of the CloudScript file that was added. */
-        Revision: number,
+        DeveloperId?: string,
         /** Whether the CloudScript that was uploaded is live. */
         Published: boolean,
+        /** Revision number of the CloudScript file that was added. */
+        Revision: number,
         /** 
          * Names of the individual script files modified. Currently this is just
          * 'CloudScript.js' but later we will support multiple files.
          */
         ScriptNames?: string[],
         UserId?: string,
-        DeveloperId?: string,
+        /** Version number of the CloudScript file that was added. */
+        Version: number,
     }
 
     /** 
@@ -1316,17 +1233,17 @@ declare namespace PlayStreamModels {
     interface title_game_build_added extends IBasePlayStreamEvent {
         /** Unique identifier of the build that was uploaded. */
         BuildId?: string,
+        DeveloperId?: string,
+        /** The maximum number of game sessions that can be run on a single server. */
+        MaxGamesPerHost: number,
+        /** The minimum number of free slots to maintain across all servers for this build. */
+        MinFreeGameSlots: number,
         /** 
          * This build is being deployed in these regions and will shortly be available for
          * players to join.
          */
         Regions?: Region[],
-        /** The minimum number of free slots to maintain across all servers for this build. */
-        MinFreeGameSlots: number,
-        /** The maximum number of game sessions that can be run on a single server. */
-        MaxGamesPerHost: number,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1334,12 +1251,12 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_api_settings_changed
      */
     interface title_api_settings_changed extends IBasePlayStreamEvent {
+        DeveloperId?: string,
         /** Settings values before the change. */
         PreviousSettingsValues?: APISettings,
         /** Settings values after the change. */
         SettingsValues?: APISettings,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1351,8 +1268,8 @@ declare namespace PlayStreamModels {
         CatalogVersion?: string,
         /** Was the catalog deleted. */
         Deleted: boolean,
-        UserId?: string,
         DeveloperId?: string,
+        UserId?: string,
     }
 
     /** 
@@ -1361,18 +1278,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_client_rate_limited_alert
      */
     interface title_client_rate_limited_alert extends IBasePlayStreamEvent {
-        /** URL of an image graph of the counter that triggered the alert. */
-        GraphUrl?: string,
         /** Unique identifier of the alert that triggered this event. */
         AlertEventId?: string,
+        /** State of the alert. Values include Triggered, Recovered, ReTriggered. */
+        AlertState?: AlertStates,
         /** The PlayFab API that was called too frequently. */
         API?: string,
         /** Error message that was returned to the client. */
         ErrorCode?: string,
+        /** URL of an image graph of the counter that triggered the alert. */
+        GraphUrl?: string,
         /** Level of the alert. Values include Warn, Alert, Critical. */
         Level?: AlertLevel,
-        /** State of the alert. Values include Triggered, Recovered, ReTriggered. */
-        AlertState?: AlertStates,
     }
 
     /** 
@@ -1380,18 +1297,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_completed_task
      */
     interface title_completed_task extends IBasePlayStreamEvent {
-        /** Type of the scheduled task */
-        TaskType?: string,
-        /** ID of the running instance of the task */
-        TaskInstanceId?: string,
-        /** Whether the task was aborted. */
-        IsAborted: boolean,
         /** Timestamp on when the task was aborted. Null if task never was aborted. */
         AbortedAt?: string,
+        /** Whether the task was aborted. */
+        IsAborted: boolean,
         /** Result of the task run, whether it has succeeded, failed or aborted. */
         Result?: TaskInstanceStatus,
         /** Summary of the task run. Different task types have different summary structure. */
         Summary?: any,
+        /** ID of the running instance of the task */
+        TaskInstanceId?: string,
+        /** Type of the scheduled task */
+        TaskType?: string,
     }
 
     /** 
@@ -1399,10 +1316,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_created_task
      */
     interface title_created_task extends IBasePlayStreamEvent {
+        DeveloperId?: string,
         /** Identity of the scheduled task */
         ScheduledTask?: NameIdentifier,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1410,10 +1327,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_deleted_task
      */
     interface title_deleted_task extends IBasePlayStreamEvent {
+        DeveloperId?: string,
         /** Identity of the scheduled task */
         ScheduledTask?: NameIdentifier,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1422,18 +1339,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_exceeded_limit
      */
     interface title_exceeded_limit extends IBasePlayStreamEvent {
-        /** The unique identifier of the limit that was exceeded. */
-        LimitId?: string,
-        /** The display name of the limit that was exceeded. */
-        LimitDisplayName?: string,
-        /** The unit of the limit that was exceeded. */
-        Unit?: MetricUnit,
-        /** The limit value that was exceeded. */
-        LimitValue: number,
-        /** The value that exceeded the limit. */
-        Value: number,
         /** Additional details about the exceeded limit */
         Details?: { [key: string]: any },
+        /** The display name of the limit that was exceeded. */
+        LimitDisplayName?: string,
+        /** The unique identifier of the limit that was exceeded. */
+        LimitId?: string,
+        /** The limit value that was exceeded. */
+        LimitValue: number,
+        /** The unit of the limit that was exceeded. */
+        Unit?: MetricUnit,
+        /** The value that exceeded the limit. */
+        Value: number,
     }
 
     /** 
@@ -1441,18 +1358,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_high_error_rate_alert
      */
     interface title_high_error_rate_alert extends IBasePlayStreamEvent {
-        /** URL of an image graph of the counter that triggered the alert. */
-        GraphUrl?: string,
         /** Unique identifier of the alert that triggered this event. */
         AlertEventId?: string,
+        /** State of the alert. Values include Triggered, Recovered, ReTriggered. */
+        AlertState?: AlertStates,
         /** The PlayFab API that is generating the high rate of errors. */
         API?: string,
         /** Error message that was returned to the client. */
         ErrorCode?: string,
+        /** URL of an image graph of the counter that triggered the alert. */
+        GraphUrl?: string,
         /** Level of the alert. Values include Warn, Alert, Critical. */
         Level?: AlertLevel,
-        /** State of the alert. Values include Triggered, Recovered, ReTriggered. */
-        AlertState?: AlertStates,
     }
 
     /** 
@@ -1461,17 +1378,17 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
      */
     interface title_initiated_player_password_reset extends IBasePlayStreamEvent {
-        /** Player's account ID. */
-        PlayerId?: string,
-        /** Email address to which the account recovery email was sent. */
-        PlayerRecoveryEmailAddress?: string,
+        DeveloperId?: string,
         /** 
          * Unique identifier for the password reset link. This cannot be used to complete
          * the reset.
          */
         PasswordResetId?: string,
+        /** Player's account ID. */
+        PlayerId?: string,
+        /** Email address to which the account recovery email was sent. */
+        PlayerRecoveryEmailAddress?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1479,20 +1396,20 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_limit_changed
      */
     interface title_limit_changed extends IBasePlayStreamEvent {
-        /** The unique identifier of the limit that changed. */
-        LimitId?: string,
         /** The display name of the limit that changed. */
         LimitDisplayName?: string,
-        /** The unit of the limit that changed. */
-        Unit?: MetricUnit,
-        /** The unique identifier of the limit change transaction. */
-        TransactionId?: string,
+        /** The unique identifier of the limit that changed. */
+        LimitId?: string,
         /** The price of the limit level in US Dollars before the change, if any. */
         PreviousPriceUSD?: number,
         /** The limit value before the change, if any. */
         PreviousValue?: number,
         /** The price of the limit level in US Dollars, if any. */
         PriceUSD?: number,
+        /** The unique identifier of the limit change transaction. */
+        TransactionId?: string,
+        /** The unit of the limit that changed. */
+        Unit?: MetricUnit,
         /** The limit value after the change, if any. */
         Value?: number,
     }
@@ -1504,14 +1421,14 @@ declare namespace PlayStreamModels {
     interface title_game_build_modified extends IBasePlayStreamEvent {
         /** Unique identifier of the build that was modified. */
         BuildId?: string,
-        /** List of regions where the build has been deployed. */
-        Regions?: Region[],
-        /** The minimum number of free slots to maintain across all servers for this build. */
-        MinFreeGameSlots: number,
+        DeveloperId?: string,
         /** The maximum number of game sessions that can be run on a single server. */
         MaxGamesPerHost: number,
+        /** The minimum number of free slots to maintain across all servers for this build. */
+        MinFreeGameSlots: number,
+        /** List of regions where the build has been deployed. */
+        Regions?: Region[],
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1519,12 +1436,12 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_news_updated
      */
     interface title_news_updated extends IBasePlayStreamEvent {
+        /** When the title news was initially created. */
+        DateCreated: string,
         /** Id of the news that is new or updated. */
         NewsId?: string,
         /** The current title of the news that is new or updated. */
         NewsTitle?: string,
-        /** When the title news was initially created. */
-        DateCreated: string,
         /** The current status of the news that is new or updated. */
         Status?: NewsStatus,
     }
@@ -1535,12 +1452,12 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_permission_policy_changed
      */
     interface title_permission_policy_changed extends IBasePlayStreamEvent {
-        /** The name of the policy that was changed */
-        PolicyName?: string,
+        DeveloperId?: string,
         /** The contents new policy. */
         NewPolicy?: string,
+        /** The name of the policy that was changed */
+        PolicyName?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1548,14 +1465,14 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_profile_view_constraints_changed
      */
     interface title_profile_view_constraints_changed extends IBasePlayStreamEvent {
-        /** The profile type of the profile view constraints. */
-        ProfileType?: string,
+        DeveloperId?: string,
         /** Profile view constraints before the change as a JSON string. */
         PreviousProfileViewConstraints?: string,
+        /** The profile type of the profile view constraints. */
+        ProfileType?: string,
         /** Profile view constraints after the change as a JSON string. */
         ProfileViewConstraints?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1564,10 +1481,10 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_published_cloudscript
      */
     interface title_published_cloudscript extends IBasePlayStreamEvent {
+        DeveloperId?: string,
         /** Revision number of the CloudScript that was activated. */
         Revision: number,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1575,14 +1492,13 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_requested_limit_change
      */
     interface title_requested_limit_change extends IBasePlayStreamEvent {
-        /** The unique identifier of the limit requested to change. */
-        LimitId?: string,
+        DeveloperId?: string,
+        /** The name of the requested limit level. */
+        LevelName?: string,
         /** The display name of the limit requested to change. */
         LimitDisplayName?: string,
-        /** The unit of the limit requested to change. */
-        Unit?: MetricUnit,
-        /** The unique identifier of the requested limit change transaction. */
-        TransactionId?: string,
+        /** The unique identifier of the limit requested to change. */
+        LimitId?: string,
         /** The name of the limit level at the time of the requested change, if any. */
         PreviousLevelName?: string,
         /** 
@@ -1592,14 +1508,15 @@ declare namespace PlayStreamModels {
         PreviousPriceUSD?: number,
         /** The limit value at the time of the requested change, if any. */
         PreviousValue?: number,
-        /** The name of the requested limit level. */
-        LevelName?: string,
         /** The price of the requested limit level in US Dollars, if any. */
         PriceUSD?: number,
+        /** The unique identifier of the requested limit change transaction. */
+        TransactionId?: string,
+        /** The unit of the limit requested to change. */
+        Unit?: MetricUnit,
+        UserId?: string,
         /** The limit value of the requested change, if any. */
         Value?: number,
-        UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1607,15 +1524,15 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_scheduled_cloudscript_executed
      */
     interface title_scheduled_cloudscript_executed extends IBasePlayStreamEvent {
-        /** Scheduled task that called the CloudScript */
-        ScheduledTask?: NameId,
-        /** Name of the CloudScript function that was called. */
-        FunctionName?: string,
         /** 
          * Result of the CloudScript function, including an error information. Useful for
          * debugging.
          */
         CloudScriptExecutionResult?: ExecuteCloudScriptResult,
+        /** Name of the CloudScript function that was called. */
+        FunctionName?: string,
+        /** Scheduled task that called the CloudScript */
+        ScheduledTask?: NameId,
     }
 
     /** 
@@ -1623,18 +1540,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_secret_key_changed
      */
     interface title_secret_key_changed extends IBasePlayStreamEvent {
-        /** Id of the secret key affected. */
-        SecretKeyId?: string,
-        /** Name of the secret key affected. */
-        SecretKeyName?: string,
+        /** Flag indicating if the key was deleted by this operation. Either true or null. */
+        Deleted?: boolean,
+        DeveloperId?: string,
         /** Flag indicating if the key is disabled */
         Disabled?: boolean,
         /** Optional UTC date time that the secret key will expire at. */
         ExpiryDate?: string,
-        /** Flag indicating if the key was deleted by this operation. Either true or null. */
-        Deleted?: boolean,
+        /** Id of the secret key affected. */
+        SecretKeyId?: string,
+        /** Name of the secret key affected. */
+        SecretKeyName?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1642,18 +1559,18 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_started_task
      */
     interface title_started_task extends IBasePlayStreamEvent {
-        /** Identity of the scheduled task */
-        ScheduledTask?: NameIdentifier,
-        /** Type of the scheduled task */
-        TaskType?: string,
+        DeveloperId?: string,
         /** Parameter of the scheduled task */
         Parameter?: any,
-        /** ID of the running instance of the task */
-        TaskInstanceId?: string,
         /** ID of user who manually scheduled the task, null if scheduled automatically */
         ScheduledByUserId?: string,
+        /** Identity of the scheduled task */
+        ScheduledTask?: NameIdentifier,
+        /** ID of the running instance of the task */
+        TaskInstanceId?: string,
+        /** Type of the scheduled task */
+        TaskType?: string,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /** 
@@ -1662,14 +1579,14 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_statistic_version_changed
      */
     interface title_statistic_version_changed extends IBasePlayStreamEvent {
-        /** Unique name of the statistic. */
-        StatisticName?: string,
-        /** Version of the statistic, following the update. */
-        StatisticVersion: number,
         /** The interval on which the statistic leaderboard was configured to reset, if any. */
         ScheduledResetInterval?: StatisticResetIntervalOption,
         /** The time at which the statistic leaderboard was configured to reset, if any. */
         ScheduledResetTime?: string,
+        /** Unique name of the statistic. */
+        StatisticName?: string,
+        /** Version of the statistic, following the update. */
+        StatisticVersion: number,
     }
 
     /** 
@@ -1679,12 +1596,12 @@ declare namespace PlayStreamModels {
     interface title_store_updated extends IBasePlayStreamEvent {
         /** Catalog version that the updated store belongs to. */
         CatalogVersion?: string,
-        /** ID of the updated store. */
-        StoreId?: string,
         /** Was the store deleted. */
         Deleted: boolean,
-        UserId?: string,
         DeveloperId?: string,
+        /** ID of the updated store. */
+        StoreId?: string,
+        UserId?: string,
     }
 
     /** 
@@ -1692,11 +1609,11 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_updated_task
      */
     interface title_updated_task extends IBasePlayStreamEvent {
+        DeveloperId?: string,
+        HasRenamed: boolean,
         /** Identity of the scheduled task */
         ScheduledTask?: NameIdentifier,
-        HasRenamed: boolean,
         UserId?: string,
-        DeveloperId?: string,
     }
 
     /*
@@ -1707,14 +1624,302 @@ declare namespace PlayStreamModels {
     type PlayerProfileProperty = "TotalValueToDateInUSD"
         | "PlayerValuesToDate";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailTemplateType */
-    type EmailTemplateType = "EmailVerification"
-        | "Custom"
-        | "AccountRecovery";
-
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
     type AuthenticationProvider = "PlayFab"
         | "SAML";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GameServerHostStopReason */
+    type GameServerHostStopReason = "Other"
+        | "ExcessCapacity"
+        | "LimitExceeded"
+        | "BuildNotActiveInRegion"
+        | "Unresponsive";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
+    type PaymentType = "Purchase"
+        | "ReceiptValidation";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardVersionChangeBehavior */
+    type LeaderboardVersionChangeBehavior = "ResetValues"
+
+    /** 
+     * Statistic used as the source of leaderboard values.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticLeaderboardSource
+     */
+    interface StatisticLeaderboardSource {
+        /** Unique ID of the statistic. */
+        StatisticId: number,
+        /** Name of the statistic. */
+        StatisticName?: string,
+    }
+
+    /** 
+     * The source of values for the leaderboard. The properties are mutually exclusive
+     * - only one of them will be set and the rest will be null.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardSource
+     */
+    interface LeaderboardSource {
+        /** Statistic associated with the leaderboard. */
+        Statistic?: StatisticLeaderboardSource,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LoginIdentityProvider */
+    type LoginIdentityProvider = "Unknown"
+        | "PlayFab"
+        | "Custom"
+        | "GameCenter"
+        | "GooglePlay"
+        | "Steam"
+        | "XBoxLive"
+        | "PSN"
+        | "Kongregate"
+        | "Facebook"
+        | "IOSDevice"
+        | "AndroidDevice"
+        | "Twitch"
+        | "WindowsHello";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
+    type PasswordResetInitiationSource = "Self"
+        | "Admin";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/CouponGrantedInventoryItem */
+    interface CouponGrantedInventoryItem {
+        /** Catalog version of the inventory item. */
+        CatalogVersion?: string,
+        /** Unique instance ID of the inventory item. */
+        InstanceId?: string,
+        /** Catalog item ID of the inventory item. */
+        ItemId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Currency */
+    type Currency = "AED"
+        | "AFN"
+        | "ALL"
+        | "AMD"
+        | "ANG"
+        | "AOA"
+        | "ARS"
+        | "AUD"
+        | "AWG"
+        | "AZN"
+        | "BAM"
+        | "BBD"
+        | "BDT"
+        | "BGN"
+        | "BHD"
+        | "BIF"
+        | "BMD"
+        | "BND"
+        | "BOB"
+        | "BRL"
+        | "BSD"
+        | "BTN"
+        | "BWP"
+        | "BYR"
+        | "BZD"
+        | "CAD"
+        | "CDF"
+        | "CHF"
+        | "CLP"
+        | "CNY"
+        | "COP"
+        | "CRC"
+        | "CUC"
+        | "CUP"
+        | "CVE"
+        | "CZK"
+        | "DJF"
+        | "DKK"
+        | "DOP"
+        | "DZD"
+        | "EGP"
+        | "ERN"
+        | "ETB"
+        | "EUR"
+        | "FJD"
+        | "FKP"
+        | "GBP"
+        | "GEL"
+        | "GGP"
+        | "GHS"
+        | "GIP"
+        | "GMD"
+        | "GNF"
+        | "GTQ"
+        | "GYD"
+        | "HKD"
+        | "HNL"
+        | "HRK"
+        | "HTG"
+        | "HUF"
+        | "IDR"
+        | "ILS"
+        | "IMP"
+        | "INR"
+        | "IQD"
+        | "IRR"
+        | "ISK"
+        | "JEP"
+        | "JMD"
+        | "JOD"
+        | "JPY"
+        | "KES"
+        | "KGS"
+        | "KHR"
+        | "KMF"
+        | "KPW"
+        | "KRW"
+        | "KWD"
+        | "KYD"
+        | "KZT"
+        | "LAK"
+        | "LBP"
+        | "LKR"
+        | "LRD"
+        | "LSL"
+        | "LYD"
+        | "MAD"
+        | "MDL"
+        | "MGA"
+        | "MKD"
+        | "MMK"
+        | "MNT"
+        | "MOP"
+        | "MRO"
+        | "MUR"
+        | "MVR"
+        | "MWK"
+        | "MXN"
+        | "MYR"
+        | "MZN"
+        | "NAD"
+        | "NGN"
+        | "NIO"
+        | "NOK"
+        | "NPR"
+        | "NZD"
+        | "OMR"
+        | "PAB"
+        | "PEN"
+        | "PGK"
+        | "PHP"
+        | "PKR"
+        | "PLN"
+        | "PYG"
+        | "QAR"
+        | "RON"
+        | "RSD"
+        | "RUB"
+        | "RWF"
+        | "SAR"
+        | "SBD"
+        | "SCR"
+        | "SDG"
+        | "SEK"
+        | "SGD"
+        | "SHP"
+        | "SLL"
+        | "SOS"
+        | "SPL"
+        | "SRD"
+        | "STD"
+        | "SVC"
+        | "SYP"
+        | "SZL"
+        | "THB"
+        | "TJS"
+        | "TMT"
+        | "TND"
+        | "TOP"
+        | "TRY"
+        | "TTD"
+        | "TVD"
+        | "TWD"
+        | "TZS"
+        | "UAH"
+        | "UGX"
+        | "USD"
+        | "UYU"
+        | "UZS"
+        | "VEF"
+        | "VND"
+        | "VUV"
+        | "WST"
+        | "XAF"
+        | "XCD"
+        | "XDR"
+        | "XOF"
+        | "XPF"
+        | "YER"
+        | "ZAR"
+        | "ZMW"
+        | "ZWD";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
+    interface LogStatement {
+        /** Optional object accompanying the message as contextual information */
+        Data?: any,
+        /** 'Debug', 'Info', or 'Error' */
+        Level?: string,
+        Message?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ScriptExecutionError */
+    interface ScriptExecutionError {
+        /** 
+         * Error code, such as CloudScriptNotFound, JavascriptException,
+         * CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded,
+         * CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
+         */
+        Error?: string,
+        /** Details about the error */
+        Message?: string,
+        /** Point during the execution of the script at which the error occurred, if any */
+        StackTrace?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ExecuteCloudScriptResult */
+    interface ExecuteCloudScriptResult {
+        /** Number of PlayFab API requests issued by the CloudScript function */
+        APIRequestsIssued: number,
+        /** Information about the error, if any, that occurred during execution */
+        Error?: ScriptExecutionError,
+        ExecutionTimeSeconds: number,
+        /** The name of the function that executed */
+        FunctionName?: string,
+        /** The object returned from the CloudScript function, if any */
+        FunctionResult?: any,
+        /** 
+         * Flag indicating if the FunctionResult was too large and was subsequently
+         * dropped from this event. This only occurs if the total event size is larger
+         * than 350KB.
+         */
+        FunctionResultTooLarge?: boolean,
+        /** Number of external HTTP requests issued by the CloudScript function */
+        HttpRequestsIssued: number,
+        /** 
+         * Entries logged during the function execution. These include both entries logged
+         * in the function code using log.info() and log.error() and error entries for
+         * API and HTTP request failures.
+         */
+        Logs?: LogStatement[],
+        /** 
+         * Flag indicating if the logs were too large and were subsequently dropped from
+         * this event. This only occurs if the total event size is larger than 350KB
+         * after the FunctionResult was removed.
+         */
+        LogsTooLarge?: boolean,
+        MemoryConsumedBytes: number,
+        /** 
+         * Processor time consumed while executing the function. This does not include
+         * time spent waiting on API calls or HTTP requests.
+         */
+        ProcessorTimeSeconds: number,
+        /** The revision of the CloudScript that executed */
+        Revision: number,
+    }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContinentCode */
     type ContinentCode = "AF"
@@ -1976,318 +2181,10 @@ declare namespace PlayStreamModels {
         | "ZM"
         | "ZW";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EventLocation */
-    interface EventLocation {
-        /** Two-character code representing the continent of geographic location. */
-        ContinentCode?: ContinentCode,
-        /** 
-         * Two-character ISO 3166-1 code representing the country of the geographic
-         * location.
-         */
-        CountryCode?: CountryCode,
-        /** City of the geographic location. */
-        City?: string,
-        /** Latitude coordinate of the geographic location. */
-        Latitude?: number,
-        /** Longitude coordinate of the geographic location. */
-        Longitude?: number,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GameServerHostStopReason */
-    type GameServerHostStopReason = "Other"
-        | "ExcessCapacity"
-        | "LimitExceeded"
-        | "BuildNotActiveInRegion"
-        | "Unresponsive";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
-    type PaymentType = "Purchase"
-        | "ReceiptValidation";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardVersionChangeBehavior */
-    type LeaderboardVersionChangeBehavior = "ResetValues"
-
-    /** 
-     * Statistic used as the source of leaderboard values.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticLeaderboardSource
-     */
-    interface StatisticLeaderboardSource {
-        /** Name of the statistic. */
-        StatisticName?: string,
-        /** Unique ID of the statistic. */
-        StatisticId: number,
-    }
-
-    /** 
-     * The source of values for the leaderboard. The properties are mutually exclusive
-     * - only one of them will be set and the rest will be null.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardSource
-     */
-    interface LeaderboardSource {
-        /** Statistic associated with the leaderboard. */
-        Statistic?: StatisticLeaderboardSource,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LoginIdentityProvider */
-    type LoginIdentityProvider = "Unknown"
-        | "PlayFab"
-        | "Custom"
-        | "GameCenter"
-        | "GooglePlay"
-        | "Steam"
-        | "XBoxLive"
-        | "PSN"
-        | "Kongregate"
-        | "Facebook"
-        | "IOSDevice"
-        | "AndroidDevice"
-        | "Twitch"
-        | "WindowsHello";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
-    type PasswordResetInitiationSource = "Self"
-        | "Admin";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/CouponGrantedInventoryItem */
-    interface CouponGrantedInventoryItem {
-        /** Unique instance ID of the inventory item. */
-        InstanceId?: string,
-        /** Catalog item ID of the inventory item. */
-        ItemId?: string,
-        /** Catalog version of the inventory item. */
-        CatalogVersion?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Currency */
-    type Currency = "AED"
-        | "AFN"
-        | "ALL"
-        | "AMD"
-        | "ANG"
-        | "AOA"
-        | "ARS"
-        | "AUD"
-        | "AWG"
-        | "AZN"
-        | "BAM"
-        | "BBD"
-        | "BDT"
-        | "BGN"
-        | "BHD"
-        | "BIF"
-        | "BMD"
-        | "BND"
-        | "BOB"
-        | "BRL"
-        | "BSD"
-        | "BTN"
-        | "BWP"
-        | "BYR"
-        | "BZD"
-        | "CAD"
-        | "CDF"
-        | "CHF"
-        | "CLP"
-        | "CNY"
-        | "COP"
-        | "CRC"
-        | "CUC"
-        | "CUP"
-        | "CVE"
-        | "CZK"
-        | "DJF"
-        | "DKK"
-        | "DOP"
-        | "DZD"
-        | "EGP"
-        | "ERN"
-        | "ETB"
-        | "EUR"
-        | "FJD"
-        | "FKP"
-        | "GBP"
-        | "GEL"
-        | "GGP"
-        | "GHS"
-        | "GIP"
-        | "GMD"
-        | "GNF"
-        | "GTQ"
-        | "GYD"
-        | "HKD"
-        | "HNL"
-        | "HRK"
-        | "HTG"
-        | "HUF"
-        | "IDR"
-        | "ILS"
-        | "IMP"
-        | "INR"
-        | "IQD"
-        | "IRR"
-        | "ISK"
-        | "JEP"
-        | "JMD"
-        | "JOD"
-        | "JPY"
-        | "KES"
-        | "KGS"
-        | "KHR"
-        | "KMF"
-        | "KPW"
-        | "KRW"
-        | "KWD"
-        | "KYD"
-        | "KZT"
-        | "LAK"
-        | "LBP"
-        | "LKR"
-        | "LRD"
-        | "LSL"
-        | "LYD"
-        | "MAD"
-        | "MDL"
-        | "MGA"
-        | "MKD"
-        | "MMK"
-        | "MNT"
-        | "MOP"
-        | "MRO"
-        | "MUR"
-        | "MVR"
-        | "MWK"
-        | "MXN"
-        | "MYR"
-        | "MZN"
-        | "NAD"
-        | "NGN"
-        | "NIO"
-        | "NOK"
-        | "NPR"
-        | "NZD"
-        | "OMR"
-        | "PAB"
-        | "PEN"
-        | "PGK"
-        | "PHP"
-        | "PKR"
-        | "PLN"
-        | "PYG"
-        | "QAR"
-        | "RON"
-        | "RSD"
-        | "RUB"
-        | "RWF"
-        | "SAR"
-        | "SBD"
-        | "SCR"
-        | "SDG"
-        | "SEK"
-        | "SGD"
-        | "SHP"
-        | "SLL"
-        | "SOS"
-        | "SPL"
-        | "SRD"
-        | "STD"
-        | "SVC"
-        | "SYP"
-        | "SZL"
-        | "THB"
-        | "TJS"
-        | "TMT"
-        | "TND"
-        | "TOP"
-        | "TRY"
-        | "TTD"
-        | "TVD"
-        | "TWD"
-        | "TZS"
-        | "UAH"
-        | "UGX"
-        | "USD"
-        | "UYU"
-        | "UZS"
-        | "VEF"
-        | "VND"
-        | "VUV"
-        | "WST"
-        | "XAF"
-        | "XCD"
-        | "XDR"
-        | "XOF"
-        | "XPF"
-        | "YER"
-        | "ZAR"
-        | "ZMW"
-        | "ZWD";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
-    interface LogStatement {
-        /** 'Debug', 'Info', or 'Error' */
-        Level?: string,
-        Message?: string,
-        /** Optional object accompanying the message as contextual information */
-        Data?: any,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ScriptExecutionError */
-    interface ScriptExecutionError {
-        /** 
-         * Error code, such as CloudScriptNotFound, JavascriptException,
-         * CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded,
-         * CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
-         */
-        Error?: string,
-        /** Details about the error */
-        Message?: string,
-        /** Point during the execution of the script at which the error occurred, if any */
-        StackTrace?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ExecuteCloudScriptResult */
-    interface ExecuteCloudScriptResult {
-        /** The name of the function that executed */
-        FunctionName?: string,
-        /** The revision of the CloudScript that executed */
-        Revision: number,
-        /** The object returned from the CloudScript function, if any */
-        FunctionResult?: any,
-        /** 
-         * Flag indicating if the FunctionResult was too large and was subsequently
-         * dropped from this event. This only occurs if the total event size is larger
-         * than 350KB.
-         */
-        FunctionResultTooLarge?: boolean,
-        /** 
-         * Entries logged during the function execution. These include both entries logged
-         * in the function code using log.info() and log.error() and error entries for
-         * API and HTTP request failures.
-         */
-        Logs?: LogStatement[],
-        /** 
-         * Flag indicating if the logs were too large and were subsequently dropped from
-         * this event. This only occurs if the total event size is larger than 350KB
-         * after the FunctionResult was removed.
-         */
-        LogsTooLarge?: boolean,
-        ExecutionTimeSeconds: number,
-        /** 
-         * Processor time consumed while executing the function. This does not include
-         * time spent waiting on API calls or HTTP requests.
-         */
-        ProcessorTimeSeconds: number,
-        MemoryConsumedBytes: number,
-        /** Number of PlayFab API requests issued by the CloudScript function */
-        APIRequestsIssued: number,
-        /** Number of external HTTP requests issued by the CloudScript function */
-        HttpRequestsIssued: number,
-        /** Information about the error, if any, that occurred during execution */
-        Error?: ScriptExecutionError,
-    }
-
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerLocation */
     interface PlayerLocation {
+        /** City of the player's geographic location. */
+        City?: string,
         /** The two-character continent code for this location */
         ContinentCode: ContinentCode,
         /** 
@@ -2295,8 +2192,6 @@ declare namespace PlayStreamModels {
          * location
          */
         CountryCode: CountryCode,
-        /** City of the player's geographic location. */
-        City?: string,
         /** Latitude coordinate of the player's geographic location. */
         Latitude?: number,
         /** Longitude coordinate of the player's geographic location. */
@@ -2305,12 +2200,12 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AdCampaignAttribution */
     interface AdCampaignAttribution {
-        /** Attribution network name */
-        Platform?: string,
-        /** Attribution campaign identifier */
-        CampaignId?: string,
         /** UTC time stamp of attribution */
         AttributedAt: string,
+        /** Attribution campaign identifier */
+        CampaignId?: string,
+        /** Attribution network name */
+        Platform?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PushNotificationPlatform */
@@ -2319,34 +2214,34 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PushNotificationRegistration */
     interface PushNotificationRegistration {
-        /** Push notification platform */
-        Platform?: PushNotificationPlatform,
         /** Notification configured endpoint */
         NotificationEndpointARN?: string,
+        /** Push notification platform */
+        Platform?: PushNotificationPlatform,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerLinkedAccount */
     interface PlayerLinkedAccount {
+        /** Linked account's email */
+        Email?: string,
         /** Authentication platform */
         Platform?: LoginIdentityProvider,
         /** Platform user identifier */
         PlatformUserId?: string,
         /** Linked account's username */
         Username?: string,
-        /** Linked account's email */
-        Email?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerStatistic */
     interface PlayerStatistic {
         /** Statistic ID */
         Id?: string,
-        /** Statistic version (0 if not a versioned statistic) */
-        StatisticVersion: number,
-        /** Current statistic value */
-        StatisticValue: number,
         /** Statistic name */
         Name?: string,
+        /** Current statistic value */
+        StatisticValue: number,
+        /** Statistic version (0 if not a versioned statistic) */
+        StatisticVersion: number,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailVerificationStatus */
@@ -2356,59 +2251,59 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContactEmailInfo */
     interface ContactEmailInfo {
-        /** The name of the email info data */
-        Name?: string,
         /** The email address */
         EmailAddress?: string,
+        /** The name of the email info data */
+        Name?: string,
         /** The verification status of the email */
         VerificationStatus?: EmailVerificationStatus,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfile */
     interface PlayerProfile {
-        /** PlayFab Player ID */
-        PlayerId?: string,
-        /** Title ID this profile applies to */
-        TitleId?: string,
-        /** Player Display Name */
-        DisplayName?: string,
-        /** Publisher this player belongs to */
-        PublisherId?: string,
-        /** Player account origination */
-        Origination?: LoginIdentityProvider,
-        /** Player record created */
-        Created?: string,
-        /** Last login */
-        LastLogin?: string,
+        /** Array of ad campaigns player has been attributed to */
+        AdCampaignAttributions?: AdCampaignAttribution[],
+        /** Image URL of the player's avatar. */
+        AvatarUrl?: string,
         /** 
          * Banned until UTC Date. If permanent ban this is set for 20 years after the
          * original ban date.
          */
         BannedUntil?: string,
-        /** Image URL of the player's avatar. */
-        AvatarUrl?: string,
+        /** Array of contact email addresses associated with the player */
+        ContactEmailAddresses?: ContactEmailInfo[],
+        /** Player record created */
+        Created?: string,
+        /** Player Display Name */
+        DisplayName?: string,
+        /** Last login */
+        LastLogin?: string,
+        /** Array of third party accounts linked to this player */
+        LinkedAccounts?: PlayerLinkedAccount[],
+        /** Dictionary of player's locations by type. */
+        Locations?: { [key: string]: PlayerLocation },
+        /** Player account origination */
+        Origination?: LoginIdentityProvider,
+        /** PlayFab Player ID */
+        PlayerId?: string,
+        /** Array of player statistics */
+        PlayerStatistics?: PlayerStatistic[],
+        /** Publisher this player belongs to */
+        PublisherId?: string,
+        /** Array of configured push notification end points */
+        PushNotificationRegistrations?: PushNotificationRegistration[],
         /** Dictionary of player's statistics using only the latest version's value */
         Statistics?: { [key: string]: number },
+        /** List of player's tags for segmentation. */
+        Tags?: string[],
+        /** Title ID this profile applies to */
+        TitleId?: string,
         /** A sum of player's total purchases in USD across all currencies. */
         TotalValueToDateInUSD?: number,
         /** Dictionary of player's total purchases by currency. */
         ValuesToDate?: { [key: string]: number },
-        /** List of player's tags for segmentation. */
-        Tags?: string[],
-        /** Dictionary of player's locations by type. */
-        Locations?: { [key: string]: PlayerLocation },
         /** Dictionary of player's virtual currency balances */
         VirtualCurrencyBalances?: { [key: string]: number },
-        /** Array of ad campaigns player has been attributed to */
-        AdCampaignAttributions?: AdCampaignAttribution[],
-        /** Array of configured push notification end points */
-        PushNotificationRegistrations?: PushNotificationRegistration[],
-        /** Array of third party accounts linked to this player */
-        LinkedAccounts?: PlayerLinkedAccount[],
-        /** Array of player statistics */
-        PlayerStatistics?: PlayerStatistic[],
-        /** Array of contact email addresses associated with the player */
-        ContactEmailAddresses?: ContactEmailInfo[],
     }
 
     /** 
@@ -2417,36 +2312,32 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NameIdentifier
      */
     interface NameIdentifier {
-        Name?: string,
         Id?: string,
+        Name?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/APISettings */
     interface APISettings {
         /** Allow game clients to add to virtual currency balances via API. */
         AllowClientToAddVirtualCurrency: boolean,
-        /** Allow game clients to subtract from virtual currency balances via API. */
-        AllowClientToSubtractVirtualCurrency: boolean,
         /** Allow game clients to update statistic values via API. */
         AllowClientToPostPlayerStatistics: boolean,
         /** Allow clients to start multiplayer game sessions via API. */
         AllowClientToStartGames: boolean,
-        /** Allow game servers to delete player accounts via API. */
-        AllowServerToDeleteUsers: boolean,
-        /** 
-         * Use payment provider's sandbox mode (if available) for real-money purchases.
-         * This can be useful when testing in-game purchasing in order to avoid being
-         * charged.
-         */
-        UseSandboxPayments: boolean,
-        /** Multiplayer game sessions are hosted on servers external to PlayFab. */
-        UseExternalGameServerProvider: boolean,
+        /** Allow game clients to subtract from virtual currency balances via API. */
+        AllowClientToSubtractVirtualCurrency: boolean,
         /** 
          * Allow players to choose display names that may be in use by other players, i.e.
          * do not enforce uniqueness of display names. Note: if this option is enabled,
          * it cannot be disabled later.
          */
         AllowNonUniquePlayerDisplayNames: boolean,
+        /** Allow game servers to delete player accounts via API. */
+        AllowServerToDeleteUsers: boolean,
+        /** Disable API access by returning errors to all API requests. */
+        DisableAPIAccess: boolean,
+        /** Display name randomly-generated suffix length. */
+        DisplayNameRandomSuffixLength?: number,
         /** 
          * Reduce the precision of IP addresses collected from players' devices before
          * they are stored or used to estimate geographic locations.
@@ -2457,10 +2348,14 @@ declare namespace PlayStreamModels {
          * inventories, and shared groups.
          */
         RequireCustomDataJSONFormat: boolean,
-        /** Disable API access by returning errors to all API requests. */
-        DisableAPIAccess: boolean,
-        /** Display name randomly-generated suffix length. */
-        DisplayNameRandomSuffixLength?: number,
+        /** Multiplayer game sessions are hosted on servers external to PlayFab. */
+        UseExternalGameServerProvider: boolean,
+        /** 
+         * Use payment provider's sandbox mode (if available) for real-money purchases.
+         * This can be useful when testing in-game purchasing in order to avoid being
+         * charged.
+         */
+        UseSandboxPayments: boolean,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TaskInstanceStatus */
@@ -2476,6 +2371,23 @@ declare namespace PlayStreamModels {
         | "Min"
         | "Max"
         | "Sum";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EventLocation */
+    interface EventLocation {
+        /** City of the geographic location. */
+        City?: string,
+        /** Two-character code representing the continent of geographic location. */
+        ContinentCode?: ContinentCode,
+        /** 
+         * Two-character ISO 3166-1 code representing the country of the geographic
+         * location.
+         */
+        CountryCode?: CountryCode,
+        /** Latitude coordinate of the geographic location. */
+        Latitude?: number,
+        /** Longitude coordinate of the geographic location. */
+        Longitude?: number,
+    }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Region */
     type Region = "USCentral"
@@ -2529,8 +2441,8 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NameId */
     interface NameId {
-        Name?: string,
         Id?: string,
+        Name?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PhotonServicesEnum */
@@ -2547,13 +2459,13 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayStreamEventHistory */
     interface PlayStreamEventHistory {
-        /** The ID of the trigger that caused this event to be created. */
-        ParentTriggerId?: string,
         /** 
          * The ID of the previous event that caused this event to be created by hitting a
          * trigger.
          */
         ParentEventId?: string,
+        /** The ID of the trigger that caused this event to be created. */
+        ParentTriggerId?: string,
         /** If true, then this event was allowed to trigger subsequent events in a trigger. */
         TriggeredEvents: boolean,
     }
