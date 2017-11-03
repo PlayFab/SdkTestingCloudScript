@@ -2496,6 +2496,20 @@ declare namespace PlayFabServerModels {
         StackTrace?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailRequest */
+    interface SendCustomAccountRecoveryEmailRequest {
+        /** User email address attached to their account */
+        Email?: string,
+        /** The email template id of the account recovery email template to send. */
+        EmailTemplateId: string,
+        /** The user's username requesting an account recovery. */
+        Username?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailResult */
+    interface SendCustomAccountRecoveryEmailResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest */
     interface SendPushNotificationRequest {
         /**
@@ -3764,6 +3778,13 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/RevokeInventoryItem
      */
     RevokeInventoryItem(request: PlayFabServerModels.RevokeInventoryItemRequest): PlayFabServerModels.RevokeInventoryResult;
+
+    /**
+     * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
+     * email template
+     * https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
+     */
+    SendCustomAccountRecoveryEmail(request: PlayFabServerModels.SendCustomAccountRecoveryEmailRequest): PlayFabServerModels.SendCustomAccountRecoveryEmailResult;
 
     /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push

@@ -278,6 +278,19 @@ declare namespace PlayStreamModels {
      */
 
     /**
+     * This event is triggered when an email confirmation link is clicked.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/auth_token_validated
+     */
+    interface auth_token_validated extends IBasePlayStreamEvent {
+        /** The email template id, if the auth token was sent via an email template. */
+        EmailTemplateId?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+        /** The email token in the confirmation link that was clicked. */
+        Token?: string,
+    }
+
+    /**
      * This event is triggered by an attribution tracking Add-on when a player is matched to a paid acquisition campaign.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_campaign_attribution
      */
@@ -987,6 +1000,21 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered when a player updates a contact email on their profile.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_updated_contact_email
+     */
+    interface player_updated_contact_email extends IBasePlayStreamEvent {
+        /** The name of the contact email that was updated or added in the player's profile. */
+        EmailName?: string,
+        /** The contact email updated or added in the player's profile. */
+        NewEmailAddress?: string,
+        /** The previous contact email updated in the player's profile. */
+        PreviousEmailAddress?: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /**
      * This event is triggered when the player makes a purchase using virtual currency.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_vc_item_purchased
      */
@@ -1037,6 +1065,31 @@ declare namespace PlayStreamModels {
         VirtualCurrencyName?: string,
         /** Old virtual currency balance before the change. */
         VirtualCurrencyPreviousBalance: number,
+    }
+
+    /**
+     * This event is triggered when an email is sent or fails to send to a player.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
+     */
+    interface sent_email extends IBasePlayStreamEvent {
+        /** The name of the player's contact email the email was sent to. */
+        EmailName?: string,
+        /** The email template id during a send email attempt. */
+        EmailTemplateId?: string,
+        /** The email template name during a send email attempt. */
+        EmailTemplateName?: string,
+        /** The email template type during a send email attempt. */
+        EmailTemplateType?: EmailTemplateType,
+        /** The error that occurred if an email failed to send. */
+        ErrorMessage?: string,
+        /** The name of the error that occurred if an email failed to send. */
+        ErrorName?: string,
+        /** Indicates if the email was successfully sent. */
+        Success: boolean,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+        /** The auth token included in the sent email as part of a confirmation URL. */
+        Token?: string,
     }
 
     /*
@@ -1625,6 +1678,11 @@ declare namespace PlayStreamModels {
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfileProperty */
     type PlayerProfileProperty = "TotalValueToDateInUSD"
         | "PlayerValuesToDate";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailTemplateType */
+    type EmailTemplateType = "AccountRecovery"
+        | "EmailVerification"
+        | "Custom";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
     type AuthenticationProvider = "PlayFab"
