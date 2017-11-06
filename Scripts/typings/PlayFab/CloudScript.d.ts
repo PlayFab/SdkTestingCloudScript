@@ -2510,6 +2510,18 @@ declare namespace PlayFabServerModels {
     interface SendCustomAccountRecoveryEmailResult {
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateRequest */
+    interface SendEmailFromTemplateRequest {
+        /** The email template id of the email template to send. */
+        EmailTemplateId: string,
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateResult */
+    interface SendEmailFromTemplateResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest */
     interface SendPushNotificationRequest {
         /**
@@ -3785,6 +3797,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
      */
     SendCustomAccountRecoveryEmail(request: PlayFabServerModels.SendCustomAccountRecoveryEmailRequest): PlayFabServerModels.SendCustomAccountRecoveryEmailResult;
+
+    /**
+     * Sends an email based on an email template to a player's contact email
+     * https://api.playfab.com/Documentation/Server/method/SendEmailFromTemplate
+     */
+    SendEmailFromTemplate(request: PlayFabServerModels.SendEmailFromTemplateRequest): PlayFabServerModels.SendEmailFromTemplateResult;
 
     /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push

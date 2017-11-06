@@ -1072,6 +1072,8 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
      */
     interface sent_email extends IBasePlayStreamEvent {
+        /** The content of the email body, truncated to 4096 characters. */
+        Body?: string,
         /** The name of the player's contact email the email was sent to. */
         EmailName?: string,
         /** The email template id during a send email attempt. */
@@ -1084,6 +1086,8 @@ declare namespace PlayStreamModels {
         ErrorMessage?: string,
         /** The name of the error that occurred if an email failed to send. */
         ErrorName?: string,
+        /** The content of the email subject, truncated to 1024 characters. */
+        Subject?: string,
         /** Indicates if the email was successfully sent. */
         Success: boolean,
         /** The ID of the title to which this player event applies. */
