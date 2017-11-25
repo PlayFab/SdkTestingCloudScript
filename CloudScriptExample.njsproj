@@ -2,6 +2,8 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild')">C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\v15.0</VSToolsPath>
+    <VSToolsPath Condition="Exists('C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild')">C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\MSBuild\Microsoft\VisualStudio\v15.0</VSToolsPath>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <Name>CloudScriptExample</Name>
     <RootNamespace>CloudScriptExample</RootNamespace>
