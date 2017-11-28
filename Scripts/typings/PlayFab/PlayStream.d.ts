@@ -1671,10 +1671,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ObjectSet */
     interface ObjectSet {
+        /** The JSON Object that was last set on the profile. */
+        DataObject?: any,
         /** The name of this object. */
         Name?: string,
-        /** The JSON Object that was last set on the profile. */
-        Object?: any,
         /** The operation that was performed. */
         Operation?: OperationTypes,
     }
