@@ -12,7 +12,7 @@ This project serves several purposes:
 1. Demonstrate a repository linked to your PlayFab title, which automatically populates the Cloud Script for your title
   * All *.js files are merged, and then that merged file becomes your title's Cloud Script
 2. Provide you a working [Cloud Script file](ExampleCloudScript.js)
-3. Demonstrate the [Cloud Script typings file](/src/typings/CloudScript.d.ts) which will define the PlayFab environment for you
+3. Demonstrate the [Cloud Script typings file](https://github.com/PlayFab/SdkTestingCloudScript/blob/master/Scripts/typings/PlayFab/CloudScript.d.ts) which will define the PlayFab environment for you
 
 
 ## 2. Using Cloud Script
@@ -29,7 +29,7 @@ The PlayFab Cloud Script feature does not utilize TypeScript directly.  TypeScri
 
 ## 4. Acknowledgements
 
-[CloudScript.d.ts](/src/typings/CloudScript.d.ts) was created using our SdkGenerator by [Joshua Strunk](https://joshuastrunk.com/) @ [Flying Car Games Inc](http://flyingcargames.com/)
+[CloudScript.d.ts](https://github.com/PlayFab/SdkTestingCloudScript/blob/master/Scripts/typings/PlayFab/CloudScript.d.ts) was created using our SdkGenerator by [Joshua Strunk](https://joshuastrunk.com/) @ [Flying Car Games Inc](http://flyingcargames.com/)
 
 
 ## 5. Troubleshooting:
