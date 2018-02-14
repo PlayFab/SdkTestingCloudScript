@@ -67,11 +67,10 @@ interface IApiError {
     errorDetails?: { [index:string] : { message: string[] } };
 }
 
-/** Static object which allows access to PlayFab ServerAPI calls */
+/** Static object which allows access to PlayFab Server API calls */
 declare var server: IPlayFabServerAPI;
 
 /** ServerAPI.Models as interfaces */
-
 declare namespace PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AdCampaignAttribution */
     interface AdCampaignAttribution {
@@ -914,7 +913,7 @@ declare namespace PlayFabServerModels {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[],
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
          */
         TitleId: string,
@@ -1395,7 +1394,7 @@ declare namespace PlayFabServerModels {
         /** List of statistics for this player. */
         PlayerStatistics?: StatisticValue[],
         /** Title data for this title. */
-        TitleData?: { [key: string]: string },
+        TitleData?: { [key: string]: string | null },
         /** User specific custom data. */
         UserData?: { [key: string]: UserDataRecord },
         /** The version of the UserData that was returned. */
@@ -1552,7 +1551,7 @@ declare namespace PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataResult */
     interface GetPublisherDataResult {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesRequest */
@@ -1622,7 +1621,7 @@ declare namespace PlayFabServerModels {
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataResult */
     interface GetTitleDataResult {
         /** a dictionary object of key / value pairs */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsRequest */
@@ -1740,7 +1739,7 @@ declare namespace PlayFabServerModels {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string },
+        CustomData?: { [key: string]: string | null },
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string,
         /** Timestamp for when this instance will expire. */
@@ -1829,7 +1828,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /** Unique identifier of the catalog item to be granted to the user. */
         ItemId: string,
         /**
@@ -1861,7 +1860,7 @@ declare namespace PlayFabServerModels {
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string,
         /** A set of custom key-value pairs on the inventory item. */
-        CustomData?: { [key: string]: string },
+        CustomData?: { [key: string]: string | null },
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string,
         /** Timestamp for when this instance will expire. */
@@ -2386,7 +2385,7 @@ declare namespace PlayFabServerModels {
         /** Port number for communication with the Game Server Instance. */
         ServerPort: string,
         /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string },
+        Tags?: { [key: string]: string | null },
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse */
@@ -2605,7 +2604,7 @@ declare namespace PlayFabServerModels {
          * Tags to set for the specified Game Server Instance. Note that this is the complete list of tags to be associated with
          * the Game Server Instance.
          */
-        Tags: { [key: string]: string },
+        Tags: { [key: string]: string | null },
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult */
@@ -2721,7 +2720,7 @@ declare namespace PlayFabServerModels {
         Expiration: string,
         /** The time the subscription was orignially purchased */
         InitialSubscriptionTime: string,
-        /** Whether this subscription is currently active. That is, if Expiration > now. */
+        /** Whether this subscription is currently active. That is, if Expiration &gt; now. */
         IsActive: boolean,
         /** The status of this subscription, according to the subscription provider. */
         Status?: SubscriptionProviderStatus,
@@ -2886,7 +2885,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -2944,7 +2943,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -2966,7 +2965,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -2993,7 +2992,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
          * constraints.  Use this to delete the keys directly.
@@ -3011,7 +3010,7 @@ declare namespace PlayFabServerModels {
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
          */
-        Data?: { [key: string]: string },
+        Data?: { [key: string]: string | null },
         /** Unique PlayFab assigned instance identifier of the item */
         ItemInstanceId: string,
         /**
@@ -3301,7 +3300,7 @@ declare namespace PlayFabServerModels {
     }
 
 }
-
+/** Server interface methods */
 interface IPlayFabServerAPI {
     /**
      * Increments  the character's balance of the specified virtual currency by the stated amount
@@ -3729,7 +3728,7 @@ interface IPlayFabServerAPI {
 
     /**
      * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
-     * Economy->Catalogs tab in the PlayFab Game Manager.
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * https://api.playfab.com/Documentation/Server/method/RedeemCoupon
      */
     RedeemCoupon(request: PlayFabServerModels.RedeemCouponRequest): PlayFabServerModels.RedeemCouponResult;
@@ -3883,7 +3882,7 @@ interface IPlayFabServerAPI {
 
     /**
      * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
-     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses >
+     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
      * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * https://api.playfab.com/Documentation/Server/method/UnlockContainerInstance
      */
@@ -3892,7 +3891,7 @@ interface IPlayFabServerAPI {
     /**
      * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
      * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
-     * are consumable (RemainingUses > 0), their RemainingUses will be decremented, consistent with the operation of
+     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
      * ConsumeItem.
      * https://api.playfab.com/Documentation/Server/method/UnlockContainerItem
      */
@@ -4012,3 +4011,4 @@ interface IPlayFabServerAPI {
 
 
 }
+
