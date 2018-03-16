@@ -31,145 +31,138 @@ declare namespace PlayStreamModels {
         Objects?: ObjectSet[],
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_created */
-    interface group_role_created extends IBasePlayStreamEvent {
-        /** The identifier for that the entity (title, player, etc) that created the role to which this event applies. */
-        CreatorEntityId?: string,
-        /**
-         * The type of entity (player, title, etc.) that created the role to which this event applies. If PlayFab is meant to take
-         * action on this entity, then the EntityType must be either 'player', 'character', or 'title'. It is required that any
-         * entity type that PlayFab does not currently parse should be prepended with a namespace (like 'com.mygame.guild') as
-         * PlayFab may begin to parse root entities at any time.
-         */
-        CreatorEntityType: string,
-        /** The display name of the role to which this event applies. */
-        DisplayName: string,
-        EntityChain?: string,
-        /** The identifier for the group that the role to which this event applies to is scoped. */
-        GroupEntityId?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_deleted */
-    interface group_role_deleted extends IBasePlayStreamEvent {
-        /** The identifier for the entity (title, player, etc) that deleted the role to which this event applies. */
-        DeleterEntityId?: string,
-        /**
-         * The type of entity (player, title, etc.) that deleted the role to which this event applies. If PlayFab is meant to take
-         * action on this entity, then the EntityType must be either 'player', 'character', or 'title'. It is required that any
-         * entity type that PlayFab does not currently parse should be prepended with a namespace (like 'com.mygame.guild') as
-         * PlayFab may begin to parse root entities at any time.
-         */
-        DeleterEntityType: string,
-        /** The display name of the role to which this event applies. */
-        DisplayName: string,
-        EntityChain?: string,
-        /** The identifier for the group that the role to which this event applies to is scoped. */
-        GroupEntityId?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/role_members_added */
-    interface role_members_added extends IBasePlayStreamEvent {
-        /** The display name of the role to which this event applies. */
-        DisplayName: string,
-        EntityChain?: string,
-        /** The identifier for the group that the role to which this event applies to is scoped. */
-        GroupEntityId?: string,
-        /** The list of entities that were added to the role to which this event applies */
-        Members: Member[],
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/role_members_removed */
-    interface role_members_removed extends IBasePlayStreamEvent {
-        /** The display name of the role to which this event applies. */
-        DisplayName: string,
-        EntityChain?: string,
-        /** The identifier for the group that the role to which this event applies to is scoped. */
-        GroupEntityId?: string,
-        /** The list of entities that were removed from the role to which this event applies */
-        Members: Member[],
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_updated */
-    interface group_role_updated extends IBasePlayStreamEvent {
-        /** The display name of the role to which this event applies. */
-        DisplayName: string,
-        EntityChain?: string,
-        /** The identifier for the group that the role to which this event applies to is scoped. */
-        GroupEntityId?: string,
-        /** Key-Value pair storage of the previous and current value of properties. Only contains the properties that were modified. */
-        Properties?: { [key: string]: ChangedValuePair },
-        /** The identifier for the entity (title, player, etc) that updated the container to which this event applies. */
-        UpdaterEntityId?: string,
-        /**
-         * The type of entity (player, title, etc.) that updated the container to which this event applies. If PlayFab is meant to
-         * take action on this entity, then the EntityType must be either 'player', 'character', or 'title'. It is required that
-         * any entity type that PlayFab does not currently parse should be prepended with a namespace (like 'com.mygame.guild') as
-         * PlayFab may begin to parse root entities at any time.
-         */
-        UpdaterEntityType: string,
-    }
-
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_created */
     interface group_created extends IBasePlayStreamEvent {
-        /** The identifier for the entity (title, player, etc) that created the group to which this event applies. */
+        /** The identifier for the entity that created the group to which this event applies. */
         CreatorEntityId?: string,
-        /**
-         * The type of entity (player, title, etc.) that created the group to which this event applies. If PlayFab is meant to take
-         * action on this entity, then the EntityType must be either 'player', 'character', or 'title'. It is required that any
-         * entity type that PlayFab does not currently parse should be prepended with a namespace (like 'com.mygame.guild') as
-         * PlayFab may begin to parse root entities at any time.
-         */
-        CreatorEntityType: string,
-        /** The display name of the group to which this event applies. */
-        DisplayName: string,
+        /** The type of entity that created the group to which this event applies. */
+        CreatorEntityType?: string,
         EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_deleted */
     interface group_deleted extends IBasePlayStreamEvent {
-        /** The identifier for the entity (title, player, etc) that deleted the group to which this event applies. */
+        /** The identifier for the entity that deleted the group to which this event applies. */
         DeleterEntityId?: string,
-        /** The type of entity (player, title, etc.) that deleted the group to which this event applies. */
-        DeleterEntityType: string,
-        /** The display name of the group to which this event applies. */
-        DisplayName: string,
+        /** The type of entity that deleted the group to which this event applies. */
+        DeleterEntityType?: string,
         EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_added */
     interface group_members_added extends IBasePlayStreamEvent {
-        /** The display name of the group to which this event applies. */
-        DisplayName: string,
         EntityChain?: string,
-        /** The list of entities that were added to the group to which this event applies */
-        Members: Member[],
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The list of entities that were added to the group and role to which this event applies */
+        Members?: Member[],
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_removed */
     interface group_members_removed extends IBasePlayStreamEvent {
-        /** The display name of the group to which this event applies. */
-        DisplayName: string,
         EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
         /** The list of entities that were removed from the group to which this event applies */
-        Members: Member[],
+        Members?: Member[],
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_created */
+    interface group_role_created extends IBasePlayStreamEvent {
+        /** The identifier for that the entity that created the role to which this event applies. */
+        CreatorEntityId?: string,
+        /** The type of entity that created the role to which this event applies. */
+        CreatorEntityType?: string,
+        EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_deleted */
+    interface group_role_deleted extends IBasePlayStreamEvent {
+        /** The identifier for the entity that deleted the role to which this event applies. */
+        DeleterEntityId?: string,
+        /** The type of entity that deleted the role to which this event applies. */
+        DeleterEntityType?: string,
+        EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_added */
+    interface group_role_members_added extends IBasePlayStreamEvent {
+        EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The list of entities that were added to the group and role to which this event applies */
+        Members?: Member[],
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_removed */
+    interface group_role_members_removed extends IBasePlayStreamEvent {
+        EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The list of entities that were removed from the group to which this event applies */
+        Members?: Member[],
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_updated */
+    interface group_role_updated extends IBasePlayStreamEvent {
+        EntityChain?: string,
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The new values of the role's changed properties */
+        NewValues?: RolePropertyValues,
+        /** The previous values of the role's changed properties */
+        OldValues?: RolePropertyValues,
+        /** The role ID of the role to which this event applies. */
+        RoleId?: string,
+        /** The display name of the role to which this event applies. */
+        RoleName?: string,
+        /** The identifier for the entity that updated the container to which this event applies. */
+        UpdaterEntityId?: string,
+        /** The type of entity that updated the container to which this event applies. */
+        UpdaterEntityType?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_updated */
     interface group_updated extends IBasePlayStreamEvent {
-        /** The display name of the group to which this event applies. */
-        DisplayName: string,
         EntityChain?: string,
-        /** Key-Value pair storage of the previous and current value of properties. Only contains the properties that were modified. */
-        Properties?: { [key: string]: ChangedValuePair },
-        /** The identifier for the entity (title, player, etc) that updated the container to which this event applies. */
+        /** The name of the group to which this event applies. */
+        GroupName?: string,
+        /** The new values of the group's changed properties */
+        NewValues?: GroupPropertyValues,
+        /** The previous values of the group's changed properties */
+        OldValues?: GroupPropertyValues,
+        /** The identifier for the entity that updated the group to which this event applies. */
         UpdaterEntityId?: string,
-        /**
-         * The type of entity (player, title, etc.) that updated the container to which this event applies. If PlayFab is meant to
-         * take action on this entity, then the EntityType must be either 'player', 'character', or 'title'. It is required that
-         * any entity type that PlayFab does not currently parse should be prepended with a namespace (like 'com.mygame.guild') as
-         * PlayFab may begin to parse root entities at any time.
-         */
-        UpdaterEntityType: string,
+        /** The type of entity that updated the group to which this event applies. */
+        UpdaterEntityType?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_created */
@@ -898,7 +891,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered for the top-ranked players on a leaderboard when the leaderboard version changes (e.g. when a
-     * leaderboard statistic version is incremented).  The maximum number of leaderboard entries for which the event is
+     * leaderboard statistic version is incremented). The maximum number of leaderboard entries for which the event is
      * generated is controlled by the "Leaderboard version change top rank events sent" title limit.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ranked_on_leaderboard_version
      */
@@ -1842,13 +1835,19 @@ declare namespace PlayStreamModels {
         /** The identifier for the member entity. */
         EntityId?: string,
         /** The type of member entity. */
-        EntityType: string,
+        EntityType?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ChangedValuePair */
-    interface ChangedValuePair {
-        NewValue?: string,
-        OldValue?: string,
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/RolePropertyValues */
+    interface RolePropertyValues {
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GroupPropertyValues */
+    interface GroupPropertyValues {
+        AdminRoleId?: string,
+        GroupName?: string,
+        MemberRoleId?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ObjectSet */
