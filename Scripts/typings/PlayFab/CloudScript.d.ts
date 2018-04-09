@@ -944,6 +944,26 @@ declare namespace PlayFabServerModels {
     interface EmptyResult {
     }
 
+    /**
+     * Entity identifier class that contains both the ID and type.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityKey
+     */
+    interface EntityKey {
+        /** Entity profile ID. */
+        Id: string,
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        Type?: EntityTypes,
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        TypeString?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityTypes */
+    type EntityTypes = "title"
+        | "master_player_account"
+        | "title_player_account"
+        | "character"
+        | "group";
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
     interface EvaluateRandomResultTableRequest {
         /**
@@ -1416,7 +1436,9 @@ declare namespace PlayFabServerModels {
         | "RoleNameNotAvailable"
         | "GroupNameNotAvailable"
         | "EmailReportAlreadySent"
-        | "EmailReportRecipientBlacklisted";
+        | "EmailReportRecipientBlacklisted"
+        | "EventNamespaceNotAllowed"
+        | "EventEntityNotAllowed";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
@@ -3593,6 +3615,8 @@ declare namespace PlayFabServerModels {
         LastLogin?: string,
         /** source by which the user first joined the game, if known */
         Origination?: UserOrigination,
+        /** Title player account entity for this user */
+        TitlePlayerAccount?: EntityKey,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserTwitchInfo */
