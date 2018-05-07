@@ -1078,6 +1078,7 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericErrorCodes */
     type GenericErrorCodes = "Success"
+        | "UnkownError"
         | "InvalidParams"
         | "AccountNotFound"
         | "AccountBanned"
@@ -1438,7 +1439,13 @@ declare namespace PlayFabServerModels {
         | "EmailReportAlreadySent"
         | "EmailReportRecipientBlacklisted"
         | "EventNamespaceNotAllowed"
-        | "EventEntityNotAllowed";
+        | "EventEntityNotAllowed"
+        | "InvalidEntityType"
+        | "NullTokenResultFromAad"
+        | "InvalidTokenResultFromAad"
+        | "NoValidCertificateForAad"
+        | "InvalidCertificateForAad"
+        | "DuplicateDropTableId";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
@@ -4783,6 +4790,23 @@ declare namespace PlayFabEntityModels {
         Profile?: EntityProfileBody,
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesRequest */
+    interface GetEntityProfilesRequest {
+        /**
+         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
+         * JSON string.
+         */
+        DataAsObject?: boolean,
+        /** Entity keys of the profiles to load. Must be between 1 and 25 */
+        Entities: EntityKey[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesResponse */
+    interface GetEntityProfilesResponse {
+        /** Entity profiles */
+        Profiles?: EntityProfileBody[],
+    }
+
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityTokenRequest */
     interface GetEntityTokenRequest {
         /** The entity to perform this action on. */
@@ -5407,6 +5431,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Entity/method/GetProfile
      */
     GetProfile(request: PlayFabEntityModels.GetEntityProfileRequest): PlayFabEntityModels.GetEntityProfileResponse;
+
+    /**
+     * Retrieves the entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/GetProfiles
+     */
+    GetProfiles(request: PlayFabEntityModels.GetEntityProfilesRequest): PlayFabEntityModels.GetEntityProfilesResponse;
 
     /**
      * Initiates file uploads to an entity's profile.

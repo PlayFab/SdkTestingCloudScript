@@ -12,6 +12,20 @@ declare namespace PlayStreamModels {
         EntityChain?: string,
     }
 
+    /**
+     * This event is optionally triggered when an Entity CloudScript function is executed, either by calling the
+     * ExecuteCloudScript API with the GeneratePlayStreamEvent option or triggered by a PlayStream event action with the
+     * 'Publish results as a PlayStream Event' box checked.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_executed_cloud_script
+     */
+    interface entity_executed_cloud_script extends IBasePlayStreamEvent {
+        /** Result of the CloudScript function, including diagnostic information that is useful for debugging. */
+        CloudScriptExecutionResult?: ExecuteCloudScriptResult,
+        EntityChain?: string,
+        /** Name of the CloudScript function that was called. */
+        FunctionName?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_files_set */
     interface entity_files_set extends IBasePlayStreamEvent {
         EntityChain?: string,
@@ -1830,6 +1844,66 @@ declare namespace PlayStreamModels {
         StoragePath?: string,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
+    interface LogStatement {
+        /** Optional object accompanying the message as contextual information */
+        Data?: any,
+        /** 'Debug', 'Info', or 'Error' */
+        Level?: string,
+        Message?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ScriptExecutionError */
+    interface ScriptExecutionError {
+        /**
+         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
+         * CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
+         */
+        Error?: string,
+        /** Details about the error */
+        Message?: string,
+        /** Point during the execution of the script at which the error occurred, if any */
+        StackTrace?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ExecuteCloudScriptResult */
+    interface ExecuteCloudScriptResult {
+        /** Number of PlayFab API requests issued by the CloudScript function */
+        APIRequestsIssued: number,
+        /** Information about the error, if any, that occurred during execution */
+        Error?: ScriptExecutionError,
+        ExecutionTimeSeconds: number,
+        /** The name of the function that executed */
+        FunctionName?: string,
+        /** The object returned from the CloudScript function, if any */
+        FunctionResult?: any,
+        /**
+         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if
+         * the total event size is larger than 350KB.
+         */
+        FunctionResultTooLarge?: boolean,
+        /** Number of external HTTP requests issued by the CloudScript function */
+        HttpRequestsIssued: number,
+        /**
+         * Entries logged during the function execution. These include both entries logged in the function code using log.info()
+         * and log.error() and error entries for API and HTTP request failures.
+         */
+        Logs?: LogStatement[],
+        /**
+         * Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total
+         * event size is larger than 350KB after the FunctionResult was removed.
+         */
+        LogsTooLarge?: boolean,
+        MemoryConsumedBytes: number,
+        /**
+         * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP
+         * requests.
+         */
+        ProcessorTimeSeconds: number,
+        /** The revision of the CloudScript that executed */
+        Revision: number,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Member */
     interface Member {
         /** The identifier for the member entity. */
@@ -2143,66 +2217,6 @@ declare namespace PlayStreamModels {
         | "ZAR"
         | "ZMW"
         | "ZWD";
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
-    interface LogStatement {
-        /** Optional object accompanying the message as contextual information */
-        Data?: any,
-        /** 'Debug', 'Info', or 'Error' */
-        Level?: string,
-        Message?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ScriptExecutionError */
-    interface ScriptExecutionError {
-        /**
-         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
-         * CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
-         */
-        Error?: string,
-        /** Details about the error */
-        Message?: string,
-        /** Point during the execution of the script at which the error occurred, if any */
-        StackTrace?: string,
-    }
-
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ExecuteCloudScriptResult */
-    interface ExecuteCloudScriptResult {
-        /** Number of PlayFab API requests issued by the CloudScript function */
-        APIRequestsIssued: number,
-        /** Information about the error, if any, that occurred during execution */
-        Error?: ScriptExecutionError,
-        ExecutionTimeSeconds: number,
-        /** The name of the function that executed */
-        FunctionName?: string,
-        /** The object returned from the CloudScript function, if any */
-        FunctionResult?: any,
-        /**
-         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if
-         * the total event size is larger than 350KB.
-         */
-        FunctionResultTooLarge?: boolean,
-        /** Number of external HTTP requests issued by the CloudScript function */
-        HttpRequestsIssued: number,
-        /**
-         * Entries logged during the function execution. These include both entries logged in the function code using log.info()
-         * and log.error() and error entries for API and HTTP request failures.
-         */
-        Logs?: LogStatement[],
-        /**
-         * Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total
-         * event size is larger than 350KB after the FunctionResult was removed.
-         */
-        LogsTooLarge?: boolean,
-        MemoryConsumedBytes: number,
-        /**
-         * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP
-         * requests.
-         */
-        ProcessorTimeSeconds: number,
-        /** The revision of the CloudScript that executed */
-        Revision: number,
-    }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContinentCode */
     type ContinentCode = "AF"
