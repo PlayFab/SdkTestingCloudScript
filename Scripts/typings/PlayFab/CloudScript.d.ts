@@ -67,10 +67,1118 @@ interface IApiError {
     errorDetails?: { [index:string] : { message: string[] } };
 }
 
-/** Static object which allows access to PlayFab Server API calls */
-declare var server: IPlayFabServerAPI;
 /** Static object which allows access to PlayFab Entity API calls */
 declare var entity: IPlayFabEntityAPI;
+/** Static object which allows access to PlayFab Server API calls */
+declare var server: IPlayFabServerAPI;
+
+/** EntityAPI.Models as interfaces */
+declare namespace PlayFabEntityModels {
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AbortFileUploadsRequest */
+    interface AbortFileUploadsRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** Names of the files to have their pending uploads aborted. */
+        FileNames: string[],
+        /**
+         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
+         * be performed.
+         */
+        ProfileVersion?: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AbortFileUploadsResponse */
+    interface AbortFileUploadsResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AcceptGroupApplicationRequest */
+    interface AcceptGroupApplicationRequest {
+        /**
+         * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
+         * child of the claimant entity. Defaults to the claimant entity.
+         */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AcceptGroupInvitationRequest */
+    interface AcceptGroupInvitationRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AddMembersRequest */
+    interface AddMembersRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** List of entities to add to the group. Only entities of type title_player_account and character may be added to groups. */
+        Members: EntityKey[],
+        /**
+         * Optional: The ID of the existing role to add the entities to. If this is not specified, the default member role for the
+         * group will be used. Role IDs must be between 1 and 64 characters long.
+         */
+        RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ApplyToGroupRequest */
+    interface ApplyToGroupRequest {
+        /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
+        AutoAcceptOutstandingInvite?: boolean,
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /**
+     * Describes an application to join a group
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ApplyToGroupResponse
+     */
+    interface ApplyToGroupResponse {
+        /** Type of entity that requested membership */
+        Entity?: EntityWithLineage,
+        /** When the application to join will expire and be deleted */
+        Expires: string,
+        /** ID of the group that the entity requesting membership to */
+        Group?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.BlockEntityRequest */
+    interface BlockEntityRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ChangeMemberRoleRequest */
+    interface ChangeMemberRoleRequest {
+        /**
+         * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
+         * and 64 characters long.
+         */
+        DestinationRoleId?: string,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /**
+         * List of entities to move between roles in the group. All entities in this list must be members of the group and origin
+         * role.
+         */
+        Members: EntityKey[],
+        /** The ID of the role that the entities currently are a member of. Role IDs must be between 1 and 64 characters long. */
+        OriginRoleId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRequest */
+    interface CreateGroupRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+        /** The name of the group. This is unique at the title level by default. */
+        GroupName: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupResponse */
+    interface CreateGroupResponse {
+        /** The ID of the administrator role for the group. */
+        AdminRoleId?: string,
+        /** The server date and time the group was created. */
+        Created: string,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** The name of the group. */
+        GroupName?: string,
+        /** The ID of the default member role for the group. */
+        MemberRoleId?: string,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+        /** The list of roles and names that belong to the group. */
+        Roles?: { [key: string]: string | null },
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRoleRequest */
+    interface CreateGroupRoleRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+        /**
+         * The ID of the role. This must be unique within the group and cannot be changed. Role IDs must be between 1 and 64
+         * characters long.
+         */
+        RoleId: string,
+        /**
+         * The name of the role. This must be unique within the group and can be changed later. Role names must be between 1 and
+         * 100 characters long
+         */
+        RoleName: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRoleResponse */
+    interface CreateGroupRoleResponse {
+        /** The current version of the group profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+        /** ID for the role */
+        RoleId?: string,
+        /** The name of the role */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteFilesRequest */
+    interface DeleteFilesRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** Names of the files to be deleted. */
+        FileNames: string[],
+        /**
+         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
+         * be performed.
+         */
+        ProfileVersion?: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteFilesResponse */
+    interface DeleteFilesResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteGroupRequest */
+    interface DeleteGroupRequest {
+        /** ID of the group or role to remove */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteRoleRequest */
+    interface DeleteRoleRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
+        RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EffectType */
+    type EffectType = "Allow"
+        | "Deny";
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EmptyResult */
+    interface EmptyResult {
+    }
+
+    /**
+     * An entity object and its associated meta data.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityDataObject
+     */
+    interface EntityDataObject {
+        /** Un-escaped JSON object, if DataAsObject is true. */
+        DataObject?: any,
+        /** Escaped string JSON body of the object, if DataAsObject is default or false. */
+        EscapedDataObject?: string,
+        /** Name of this object. */
+        ObjectName?: string,
+    }
+
+    /**
+     * Entity identifier class that contains both the ID and type.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityKey
+     */
+    interface EntityKey {
+        /** Entity profile ID. */
+        Id: string,
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        Type?: EntityTypes,
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        TypeString?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityMemberRole */
+    interface EntityMemberRole {
+        /** The list of members in the role */
+        Members?: EntityWithLineage[],
+        /** The ID of the role. */
+        RoleId?: string,
+        /** The name of the role */
+        RoleName?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityPermissionStatement */
+    interface EntityPermissionStatement {
+        /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
+        Action: string,
+        /** A comment about the statement. Intended solely for bookkeeping and debugging. */
+        Comment?: string,
+        /** Additional conditions to be applied for entity resources. */
+        Condition?: any,
+        /** The effect this statement will have. It may be either Allow or Deny */
+        Effect: EffectType,
+        /** The principal this statement will effect. */
+        Principal: any,
+        /** The resource this statements effects. Similar to 'pfrn:data--title![Title ID]/Profile/*' */
+        Resource: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityProfileBody */
+    interface EntityProfileBody {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /**
+         * The chain of responsibility for this entity. This is a representation of 'ownership'. It is constructed using the
+         * following formats (replace '[ID]' with the unique identifier for the given entity): Namespace: 'namespace![Namespace
+         * ID]' Title: 'title![Namespace ID]/[Title ID]' Master Player Account: 'master_player_account![Namespace
+         * ID]/[MasterPlayerAccount ID]' Title Player Account: 'title_player_account![Namespace ID]/[Title ID]/[MasterPlayerAccount
+         * ID]/[TitlePlayerAccount ID]' Character: 'character![Namespace ID]/[Title ID]/[MasterPlayerAccount
+         * ID]/[TitlePlayerAccount ID]/[Character ID]'
+         */
+        EntityChain?: string,
+        /** The files on this profile. */
+        Files?: { [key: string]: EntityProfileFileMetadata },
+        /** The objects on this profile. */
+        Objects?: { [key: string]: EntityDataObject },
+        /**
+         * The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
+         * profile, not global statements from titles and namespaces.
+         */
+        Permissions?: EntityPermissionStatement[],
+        /**
+         * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
+         * concurrency during update.
+         */
+        VersionNumber: number,
+    }
+
+    /**
+     * An entity file's meta data. To get a download URL call File/GetFiles API.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityProfileFileMetadata
+     */
+    interface EntityProfileFileMetadata {
+        /** Checksum value for the file */
+        Checksum?: string,
+        /** Name of the file */
+        FileName?: string,
+        /** Last UTC time the file was modified */
+        LastModified: string,
+        /** Storage service's reported byte count */
+        Size: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityTypes */
+    type EntityTypes = "title"
+        | "master_player_account"
+        | "title_player_account"
+        | "character"
+        | "group"
+        | "service";
+
+    /**
+     * Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityWithLineage
+     */
+    interface EntityWithLineage {
+        /** The entity key for the specified entity */
+        Key?: EntityKey,
+        /** Dictionary of entity keys for related entities. Dictionary key is entity type. */
+        Lineage?: { [key: string]: EntityKey },
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.FinalizeFileUploadsRequest */
+    interface FinalizeFileUploadsRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
+        FileNames: string[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.FinalizeFileUploadsResponse */
+    interface FinalizeFileUploadsResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** Collection of metadata for the entity's files */
+        Metadata?: { [key: string]: GetFileMetadata },
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfileRequest */
+    interface GetEntityProfileRequest {
+        /**
+         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
+         * JSON string.
+         */
+        DataAsObject?: boolean,
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfileResponse */
+    interface GetEntityProfileResponse {
+        /** Entity profile */
+        Profile?: EntityProfileBody,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesRequest */
+    interface GetEntityProfilesRequest {
+        /**
+         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
+         * JSON string.
+         */
+        DataAsObject?: boolean,
+        /** Entity keys of the profiles to load. Must be between 1 and 25 */
+        Entities: EntityKey[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesResponse */
+    interface GetEntityProfilesResponse {
+        /** Entity profiles */
+        Profiles?: EntityProfileBody[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityTokenRequest */
+    interface GetEntityTokenRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityTokenResponse */
+    interface GetEntityTokenResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        EntityToken?: string,
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        TokenExpiration?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFileMetadata */
+    interface GetFileMetadata {
+        /** Checksum value for the file */
+        Checksum?: string,
+        /** Download URL where the file can be retrieved */
+        DownloadUrl?: string,
+        /** Name of the file */
+        FileName?: string,
+        /** Last UTC time the file was modified */
+        LastModified: string,
+        /** Storage service's reported byte count */
+        Size: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFilesRequest */
+    interface GetFilesRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFilesResponse */
+    interface GetFilesResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** Collection of metadata for the entity's files */
+        Metadata?: { [key: string]: GetFileMetadata },
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGlobalPolicyRequest */
+    interface GetGlobalPolicyRequest {
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGlobalPolicyResponse */
+    interface GetGlobalPolicyResponse {
+        /** The permissions that govern access to all entities under this title or namespace. */
+        Permissions?: EntityPermissionStatement[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGroupRequest */
+    interface GetGroupRequest {
+        /** The identifier of the group */
+        Group?: EntityKey,
+        /** The full name of the group */
+        GroupName?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGroupResponse */
+    interface GetGroupResponse {
+        /** The ID of the administrator role for the group. */
+        AdminRoleId?: string,
+        /** The server date and time the group was created. */
+        Created: string,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** The name of the group. */
+        GroupName?: string,
+        /** The ID of the default member role for the group. */
+        MemberRoleId?: string,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+        /** The list of roles and names that belong to the group. */
+        Roles?: { [key: string]: string | null },
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetObjectsRequest */
+    interface GetObjectsRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /**
+         * Determines whether the object will be returned as an escaped JSON string or as a un-escaped JSON object. Default is JSON
+         * object.
+         */
+        EscapeObject?: boolean,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetObjectsResponse */
+    interface GetObjectsResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** Requested objects that the calling entity has access to */
+        Objects?: { [key: string]: ObjectResult },
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+    }
+
+    /**
+     * Describes an application to join a group
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupApplication
+     */
+    interface GroupApplication {
+        /** Type of entity that requested membership */
+        Entity?: EntityWithLineage,
+        /** When the application to join will expire and be deleted */
+        Expires: string,
+        /** ID of the group that the entity requesting membership to */
+        Group?: EntityKey,
+    }
+
+    /**
+     * Describes an entity that is blocked from joining a group.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupBlock
+     */
+    interface GroupBlock {
+        /** The entity that is blocked */
+        Entity?: EntityWithLineage,
+        /** ID of the group that the entity is blocked from */
+        Group: EntityKey,
+    }
+
+    /**
+     * Describes an invitation to a group.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupInvitation
+     */
+    interface GroupInvitation {
+        /** When the invitation will expire and be deleted */
+        Expires: string,
+        /** The group that the entity invited to */
+        Group?: EntityKey,
+        /** The entity that created the invitation */
+        InvitedByEntity?: EntityWithLineage,
+        /** The entity that is invited */
+        InvitedEntity?: EntityWithLineage,
+        /** ID of the role in the group to assign the user to. */
+        RoleId?: string,
+    }
+
+    /**
+     * Describes a group role
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupRole
+     */
+    interface GroupRole {
+        /** ID for the role */
+        RoleId?: string,
+        /** The name of the role */
+        RoleName?: string,
+    }
+
+    /**
+     * Describes a group and the roles that it contains
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupWithRoles
+     */
+    interface GroupWithRoles {
+        /** ID for the group */
+        Group?: EntityKey,
+        /** The name of the group */
+        GroupName?: string,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+        /** The list of roles within the group */
+        Roles?: GroupRole[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadMetadata */
+    interface InitiateFileUploadMetadata {
+        /** Name of the file. */
+        FileName?: string,
+        /** Location the data should be sent to via an HTTP PUT operation. */
+        UploadUrl?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadsRequest */
+    interface InitiateFileUploadsRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
+        FileNames: string[],
+        /**
+         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
+         * be performed.
+         */
+        ProfileVersion?: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadsResponse */
+    interface InitiateFileUploadsResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
+        /** Collection of file names and upload urls */
+        UploadDetails?: InitiateFileUploadMetadata[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InviteToGroupRequest */
+    interface InviteToGroupRequest {
+        /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
+        AutoAcceptOutstandingApplication?: boolean,
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /**
+         * Optional. ID of an existing a role in the group to assign the user to. The group's default member role is used if this
+         * is not specified. Role IDs must be between 1 and 64 characters long.
+         */
+        RoleId?: string,
+    }
+
+    /**
+     * Describes an invitation to a group.
+     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InviteToGroupResponse
+     */
+    interface InviteToGroupResponse {
+        /** When the invitation will expire and be deleted */
+        Expires: string,
+        /** The group that the entity invited to */
+        Group?: EntityKey,
+        /** The entity that created the invitation */
+        InvitedByEntity?: EntityWithLineage,
+        /** The entity that is invited */
+        InvitedEntity?: EntityWithLineage,
+        /** ID of the role in the group to assign the user to. */
+        RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.IsMemberRequest */
+    interface IsMemberRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /**
+         * Optional: ID of the role to check membership of. Defaults to any role (that is, check to see if the entity is a member
+         * of the group in any capacity) if not specified.
+         */
+        RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.IsMemberResponse */
+    interface IsMemberResponse {
+        /** A value indicating whether or not the entity is a member. */
+        IsMember: boolean,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupApplicationsRequest */
+    interface ListGroupApplicationsRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupApplicationsResponse */
+    interface ListGroupApplicationsResponse {
+        /** The requested list of applications to the group. */
+        Applications?: GroupApplication[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupBlocksRequest */
+    interface ListGroupBlocksRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupBlocksResponse */
+    interface ListGroupBlocksResponse {
+        /** The requested list blocked entities. */
+        BlockedEntities?: GroupBlock[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupInvitationsRequest */
+    interface ListGroupInvitationsRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupInvitationsResponse */
+    interface ListGroupInvitationsResponse {
+        /** The requested list of group invitations. */
+        Invitations?: GroupInvitation[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupMembersRequest */
+    interface ListGroupMembersRequest {
+        /** ID of the group to list the members and roles for */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupMembersResponse */
+    interface ListGroupMembersResponse {
+        /** The requested list of roles and member entity IDs. */
+        Members?: EntityMemberRole[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipOpportunitiesRequest */
+    interface ListMembershipOpportunitiesRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipOpportunitiesResponse */
+    interface ListMembershipOpportunitiesResponse {
+        /** The requested list of group applications. */
+        Applications?: GroupApplication[],
+        /** The requested list of group invitations. */
+        Invitations?: GroupInvitation[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipRequest */
+    interface ListMembershipRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipResponse */
+    interface ListMembershipResponse {
+        /** The list of groups */
+        Groups?: GroupWithRoles[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ObjectResult */
+    interface ObjectResult {
+        /** Un-escaped JSON object, if EscapeObject false or default. */
+        DataObject?: any,
+        /** Escaped string JSON body of the object, if EscapeObject is true. */
+        EscapedDataObject?: string,
+        /** Name of the object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
+        ObjectName?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.OperationTypes */
+    type OperationTypes = "Created"
+        | "Updated"
+        | "Deleted"
+        | "None";
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveGroupApplicationRequest */
+    interface RemoveGroupApplicationRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveGroupInvitationRequest */
+    interface RemoveGroupInvitationRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveMembersRequest */
+    interface RemoveMembersRequest {
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** List of entities to remove */
+        Members: EntityKey[],
+        /** The ID of the role to remove the entities from. */
+        RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetEntityProfilePolicyRequest */
+    interface SetEntityProfilePolicyRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The statements to include in the access policy. */
+        Statements?: EntityPermissionStatement[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetEntityProfilePolicyResponse */
+    interface SetEntityProfilePolicyResponse {
+        /**
+         * The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
+         * profile, not global statements from titles and namespaces.
+         */
+        Permissions?: EntityPermissionStatement[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetGlobalPolicyRequest */
+    interface SetGlobalPolicyRequest {
+        /** The permissions that govern access to all entities under this title or namespace. */
+        Permissions?: EntityPermissionStatement[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetGlobalPolicyResponse */
+    interface SetGlobalPolicyResponse {
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObject */
+    interface SetObject {
+        /**
+         * Body of the object to be saved. If empty and DeleteObject is true object will be deleted if it exists, or no operation
+         * will occur if it does not exist. Only one of Object or EscapedDataObject fields may be used.
+         */
+        DataObject?: any,
+        /** Flag to indicate that this object should be deleted. Both DataObject and EscapedDataObject must not be set as well. */
+        DeleteObject?: boolean,
+        /**
+         * Body of the object to be saved as an escaped JSON string. If empty and DeleteObject is true object will be deleted if it
+         * exists, or no operation will occur if it does not exist. Only one of DataObject or EscapedDataObject fields may be used.
+         */
+        EscapedDataObject?: string,
+        /** Name of object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
+        ObjectName: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectInfo */
+    interface SetObjectInfo {
+        /** Name of the object */
+        ObjectName?: string,
+        /** Optional reason to explain why the operation was the result that it was. */
+        OperationReason?: string,
+        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
+        SetResult?: OperationTypes,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectsRequest */
+    interface SetObjectsRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /**
+         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from
+         * GetProfile API, you can ensure that the object set will only be performed if the profile has not been updated by any
+         * other clients since the version you last loaded.
+         */
+        ExpectedProfileVersion?: number,
+        /** Collection of objects to set on the profile. */
+        Objects: SetObject[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectsResponse */
+    interface SetObjectsResponse {
+        /** New version of the entity profile. */
+        ProfileVersion: number,
+        /** New version of the entity profile. */
+        SetResults?: SetObjectInfo[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UnblockEntityRequest */
+    interface UnblockEntityRequest {
+        /** The entity to perform this action on. */
+        Entity: EntityKey,
+        /** The identifier of the group */
+        Group: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRequest */
+    interface UpdateGroupRequest {
+        /** Optional: the ID of an existing role to set as the new administrator role for the group */
+        AdminRoleId?: string,
+        /**
+         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
+         * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
+         * other clients since the version you last loaded.
+         */
+        ExpectedProfileVersion?: number,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** Optional: the new name of the group */
+        GroupName?: string,
+        /** Optional: the ID of an existing role to set as the new member role for the group */
+        MemberRoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupResponse */
+    interface UpdateGroupResponse {
+        /** Optional reason to explain why the operation was the result that it was. */
+        OperationReason?: string,
+        /** New version of the group data. */
+        ProfileVersion: number,
+        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
+        SetResult?: OperationTypes,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRoleRequest */
+    interface UpdateGroupRoleRequest {
+        /**
+         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
+         * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
+         * other clients since the version you last loaded.
+         */
+        ExpectedProfileVersion?: number,
+        /** The identifier of the group */
+        Group: EntityKey,
+        /** ID of the role to update. Role IDs must be between 1 and 64 characters long. */
+        RoleId?: string,
+        /** The new name of the role */
+        RoleName: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRoleResponse */
+    interface UpdateGroupRoleResponse {
+        /** Optional reason to explain why the operation was the result that it was. */
+        OperationReason?: string,
+        /** New version of the role data. */
+        ProfileVersion: number,
+        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
+        SetResult?: OperationTypes,
+    }
+
+}
+/** Entity interface methods */
+interface IPlayFabEntityAPI {
+    /**
+     * Abort pending file uploads to an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/AbortFileUploads
+     */
+    AbortFileUploads(request: PlayFabEntityModels.AbortFileUploadsRequest): PlayFabEntityModels.AbortFileUploadsResponse;
+
+    /**
+     * Accepts an outstanding invitation to to join a group
+     * https://api.playfab.com/Documentation/Entity/method/AcceptGroupApplication
+     */
+    AcceptGroupApplication(request: PlayFabEntityModels.AcceptGroupApplicationRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Accepts an invitation to join a group
+     * https://api.playfab.com/Documentation/Entity/method/AcceptGroupInvitation
+     */
+    AcceptGroupInvitation(request: PlayFabEntityModels.AcceptGroupInvitationRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Adds members to a group or role.
+     * https://api.playfab.com/Documentation/Entity/method/AddMembers
+     */
+    AddMembers(request: PlayFabEntityModels.AddMembersRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Applies to join a group
+     * https://api.playfab.com/Documentation/Entity/method/ApplyToGroup
+     */
+    ApplyToGroup(request: PlayFabEntityModels.ApplyToGroupRequest): PlayFabEntityModels.ApplyToGroupResponse;
+
+    /**
+     * Blocks a list of entities from joining a group.
+     * https://api.playfab.com/Documentation/Entity/method/BlockEntity
+     */
+    BlockEntity(request: PlayFabEntityModels.BlockEntityRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Changes the role membership of a list of entities from one role to another.
+     * https://api.playfab.com/Documentation/Entity/method/ChangeMemberRole
+     */
+    ChangeMemberRole(request: PlayFabEntityModels.ChangeMemberRoleRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Creates a new group.
+     * https://api.playfab.com/Documentation/Entity/method/CreateGroup
+     */
+    CreateGroup(request: PlayFabEntityModels.CreateGroupRequest): PlayFabEntityModels.CreateGroupResponse;
+
+    /**
+     * Creates a new group role.
+     * https://api.playfab.com/Documentation/Entity/method/CreateRole
+     */
+    CreateRole(request: PlayFabEntityModels.CreateGroupRoleRequest): PlayFabEntityModels.CreateGroupRoleResponse;
+
+    /**
+     * Delete files on an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/DeleteFiles
+     */
+    DeleteFiles(request: PlayFabEntityModels.DeleteFilesRequest): PlayFabEntityModels.DeleteFilesResponse;
+
+    /**
+     * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
+     * https://api.playfab.com/Documentation/Entity/method/DeleteGroup
+     */
+    DeleteGroup(request: PlayFabEntityModels.DeleteGroupRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Deletes an existing role in a group.
+     * https://api.playfab.com/Documentation/Entity/method/DeleteRole
+     */
+    DeleteRole(request: PlayFabEntityModels.DeleteRoleRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Finalize file uploads to an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/FinalizeFileUploads
+     */
+    FinalizeFileUploads(request: PlayFabEntityModels.FinalizeFileUploadsRequest): PlayFabEntityModels.FinalizeFileUploadsResponse;
+
+    /**
+     * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
+     * Entity Token.
+     * https://api.playfab.com/Documentation/Entity/method/GetEntityToken
+     */
+    GetEntityToken(request: PlayFabEntityModels.GetEntityTokenRequest): PlayFabEntityModels.GetEntityTokenResponse;
+
+    /**
+     * Retrieves file metadata from an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/GetFiles
+     */
+    GetFiles(request: PlayFabEntityModels.GetFilesRequest): PlayFabEntityModels.GetFilesResponse;
+
+    /**
+     * Gets the global title access policy
+     * https://api.playfab.com/Documentation/Entity/method/GetGlobalPolicy
+     */
+    GetGlobalPolicy(request: PlayFabEntityModels.GetGlobalPolicyRequest): PlayFabEntityModels.GetGlobalPolicyResponse;
+
+    /**
+     * Gets information about a group and its roles
+     * https://api.playfab.com/Documentation/Entity/method/GetGroup
+     */
+    GetGroup(request: PlayFabEntityModels.GetGroupRequest): PlayFabEntityModels.GetGroupResponse;
+
+    /**
+     * Retrieves objects from an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/GetObjects
+     */
+    GetObjects(request: PlayFabEntityModels.GetObjectsRequest): PlayFabEntityModels.GetObjectsResponse;
+
+    /**
+     * Retrieves the entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/GetProfile
+     */
+    GetProfile(request: PlayFabEntityModels.GetEntityProfileRequest): PlayFabEntityModels.GetEntityProfileResponse;
+
+    /**
+     * Retrieves the entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/GetProfiles
+     */
+    GetProfiles(request: PlayFabEntityModels.GetEntityProfilesRequest): PlayFabEntityModels.GetEntityProfilesResponse;
+
+    /**
+     * Initiates file uploads to an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/InitiateFileUploads
+     */
+    InitiateFileUploads(request: PlayFabEntityModels.InitiateFileUploadsRequest): PlayFabEntityModels.InitiateFileUploadsResponse;
+
+    /**
+     * Invites a player to join a group
+     * https://api.playfab.com/Documentation/Entity/method/InviteToGroup
+     */
+    InviteToGroup(request: PlayFabEntityModels.InviteToGroupRequest): PlayFabEntityModels.InviteToGroupResponse;
+
+    /**
+     * Checks to see if an entity is a member of a group or role within the group
+     * https://api.playfab.com/Documentation/Entity/method/IsMember
+     */
+    IsMember(request: PlayFabEntityModels.IsMemberRequest): PlayFabEntityModels.IsMemberResponse;
+
+    /**
+     * Lists all outstanding requests to join a group
+     * https://api.playfab.com/Documentation/Entity/method/ListGroupApplications
+     */
+    ListGroupApplications(request: PlayFabEntityModels.ListGroupApplicationsRequest): PlayFabEntityModels.ListGroupApplicationsResponse;
+
+    /**
+     * Lists all entities blocked from joining a group
+     * https://api.playfab.com/Documentation/Entity/method/ListGroupBlocks
+     */
+    ListGroupBlocks(request: PlayFabEntityModels.ListGroupBlocksRequest): PlayFabEntityModels.ListGroupBlocksResponse;
+
+    /**
+     * Lists all outstanding invitations for a group
+     * https://api.playfab.com/Documentation/Entity/method/ListGroupInvitations
+     */
+    ListGroupInvitations(request: PlayFabEntityModels.ListGroupInvitationsRequest): PlayFabEntityModels.ListGroupInvitationsResponse;
+
+    /**
+     * Lists all members for a group
+     * https://api.playfab.com/Documentation/Entity/method/ListGroupMembers
+     */
+    ListGroupMembers(request: PlayFabEntityModels.ListGroupMembersRequest): PlayFabEntityModels.ListGroupMembersResponse;
+
+    /**
+     * Lists all groups and roles for an entity
+     * https://api.playfab.com/Documentation/Entity/method/ListMembership
+     */
+    ListMembership(request: PlayFabEntityModels.ListMembershipRequest): PlayFabEntityModels.ListMembershipResponse;
+
+    /**
+     * Lists all outstanding invitations and group applications for an entity
+     * https://api.playfab.com/Documentation/Entity/method/ListMembershipOpportunities
+     */
+    ListMembershipOpportunities(request: PlayFabEntityModels.ListMembershipOpportunitiesRequest): PlayFabEntityModels.ListMembershipOpportunitiesResponse;
+
+    /**
+     * Removes an application to join a group
+     * https://api.playfab.com/Documentation/Entity/method/RemoveGroupApplication
+     */
+    RemoveGroupApplication(request: PlayFabEntityModels.RemoveGroupApplicationRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Removes an invitation join a group
+     * https://api.playfab.com/Documentation/Entity/method/RemoveGroupInvitation
+     */
+    RemoveGroupInvitation(request: PlayFabEntityModels.RemoveGroupInvitationRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Removes members from a group.
+     * https://api.playfab.com/Documentation/Entity/method/RemoveMembers
+     */
+    RemoveMembers(request: PlayFabEntityModels.RemoveMembersRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Sets the global title access policy
+     * https://api.playfab.com/Documentation/Entity/method/SetGlobalPolicy
+     */
+    SetGlobalPolicy(request: PlayFabEntityModels.SetGlobalPolicyRequest): PlayFabEntityModels.SetGlobalPolicyResponse;
+
+    /**
+     * Sets objects on an entity's profile.
+     * https://api.playfab.com/Documentation/Entity/method/SetObjects
+     */
+    SetObjects(request: PlayFabEntityModels.SetObjectsRequest): PlayFabEntityModels.SetObjectsResponse;
+
+    /**
+     * Sets the profiles access policy
+     * https://api.playfab.com/Documentation/Entity/method/SetProfilePolicy
+     */
+    SetProfilePolicy(request: PlayFabEntityModels.SetEntityProfilePolicyRequest): PlayFabEntityModels.SetEntityProfilePolicyResponse;
+
+    /**
+     * Unblocks a list of entities from joining a group
+     * https://api.playfab.com/Documentation/Entity/method/UnblockEntity
+     */
+    UnblockEntity(request: PlayFabEntityModels.UnblockEntityRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Updates non-membership data about a group.
+     * https://api.playfab.com/Documentation/Entity/method/UpdateGroup
+     */
+    UpdateGroup(request: PlayFabEntityModels.UpdateGroupRequest): PlayFabEntityModels.UpdateGroupResponse;
+
+    /**
+     * Updates metadata about a role.
+     * https://api.playfab.com/Documentation/Entity/method/UpdateRole
+     */
+    UpdateRole(request: PlayFabEntityModels.UpdateGroupRoleRequest): PlayFabEntityModels.UpdateGroupRoleResponse;
+
+
+}
 
 /** ServerAPI.Models as interfaces */
 declare namespace PlayFabServerModels {
@@ -962,7 +2070,8 @@ declare namespace PlayFabServerModels {
         | "master_player_account"
         | "title_player_account"
         | "character"
-        | "group";
+        | "group"
+        | "service";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
     interface EvaluateRandomResultTableRequest {
@@ -1062,6 +2171,8 @@ declare namespace PlayFabServerModels {
         GameCenterInfo?: UserGameCenterInfo,
         /** The profile of the user, if requested. */
         Profile?: PlayerProfileModel,
+        /** Available PSN information, if the user and PlayFab friend are both connected to PSN. */
+        PSNInfo?: UserPsnInfo,
         /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
         SteamInfo?: UserSteamInfo,
         /** Tags which have been associated with this friend. */
@@ -1070,6 +2181,8 @@ declare namespace PlayFabServerModels {
         TitleDisplayName?: string,
         /** PlayFab unique username for this friend. */
         Username?: string,
+        /** Available Xbox information, if the user and PlayFab friend are both connected to Xbox Live. */
+        XboxInfo?: UserXboxInfo,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GameInstanceState */
@@ -1445,7 +2558,17 @@ declare namespace PlayFabServerModels {
         | "InvalidTokenResultFromAad"
         | "NoValidCertificateForAad"
         | "InvalidCertificateForAad"
-        | "DuplicateDropTableId";
+        | "DuplicateDropTableId"
+        | "ComputeOK"
+        | "ComputeAccepted"
+        | "ComputeNoContent"
+        | "ComputeBadRequest"
+        | "ComputeUnauthorized"
+        | "ComputeForbidden"
+        | "ComputeNotFound"
+        | "ComputeConflict"
+        | "ComputeInternalServerError"
+        | "ComputeServiceUnavailable";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
@@ -1602,6 +2725,8 @@ declare namespace PlayFabServerModels {
         StatisticName: string,
         /** The version of the leaderboard to get. */
         Version?: number,
+        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        XboxToken?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListRequest */
@@ -1618,6 +2743,8 @@ declare namespace PlayFabServerModels {
          * the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         ProfileConstraints?: PlayerProfileViewConstraints,
+        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        XboxToken?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult */
@@ -4438,1113 +5565,6 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/WriteTitleEvent
      */
     WriteTitleEvent(request: PlayFabServerModels.WriteTitleEventRequest): PlayFabServerModels.WriteEventResponse;
-
-
-}
-
-/** EntityAPI.Models as interfaces */
-declare namespace PlayFabEntityModels {
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AbortFileUploadsRequest */
-    interface AbortFileUploadsRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** Names of the files to have their pending uploads aborted. */
-        FileNames: string[],
-        /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
-         */
-        ProfileVersion?: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AbortFileUploadsResponse */
-    interface AbortFileUploadsResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AcceptGroupApplicationRequest */
-    interface AcceptGroupApplicationRequest {
-        /**
-         * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
-         * child of the claimant entity. Defaults to the claimant entity.
-         */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AcceptGroupInvitationRequest */
-    interface AcceptGroupInvitationRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.AddMembersRequest */
-    interface AddMembersRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** List of entities to add to the group. Only entities of type title_player_account and character may be added to groups. */
-        Members: EntityKey[],
-        /**
-         * Optional: The ID of the existing role to add the entities to. If this is not specified, the default member role for the
-         * group will be used. Role IDs must be between 1 and 64 characters long.
-         */
-        RoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ApplyToGroupRequest */
-    interface ApplyToGroupRequest {
-        /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
-        AutoAcceptOutstandingInvite?: boolean,
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /**
-     * Describes an application to join a group
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ApplyToGroupResponse
-     */
-    interface ApplyToGroupResponse {
-        /** Type of entity that requested membership */
-        Entity?: EntityWithLineage,
-        /** When the application to join will expire and be deleted */
-        Expires: string,
-        /** ID of the group that the entity requesting membership to */
-        Group?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.BlockEntityRequest */
-    interface BlockEntityRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ChangeMemberRoleRequest */
-    interface ChangeMemberRoleRequest {
-        /**
-         * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
-         * and 64 characters long.
-         */
-        DestinationRoleId?: string,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /**
-         * List of entities to move between roles in the group. All entities in this list must be members of the group and origin
-         * role.
-         */
-        Members: EntityKey[],
-        /** The ID of the role that the entities currently are a member of. Role IDs must be between 1 and 64 characters long. */
-        OriginRoleId: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRequest */
-    interface CreateGroupRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-        /** The name of the group. This is unique at the title level by default. */
-        GroupName: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupResponse */
-    interface CreateGroupResponse {
-        /** The ID of the administrator role for the group. */
-        AdminRoleId?: string,
-        /** The server date and time the group was created. */
-        Created: string,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** The name of the group. */
-        GroupName?: string,
-        /** The ID of the default member role for the group. */
-        MemberRoleId?: string,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-        /** The list of roles and names that belong to the group. */
-        Roles?: { [key: string]: string | null },
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRoleRequest */
-    interface CreateGroupRoleRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-        /**
-         * The ID of the role. This must be unique within the group and cannot be changed. Role IDs must be between 1 and 64
-         * characters long.
-         */
-        RoleId: string,
-        /**
-         * The name of the role. This must be unique within the group and can be changed later. Role names must be between 1 and
-         * 100 characters long
-         */
-        RoleName: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRoleResponse */
-    interface CreateGroupRoleResponse {
-        /** The current version of the group profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-        /** ID for the role */
-        RoleId?: string,
-        /** The name of the role */
-        RoleName?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteFilesRequest */
-    interface DeleteFilesRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** Names of the files to be deleted. */
-        FileNames: string[],
-        /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
-         */
-        ProfileVersion?: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteFilesResponse */
-    interface DeleteFilesResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteGroupRequest */
-    interface DeleteGroupRequest {
-        /** ID of the group or role to remove */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.DeleteRoleRequest */
-    interface DeleteRoleRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
-        RoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EffectType */
-    type EffectType = "Allow"
-        | "Deny";
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EmptyResult */
-    interface EmptyResult {
-    }
-
-    /**
-     * An entity object and its associated meta data.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityDataObject
-     */
-    interface EntityDataObject {
-        /** Un-escaped JSON object, if DataAsObject is true. */
-        DataObject?: any,
-        /** Escaped string JSON body of the object, if DataAsObject is default or false. */
-        EscapedDataObject?: string,
-        /** Name of this object. */
-        ObjectName?: string,
-    }
-
-    /**
-     * Entity identifier class that contains both the ID and type.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityKey
-     */
-    interface EntityKey {
-        /** Entity profile ID. */
-        Id: string,
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        Type?: EntityTypes,
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        TypeString?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityMemberRole */
-    interface EntityMemberRole {
-        /** The list of members in the role */
-        Members?: EntityWithLineage[],
-        /** The ID of the role. */
-        RoleId?: string,
-        /** The name of the role */
-        RoleName?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityPermissionStatement */
-    interface EntityPermissionStatement {
-        /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
-        Action: string,
-        /** A comment about the statement. Intended solely for bookkeeping and debugging. */
-        Comment?: string,
-        /** Additional conditions to be applied for entity resources. */
-        Condition?: any,
-        /** The effect this statement will have. It may be either Allow or Deny */
-        Effect: EffectType,
-        /** The principal this statement will effect. */
-        Principal: any,
-        /** The resource this statements effects. Similar to 'pfrn:data--title![Title ID]/Profile/*' */
-        Resource: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityProfileBody */
-    interface EntityProfileBody {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /**
-         * The chain of responsibility for this entity. This is a representation of 'ownership'. It is constructed using the
-         * following formats (replace '[ID]' with the unique identifier for the given entity): Namespace: 'namespace![Namespace
-         * ID]' Title: 'title![Namespace ID]/[Title ID]' Master Player Account: 'master_player_account![Namespace
-         * ID]/[MasterPlayerAccount ID]' Title Player Account: 'title_player_account![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]' Character: 'character![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]/[Character ID]'
-         */
-        EntityChain?: string,
-        /** The files on this profile. */
-        Files?: { [key: string]: EntityProfileFileMetadata },
-        /** The objects on this profile. */
-        Objects?: { [key: string]: EntityDataObject },
-        /**
-         * The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
-         * profile, not global statements from titles and namespaces.
-         */
-        Permissions?: EntityPermissionStatement[],
-        /**
-         * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
-         * concurrency during update.
-         */
-        VersionNumber: number,
-    }
-
-    /**
-     * An entity file's meta data. To get a download URL call File/GetFiles API.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityProfileFileMetadata
-     */
-    interface EntityProfileFileMetadata {
-        /** Checksum value for the file */
-        Checksum?: string,
-        /** Name of the file */
-        FileName?: string,
-        /** Last UTC time the file was modified */
-        LastModified: string,
-        /** Storage service's reported byte count */
-        Size: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityTypes */
-    type EntityTypes = "title"
-        | "master_player_account"
-        | "title_player_account"
-        | "character"
-        | "group";
-
-    /**
-     * Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EntityWithLineage
-     */
-    interface EntityWithLineage {
-        /** The entity key for the specified entity */
-        Key?: EntityKey,
-        /** Dictionary of entity keys for related entities. Dictionary key is entity type. */
-        Lineage?: { [key: string]: EntityKey },
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.FinalizeFileUploadsRequest */
-    interface FinalizeFileUploadsRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        FileNames: string[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.FinalizeFileUploadsResponse */
-    interface FinalizeFileUploadsResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** Collection of metadata for the entity's files */
-        Metadata?: { [key: string]: GetFileMetadata },
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfileRequest */
-    interface GetEntityProfileRequest {
-        /**
-         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
-         * JSON string.
-         */
-        DataAsObject?: boolean,
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfileResponse */
-    interface GetEntityProfileResponse {
-        /** Entity profile */
-        Profile?: EntityProfileBody,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesRequest */
-    interface GetEntityProfilesRequest {
-        /**
-         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
-         * JSON string.
-         */
-        DataAsObject?: boolean,
-        /** Entity keys of the profiles to load. Must be between 1 and 25 */
-        Entities: EntityKey[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityProfilesResponse */
-    interface GetEntityProfilesResponse {
-        /** Entity profiles */
-        Profiles?: EntityProfileBody[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityTokenRequest */
-    interface GetEntityTokenRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetEntityTokenResponse */
-    interface GetEntityTokenResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The token used to set X-EntityToken for all entity based API calls. */
-        EntityToken?: string,
-        /** The time the token will expire, if it is an expiring token, in UTC. */
-        TokenExpiration?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFileMetadata */
-    interface GetFileMetadata {
-        /** Checksum value for the file */
-        Checksum?: string,
-        /** Download URL where the file can be retrieved */
-        DownloadUrl?: string,
-        /** Name of the file */
-        FileName?: string,
-        /** Last UTC time the file was modified */
-        LastModified: string,
-        /** Storage service's reported byte count */
-        Size: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFilesRequest */
-    interface GetFilesRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetFilesResponse */
-    interface GetFilesResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** Collection of metadata for the entity's files */
-        Metadata?: { [key: string]: GetFileMetadata },
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGlobalPolicyRequest */
-    interface GetGlobalPolicyRequest {
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGlobalPolicyResponse */
-    interface GetGlobalPolicyResponse {
-        /** The permissions that govern access to all entities under this title or namespace. */
-        Permissions?: EntityPermissionStatement[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGroupRequest */
-    interface GetGroupRequest {
-        /** The identifier of the group */
-        Group?: EntityKey,
-        /** The full name of the group */
-        GroupName?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetGroupResponse */
-    interface GetGroupResponse {
-        /** The ID of the administrator role for the group. */
-        AdminRoleId?: string,
-        /** The server date and time the group was created. */
-        Created: string,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** The name of the group. */
-        GroupName?: string,
-        /** The ID of the default member role for the group. */
-        MemberRoleId?: string,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-        /** The list of roles and names that belong to the group. */
-        Roles?: { [key: string]: string | null },
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetObjectsRequest */
-    interface GetObjectsRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /**
-         * Determines whether the object will be returned as an escaped JSON string or as a un-escaped JSON object. Default is JSON
-         * object.
-         */
-        EscapeObject?: boolean,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GetObjectsResponse */
-    interface GetObjectsResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** Requested objects that the calling entity has access to */
-        Objects?: { [key: string]: ObjectResult },
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-    }
-
-    /**
-     * Describes an application to join a group
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupApplication
-     */
-    interface GroupApplication {
-        /** Type of entity that requested membership */
-        Entity?: EntityWithLineage,
-        /** When the application to join will expire and be deleted */
-        Expires: string,
-        /** ID of the group that the entity requesting membership to */
-        Group?: EntityKey,
-    }
-
-    /**
-     * Describes an entity that is blocked from joining a group.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupBlock
-     */
-    interface GroupBlock {
-        /** The entity that is blocked */
-        Entity?: EntityWithLineage,
-        /** ID of the group that the entity is blocked from */
-        Group: EntityKey,
-    }
-
-    /**
-     * Describes an invitation to a group.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupInvitation
-     */
-    interface GroupInvitation {
-        /** When the invitation will expire and be deleted */
-        Expires: string,
-        /** The group that the entity invited to */
-        Group?: EntityKey,
-        /** The entity that created the invitation */
-        InvitedByEntity?: EntityWithLineage,
-        /** The entity that is invited */
-        InvitedEntity?: EntityWithLineage,
-        /** ID of the role in the group to assign the user to. */
-        RoleId?: string,
-    }
-
-    /**
-     * Describes a group role
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupRole
-     */
-    interface GroupRole {
-        /** ID for the role */
-        RoleId?: string,
-        /** The name of the role */
-        RoleName?: string,
-    }
-
-    /**
-     * Describes a group and the roles that it contains
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.GroupWithRoles
-     */
-    interface GroupWithRoles {
-        /** ID for the group */
-        Group?: EntityKey,
-        /** The name of the group */
-        GroupName?: string,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-        /** The list of roles within the group */
-        Roles?: GroupRole[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadMetadata */
-    interface InitiateFileUploadMetadata {
-        /** Name of the file. */
-        FileName?: string,
-        /** Location the data should be sent to via an HTTP PUT operation. */
-        UploadUrl?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadsRequest */
-    interface InitiateFileUploadsRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        FileNames: string[],
-        /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
-         */
-        ProfileVersion?: number,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InitiateFileUploadsResponse */
-    interface InitiateFileUploadsResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The current version of the profile, can be used for concurrency control during updates. */
-        ProfileVersion: number,
-        /** Collection of file names and upload urls */
-        UploadDetails?: InitiateFileUploadMetadata[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InviteToGroupRequest */
-    interface InviteToGroupRequest {
-        /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
-        AutoAcceptOutstandingApplication?: boolean,
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /**
-         * Optional. ID of an existing a role in the group to assign the user to. The group's default member role is used if this
-         * is not specified. Role IDs must be between 1 and 64 characters long.
-         */
-        RoleId?: string,
-    }
-
-    /**
-     * Describes an invitation to a group.
-     * https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.InviteToGroupResponse
-     */
-    interface InviteToGroupResponse {
-        /** When the invitation will expire and be deleted */
-        Expires: string,
-        /** The group that the entity invited to */
-        Group?: EntityKey,
-        /** The entity that created the invitation */
-        InvitedByEntity?: EntityWithLineage,
-        /** The entity that is invited */
-        InvitedEntity?: EntityWithLineage,
-        /** ID of the role in the group to assign the user to. */
-        RoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.IsMemberRequest */
-    interface IsMemberRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /**
-         * Optional: ID of the role to check membership of. Defaults to any role (that is, check to see if the entity is a member
-         * of the group in any capacity) if not specified.
-         */
-        RoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.IsMemberResponse */
-    interface IsMemberResponse {
-        /** A value indicating whether or not the entity is a member. */
-        IsMember: boolean,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupApplicationsRequest */
-    interface ListGroupApplicationsRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupApplicationsResponse */
-    interface ListGroupApplicationsResponse {
-        /** The requested list of applications to the group. */
-        Applications?: GroupApplication[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupBlocksRequest */
-    interface ListGroupBlocksRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupBlocksResponse */
-    interface ListGroupBlocksResponse {
-        /** The requested list blocked entities. */
-        BlockedEntities?: GroupBlock[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupInvitationsRequest */
-    interface ListGroupInvitationsRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupInvitationsResponse */
-    interface ListGroupInvitationsResponse {
-        /** The requested list of group invitations. */
-        Invitations?: GroupInvitation[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupMembersRequest */
-    interface ListGroupMembersRequest {
-        /** ID of the group to list the members and roles for */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListGroupMembersResponse */
-    interface ListGroupMembersResponse {
-        /** The requested list of roles and member entity IDs. */
-        Members?: EntityMemberRole[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipOpportunitiesRequest */
-    interface ListMembershipOpportunitiesRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipOpportunitiesResponse */
-    interface ListMembershipOpportunitiesResponse {
-        /** The requested list of group applications. */
-        Applications?: GroupApplication[],
-        /** The requested list of group invitations. */
-        Invitations?: GroupInvitation[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipRequest */
-    interface ListMembershipRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ListMembershipResponse */
-    interface ListMembershipResponse {
-        /** The list of groups */
-        Groups?: GroupWithRoles[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ObjectResult */
-    interface ObjectResult {
-        /** Un-escaped JSON object, if EscapeObject false or default. */
-        DataObject?: any,
-        /** Escaped string JSON body of the object, if EscapeObject is true. */
-        EscapedDataObject?: string,
-        /** Name of the object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        ObjectName?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.OperationTypes */
-    type OperationTypes = "Created"
-        | "Updated"
-        | "Deleted"
-        | "None";
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveGroupApplicationRequest */
-    interface RemoveGroupApplicationRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveGroupInvitationRequest */
-    interface RemoveGroupInvitationRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.RemoveMembersRequest */
-    interface RemoveMembersRequest {
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** List of entities to remove */
-        Members: EntityKey[],
-        /** The ID of the role to remove the entities from. */
-        RoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetEntityProfilePolicyRequest */
-    interface SetEntityProfilePolicyRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The statements to include in the access policy. */
-        Statements?: EntityPermissionStatement[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetEntityProfilePolicyResponse */
-    interface SetEntityProfilePolicyResponse {
-        /**
-         * The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
-         * profile, not global statements from titles and namespaces.
-         */
-        Permissions?: EntityPermissionStatement[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetGlobalPolicyRequest */
-    interface SetGlobalPolicyRequest {
-        /** The permissions that govern access to all entities under this title or namespace. */
-        Permissions?: EntityPermissionStatement[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetGlobalPolicyResponse */
-    interface SetGlobalPolicyResponse {
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObject */
-    interface SetObject {
-        /**
-         * Body of the object to be saved. If empty and DeleteObject is true object will be deleted if it exists, or no operation
-         * will occur if it does not exist. Only one of Object or EscapedDataObject fields may be used.
-         */
-        DataObject?: any,
-        /** Flag to indicate that this object should be deleted. Both DataObject and EscapedDataObject must not be set as well. */
-        DeleteObject?: boolean,
-        /**
-         * Body of the object to be saved as an escaped JSON string. If empty and DeleteObject is true object will be deleted if it
-         * exists, or no operation will occur if it does not exist. Only one of DataObject or EscapedDataObject fields may be used.
-         */
-        EscapedDataObject?: string,
-        /** Name of object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
-        ObjectName: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectInfo */
-    interface SetObjectInfo {
-        /** Name of the object */
-        ObjectName?: string,
-        /** Optional reason to explain why the operation was the result that it was. */
-        OperationReason?: string,
-        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
-        SetResult?: OperationTypes,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectsRequest */
-    interface SetObjectsRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /**
-         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from
-         * GetProfile API, you can ensure that the object set will only be performed if the profile has not been updated by any
-         * other clients since the version you last loaded.
-         */
-        ExpectedProfileVersion?: number,
-        /** Collection of objects to set on the profile. */
-        Objects: SetObject[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetObjectsResponse */
-    interface SetObjectsResponse {
-        /** New version of the entity profile. */
-        ProfileVersion: number,
-        /** New version of the entity profile. */
-        SetResults?: SetObjectInfo[],
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UnblockEntityRequest */
-    interface UnblockEntityRequest {
-        /** The entity to perform this action on. */
-        Entity: EntityKey,
-        /** The identifier of the group */
-        Group: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRequest */
-    interface UpdateGroupRequest {
-        /** Optional: the ID of an existing role to set as the new administrator role for the group */
-        AdminRoleId?: string,
-        /**
-         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
-         * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
-         * other clients since the version you last loaded.
-         */
-        ExpectedProfileVersion?: number,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** Optional: the new name of the group */
-        GroupName?: string,
-        /** Optional: the ID of an existing role to set as the new member role for the group */
-        MemberRoleId?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupResponse */
-    interface UpdateGroupResponse {
-        /** Optional reason to explain why the operation was the result that it was. */
-        OperationReason?: string,
-        /** New version of the group data. */
-        ProfileVersion: number,
-        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
-        SetResult?: OperationTypes,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRoleRequest */
-    interface UpdateGroupRoleRequest {
-        /**
-         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
-         * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
-         * other clients since the version you last loaded.
-         */
-        ExpectedProfileVersion?: number,
-        /** The identifier of the group */
-        Group: EntityKey,
-        /** ID of the role to update. Role IDs must be between 1 and 64 characters long. */
-        RoleId?: string,
-        /** The new name of the role */
-        RoleName: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.UpdateGroupRoleResponse */
-    interface UpdateGroupRoleResponse {
-        /** Optional reason to explain why the operation was the result that it was. */
-        OperationReason?: string,
-        /** New version of the role data. */
-        ProfileVersion: number,
-        /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
-        SetResult?: OperationTypes,
-    }
-
-}
-/** Entity interface methods */
-interface IPlayFabEntityAPI {
-    /**
-     * Abort pending file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/AbortFileUploads
-     */
-    AbortFileUploads(request: PlayFabEntityModels.AbortFileUploadsRequest): PlayFabEntityModels.AbortFileUploadsResponse;
-
-    /**
-     * Accepts an outstanding invitation to to join a group
-     * https://api.playfab.com/Documentation/Entity/method/AcceptGroupApplication
-     */
-    AcceptGroupApplication(request: PlayFabEntityModels.AcceptGroupApplicationRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Accepts an invitation to join a group
-     * https://api.playfab.com/Documentation/Entity/method/AcceptGroupInvitation
-     */
-    AcceptGroupInvitation(request: PlayFabEntityModels.AcceptGroupInvitationRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Adds members to a group or role.
-     * https://api.playfab.com/Documentation/Entity/method/AddMembers
-     */
-    AddMembers(request: PlayFabEntityModels.AddMembersRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Applies to join a group
-     * https://api.playfab.com/Documentation/Entity/method/ApplyToGroup
-     */
-    ApplyToGroup(request: PlayFabEntityModels.ApplyToGroupRequest): PlayFabEntityModels.ApplyToGroupResponse;
-
-    /**
-     * Blocks a list of entities from joining a group.
-     * https://api.playfab.com/Documentation/Entity/method/BlockEntity
-     */
-    BlockEntity(request: PlayFabEntityModels.BlockEntityRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Changes the role membership of a list of entities from one role to another.
-     * https://api.playfab.com/Documentation/Entity/method/ChangeMemberRole
-     */
-    ChangeMemberRole(request: PlayFabEntityModels.ChangeMemberRoleRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Creates a new group.
-     * https://api.playfab.com/Documentation/Entity/method/CreateGroup
-     */
-    CreateGroup(request: PlayFabEntityModels.CreateGroupRequest): PlayFabEntityModels.CreateGroupResponse;
-
-    /**
-     * Creates a new group role.
-     * https://api.playfab.com/Documentation/Entity/method/CreateRole
-     */
-    CreateRole(request: PlayFabEntityModels.CreateGroupRoleRequest): PlayFabEntityModels.CreateGroupRoleResponse;
-
-    /**
-     * Delete files on an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/DeleteFiles
-     */
-    DeleteFiles(request: PlayFabEntityModels.DeleteFilesRequest): PlayFabEntityModels.DeleteFilesResponse;
-
-    /**
-     * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
-     * https://api.playfab.com/Documentation/Entity/method/DeleteGroup
-     */
-    DeleteGroup(request: PlayFabEntityModels.DeleteGroupRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Deletes an existing role in a group.
-     * https://api.playfab.com/Documentation/Entity/method/DeleteRole
-     */
-    DeleteRole(request: PlayFabEntityModels.DeleteRoleRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Finalize file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/FinalizeFileUploads
-     */
-    FinalizeFileUploads(request: PlayFabEntityModels.FinalizeFileUploadsRequest): PlayFabEntityModels.FinalizeFileUploadsResponse;
-
-    /**
-     * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
-     * Entity Token.
-     * https://api.playfab.com/Documentation/Entity/method/GetEntityToken
-     */
-    GetEntityToken(request: PlayFabEntityModels.GetEntityTokenRequest): PlayFabEntityModels.GetEntityTokenResponse;
-
-    /**
-     * Retrieves file metadata from an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/GetFiles
-     */
-    GetFiles(request: PlayFabEntityModels.GetFilesRequest): PlayFabEntityModels.GetFilesResponse;
-
-    /**
-     * Gets the global title access policy
-     * https://api.playfab.com/Documentation/Entity/method/GetGlobalPolicy
-     */
-    GetGlobalPolicy(request: PlayFabEntityModels.GetGlobalPolicyRequest): PlayFabEntityModels.GetGlobalPolicyResponse;
-
-    /**
-     * Gets information about a group and its roles
-     * https://api.playfab.com/Documentation/Entity/method/GetGroup
-     */
-    GetGroup(request: PlayFabEntityModels.GetGroupRequest): PlayFabEntityModels.GetGroupResponse;
-
-    /**
-     * Retrieves objects from an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/GetObjects
-     */
-    GetObjects(request: PlayFabEntityModels.GetObjectsRequest): PlayFabEntityModels.GetObjectsResponse;
-
-    /**
-     * Retrieves the entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/GetProfile
-     */
-    GetProfile(request: PlayFabEntityModels.GetEntityProfileRequest): PlayFabEntityModels.GetEntityProfileResponse;
-
-    /**
-     * Retrieves the entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/GetProfiles
-     */
-    GetProfiles(request: PlayFabEntityModels.GetEntityProfilesRequest): PlayFabEntityModels.GetEntityProfilesResponse;
-
-    /**
-     * Initiates file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/InitiateFileUploads
-     */
-    InitiateFileUploads(request: PlayFabEntityModels.InitiateFileUploadsRequest): PlayFabEntityModels.InitiateFileUploadsResponse;
-
-    /**
-     * Invites a player to join a group
-     * https://api.playfab.com/Documentation/Entity/method/InviteToGroup
-     */
-    InviteToGroup(request: PlayFabEntityModels.InviteToGroupRequest): PlayFabEntityModels.InviteToGroupResponse;
-
-    /**
-     * Checks to see if an entity is a member of a group or role within the group
-     * https://api.playfab.com/Documentation/Entity/method/IsMember
-     */
-    IsMember(request: PlayFabEntityModels.IsMemberRequest): PlayFabEntityModels.IsMemberResponse;
-
-    /**
-     * Lists all outstanding requests to join a group
-     * https://api.playfab.com/Documentation/Entity/method/ListGroupApplications
-     */
-    ListGroupApplications(request: PlayFabEntityModels.ListGroupApplicationsRequest): PlayFabEntityModels.ListGroupApplicationsResponse;
-
-    /**
-     * Lists all entities blocked from joining a group
-     * https://api.playfab.com/Documentation/Entity/method/ListGroupBlocks
-     */
-    ListGroupBlocks(request: PlayFabEntityModels.ListGroupBlocksRequest): PlayFabEntityModels.ListGroupBlocksResponse;
-
-    /**
-     * Lists all outstanding invitations for a group
-     * https://api.playfab.com/Documentation/Entity/method/ListGroupInvitations
-     */
-    ListGroupInvitations(request: PlayFabEntityModels.ListGroupInvitationsRequest): PlayFabEntityModels.ListGroupInvitationsResponse;
-
-    /**
-     * Lists all members for a group
-     * https://api.playfab.com/Documentation/Entity/method/ListGroupMembers
-     */
-    ListGroupMembers(request: PlayFabEntityModels.ListGroupMembersRequest): PlayFabEntityModels.ListGroupMembersResponse;
-
-    /**
-     * Lists all groups and roles for an entity
-     * https://api.playfab.com/Documentation/Entity/method/ListMembership
-     */
-    ListMembership(request: PlayFabEntityModels.ListMembershipRequest): PlayFabEntityModels.ListMembershipResponse;
-
-    /**
-     * Lists all outstanding invitations and group applications for an entity
-     * https://api.playfab.com/Documentation/Entity/method/ListMembershipOpportunities
-     */
-    ListMembershipOpportunities(request: PlayFabEntityModels.ListMembershipOpportunitiesRequest): PlayFabEntityModels.ListMembershipOpportunitiesResponse;
-
-    /**
-     * Removes an application to join a group
-     * https://api.playfab.com/Documentation/Entity/method/RemoveGroupApplication
-     */
-    RemoveGroupApplication(request: PlayFabEntityModels.RemoveGroupApplicationRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Removes an invitation join a group
-     * https://api.playfab.com/Documentation/Entity/method/RemoveGroupInvitation
-     */
-    RemoveGroupInvitation(request: PlayFabEntityModels.RemoveGroupInvitationRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Removes members from a group.
-     * https://api.playfab.com/Documentation/Entity/method/RemoveMembers
-     */
-    RemoveMembers(request: PlayFabEntityModels.RemoveMembersRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Sets the global title access policy
-     * https://api.playfab.com/Documentation/Entity/method/SetGlobalPolicy
-     */
-    SetGlobalPolicy(request: PlayFabEntityModels.SetGlobalPolicyRequest): PlayFabEntityModels.SetGlobalPolicyResponse;
-
-    /**
-     * Sets objects on an entity's profile.
-     * https://api.playfab.com/Documentation/Entity/method/SetObjects
-     */
-    SetObjects(request: PlayFabEntityModels.SetObjectsRequest): PlayFabEntityModels.SetObjectsResponse;
-
-    /**
-     * Sets the profiles access policy
-     * https://api.playfab.com/Documentation/Entity/method/SetProfilePolicy
-     */
-    SetProfilePolicy(request: PlayFabEntityModels.SetEntityProfilePolicyRequest): PlayFabEntityModels.SetEntityProfilePolicyResponse;
-
-    /**
-     * Unblocks a list of entities from joining a group
-     * https://api.playfab.com/Documentation/Entity/method/UnblockEntity
-     */
-    UnblockEntity(request: PlayFabEntityModels.UnblockEntityRequest): PlayFabEntityModels.EmptyResult;
-
-    /**
-     * Updates non-membership data about a group.
-     * https://api.playfab.com/Documentation/Entity/method/UpdateGroup
-     */
-    UpdateGroup(request: PlayFabEntityModels.UpdateGroupRequest): PlayFabEntityModels.UpdateGroupResponse;
-
-    /**
-     * Updates metadata about a role.
-     * https://api.playfab.com/Documentation/Entity/method/UpdateRole
-     */
-    UpdateRole(request: PlayFabEntityModels.UpdateGroupRoleRequest): PlayFabEntityModels.UpdateGroupRoleResponse;
 
 
 }

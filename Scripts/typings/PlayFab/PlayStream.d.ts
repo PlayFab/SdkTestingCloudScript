@@ -688,6 +688,21 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered when a player's data is exported.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_data_exported
+     */
+    interface player_data_exported extends IBasePlayStreamEvent {
+        /** URL to download the export. */
+        ExportDownloadUrl?: string,
+        /** Receipt ID of the export job. This should correspond to the receipt ID returned by the export API call. */
+        JobReceiptId?: string,
+        /** The time of export request. */
+        RequestTime: string,
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /**
      * This event is triggered when a player's display name is changed.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_displayname_changed
      */
