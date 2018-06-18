@@ -2618,7 +2618,9 @@ declare namespace PlayStreamModels {
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NameIdentifier
      */
     interface NameIdentifier {
+        /** Id Identifier, if present */
         Id?: string,
+        /** Name Identifier, if present */
         Name?: string,
     }
 
