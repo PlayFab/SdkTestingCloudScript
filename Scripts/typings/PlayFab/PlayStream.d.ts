@@ -9,7 +9,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_created */
     interface entity_created extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
     }
 
     /**
@@ -21,26 +24,38 @@ declare namespace PlayStreamModels {
     interface entity_executed_cloud_script extends IBasePlayStreamEvent {
         /** Result of the CloudScript function, including diagnostic information that is useful for debugging. */
         CloudScriptExecutionResult?: ExecuteCloudScriptResult,
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** Name of the CloudScript function that was called. */
         FunctionName?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_files_set */
     interface entity_files_set extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The files that were updated. */
         Files?: FileSet[],
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
     interface entity_logged_in extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_objects_set */
     interface entity_objects_set extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** Objects that were updated */
         Objects?: ObjectSet[],
     }
@@ -51,7 +66,10 @@ declare namespace PlayStreamModels {
         CreatorEntityId?: string,
         /** The type of entity that created the group to which this event applies. */
         CreatorEntityType?: string,
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
     }
@@ -62,14 +80,20 @@ declare namespace PlayStreamModels {
         DeleterEntityId?: string,
         /** The type of entity that deleted the group to which this event applies. */
         DeleterEntityType?: string,
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_added */
     interface group_members_added extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The list of entities that were added to the group and role to which this event applies */
@@ -82,7 +106,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_removed */
     interface group_members_removed extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The list of entities that were removed from the group to which this event applies */
@@ -95,7 +122,10 @@ declare namespace PlayStreamModels {
         CreatorEntityId?: string,
         /** The type of entity that created the role to which this event applies. */
         CreatorEntityType?: string,
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The role ID of the role to which this event applies. */
@@ -110,7 +140,10 @@ declare namespace PlayStreamModels {
         DeleterEntityId?: string,
         /** The type of entity that deleted the role to which this event applies. */
         DeleterEntityType?: string,
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The role ID of the role to which this event applies. */
@@ -121,7 +154,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_added */
     interface group_role_members_added extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The list of entities that were added to the group and role to which this event applies */
@@ -134,7 +170,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_removed */
     interface group_role_members_removed extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The list of entities that were removed from the group to which this event applies */
@@ -147,7 +186,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_updated */
     interface group_role_updated extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The new values of the role's changed properties */
@@ -166,7 +208,10 @@ declare namespace PlayStreamModels {
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_updated */
     interface group_updated extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
         EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
         /** The name of the group to which this event applies. */
         GroupName?: string,
         /** The new values of the group's changed properties */
@@ -1599,6 +1644,19 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered when a hopper config is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_hopper_config_updated
+     */
+    interface title_hopper_config_updated extends IBasePlayStreamEvent {
+        /** Was the hopper config deleted. */
+        Deleted: boolean,
+        DeveloperId?: string,
+        /** Id of the hopper config that was updated. */
+        MatchHopperId?: string,
+        UserId?: string,
+    }
+
+    /**
      * This event is triggered when a title initiates the account recovery process for a player.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
      */
@@ -1857,6 +1915,22 @@ declare namespace PlayStreamModels {
         PreviousStoragePath?: string,
         /** The unique storage path for this set operation. */
         StoragePath?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EntityLineage */
+    interface EntityLineage {
+        /** The Character Id of the associated entity. */
+        CharacterId?: string,
+        /** The Group Id of the associated entity. */
+        GroupId?: string,
+        /** The Master Player Account Id of the associated entity. */
+        MasterPlayerAccountId?: string,
+        /** The Namespace Id of the associated entity. */
+        NamespaceId?: string,
+        /** The Title Id of the associated entity. */
+        TitleId?: string,
+        /** The Title Player Account Id of the associated entity. */
+        TitlePlayerAccountId?: string,
     }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
@@ -2755,7 +2829,9 @@ declare namespace PlayStreamModels {
         | "BackEnd"
         | "GameClient"
         | "GameServer"
-        | "Partner";
+        | "Partner"
+        | "Custom"
+        | "API";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayStreamEventHistory */
     interface PlayStreamEventHistory {

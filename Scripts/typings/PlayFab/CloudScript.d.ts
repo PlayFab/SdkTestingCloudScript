@@ -176,6 +176,11 @@ declare namespace PlayFabEntityModels {
         OriginRoleId: string,
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CloudScriptRevisionOption */
+    type CloudScriptRevisionOption = "Live"
+        | "Latest"
+        | "Specific";
+
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.CreateGroupRequest */
     interface CreateGroupRequest {
         /** The entity to perform this action on. */
@@ -384,6 +389,94 @@ declare namespace PlayFabEntityModels {
         Key?: EntityKey,
         /** Dictionary of entity keys for related entities. Dictionary key is entity type. */
         Lineage?: { [key: string]: EntityKey },
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.EventContents */
+    interface EventContents {
+        /** Entity associated with the event */
+        Entity: EntityKey,
+        /** The namespace in which the event is defined. It must be prepended with 'com.playfab.events.' */
+        EventNamespace: string,
+        /** The name of this event. */
+        Name: string,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalId?: string,
+        /**
+         * The time (in UTC) associated with this event when it occurred. If specified, this value is stored in the
+         * OriginalTimestamp property of the PlayStream event.
+         */
+        OriginalTimestamp?: string,
+        /** Arbitrary data associated with the event. Only one of Payload or PayloadJSON is allowed. */
+        Payload?: any,
+        /**
+         * Arbitrary data associated with the event, represented as a JSON serialized string. Only one of Payload or PayloadJSON is
+         * allowed.
+         */
+        PayloadJSON?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ExecuteCloudScriptResult */
+    interface ExecuteCloudScriptResult {
+        /** Number of PlayFab API requests issued by the CloudScript function */
+        APIRequestsIssued: number,
+        /** Information about the error, if any, that occurred during execution */
+        Error?: ScriptExecutionError,
+        ExecutionTimeSeconds: number,
+        /** The name of the function that executed */
+        FunctionName?: string,
+        /** The object returned from the CloudScript function, if any */
+        FunctionResult?: any,
+        /**
+         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if
+         * the total event size is larger than 350KB.
+         */
+        FunctionResultTooLarge?: boolean,
+        /** Number of external HTTP requests issued by the CloudScript function */
+        HttpRequestsIssued: number,
+        /**
+         * Entries logged during the function execution. These include both entries logged in the function code using log.info()
+         * and log.error() and error entries for API and HTTP request failures.
+         */
+        Logs?: LogStatement[],
+        /**
+         * Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total
+         * event size is larger than 350KB after the FunctionResult was removed.
+         */
+        LogsTooLarge?: boolean,
+        MemoryConsumedBytes: number,
+        /**
+         * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP
+         * requests.
+         */
+        ProcessorTimeSeconds: number,
+        /** The revision of the CloudScript that executed */
+        Revision: number,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ExecuteEntityCloudScriptRequest */
+    interface ExecuteEntityCloudScriptRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+        /** The name of the CloudScript function to execute */
+        FunctionName: string,
+        /** Object that is passed in to the function as the first argument */
+        FunctionParameter?: any,
+        /**
+         * Generate a 'entity_executed_cloudscript' PlayStream event containing the results of the function execution and other
+         * contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
+         */
+        GeneratePlayStreamEvent?: boolean,
+        /**
+         * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live'
+         * executes the current live, published revision, and 'Specific' executes the specified revision. The default value is
+         * 'Specific', if the SpecificRevision parameter is specified, otherwise it is 'Live'.
+         */
+        RevisionSelection?: CloudScriptRevisionOption,
+        /** The specific revision to execute, when RevisionSelection is set to 'Specific' */
+        SpecificRevision?: number,
     }
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.FinalizeFileUploadsRequest */
@@ -764,6 +857,15 @@ declare namespace PlayFabEntityModels {
         Groups?: GroupWithRoles[],
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.LogStatement */
+    interface LogStatement {
+        /** Optional object accompanying the message as contextual information */
+        Data?: any,
+        /** 'Debug', 'Info', or 'Error' */
+        Level?: string,
+        Message?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ObjectResult */
     interface ObjectResult {
         /** Un-escaped JSON object, if EscapeObject false or default. */
@@ -804,6 +906,19 @@ declare namespace PlayFabEntityModels {
         Members: EntityKey[],
         /** The ID of the role to remove the entities from. */
         RoleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.ScriptExecutionError */
+    interface ScriptExecutionError {
+        /**
+         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
+         * CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
+         */
+        Error?: string,
+        /** Details about the error */
+        Message?: string,
+        /** Point during the execution of the script at which the error occurred, if any */
+        StackTrace?: string,
     }
 
     /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.SetEntityProfilePolicyRequest */
@@ -945,6 +1060,21 @@ declare namespace PlayFabEntityModels {
         SetResult?: OperationTypes,
     }
 
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.WriteEventsRequest */
+    interface WriteEventsRequest {
+        /** Collection of events to write to PlayStream. */
+        Events: EventContents[],
+    }
+
+    /** https://api.playfab.com/Documentation/Entity/datatype/PlayFab.Entity.Models/PlayFab.Entity.Models.WriteEventsResponse */
+    interface WriteEventsResponse {
+        /**
+         * The unique identifiers assigned by the server to the events, in the same order as the events in the request. Only
+         * returned if FlushToPlayStream option is true.
+         */
+        AssignedEventIds?: string[],
+    }
+
 }
 /** Entity interface methods */
 interface IPlayFabEntityAPI {
@@ -1019,6 +1149,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Entity/method/DeleteRole
      */
     DeleteRole(request: PlayFabEntityModels.DeleteRoleRequest): PlayFabEntityModels.EmptyResult;
+
+    /**
+     * Executes CloudScript using the Entity Profile
+     * https://api.playfab.com/Documentation/Entity/method/ExecuteEntityCloudScript
+     */
+    ExecuteEntityCloudScript(request: PlayFabEntityModels.ExecuteEntityCloudScriptRequest): PlayFabEntityModels.ExecuteCloudScriptResult;
 
     /**
      * Finalize file uploads to an entity's profile.
@@ -1176,6 +1312,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Entity/method/UpdateRole
      */
     UpdateRole(request: PlayFabEntityModels.UpdateGroupRoleRequest): PlayFabEntityModels.UpdateGroupRoleResponse;
+
+    /**
+     * Write batches of entity based events to PlayStream.
+     * https://api.playfab.com/Documentation/Entity/method/WriteEvents
+     */
+    WriteEvents(request: PlayFabEntityModels.WriteEventsRequest): PlayFabEntityModels.WriteEventsResponse;
 
 
 }
@@ -2191,7 +2333,6 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericErrorCodes */
     type GenericErrorCodes = "Success"
-        | "MatchmakingHopperIdInvalid"
         | "UnkownError"
         | "InvalidParams"
         | "AccountNotFound"
@@ -2570,9 +2711,11 @@ declare namespace PlayFabServerModels {
         | "GameServerConflict"
         | "GameServerInternalServerError"
         | "GameServerServiceUnavailable"
-        | "MatchmakingInvalidEntityKeyList"
-        | "MatchmakingInvalidTicketCreatorProfile"
-        | "MatchmakingInvalidUserAttributes"
+        | "ExplicitContentDetected"
+        | "PIIContentDetected"
+        | "InvalidScheduledTaskParameter"
+        | "MatchmakingEntityInvalid"
+        | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
         | "MatchmakingCreateRequestCreatorMissing"
         | "MatchmakingCreateRequestCreatorIdMissing"
@@ -2584,7 +2727,7 @@ declare namespace PlayFabServerModels {
         | "MatchmakingHopperIdMissing"
         | "MatchmakingTitleIdMissing"
         | "MatchmakingTicketIdIdMissing"
-        | "MatchmakingUserIdMissing"
+        | "MatchmakingPlayerIdMissing"
         | "MatchmakingJoinRequestUserMissing"
         | "MatchmakingHopperConfigNotFound"
         | "MatchmakingMatchNotFound"
@@ -2597,10 +2740,12 @@ declare namespace PlayFabServerModels {
         | "MatchmakingCancelTicketServerIdentityInvalid"
         | "MatchmakingCancelTicketUserIdentityMismatch"
         | "MatchmakingGetMatchIdentityMismatch"
-        | "MatchmakingUserIdentityMismatch"
+        | "MatchmakingPlayerIdentityMismatch"
         | "MatchmakingAlreadyJoinedTicket"
         | "MatchmakingTicketAlreadyCompleted"
-        | "MatchmakingHopperConfigInvalid";
+        | "MatchmakingHopperIdInvalid"
+        | "MatchmakingHopperConfigInvalid"
+        | "MatchmakingMemberProfileInvalid";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
