@@ -42,6 +42,16 @@ declare namespace PlayStreamModels {
         Files?: FileSet[],
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_language_updated */
+    interface entity_language_updated extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
+        EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /** Language that was updated */
+        Language?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
     interface entity_logged_in extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
@@ -821,6 +831,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -846,6 +858,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -907,6 +921,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -1322,6 +1338,8 @@ declare namespace PlayStreamModels {
     interface gamelobby_ended extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
+        /** The time (in UTC) when this game started. */
+        GameStartTime?: string,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
@@ -1330,6 +1348,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1363,6 +1383,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1390,6 +1412,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1415,6 +1439,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1644,19 +1670,6 @@ declare namespace PlayStreamModels {
     }
 
     /**
-     * This event is triggered when a hopper config is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_hopper_config_updated
-     */
-    interface title_hopper_config_updated extends IBasePlayStreamEvent {
-        /** Was the hopper config deleted. */
-        Deleted: boolean,
-        DeveloperId?: string,
-        /** Id of the hopper config that was updated. */
-        MatchHopperId?: string,
-        UserId?: string,
-    }
-
-    /**
      * This event is triggered when a title initiates the account recovery process for a player.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
      */
@@ -1762,6 +1775,19 @@ declare namespace PlayStreamModels {
         DeveloperId?: string,
         /** Revision number of the CloudScript that was activated. */
         Revision: number,
+        UserId?: string,
+    }
+
+    /**
+     * This event is triggered when a queue config is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_queue_config_updated
+     */
+    interface title_queue_config_updated extends IBasePlayStreamEvent {
+        /** Was the queue config deleted. */
+        Deleted: boolean,
+        DeveloperId?: string,
+        /** Name of the queue config that was updated. */
+        MatchQueueName?: string,
         UserId?: string,
     }
 
@@ -2127,7 +2153,11 @@ declare namespace PlayStreamModels {
         | "IOSDevice"
         | "AndroidDevice"
         | "Twitch"
-        | "WindowsHello";
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
     type PasswordResetInitiationSource = "Self"
@@ -2715,6 +2745,8 @@ declare namespace PlayStreamModels {
         AllowNonUniquePlayerDisplayNames: boolean,
         /** Allow game servers to delete player accounts via API. */
         AllowServerToDeleteUsers: boolean,
+        /** The default language for communication with players */
+        DefaultLanguage?: string,
         /** Disable API access by returning errors to all API requests. */
         DisableAPIAccess: boolean,
         /** Display name randomly-generated suffix length. */
