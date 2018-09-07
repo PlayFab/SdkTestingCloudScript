@@ -42,6 +42,16 @@ declare namespace PlayStreamModels {
         Files?: FileSet[],
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_language_updated */
+    interface entity_language_updated extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
+        EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /** Language that was updated */
+        Language?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
     interface entity_logged_in extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
@@ -748,6 +758,16 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered once after the player logs in based on the settings for your title.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_device_info
+     */
+    interface player_device_info extends IBasePlayStreamEvent {
+        DeviceInfo?: { [key: string]: any },
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /**
      * This event is triggered when a player's display name is changed.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_displayname_changed
      */
@@ -821,6 +841,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -846,6 +868,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -885,6 +909,8 @@ declare namespace PlayStreamModels {
         Platform?: LoginIdentityProvider,
         /** Player's identity under the authentication method used to login the player. */
         PlatformUserId?: string,
+        /** The display name that's set in the identity provider that the player is authenticated with. */
+        PlatformUserName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -907,6 +933,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -1301,6 +1329,8 @@ declare namespace PlayStreamModels {
         ErrorMessage?: string,
         /** The name of the error that occurred if an email failed to send. */
         ErrorName?: string,
+        /** The language the email was sent in */
+        Language?: string,
         /** The content of the email subject, truncated to 1024 characters. */
         Subject?: string,
         /** Indicates if the email was successfully sent. */
@@ -1316,12 +1346,60 @@ declare namespace PlayStreamModels {
      */
 
     /**
+     * This event is triggered every time the application enters or exits focus on the player's device.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_focus_change
+     */
+    interface client_focus_change extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** Payload that this entity is a child of. */
+        Payload?: ClientFocusChangePayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a new client session starts.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_session_start
+     */
+    interface client_session_start extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp: string,
+        /** Payload that this entity is a child of. */
+        Payload?: ClientSessionStartPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
      * This event is triggered when a multiplayer game lobby ends.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_ended
      */
     interface gamelobby_ended extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
+        /** The time (in UTC) when this game started. */
+        GameStartTime?: string,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
@@ -1330,6 +1408,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1363,6 +1443,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1390,6 +1472,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1415,6 +1499,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1644,19 +1730,6 @@ declare namespace PlayStreamModels {
     }
 
     /**
-     * This event is triggered when a hopper config is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_hopper_config_updated
-     */
-    interface title_hopper_config_updated extends IBasePlayStreamEvent {
-        /** Was the hopper config deleted. */
-        Deleted: boolean,
-        DeveloperId?: string,
-        /** Id of the hopper config that was updated. */
-        MatchHopperId?: string,
-        UserId?: string,
-    }
-
-    /**
      * This event is triggered when a title initiates the account recovery process for a player.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
      */
@@ -1762,6 +1835,19 @@ declare namespace PlayStreamModels {
         DeveloperId?: string,
         /** Revision number of the CloudScript that was activated. */
         Revision: number,
+        UserId?: string,
+    }
+
+    /**
+     * This event is triggered when a queue config is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_queue_config_updated
+     */
+    interface title_queue_config_updated extends IBasePlayStreamEvent {
+        /** Was the queue config deleted. */
+        Deleted: boolean,
+        DeveloperId?: string,
+        /** Name of the queue config that was updated. */
+        MatchQueueName?: string,
         UserId?: string,
     }
 
@@ -2036,6 +2122,47 @@ declare namespace PlayStreamModels {
     type AuthenticationProvider = "PlayFab"
         | "SAML";
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientFocusChangePayload */
+    interface ClientFocusChangePayload {
+        /** The Client Sesssion Id of the associated entity. */
+        ClientSessionID?: string,
+        /** The Event Time of the associated entity. */
+        EventTimestamp?: string,
+        /** The Focus Id of the associated entity. */
+        FocusID?: string,
+        /** The Focus State of the associated entity. */
+        FocusState: boolean,
+        /** The Focus Duration of the associated entity. */
+        FocusStateDuration: number,
+    }
+
+    /**
+     * Combined entity type and ID structure which uniquely identifies a single entity.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EntityKey
+     */
+    interface EntityKey {
+        /** Unique ID of the entity. */
+        Id: string,
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        Type?: string,
+        /** Alternate name for Type. */
+        TypeString?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientSessionStartPayload */
+    interface ClientSessionStartPayload {
+        /** The Client Session Id of the associated entity. */
+        ClientSessionID?: string,
+        /** The Device Model of the associated entity. */
+        DeviceModel?: string,
+        /** The Device Type of the associated entity. */
+        DeviceType?: string,
+        /** The OS of the associated entity. */
+        OS?: string,
+        /** The User Id of the associated entity. */
+        UserID?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TransactionStatus */
     type TransactionStatus = "CreateCart"
         | "Init"
@@ -2127,7 +2254,12 @@ declare namespace PlayStreamModels {
         | "IOSDevice"
         | "AndroidDevice"
         | "Twitch"
-        | "WindowsHello";
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
     type PasswordResetInitiationSource = "Self"
@@ -2715,6 +2847,8 @@ declare namespace PlayStreamModels {
         AllowNonUniquePlayerDisplayNames: boolean,
         /** Allow game servers to delete player accounts via API. */
         AllowServerToDeleteUsers: boolean,
+        /** The default language for communication with players */
+        DefaultLanguage?: string,
         /** Disable API access by returning errors to all API requests. */
         DisableAPIAccess: boolean,
         /** Display name randomly-generated suffix length. */
