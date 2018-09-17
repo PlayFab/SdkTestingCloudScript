@@ -904,6 +904,16 @@ declare namespace PlayFabServerModels {
     interface DeleteCharacterFromUserResult {
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerRequest */
+    interface DeletePlayerRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerResult */
+    interface DeletePlayerResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteSharedGroupRequest */
     interface DeleteSharedGroupRequest {
         /** Unique identifier for the shared group. */
@@ -3943,6 +3953,12 @@ interface IPlayFabServerAPI {
     DeleteCharacterFromUser(request: PlayFabServerModels.DeleteCharacterFromUserRequest): PlayFabServerModels.DeleteCharacterFromUserResult;
 
     /**
+     * Removes a user's player account from a title and deletes all associated data
+     * https://api.playfab.com/Documentation/Server/method/DeletePlayer
+     */
+    DeletePlayer(request: PlayFabServerModels.DeletePlayerRequest): PlayFabServerModels.DeletePlayerResult;
+
+    /**
      * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -3951,7 +3967,7 @@ interface IPlayFabServerAPI {
     DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest): PlayFabServerModels.EmptyResponse;
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes custom data, all account linkages, and statistics.
      * https://api.playfab.com/Documentation/Server/method/DeleteUsers
      */
     DeleteUsers(request: PlayFabServerModels.DeleteUsersRequest): PlayFabServerModels.DeleteUsersResult;
