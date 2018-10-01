@@ -42,6 +42,16 @@ declare namespace PlayStreamModels {
         Files?: FileSet[],
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_language_updated */
+    interface entity_language_updated extends IBasePlayStreamEvent {
+        /** The chain of ownership for this entity. */
+        EntityChain?: string,
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /** Language that was updated */
+        Language?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
     interface entity_logged_in extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
@@ -224,6 +234,341 @@ declare namespace PlayStreamModels {
         UpdaterEntityType?: string,
     }
 
+    /**
+     * This event is triggered when a matchmaking ticket reaches a completion state.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/matchmaking_ticket_completed
+     */
+    interface matchmaking_ticket_completed extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /** Payload that this entity is a child of. */
+        Payload?: MatchmakingTicketCompletePayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server build is deleted.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_deleted
+     */
+    interface multiplayer_server_build_deleted extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server build region deleted event payload. */
+        Payload?: MultiplayerServerBuildDeletedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server's build region status is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_region_status_changed
+     */
+    interface multiplayer_server_build_region_status_changed extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server build region status changed event payload. */
+        Payload?: MultiplayerServerBuildRegionStatusChangedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server build region is updated.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_region_updated
+     */
+    interface multiplayer_server_build_region_updated extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server build region updated event payload. */
+        Payload?: MultiplayerServerBuildRegionUpdatedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server certificate is deleted.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_certificate_deleted
+     */
+    interface multiplayer_server_certificate_deleted extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server certificate deleted event payload. */
+        Payload?: MultiplayerServerCertificateDeletedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server certificate is uploaded.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_certificate_uploaded
+     */
+    interface multiplayer_server_certificate_uploaded extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server certificate uploaded event payload. */
+        Payload?: MultiplayerServerCertificateUploadedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server build is initiated.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_create_build_initiated
+     */
+    interface multiplayer_server_create_build_initiated extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server create build initiated event payload. */
+        Payload?: MultiplayerServerCreateBuildInitiatedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server game asset is deleted.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_game_asset_deleted
+     */
+    interface multiplayer_server_game_asset_deleted extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server game asset deleted event payload. */
+        Payload?: MultiplayerServerGameAssetDeletedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server shutdown is requested.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_requested
+     */
+    interface multiplayer_server_requested extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server requested event payload. */
+        Payload?: MultiplayerServerRequestedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server's state is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_state_changed
+     */
+    interface multiplayer_server_state_changed extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server state changed event payload. */
+        Payload?: MultiplayerServerStateChangedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a virtual machine is assigned to a multiplayer server build.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_assigned
+     */
+    interface multiplayer_server_vm_assigned extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server virtual machine assigned event payload. */
+        Payload?: MultiplayerServerVmAssignedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server virtual machine remote user is created.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_remote_user_created
+     */
+    interface multiplayer_server_vm_remote_user_created extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server virtual machine remote user created event payload. */
+        Payload?: MultiplayerServerVmRemoteUserCreatedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a multiplayer server virtual machine remote user is deleted.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_remote_user_deleted
+     */
+    interface multiplayer_server_vm_remote_user_deleted extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server virtual machine remote user deleted event payload. */
+        Payload?: MultiplayerServerVmRemoteUserDeletedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a virtual machine is unassigned from a multiplayer server build.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_unassignment_started
+     */
+    interface multiplayer_server_vm_unassignment_started extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server virtual machine unassignment started event payload. */
+        Payload?: MultiplayerServerVmUnassignmentStartedEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a virtual machine is found to be unhealthy.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_unhealthy
+     */
+    interface multiplayer_server_vm_unhealthy extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** The multiplayer server virtual machine unassignment started event payload. */
+        Payload?: MultiplayerServerVmUnhealthyEventPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_created */
     interface studio_created extends IBasePlayStreamEvent {
         /** Authentication provider's id for the user who created the studio */
@@ -390,6 +735,22 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered when a character statistic is deleted.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_statistic_deleted
+     */
+    interface character_statistic_deleted extends IBasePlayStreamEvent {
+        PlayerId?: string,
+        /** Name of the statistic that was deleted. */
+        StatisticName?: string,
+        TitleId?: string,
+        /**
+         * Version of the statistic that changed. This is relevant for statistics that reset, since each time the statistic resets
+         * the version increments.
+         */
+        Version: number,
+    }
+
+    /**
      * This event is triggered when the character makes a purchase using virtual currency.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_vc_item_purchased
      */
@@ -488,6 +849,17 @@ declare namespace PlayStreamModels {
         TitleId?: string,
         /** The email token in the confirmation link that was clicked. */
         Token?: string,
+    }
+
+    /**
+     * This event is triggered when a GDPR delete is finished.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/title_deleted_master_player
+     */
+    interface title_deleted_master_player extends IBasePlayStreamEvent {
+        /** Identitfying information for title entered by developer */
+        MetaData?: string,
+        /** Receipt Id of the delete that has been finished. */
+        ReceiptId?: string,
     }
 
     /**
@@ -748,6 +1120,16 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered once after the player logs in based on the settings for your title.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_device_info
+     */
+    interface player_device_info extends IBasePlayStreamEvent {
+        DeviceInfo?: { [key: string]: any },
+        /** The ID of the title to which this player event applies. */
+        TitleId?: string,
+    }
+
+    /**
      * This event is triggered when a player's display name is changed.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_displayname_changed
      */
@@ -821,6 +1203,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -846,6 +1230,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -885,6 +1271,8 @@ declare namespace PlayStreamModels {
         Platform?: LoginIdentityProvider,
         /** Player's identity under the authentication method used to login the player. */
         PlatformUserId?: string,
+        /** The display name that's set in the identity provider that the player is authenticated with. */
+        PlatformUserName?: string,
         /** The ID of the title to which this player event applies. */
         TitleId?: string,
     }
@@ -907,6 +1295,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the machine running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the machine running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port assigned to the custom game server. */
@@ -1301,6 +1691,8 @@ declare namespace PlayStreamModels {
         ErrorMessage?: string,
         /** The name of the error that occurred if an email failed to send. */
         ErrorName?: string,
+        /** The language the email was sent in */
+        Language?: string,
         /** The content of the email subject, truncated to 1024 characters. */
         Subject?: string,
         /** Indicates if the email was successfully sent. */
@@ -1316,12 +1708,60 @@ declare namespace PlayStreamModels {
      */
 
     /**
+     * This event is triggered every time the application enters or exits focus on the player's device.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_focus_change
+     */
+    interface client_focus_change extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp?: string,
+        /** Payload that this entity is a child of. */
+        Payload?: ClientFocusChangePayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
+     * This event is triggered when a new client session starts.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_session_start
+     */
+    interface client_session_start extends IBasePlayStreamEvent {
+        /** Entities that this entity is a child of. */
+        EntityLineage?: EntityLineage,
+        /**
+         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
+         * the EventId value, which is assigned when the event is received by the server.
+         */
+        OriginalEventId?: string,
+        /**
+         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
+         * Timestamp value, which is set at the time the event is received by the server.
+         */
+        OriginalTimestamp: string,
+        /** Payload that this entity is a child of. */
+        Payload?: ClientSessionStartPayload,
+        /** Entity that wrote this event, included only if different than the event's entity. */
+        WriterEntity?: EntityKey,
+    }
+
+    /**
      * This event is triggered when a multiplayer game lobby ends.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_ended
      */
     interface gamelobby_ended extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player joined. */
         GameMode?: string,
+        /** The time (in UTC) when this game started. */
+        GameStartTime?: string,
         /** Region in which the game server lives that the player joined. */
         Region?: string,
         /** Build version of the custom game server running the lobby. */
@@ -1330,6 +1770,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1363,6 +1805,8 @@ declare namespace PlayStreamModels {
         ServerHost?: string,
         /** Unique identifier of the machine hosting the game lobby. */
         ServerHostInstanceId?: string,
+        /** Publicly visible IPV4 address of the host running the custom game server. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host running the custom game server. */
         ServerIPV6Address?: string,
         /** Network port of the host assigned to the custom game server. */
@@ -1390,6 +1834,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1415,6 +1861,8 @@ declare namespace PlayStreamModels {
         ServerBuildVersion?: string,
         /** Publicly visible domain name or IPV4 address of the host. */
         ServerHost?: string,
+        /** Publicly visible IPV4 address of the host. */
+        ServerIPV4Address?: string,
         /** Publicly visible IPV6 address of the host. */
         ServerIPV6Address?: string,
         /** Time that the host was started. */
@@ -1644,19 +2092,6 @@ declare namespace PlayStreamModels {
     }
 
     /**
-     * This event is triggered when a hopper config is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_hopper_config_updated
-     */
-    interface title_hopper_config_updated extends IBasePlayStreamEvent {
-        /** Was the hopper config deleted. */
-        Deleted: boolean,
-        DeveloperId?: string,
-        /** Id of the hopper config that was updated. */
-        MatchHopperId?: string,
-        UserId?: string,
-    }
-
-    /**
      * This event is triggered when a title initiates the account recovery process for a player.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
      */
@@ -1766,6 +2201,19 @@ declare namespace PlayStreamModels {
     }
 
     /**
+     * This event is triggered when a queue config is changed.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_queue_config_updated
+     */
+    interface title_queue_config_updated extends IBasePlayStreamEvent {
+        /** Was the queue config deleted. */
+        Deleted: boolean,
+        DeveloperId?: string,
+        /** Name of the queue config that was updated. */
+        MatchQueueName?: string,
+        UserId?: string,
+    }
+
+    /**
      * This event is triggered when a title requests a service limit change.
      * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_requested_limit_change
      */
@@ -1792,6 +2240,25 @@ declare namespace PlayStreamModels {
         UserId?: string,
         /** The limit value of the requested change, if any. */
         Value?: number,
+    }
+
+    /**
+     * This event is triggered when a game's survey is saved.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_saved_survey
+     */
+    interface title_saved_survey extends IBasePlayStreamEvent {
+        /** Title Genre */
+        Genre?: string,
+        /** Array of Monetization methods used by the Title */
+        Monetization?: string[],
+        /** Array of Platforms used by the Title */
+        Platforms?: string[],
+        /** Array of PlayerModes used by the Title */
+        PlayerModes?: string[],
+        /** Name of the Title */
+        TitleName?: string,
+        /** Website for the Title */
+        TitleWebsite?: string,
     }
 
     /**
@@ -2013,6 +2480,663 @@ declare namespace PlayStreamModels {
         MemberRoleId?: string,
     }
 
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AzureRegion */
+    type AzureRegion = "EastUs"
+        | "SouthCentralUs"
+        | "WestUs"
+        | "NorthEurope"
+        | "WestEurope";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmUnhealthyEventPayload */
+    interface MultiplayerServerVmUnhealthyEventPayload {
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The health status of the virtual machine. */
+        HealthStatus?: string,
+        /** The build region. */
+        Region?: AzureRegion,
+        /** The ID of the unhealthy virtual machine. */
+        VmId?: string,
+    }
+
+    /**
+     * Combined entity type and ID structure which uniquely identifies a single entity.
+     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EntityKey
+     */
+    interface EntityKey {
+        /** Unique ID of the entity. */
+        Id: string,
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        Type?: string,
+        /** Alternate name for Type. */
+        TypeString?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmUnassignmentStartedEventPayload */
+    interface MultiplayerServerVmUnassignmentStartedEventPayload {
+        /** The duration (milliseconds) that the VM has been assigned. */
+        AssignmentDurationMs: number,
+        /** The guid string ID of the billing assignment. */
+        BillingAssignmentCorrelationId?: string,
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The build region. */
+        Region?: AzureRegion,
+        /** The guid string ID of the session. */
+        SessionId?: string,
+        /** The time (UTC) the virtual machine unassignment started. */
+        UnassignmentEventTimestamp: string,
+        /** The virtual machine ID that is being unassigned. */
+        VmId?: string,
+        /** The virtual machine's operating system. */
+        VmOs?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmAssignedEventPayload */
+    interface MultiplayerServerVmAssignedEventPayload {
+        /** The time (UTC) the virtual machine was assigned. */
+        AssignmentEventTimestamp: string,
+        /** The guid string ID of the billing assignment. */
+        BillingAssignmentCorrelationId?: string,
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The build region. */
+        Region?: AzureRegion,
+        /** The guid string ID of the session. */
+        SessionId?: string,
+        /** The ID of the virtual machine that was assigned. */
+        VmId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/BuildRegionStatus */
+    type BuildRegionStatus = "Unknown"
+        | "Initializing"
+        | "InProbation"
+        | "Succeeded"
+        | "Unhealthy"
+        | "PendingDeletion";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildRegionStatusChangedEventPayload */
+    interface MultiplayerServerBuildRegionStatusChangedEventPayload {
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The duration (minutes) in the old build status. */
+        MinutesInOldStatus: number,
+        /** The new build region status. */
+        NewStatus?: BuildRegionStatus,
+        /** The old build region status. */
+        OldStatus?: BuildRegionStatus,
+        /** The build region. */
+        Region?: AzureRegion,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerState */
+    type MultiplayerServerState = "Invalid"
+        | "Initializing"
+        | "StandingBy"
+        | "Active"
+        | "Terminating"
+        | "Terminated"
+        | "Quarantined"
+        | "PendingAllocation"
+        | "AllocationTimeout";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerStateChangedEventPayload */
+    interface MultiplayerServerStateChangedEventPayload {
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The new multiplayer server state. */
+        NewState?: MultiplayerServerState,
+        /** The old multiplayer server state. */
+        OldState?: MultiplayerServerState,
+        /** The build region. */
+        Region?: AzureRegion,
+        /** The guid string ID of the session. */
+        SessionId?: string,
+        /** The virtual machine ID the multiplayer server is located on. */
+        VmId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCertificateDeletedEventPayload */
+    interface MultiplayerServerCertificateDeletedEventPayload {
+        /** The name of the certificate that was deleted. */
+        CertificateName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GenericErrorCodes */
+    type GenericErrorCodes = "Success"
+        | "UnkownError"
+        | "InvalidParams"
+        | "AccountNotFound"
+        | "AccountBanned"
+        | "InvalidUsernameOrPassword"
+        | "InvalidTitleId"
+        | "InvalidEmailAddress"
+        | "EmailAddressNotAvailable"
+        | "InvalidUsername"
+        | "InvalidPassword"
+        | "UsernameNotAvailable"
+        | "InvalidSteamTicket"
+        | "AccountAlreadyLinked"
+        | "LinkedAccountAlreadyClaimed"
+        | "InvalidFacebookToken"
+        | "AccountNotLinked"
+        | "FailedByPaymentProvider"
+        | "CouponCodeNotFound"
+        | "InvalidContainerItem"
+        | "ContainerNotOwned"
+        | "KeyNotOwned"
+        | "InvalidItemIdInTable"
+        | "InvalidReceipt"
+        | "ReceiptAlreadyUsed"
+        | "ReceiptCancelled"
+        | "GameNotFound"
+        | "GameModeNotFound"
+        | "InvalidGoogleToken"
+        | "UserIsNotPartOfDeveloper"
+        | "InvalidTitleForDeveloper"
+        | "TitleNameConflicts"
+        | "UserisNotValid"
+        | "ValueAlreadyExists"
+        | "BuildNotFound"
+        | "PlayerNotInGame"
+        | "InvalidTicket"
+        | "InvalidDeveloper"
+        | "InvalidOrderInfo"
+        | "RegistrationIncomplete"
+        | "InvalidPlatform"
+        | "UnknownError"
+        | "SteamApplicationNotOwned"
+        | "WrongSteamAccount"
+        | "TitleNotActivated"
+        | "RegistrationSessionNotFound"
+        | "NoSuchMod"
+        | "FileNotFound"
+        | "DuplicateEmail"
+        | "ItemNotFound"
+        | "ItemNotOwned"
+        | "ItemNotRecycleable"
+        | "ItemNotAffordable"
+        | "InvalidVirtualCurrency"
+        | "WrongVirtualCurrency"
+        | "WrongPrice"
+        | "NonPositiveValue"
+        | "InvalidRegion"
+        | "RegionAtCapacity"
+        | "ServerFailedToStart"
+        | "NameNotAvailable"
+        | "InsufficientFunds"
+        | "InvalidDeviceID"
+        | "InvalidPushNotificationToken"
+        | "NoRemainingUses"
+        | "InvalidPaymentProvider"
+        | "PurchaseInitializationFailure"
+        | "DuplicateUsername"
+        | "InvalidBuyerInfo"
+        | "NoGameModeParamsSet"
+        | "BodyTooLarge"
+        | "ReservedWordInBody"
+        | "InvalidTypeInBody"
+        | "InvalidRequest"
+        | "ReservedEventName"
+        | "InvalidUserStatistics"
+        | "NotAuthenticated"
+        | "StreamAlreadyExists"
+        | "ErrorCreatingStream"
+        | "StreamNotFound"
+        | "InvalidAccount"
+        | "PurchaseDoesNotExist"
+        | "InvalidPurchaseTransactionStatus"
+        | "APINotEnabledForGameClientAccess"
+        | "NoPushNotificationARNForTitle"
+        | "BuildAlreadyExists"
+        | "BuildPackageDoesNotExist"
+        | "CustomAnalyticsEventsNotEnabledForTitle"
+        | "InvalidSharedGroupId"
+        | "NotAuthorized"
+        | "MissingTitleGoogleProperties"
+        | "InvalidItemProperties"
+        | "InvalidPSNAuthCode"
+        | "InvalidItemId"
+        | "PushNotEnabledForAccount"
+        | "PushServiceError"
+        | "ReceiptDoesNotContainInAppItems"
+        | "ReceiptContainsMultipleInAppItems"
+        | "InvalidBundleID"
+        | "JavascriptException"
+        | "InvalidSessionTicket"
+        | "UnableToConnectToDatabase"
+        | "InternalServerError"
+        | "InvalidReportDate"
+        | "ReportNotAvailable"
+        | "DatabaseThroughputExceeded"
+        | "InvalidGameTicket"
+        | "ExpiredGameTicket"
+        | "GameTicketDoesNotMatchLobby"
+        | "LinkedDeviceAlreadyClaimed"
+        | "DeviceAlreadyLinked"
+        | "DeviceNotLinked"
+        | "PartialFailure"
+        | "PublisherNotSet"
+        | "ServiceUnavailable"
+        | "VersionNotFound"
+        | "RevisionNotFound"
+        | "InvalidPublisherId"
+        | "DownstreamServiceUnavailable"
+        | "APINotIncludedInTitleUsageTier"
+        | "DAULimitExceeded"
+        | "APIRequestLimitExceeded"
+        | "InvalidAPIEndpoint"
+        | "BuildNotAvailable"
+        | "ConcurrentEditError"
+        | "ContentNotFound"
+        | "CharacterNotFound"
+        | "CloudScriptNotFound"
+        | "ContentQuotaExceeded"
+        | "InvalidCharacterStatistics"
+        | "PhotonNotEnabledForTitle"
+        | "PhotonApplicationNotFound"
+        | "PhotonApplicationNotAssociatedWithTitle"
+        | "InvalidEmailOrPassword"
+        | "FacebookAPIError"
+        | "InvalidContentType"
+        | "KeyLengthExceeded"
+        | "DataLengthExceeded"
+        | "TooManyKeys"
+        | "FreeTierCannotHaveVirtualCurrency"
+        | "MissingAmazonSharedKey"
+        | "AmazonValidationError"
+        | "InvalidPSNIssuerId"
+        | "PSNInaccessible"
+        | "ExpiredAuthToken"
+        | "FailedToGetEntitlements"
+        | "FailedToConsumeEntitlement"
+        | "TradeAcceptingUserNotAllowed"
+        | "TradeInventoryItemIsAssignedToCharacter"
+        | "TradeInventoryItemIsBundle"
+        | "TradeStatusNotValidForCancelling"
+        | "TradeStatusNotValidForAccepting"
+        | "TradeDoesNotExist"
+        | "TradeCancelled"
+        | "TradeAlreadyFilled"
+        | "TradeWaitForStatusTimeout"
+        | "TradeInventoryItemExpired"
+        | "TradeMissingOfferedAndAcceptedItems"
+        | "TradeAcceptedItemIsBundle"
+        | "TradeAcceptedItemIsStackable"
+        | "TradeInventoryItemInvalidStatus"
+        | "TradeAcceptedCatalogItemInvalid"
+        | "TradeAllowedUsersInvalid"
+        | "TradeInventoryItemDoesNotExist"
+        | "TradeInventoryItemIsConsumed"
+        | "TradeInventoryItemIsStackable"
+        | "TradeAcceptedItemsMismatch"
+        | "InvalidKongregateToken"
+        | "FeatureNotConfiguredForTitle"
+        | "NoMatchingCatalogItemForReceipt"
+        | "InvalidCurrencyCode"
+        | "NoRealMoneyPriceForCatalogItem"
+        | "TradeInventoryItemIsNotTradable"
+        | "TradeAcceptedCatalogItemIsNotTradable"
+        | "UsersAlreadyFriends"
+        | "LinkedIdentifierAlreadyClaimed"
+        | "CustomIdNotLinked"
+        | "TotalDataSizeExceeded"
+        | "DeleteKeyConflict"
+        | "InvalidXboxLiveToken"
+        | "ExpiredXboxLiveToken"
+        | "ResettableStatisticVersionRequired"
+        | "NotAuthorizedByTitle"
+        | "NoPartnerEnabled"
+        | "InvalidPartnerResponse"
+        | "APINotEnabledForGameServerAccess"
+        | "StatisticNotFound"
+        | "StatisticNameConflict"
+        | "StatisticVersionClosedForWrites"
+        | "StatisticVersionInvalid"
+        | "APIClientRequestRateLimitExceeded"
+        | "InvalidJSONContent"
+        | "InvalidDropTable"
+        | "StatisticVersionAlreadyIncrementedForScheduledInterval"
+        | "StatisticCountLimitExceeded"
+        | "StatisticVersionIncrementRateExceeded"
+        | "ContainerKeyInvalid"
+        | "CloudScriptExecutionTimeLimitExceeded"
+        | "NoWritePermissionsForEvent"
+        | "CloudScriptFunctionArgumentSizeExceeded"
+        | "CloudScriptAPIRequestCountExceeded"
+        | "CloudScriptAPIRequestError"
+        | "CloudScriptHTTPRequestError"
+        | "InsufficientGuildRole"
+        | "GuildNotFound"
+        | "OverLimit"
+        | "EventNotFound"
+        | "InvalidEventField"
+        | "InvalidEventName"
+        | "CatalogNotConfigured"
+        | "OperationNotSupportedForPlatform"
+        | "SegmentNotFound"
+        | "StoreNotFound"
+        | "InvalidStatisticName"
+        | "TitleNotQualifiedForLimit"
+        | "InvalidServiceLimitLevel"
+        | "ServiceLimitLevelInTransition"
+        | "CouponAlreadyRedeemed"
+        | "GameServerBuildSizeLimitExceeded"
+        | "GameServerBuildCountLimitExceeded"
+        | "VirtualCurrencyCountLimitExceeded"
+        | "VirtualCurrencyCodeExists"
+        | "TitleNewsItemCountLimitExceeded"
+        | "InvalidTwitchToken"
+        | "TwitchResponseError"
+        | "ProfaneDisplayName"
+        | "UserAlreadyAdded"
+        | "InvalidVirtualCurrencyCode"
+        | "VirtualCurrencyCannotBeDeleted"
+        | "IdentifierAlreadyClaimed"
+        | "IdentifierNotLinked"
+        | "InvalidContinuationToken"
+        | "ExpiredContinuationToken"
+        | "InvalidSegment"
+        | "InvalidSessionId"
+        | "SessionLogNotFound"
+        | "InvalidSearchTerm"
+        | "TwoFactorAuthenticationTokenRequired"
+        | "GameServerHostCountLimitExceeded"
+        | "PlayerTagCountLimitExceeded"
+        | "RequestAlreadyRunning"
+        | "ActionGroupNotFound"
+        | "MaximumSegmentBulkActionJobsRunning"
+        | "NoActionsOnPlayersInSegmentJob"
+        | "DuplicateStatisticName"
+        | "ScheduledTaskNameConflict"
+        | "ScheduledTaskCreateConflict"
+        | "InvalidScheduledTaskName"
+        | "InvalidTaskSchedule"
+        | "SteamNotEnabledForTitle"
+        | "LimitNotAnUpgradeOption"
+        | "NoSecretKeyEnabledForCloudScript"
+        | "TaskNotFound"
+        | "TaskInstanceNotFound"
+        | "InvalidIdentityProviderId"
+        | "MisconfiguredIdentityProvider"
+        | "InvalidScheduledTaskType"
+        | "BillingInformationRequired"
+        | "LimitedEditionItemUnavailable"
+        | "InvalidAdPlacementAndReward"
+        | "AllAdPlacementViewsAlreadyConsumed"
+        | "GoogleOAuthNotConfiguredForTitle"
+        | "GoogleOAuthError"
+        | "UserNotFriend"
+        | "InvalidSignature"
+        | "InvalidPublicKey"
+        | "GoogleOAuthNoIdTokenIncludedInResponse"
+        | "StatisticUpdateInProgress"
+        | "LeaderboardVersionNotAvailable"
+        | "StatisticAlreadyHasPrizeTable"
+        | "PrizeTableHasOverlappingRanks"
+        | "PrizeTableHasMissingRanks"
+        | "PrizeTableRankStartsAtZero"
+        | "InvalidStatistic"
+        | "ExpressionParseFailure"
+        | "ExpressionInvokeFailure"
+        | "ExpressionTooLong"
+        | "DataUpdateRateExceeded"
+        | "RestrictedEmailDomain"
+        | "EncryptionKeyDisabled"
+        | "EncryptionKeyMissing"
+        | "EncryptionKeyBroken"
+        | "NoSharedSecretKeyConfigured"
+        | "SecretKeyNotFound"
+        | "PlayerSecretAlreadyConfigured"
+        | "APIRequestsDisabledForTitle"
+        | "InvalidSharedSecretKey"
+        | "PrizeTableHasNoRanks"
+        | "ProfileDoesNotExist"
+        | "ContentS3OriginBucketNotConfigured"
+        | "InvalidEnvironmentForReceipt"
+        | "EncryptedRequestNotAllowed"
+        | "SignedRequestNotAllowed"
+        | "RequestViewConstraintParamsNotAllowed"
+        | "BadPartnerConfiguration"
+        | "XboxBPCertificateFailure"
+        | "XboxXASSExchangeFailure"
+        | "InvalidEntityId"
+        | "StatisticValueAggregationOverflow"
+        | "EmailMessageFromAddressIsMissing"
+        | "EmailMessageToAddressIsMissing"
+        | "SmtpServerAuthenticationError"
+        | "SmtpServerLimitExceeded"
+        | "SmtpServerInsufficientStorage"
+        | "SmtpServerCommunicationError"
+        | "SmtpServerGeneralFailure"
+        | "EmailClientTimeout"
+        | "EmailClientCanceledTask"
+        | "EmailTemplateMissing"
+        | "InvalidHostForTitleId"
+        | "EmailConfirmationTokenDoesNotExist"
+        | "EmailConfirmationTokenExpired"
+        | "AccountDeleted"
+        | "PlayerSecretNotConfigured"
+        | "InvalidSignatureTime"
+        | "NoContactEmailAddressFound"
+        | "InvalidAuthToken"
+        | "AuthTokenDoesNotExist"
+        | "AuthTokenExpired"
+        | "AuthTokenAlreadyUsedToResetPassword"
+        | "MembershipNameTooLong"
+        | "MembershipNotFound"
+        | "GoogleServiceAccountInvalid"
+        | "GoogleServiceAccountParseFailure"
+        | "EntityTokenMissing"
+        | "EntityTokenInvalid"
+        | "EntityTokenExpired"
+        | "EntityTokenRevoked"
+        | "InvalidProductForSubscription"
+        | "XboxInaccessible"
+        | "SubscriptionAlreadyTaken"
+        | "SmtpAddonNotEnabled"
+        | "APIConcurrentRequestLimitExceeded"
+        | "XboxRejectedXSTSExchangeRequest"
+        | "VariableNotDefined"
+        | "TemplateVersionNotDefined"
+        | "FileTooLarge"
+        | "TitleDeleted"
+        | "TitleContainsUserAccounts"
+        | "TitleDeletionPlayerCleanupFailure"
+        | "EntityFileOperationPending"
+        | "NoEntityFileOperationPending"
+        | "EntityProfileVersionMismatch"
+        | "TemplateVersionTooOld"
+        | "MembershipDefinitionInUse"
+        | "PaymentPageNotConfigured"
+        | "FailedLoginAttemptRateLimitExceeded"
+        | "EntityBlockedByGroup"
+        | "RoleDoesNotExist"
+        | "EntityIsAlreadyMember"
+        | "DuplicateRoleId"
+        | "GroupInvitationNotFound"
+        | "GroupApplicationNotFound"
+        | "OutstandingInvitationAcceptedInstead"
+        | "OutstandingApplicationAcceptedInstead"
+        | "RoleIsGroupDefaultMember"
+        | "RoleIsGroupAdmin"
+        | "RoleNameNotAvailable"
+        | "GroupNameNotAvailable"
+        | "EmailReportAlreadySent"
+        | "EmailReportRecipientBlacklisted"
+        | "EventNamespaceNotAllowed"
+        | "EventEntityNotAllowed"
+        | "InvalidEntityType"
+        | "NullTokenResultFromAad"
+        | "InvalidTokenResultFromAad"
+        | "NoValidCertificateForAad"
+        | "InvalidCertificateForAad"
+        | "DuplicateDropTableId"
+        | "MultiplayerServerError"
+        | "MultiplayerServerTooManyRequests"
+        | "MultiplayerServerNoContent"
+        | "MultiplayerServerBadRequest"
+        | "MultiplayerServerUnauthorized"
+        | "MultiplayerServerForbidden"
+        | "MultiplayerServerNotFound"
+        | "MultiplayerServerConflict"
+        | "MultiplayerServerInternalServerError"
+        | "MultiplayerServerUnavailable"
+        | "ExplicitContentDetected"
+        | "PIIContentDetected"
+        | "InvalidScheduledTaskParameter"
+        | "PerEntityEventRateLimitExceeded"
+        | "TitleDefaultLanguageNotSet"
+        | "EmailTemplateMissingDefaultVersion"
+        | "FacebookInstantGamesIdNotLinked"
+        | "InvalidFacebookInstantGamesSignature"
+        | "FacebookInstantGamesAuthNotConfiguredForTitle"
+        | "MatchmakingEntityInvalid"
+        | "MatchmakingPlayerAttributesInvalid"
+        | "MatchmakingCreateRequestMissing"
+        | "MatchmakingCreateRequestCreatorMissing"
+        | "MatchmakingCreateRequestCreatorIdMissing"
+        | "MatchmakingCreateRequestUserListMissing"
+        | "MatchmakingCreateRequestGiveUpAfterInvalid"
+        | "MatchmakingTicketIdMissing"
+        | "MatchmakingMatchIdMissing"
+        | "MatchmakingMatchIdIdMissing"
+        | "MatchmakingQueueNameMissing"
+        | "MatchmakingTitleIdMissing"
+        | "MatchmakingTicketIdIdMissing"
+        | "MatchmakingPlayerIdMissing"
+        | "MatchmakingJoinRequestUserMissing"
+        | "MatchmakingQueueConfigNotFound"
+        | "MatchmakingMatchNotFound"
+        | "MatchmakingTicketNotFound"
+        | "MatchmakingCreateTicketServerIdentityInvalid"
+        | "MatchmakingCreateTicketClientIdentityInvalid"
+        | "MatchmakingGetTicketUserMismatch"
+        | "MatchmakingJoinTicketServerIdentityInvalid"
+        | "MatchmakingJoinTicketUserIdentityMismatch"
+        | "MatchmakingCancelTicketServerIdentityInvalid"
+        | "MatchmakingCancelTicketUserIdentityMismatch"
+        | "MatchmakingGetMatchIdentityMismatch"
+        | "MatchmakingPlayerIdentityMismatch"
+        | "MatchmakingAlreadyJoinedTicket"
+        | "MatchmakingTicketAlreadyCompleted"
+        | "MatchmakingQueueNameInvalid"
+        | "MatchmakingQueueConfigInvalid"
+        | "MatchmakingMemberProfileInvalid"
+        | "WriteAttemptedDuringExport"
+        | "NintendoSwitchDeviceIdNotLinked"
+        | "MatchmakingNotEnabled";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerRequestedEventPayload */
+    interface MultiplayerServerRequestedEventPayload {
+        /** The region where the multiplayer server was allocated. */
+        AllocatedRegion?: AzureRegion,
+        /** The integer ranking of what region that the multiplayer server was allocated in from the PreferredRegions list. */
+        AllocatedRegionPreferenceRanking?: number,
+        /** The guid string ID of the build. */
+        BuildId?: string,
+        /** The error when a multiplayer server request fails to allocate. If there was no failure, returns null. */
+        ErrorCode?: GenericErrorCodes,
+        /** The list of preferred region to request a server from. */
+        PreferredRegions?: AzureRegion[],
+        /** The string ID of the server which is generated by PlayFab. */
+        ServerId?: string,
+        /** The guid string ID of the session. */
+        SessionId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmRemoteUserDeletedEventPayload */
+    interface MultiplayerServerVmRemoteUserDeletedEventPayload {
+        /** The guid string build ID of the multiplayer server where the remote user was deleted. */
+        BuildId?: string,
+        /** The username for the remote user that was deleted. */
+        Username?: string,
+        /** The virtual machine ID the multiplayer server is located on where the remote user was deleted on. */
+        VmId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmRemoteUserCreatedEventPayload */
+    interface MultiplayerServerVmRemoteUserCreatedEventPayload {
+        /** The expiration time for the remote user that was created. */
+        ExpirationTime?: string,
+        /** The username for the remote user that was created. */
+        Username?: string,
+        /** The ID of the virtual machine where the remote user was created. */
+        VmId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCertificateUploadedEventPayload */
+    interface MultiplayerServerCertificateUploadedEventPayload {
+        /** The name of the certificate that was uploaded. */
+        CertificateName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerGameAssetDeletedEventPayload */
+    interface MultiplayerServerGameAssetDeletedEventPayload {
+        /** The filename of the asset that was deleted. */
+        AssetFileName?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildDeletedEventPayload */
+    interface MultiplayerServerBuildDeletedEventPayload {
+        /** The guid string ID of the multiplayer server build that was deleted. */
+        BuildId?: string,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/BuildRegion */
+    interface BuildRegion {
+        /** The maximum number of multiplayer servers for the region. */
+        MaxServers: number,
+        /** The build region. */
+        Region?: AzureRegion,
+        /** The number of standby multiplayer servers for the region. */
+        StandbyServers: number,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildRegionUpdatedEventPayload */
+    interface MultiplayerServerBuildRegionUpdatedEventPayload {
+        /** The guid string ID of the multiplayer server build that regions were updated on. */
+        BuildId?: string,
+        /** The updated region configuration that should be applied to the specified build. */
+        BuildRegions?: BuildRegion[],
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCreateBuildInitiatedEventPayload */
+    interface MultiplayerServerCreateBuildInitiatedEventPayload {
+        /** The guid string ID of the build */
+        BuildId?: string,
+        /** The build name. */
+        BuildName?: string,
+        /** The time (UTC) that the build was created. */
+        CreationTime?: string,
+        /** The developer defined metadata of the build. */
+        Metadata?: { [key: string]: string | null },
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MatchmakingTicketCompletePayload */
+    interface MatchmakingTicketCompletePayload {
+        /**
+         * If the ticket result is "Canceled" then this string provides the reason why the ticket was canceled otherwise it is
+         * null. The possible list of values are "User", "Service", "Internal", "Timeout".
+         */
+        CancellationReason?: string,
+        /** Time at which this ticket was completed. */
+        CompletionTime: string,
+        /** Time at which this ticket was created. */
+        CreationTime: string,
+        /** The name of the queue the ticket was created in. */
+        QueueName?: string,
+        /** The final state of the ticket. It could be "Matched" or "Canceled". */
+        Result?: string,
+        /** Time at which this ticket was submitted into the matchmaking queue. */
+        SubmissionTime?: string,
+        /** The list of entities that are part of this ticket. */
+        TicketEntities?: EntityKey[],
+        /** Id of the ticket that was completed. */
+        TicketId?: string,
+    }
+
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ObjectSet */
     interface ObjectSet {
         /** The JSON Object that was last set on the profile. */
@@ -2035,6 +3159,34 @@ declare namespace PlayStreamModels {
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
     type AuthenticationProvider = "PlayFab"
         | "SAML";
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientFocusChangePayload */
+    interface ClientFocusChangePayload {
+        /** The Client Sesssion Id of the associated entity. */
+        ClientSessionID?: string,
+        /** The Event Time of the associated entity. */
+        EventTimestamp?: string,
+        /** The Focus Id of the associated entity. */
+        FocusID?: string,
+        /** The Focus State of the associated entity. */
+        FocusState: boolean,
+        /** The Focus Duration of the associated entity. */
+        FocusStateDuration: number,
+    }
+
+    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientSessionStartPayload */
+    interface ClientSessionStartPayload {
+        /** The Client Session Id of the associated entity. */
+        ClientSessionID?: string,
+        /** The Device Model of the associated entity. */
+        DeviceModel?: string,
+        /** The Device Type of the associated entity. */
+        DeviceType?: string,
+        /** The OS of the associated entity. */
+        OS?: string,
+        /** The User Id of the associated entity. */
+        UserID?: string,
+    }
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TransactionStatus */
     type TransactionStatus = "CreateCart"
@@ -2127,7 +3279,12 @@ declare namespace PlayStreamModels {
         | "IOSDevice"
         | "AndroidDevice"
         | "Twitch"
-        | "WindowsHello";
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
     type PasswordResetInitiationSource = "Self"
@@ -2715,6 +3872,8 @@ declare namespace PlayStreamModels {
         AllowNonUniquePlayerDisplayNames: boolean,
         /** Allow game servers to delete player accounts via API. */
         AllowServerToDeleteUsers: boolean,
+        /** The default language for communication with players */
+        DefaultLanguage?: string,
         /** Disable API access by returning errors to all API requests. */
         DisableAPIAccess: boolean,
         /** Display name randomly-generated suffix length. */
@@ -2741,7 +3900,7 @@ declare namespace PlayStreamModels {
         | "InProgress"
         | "Failed"
         | "Aborted"
-        | "Pending";
+        | "Stalled";
 
     /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticAggregationMethod */
     type StatisticAggregationMethod = "Last"
