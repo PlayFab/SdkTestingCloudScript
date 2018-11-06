@@ -920,21 +920,6 @@ declare namespace PlayFabServerModels {
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersRequest */
-    interface DeleteUsersRequest {
-        /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        PlayFabIds: string[],
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        TitleId: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteUsersResult */
-    interface DeleteUsersResult {
-    }
-
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest */
     interface DeregisterGameRequest {
         /** Unique identifier for the Game Server Instance that is being deregistered. */
@@ -963,6 +948,16 @@ declare namespace PlayFabServerModels {
         Id: string,
         /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityTokenResponse */
+    interface EntityTokenResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        EntityToken?: string,
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        TokenExpiration?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
@@ -1478,6 +1473,11 @@ declare namespace PlayFabServerModels {
         | "FacebookInstantGamesIdNotLinked"
         | "InvalidFacebookInstantGamesSignature"
         | "FacebookInstantGamesAuthNotConfiguredForTitle"
+        | "EntityProfileConstraintValidationFailed"
+        | "PlayInsightsIngestionKeyPending"
+        | "PlayInsightsIngestionKeyNotFound"
+        | "StatisticTagRequired"
+        | "StatisticTagInvalid"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -1512,7 +1512,9 @@ declare namespace PlayFabServerModels {
         | "MatchmakingMemberProfileInvalid"
         | "WriteAttemptedDuringExport"
         | "NintendoSwitchDeviceIdNotLinked"
-        | "MatchmakingNotEnabled";
+        | "MatchmakingNotEnabled"
+        | "MatchmakingGetStatisticsIdentityInvalid"
+        | "MatchmakingStatisticsIdMissing";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
@@ -2028,6 +2030,20 @@ declare namespace PlayFabServerModels {
         Data?: SteamPlayFabIdPair[],
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsRequest */
+    interface GetPlayFabIDsFromXboxLiveIDsRequest {
+        /** The ID of Xbox Live sandbox. */
+        Sandbox?: string,
+        /** Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. */
+        XboxLiveAccountIDs: string[],
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsResult */
+    interface GetPlayFabIDsFromXboxLiveIDsResult {
+        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        Data?: XboxLiveAccountPlayFabIdPair[],
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataRequest */
     interface GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
@@ -2065,6 +2081,21 @@ declare namespace PlayFabServerModels {
         Id: string,
         /** Segment name. */
         Name?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsRequest */
+    interface GetServerCustomIDsFromPlayFabIDsRequest {
+        /**
+         * Array of unique PlayFab player identifiers for which the title needs to get server custom identifiers. Cannot contain
+         * more than 25 identifiers.
+         */
+        PlayFabIDs: string[],
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsResult */
+    interface GetServerCustomIDsFromPlayFabIDsResult {
+        /** Mapping of server custom player identifiers to PlayFab identifiers. */
+        Data?: ServerCustomIDPlayFabIDPair[],
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataRequest */
@@ -2381,6 +2412,20 @@ declare namespace PlayFabServerModels {
         Username?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest */
+    interface LinkXboxAccountRequest {
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        ForceLink?: boolean,
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        PlayFabId: string,
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountResult */
+    interface LinkXboxAccountResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersRequest */
     interface ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2427,6 +2472,32 @@ declare namespace PlayFabServerModels {
         | "NintendoSwitch"
         | "FacebookInstantGames"
         | "OpenIdConnect";
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithServerCustomIdRequest */
+    interface LoginWithServerCustomIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean,
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
+        LoginTitlePlayerAccountEntity?: boolean,
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        PlayerSecret?: string,
+        /** The backend server identifier for this player. */
+        ServerCustomId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxRequest */
+    interface LoginWithXboxRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean,
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
+        /** Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on. */
+        LoginTitlePlayerAccountEntity?: boolean,
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string,
+    }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogStatement */
     interface LogStatement {
@@ -2877,8 +2948,6 @@ declare namespace PlayFabServerModels {
          * region and use Tags (below) to specify your custom region.
          */
         Region: Region,
-        /** IPV4 address of the Game Server Instance. */
-        ServerHost?: string,
         /** IPV4 address of the game server instance. */
         ServerIPV4Address?: string,
         /** IPV6 address (if any) of the game server instance. */
@@ -3093,6 +3162,35 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult */
     interface SendPushNotificationResult {
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerCustomIDPlayFabIDPair */
+    interface ServerCustomIDPlayFabIDPair {
+        /** Unique PlayFab identifier. */
+        PlayFabId?: string,
+        /** Unique server custom identifier for this player. */
+        ServerCustomId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult */
+    interface ServerLoginResult {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        EntityToken?: EntityTokenResponse,
+        /** Results for requested info. */
+        InfoResultPayload?: GetPlayerCombinedInfoResultPayload,
+        /** The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue */
+        LastLoginTime?: string,
+        /** True if the account was newly created on this login. */
+        NewlyCreated: boolean,
+        /** Player's unique PlayFabId. */
+        PlayFabId?: string,
+        /** Unique token authorizing the user and game at the server level, for the current session. */
+        SessionTicket?: string,
+        /** Settings specific to this user. */
+        SettingsForUser?: UserSettings,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetFriendTagsRequest */
@@ -3320,6 +3418,18 @@ declare namespace PlayFabServerModels {
         Timestamp: string,
         /** Title of the news item. */
         Title?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountRequest */
+    interface UnlinkXboxAccountRequest {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        PlayFabId: string,
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        XboxToken: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountResult */
+    interface UnlinkXboxAccountResult {
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerInstanceRequest */
@@ -3732,6 +3842,16 @@ declare namespace PlayFabServerModels {
         PsnOnlineId?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserSettings */
+    interface UserSettings {
+        /** Boolean for whether this player is eligible for gathering device info. */
+        GatherDeviceInfo: boolean,
+        /** Boolean for whether this player should report OnFocus play-time tracking. */
+        GatherFocusInfo: boolean,
+        /** Boolean for whether this player is eligible for ad tracking. */
+        NeedsAttribution: boolean,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserSteamInfo */
     interface UserSteamInfo {
         /** what stage of game ownership the user is listed as being in, from Steam */
@@ -3876,6 +3996,14 @@ declare namespace PlayFabServerModels {
         Timestamp?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.XboxLiveAccountPlayFabIdPair */
+    interface XboxLiveAccountPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        PlayFabId?: string,
+        /** Unique Xbox Live identifier for a user. */
+        XboxLiveAccountId?: string,
+    }
+
 }
 
 /** Server interface methods */
@@ -3965,12 +4093,6 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
      */
     DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest): PlayFabServerModels.EmptyResponse;
-
-    /**
-     * Deletes custom data, all account linkages, and statistics.
-     * https://api.playfab.com/Documentation/Server/method/DeleteUsers
-     */
-    DeleteUsers(request: PlayFabServerModels.DeleteUsersRequest): PlayFabServerModels.DeleteUsersResult;
 
     /**
      * Inform the matchmaker that a Game Server Instance is removed.
@@ -4168,6 +4290,12 @@ interface IPlayFabServerAPI {
     GetPlayFabIDsFromSteamIDs(request: PlayFabServerModels.GetPlayFabIDsFromSteamIDsRequest): PlayFabServerModels.GetPlayFabIDsFromSteamIDsResult;
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromXboxLiveIDs
+     */
+    GetPlayFabIDsFromXboxLiveIDs(request: PlayFabServerModels.GetPlayFabIDsFromXboxLiveIDsRequest): PlayFabServerModels.GetPlayFabIDsFromXboxLiveIDsResult;
+
+    /**
      * Retrieves the key-value store of custom publisher settings
      * https://api.playfab.com/Documentation/Server/method/GetPublisherData
      */
@@ -4179,6 +4307,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/GetRandomResultTables
      */
     GetRandomResultTables(request: PlayFabServerModels.GetRandomResultTablesRequest): PlayFabServerModels.GetRandomResultTablesResult;
+
+    /**
+     * Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
+     * https://api.playfab.com/Documentation/Server/method/GetServerCustomIDsFromPlayFabIDs
+     */
+    GetServerCustomIDsFromPlayFabIDs(request: PlayFabServerModels.GetServerCustomIDsFromPlayFabIDsRequest): PlayFabServerModels.GetServerCustomIDsFromPlayFabIDsResult;
 
     /**
      * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
@@ -4290,6 +4424,26 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/GrantItemsToUsers
      */
     GrantItemsToUsers(request: PlayFabServerModels.GrantItemsToUsersRequest): PlayFabServerModels.GrantItemsToUsersResult;
+
+    /**
+     * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+     * https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
+     */
+    LinkXboxAccount(request: PlayFabServerModels.LinkXboxAccountRequest): PlayFabServerModels.LinkXboxAccountResult;
+
+    /**
+     * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
+     * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
+     * https://api.playfab.com/Documentation/Server/method/LoginWithServerCustomId
+     */
+    LoginWithServerCustomId(request: PlayFabServerModels.LoginWithServerCustomIdRequest): PlayFabServerModels.ServerLoginResult;
+
+    /**
+     * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * https://api.playfab.com/Documentation/Server/method/LoginWithXbox
+     */
+    LoginWithXbox(request: PlayFabServerModels.LoginWithXboxRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Modifies the number of remaining uses of a player's inventory item
@@ -4480,6 +4634,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/SubtractUserVirtualCurrency
      */
     SubtractUserVirtualCurrency(request: PlayFabServerModels.SubtractUserVirtualCurrencyRequest): PlayFabServerModels.ModifyUserVirtualCurrencyResult;
+
+    /**
+     * Unlinks the related Xbox Live account from the user's PlayFab account
+     * https://api.playfab.com/Documentation/Server/method/UnlinkXboxAccount
+     */
+    UnlinkXboxAccount(request: PlayFabServerModels.UnlinkXboxAccountRequest): PlayFabServerModels.UnlinkXboxAccountResult;
 
     /**
      * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
@@ -4881,8 +5041,8 @@ declare namespace PlayFabEventsModels {
 
     /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EventContents */
     interface EventContents {
-        /** Entity associated with the event */
-        Entity: EntityKey,
+        /** Entity associated with the event. If null, the event will apply to the calling entity. */
+        Entity?: EntityKey,
         /** The namespace in which the event is defined. It must be prepended with 'com.playfab.events.' */
         EventNamespace: string,
         /** The name of this event. */
@@ -5450,6 +5610,22 @@ declare namespace PlayFabProfilesModels {
         Type?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityLineage */
+    interface EntityLineage {
+        /** The Character Id of the associated entity. */
+        CharacterId?: string,
+        /** The Group Id of the associated entity. */
+        GroupId?: string,
+        /** The Master Player Account Id of the associated entity. */
+        MasterPlayerAccountId?: string,
+        /** The Namespace Id of the associated entity. */
+        NamespaceId?: string,
+        /** The Title Id of the associated entity. */
+        TitleId?: string,
+        /** The Title Player Account Id of the associated entity. */
+        TitlePlayerAccountId?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityPermissionStatement */
     interface EntityPermissionStatement {
         /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
@@ -5470,19 +5646,19 @@ declare namespace PlayFabProfilesModels {
     interface EntityProfileBody {
         /** The entity id and type. */
         Entity?: EntityKey,
-        /**
-         * The chain of responsibility for this entity. This is a representation of 'ownership'. It is constructed using the
-         * following formats (replace '[ID]' with the unique identifier for the given entity): Namespace: 'namespace![Namespace
-         * ID]' Title: 'title![Namespace ID]/[Title ID]' Master Player Account: 'master_player_account![Namespace
-         * ID]/[MasterPlayerAccount ID]' Title Player Account: 'title_player_account![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]' Character: 'character![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]/[Character ID]'
-         */
+        /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string,
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata },
+        /**
+         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        FriendlyName?: string,
         /** The language on this profile. */
         Language?: string,
+        /** The lineage of this profile. */
+        Lineage?: EntityLineage,
         /** The objects on this profile. */
         Objects?: { [key: string]: EntityDataObject },
         /**
@@ -5520,7 +5696,7 @@ declare namespace PlayFabProfilesModels {
          */
         DataAsObject?: boolean,
         /** The entity to perform this action on. */
-        Entity: EntityKey,
+        Entity?: EntityKey,
     }
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetEntityProfileResponse */
