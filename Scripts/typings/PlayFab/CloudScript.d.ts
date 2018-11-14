@@ -1474,10 +1474,11 @@ declare namespace PlayFabServerModels {
         | "InvalidFacebookInstantGamesSignature"
         | "FacebookInstantGamesAuthNotConfiguredForTitle"
         | "EntityProfileConstraintValidationFailed"
-        | "PlayInsightsIngestionKeyPending"
-        | "PlayInsightsIngestionKeyNotFound"
+        | "TelemetryIngestionKeyPending"
+        | "TelemetryIngestionKeyNotFound"
         | "StatisticTagRequired"
         | "StatisticTagInvalid"
+        | "DataIntegrityError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -1514,7 +1515,8 @@ declare namespace PlayFabServerModels {
         | "NintendoSwitchDeviceIdNotLinked"
         | "MatchmakingNotEnabled"
         | "MatchmakingGetStatisticsIdentityInvalid"
-        | "MatchmakingStatisticsIdMissing";
+        | "MatchmakingStatisticsIdMissing"
+        | "CannotEnableMultiplayerServersForTitle";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest */
     interface GetAllSegmentsRequest {
