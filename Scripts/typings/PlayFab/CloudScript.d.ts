@@ -1099,7 +1099,7 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.FriendInfo */
     interface FriendInfo {
-        /** Unique lobby identifier of the Game Server Instance to which this player is currently connected. */
+        /** This field is not populated. */
         CurrentMatchmakerLobbyId?: string,
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         FacebookInfo?: UserFacebookInfo,
@@ -1540,6 +1540,12 @@ declare namespace PlayFabServerModels {
         | "PushNotificationTemplateInvalidSyntax"
         | "PushNotificationTemplateNoCustomPayloadForV1"
         | "NoLeaderboardForStatistic"
+        | "TitleNewsMissingDefaultLanguage"
+        | "TitleNewsNotFound"
+        | "TitleNewsDuplicateLanguage"
+        | "TitleNewsMissingTitleOrBody"
+        | "TitleNewsInvalidLanguage"
+        | "EmailRecipientBlacklisted"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingCreateRequestMissing"
@@ -1577,7 +1583,10 @@ declare namespace PlayFabServerModels {
         | "MatchmakingNotEnabled"
         | "MatchmakingGetStatisticsIdentityInvalid"
         | "MatchmakingStatisticsIdMissing"
-        | "CannotEnableMultiplayerServersForTitle";
+        | "CannotEnableMultiplayerServersForTitle"
+        | "TitleConfigNotFound"
+        | "TitleConfigUpdateConflict"
+        | "TitleConfigSerializationError";
 
     /**
      * Request has no paramaters.
@@ -2156,6 +2165,23 @@ declare namespace PlayFabServerModels {
         Data?: NintendoSwitchPlayFabIdPair[],
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsRequest */
+    interface GetPlayFabIDsFromPSNAccountIDsRequest {
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        IssuerId?: number,
+        /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
+        PSNAccountIDs: string[],
+    }
+
+    /**
+     * For PlayStation Network identifiers which have not been linked to PlayFab accounts, null will be returned.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsResult
+     */
+    interface GetPlayFabIDsFromPSNAccountIDsResult {
+        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        Data?: PSNAccountPlayFabIdPair[],
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsRequest */
     interface GetPlayFabIDsFromSteamIDsRequest {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
@@ -2326,7 +2352,7 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsResult */
     interface GetTitleNewsResult {
-        /** Array of news items. */
+        /** Array of localized news items. */
         News?: TitleNewsItem[],
     }
 
@@ -3088,6 +3114,14 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PSNAccountPlayFabIdPair */
+    interface PSNAccountPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
+        PlayFabId?: string,
+        /** Unique PlayStation Network identifier for a user. */
+        PSNAccountId?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPackage */
     interface PushNotificationPackage {
         /** Numerical badge to display on App icon (iOS only) */
@@ -3749,11 +3783,11 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TitleNewsItem */
     interface TitleNewsItem {
-        /** News item text. */
+        /** News item body. */
         Body?: string,
         /** Unique identifier of news item. */
         NewsId?: string,
-        /** Date and time when the news items was posted. */
+        /** Date and time when the news item was posted. */
         Timestamp: string,
         /** Title of the news item. */
         Title?: string,
@@ -4688,6 +4722,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
      */
     GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabServerModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest): PlayFabServerModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult;
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromPSNAccountIDs
+     */
+    GetPlayFabIDsFromPSNAccountIDs(request: PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsRequest): PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
@@ -6201,17 +6241,17 @@ declare namespace PlayFabProfilesModels {
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileBody */
     interface EntityProfileBody {
+        /**
+         * The display name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        DisplayName?: string,
         /** The entity id and type. */
         Entity?: EntityKey,
         /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string,
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata },
-        /**
-         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
-         * player account it could represent the display name of the player, whereas on a character it could be character's name.
-         */
-        FriendlyName?: string,
         /** The language on this profile. */
         Language?: string,
         /** The lineage of this profile. */
