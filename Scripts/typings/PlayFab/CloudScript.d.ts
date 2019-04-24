@@ -5217,6 +5217,77 @@ interface IPlayFabServerAPI {
 
 /** AuthenticationAPI.Models as interfaces */
 declare namespace PlayFabAuthenticationModels {
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ActivateAPIKeyRequest */
+    interface ActivateAPIKeyRequest {
+        /** Unique identifier for the entity API key to activate. */
+        APIKeyId?: string,
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ActivateAPIKeyResponse */
+    interface ActivateAPIKeyResponse {
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyDetails */
+    interface CreateAPIKeyDetails {
+        /**
+         * Whether the key is active for authentication. Inactive keys cannot be used to authenticate.Keys can be activated or
+         * deactivate using the ActivateKey and DeactivateKey APIs.Deactivating a key is a way to verify that the key is not in use
+         * before deleting it.
+         */
+        Active: boolean,
+        /** Unique identifier for the entity API key. Set in the "X - EntityAPIKeyId" in authentication requests. */
+        APIKeyId?: string,
+        /**
+         * Secret used to authenticate requests with the key. Set in the "X - EntityAPIKeyId" in authentication requests.The secret
+         * value is returned only once in this response and cannot be retrieved afterward, either via API or in Game Manager.API
+         * key secrets should be stored securely only on trusted servers and never distributed in code or configuration to
+         * untrusted clients.
+         */
+        APIKeySecret?: string,
+        /** The time the API key was generated, in UTC. */
+        Created: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyRequest */
+    interface CreateAPIKeyRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyResponse */
+    interface CreateAPIKeyResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The created API key */
+        Key?: CreateAPIKeyDetails,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeactivateAPIKeyRequest */
+    interface DeactivateAPIKeyRequest {
+        /** Unique identifier for the entity API key to activate. */
+        APIKeyId?: string,
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeactivateAPIKeyResponse */
+    interface DeactivateAPIKeyResponse {
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeleteAPIKeyRequest */
+    interface DeleteAPIKeyRequest {
+        /** Unique identifier for the entity API key to delete. */
+        APIKeyId?: string,
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeleteAPIKeyResponse */
+    interface DeleteAPIKeyResponse {
+    }
+
     /**
      * Combined entity type and ID structure which uniquely identifies a single entity.
      * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityKey
@@ -5226,6 +5297,34 @@ declare namespace PlayFabAuthenticationModels {
         Id: string,
         /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeyDetails */
+    interface GetAPIKeyDetails {
+        /**
+         * Whether the key is active for authentication. Inactive keys cannot be used to authenticate.Keys can be activated or
+         * deactivate using the SetAPIActivation API.Deactivating a key is a way to verify that the key is not in use be before
+         * deleting it.
+         */
+        Active: boolean,
+        /** Unique identifier for the entity API key. Set in the "X - EntityAPIKeyId" in authentication requests. */
+        APIKeyId?: string,
+        /** The time the API key was generated, in UTC. */
+        Created: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeysRequest */
+    interface GetAPIKeysRequest {
+        /** The entity to perform this action on. */
+        Entity?: EntityKey,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeysResponse */
+    interface GetAPIKeysResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The API keys associated with the given entity. */
+        Keys?: GetAPIKeyDetails[],
     }
 
     /**
@@ -6435,11 +6534,42 @@ declare namespace PlayFabProfilesModels {
 interface IPlayFabEntityAPI {
 
     /**
+     * Activates the given API key. Active keys may be used for authentication.
+     * https://api.playfab.com/Documentation/Authentication/method/ActivateKey
+     */
+    ActivateKey(request: PlayFabAuthenticationModels.ActivateAPIKeyRequest): PlayFabAuthenticationModels.ActivateAPIKeyResponse;
+
+    /**
+     * Creates an API key for the given entity.
+     * https://api.playfab.com/Documentation/Authentication/method/CreateKey
+     */
+    CreateKey(request: PlayFabAuthenticationModels.CreateAPIKeyRequest): PlayFabAuthenticationModels.CreateAPIKeyResponse;
+
+    /**
+     * Deactivates the given API key, causing subsequent authentication attempts with it to fail.Deactivating a key is a way to
+     * verify that the key is not in use before deleting it.
+     * https://api.playfab.com/Documentation/Authentication/method/DeactivateKey
+     */
+    DeactivateKey(request: PlayFabAuthenticationModels.DeactivateAPIKeyRequest): PlayFabAuthenticationModels.DeactivateAPIKeyResponse;
+
+    /**
+     * Deletes the given API key.
+     * https://api.playfab.com/Documentation/Authentication/method/DeleteKey
+     */
+    DeleteKey(request: PlayFabAuthenticationModels.DeleteAPIKeyRequest): PlayFabAuthenticationModels.DeleteAPIKeyResponse;
+
+    /**
      * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
      * Entity Token.
      * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
      */
     GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest): PlayFabAuthenticationModels.GetEntityTokenResponse;
+
+    /**
+     * Gets the API keys associated with the given entity.
+     * https://api.playfab.com/Documentation/Authentication/method/GetKeys
+     */
+    GetKeys(request: PlayFabAuthenticationModels.GetAPIKeysRequest): PlayFabAuthenticationModels.GetAPIKeysResponse;
 
 
     /**
