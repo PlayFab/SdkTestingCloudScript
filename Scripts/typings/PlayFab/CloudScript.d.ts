@@ -123,6 +123,14 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddGenericIDRequest */
+    interface AddGenericIDRequest {
+        /** Generic service identifier to add to the player account. */
+        GenericId: GenericServiceId,
+        /** PlayFabId of the user to link. */
+        PlayFabId: string,
+    }
+
     /**
      * This API will trigger a player_tag_added event and add a tag with the given TagName and PlayFabID to the corresponding
      * player profile. TagName can be used for segmentation and it is limited to 256 characters. Also there is a limit on the
@@ -947,6 +955,16 @@ declare namespace PlayFabServerModels {
     interface DeletePlayerResult {
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest */
+    interface DeletePushNotificationTemplateRequest {
+        /** Id of the push notification template to be deleted. */
+        PushNotificationTemplateId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateResult */
+    interface DeletePushNotificationTemplateResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteSharedGroupRequest */
     interface DeleteSharedGroupRequest {
         /** Unique identifier for the shared group. */
@@ -970,6 +988,10 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse */
     interface EmptyResponse {
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult */
+    interface EmptyResult {
     }
 
     /**
@@ -1556,6 +1578,30 @@ declare namespace PlayFabServerModels {
         | "WriteAttemptedDuringExport"
         | "MultiplayerServerTitleQuotaCoresExceeded"
         | "AutomationRuleNotFound"
+        | "EntityAPIKeyLimitExceeded"
+        | "EntityAPIKeyNotFound"
+        | "EntityAPIKeyOrSecretInvalid"
+        | "EconomyServiceUnavailable"
+        | "EconomyServiceInternalError"
+        | "KustoProxyQueryRateLimitExceeded"
+        | "EntityAPIKeyCreationDisabledForEntity"
+        | "StudioCreationRateLimited"
+        | "StudioCreationInProgress"
+        | "DuplicateStudioName"
+        | "StudioNotFound"
+        | "StudioDeletionInProgress"
+        | "StudioDeactivated"
+        | "TitleCreationRateLimited"
+        | "TitleCreationInProgress"
+        | "DuplicateTitleName"
+        | "TitleNotFound"
+        | "TitleDeletionInProgress"
+        | "TitleDeactivated"
+        | "TitleAlreadyActivated"
+        | "CloudScriptAzureFunctionsExecutionTimeLimitExceeded"
+        | "CloudScriptAzureFunctionsArgumentSizeExceeded"
+        | "CloudScriptAzureFunctionsReturnSizeExceeded"
+        | "CloudScriptAzureFunctionsHTTPRequestError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1575,6 +1621,8 @@ declare namespace PlayFabServerModels {
         | "MatchmakingTicketMembershipLimitExceeded"
         | "MatchmakingUnauthorized"
         | "MatchmakingQueueLimitExceeded"
+        | "MatchmakingRequestTypeMismatch"
+        | "MatchmakingBadRequest"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
@@ -1587,18 +1635,8 @@ declare namespace PlayFabServerModels {
         | "CatalogItemIdInvalid"
         | "CatalogSearchParameterInvalid"
         | "CatalogFeatureDisabled"
-        | "CatalogConfigMissing"
-        | "CatalogConfigTooManyContentTypes"
-        | "CatalogConfigContentTypeTooLong"
-        | "CatalogConfigTooManyTags"
-        | "CatalogConfigTagTooLong"
-        | "CatalogConfigInvalidDeepLinkObject"
-        | "CatalogConfigInvalidDeepLinkPlatform"
-        | "CatalogConfigInvalidDeepLinkFormat"
-        | "CatalogConfigInvalidDisplayPropertyObject"
-        | "CatalogConfigInvalidDisplayPropertyName"
-        | "CatalogConfigInvalidDisplayPropertyType"
-        | "CatalogConfigDisplayPropertyMappingLimit"
+        | "CatalogConfigInvalid"
+        | "CatalogUnauthorized"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
@@ -1609,10 +1647,29 @@ declare namespace PlayFabServerModels {
         | "ExportAmazonBucketDoesNotExist"
         | "ExportInvalidBlobStorage"
         | "ExportKustoException"
-        | "ExportKustoExceptionNew_SomeResources"
+        | "ExportKustoExceptionPartialErrorOnNewExport"
         | "ExportKustoExceptionEdit"
         | "ExportKustoConnectionFailed"
-        | "ExportUnknownError";
+        | "ExportUnknownError"
+        | "ExportCantEditPendingExport"
+        | "ExportLimitExports"
+        | "ExportLimitEvents";
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
+    interface GenericPlayFabIdPair {
+        /** Unique generic service identifier for a user. */
+        GenericId?: GenericServiceId,
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the given generic identifier. */
+        PlayFabId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericServiceId */
+    interface GenericServiceId {
+        /** Name of the service for which the player has a unique identifier. */
+        ServiceName: string,
+        /** Unique identifier of the player in that service. */
+        UserId: string,
+    }
 
     /**
      * Request has no paramaters.
@@ -2172,6 +2229,24 @@ declare namespace PlayFabServerModels {
         Data?: FacebookInstantGamesPlayFabIdPair[],
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsRequest */
+    interface GetPlayFabIDsFromGenericIDsRequest {
+        /**
+         * Array of unique generic service identifiers for which the title needs to get PlayFab identifiers. Currently limited to a
+         * maximum of 10 in a single request.
+         */
+        GenericIDs: GenericServiceId[],
+    }
+
+    /**
+     * For generic service identifiers which have not been linked to PlayFab accounts, null will be returned.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsResult
+     */
+    interface GetPlayFabIDsFromGenericIDsResult {
+        /** Mapping of generic service identifiers to PlayFab identifiers. */
+        Data?: GenericPlayFabIdPair[],
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest */
     interface GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
         /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
@@ -2676,6 +2751,20 @@ declare namespace PlayFabServerModels {
         Username?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdRequest */
+    interface LinkServerCustomIdRequest {
+        /** If another user is already linked to the custom ID, unlink the other user and re-link. */
+        ForceLink?: boolean,
+        /** Unique PlayFab identifier. */
+        PlayFabId: string,
+        /** Unique server custom identifier for this player. */
+        ServerCustomId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdResult */
+    interface LinkServerCustomIdResult {
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest */
     interface LinkXboxAccountRequest {
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -2703,6 +2792,14 @@ declare namespace PlayFabServerModels {
     interface ListUsersCharactersResult {
         /** The requested list of characters. */
         Characters?: CharacterResult[],
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocalizedPushNotificationProperties */
+    interface LocalizedPushNotificationProperties {
+        /** Message of the localized push notification template. */
+        Message?: string,
+        /** Subject of the localized push notification template. */
+        Subject?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocationModel */
@@ -3285,6 +3382,14 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveGenericIDRequest */
+    interface RemoveGenericIDRequest {
+        /** Generic service identifier to be removed from the player. */
+        GenericId: GenericServiceId,
+        /** PlayFabId of the user to remove. */
+        PlayFabId: string,
+    }
+
     /**
      * This API will trigger a player_tag_removed event and remove a tag with the given TagName and PlayFabID from the
      * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
@@ -3431,6 +3536,26 @@ declare namespace PlayFabServerModels {
         Item?: RevokeInventoryItem,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest */
+    interface SavePushNotificationTemplateRequest {
+        /** Android JSON for the notification template. */
+        AndroidPayload?: string,
+        /** Id of the push notification template. */
+        Id?: string,
+        /** IOS JSON for the notification template. */
+        IOSPayload?: string,
+        /** Dictionary of localized push notification templates. */
+        LocalizedPushNotificationTemplates?: { [key: string]: LocalizedPushNotificationProperties },
+        /** Name of the push notification template. */
+        Name: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult */
+    interface SavePushNotificationTemplateResult {
+        /** Id of the push notification template that was saved. */
+        PushNotificationTemplateId?: string,
+    }
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ScriptExecutionError */
     interface ScriptExecutionError {
         /**
@@ -3476,6 +3601,14 @@ declare namespace PlayFabServerModels {
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateResult */
     interface SendEmailFromTemplateResult {
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest */
+    interface SendPushNotificationFromTemplateRequest {
+        /** Id of the push notification template. */
+        PushNotificationTemplateId: string,
+        /** PlayFabId of the push notification recipient. */
+        Recipient: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest */
@@ -3785,6 +3918,18 @@ declare namespace PlayFabServerModels {
         Timestamp: string,
         /** Title of the news item. */
         Title?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdRequest */
+    interface UnlinkServerCustomIdRequest {
+        /** Unique PlayFab identifier. */
+        PlayFabId: string,
+        /** Unique server custom identifier for this player. */
+        ServerCustomId: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdResult */
+    interface UnlinkServerCustomIdResult {
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountRequest */
@@ -4457,6 +4602,14 @@ interface IPlayFabServerAPI {
     AddFriend(request: PlayFabServerModels.AddFriendRequest): PlayFabServerModels.EmptyResponse;
 
     /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
+     * https://api.playfab.com/Documentation/Server/method/AddGenericID
+     */
+    AddGenericID(request: PlayFabServerModels.AddGenericIDRequest): PlayFabServerModels.EmptyResult;
+
+    /**
      * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
      * https://api.playfab.com/Documentation/Server/method/AddPlayerTag
      */
@@ -4520,6 +4673,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/DeletePlayer
      */
     DeletePlayer(request: PlayFabServerModels.DeletePlayerRequest): PlayFabServerModels.DeletePlayerResult;
+
+    /**
+     * Deletes push notification template for title
+     * https://api.playfab.com/Documentation/Server/method/DeletePushNotificationTemplate
+     */
+    DeletePushNotificationTemplate(request: PlayFabServerModels.DeletePushNotificationTemplateRequest): PlayFabServerModels.DeletePushNotificationTemplateResult;
 
     /**
      * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
@@ -4712,6 +4871,14 @@ interface IPlayFabServerAPI {
     GetPlayFabIDsFromFacebookInstantGamesIds(request: PlayFabServerModels.GetPlayFabIDsFromFacebookInstantGamesIdsRequest): PlayFabServerModels.GetPlayFabIDsFromFacebookInstantGamesIdsResult;
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
+     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromGenericIDs
+     */
+    GetPlayFabIDsFromGenericIDs(request: PlayFabServerModels.GetPlayFabIDsFromGenericIDsRequest): PlayFabServerModels.GetPlayFabIDsFromGenericIDsResult;
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
      * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
      */
@@ -4867,6 +5034,12 @@ interface IPlayFabServerAPI {
     GrantItemsToUsers(request: PlayFabServerModels.GrantItemsToUsersRequest): PlayFabServerModels.GrantItemsToUsersResult;
 
     /**
+     * Links the custom server identifier, generated by the title, to the user's PlayFab account.
+     * https://api.playfab.com/Documentation/Server/method/LinkServerCustomId
+     */
+    LinkServerCustomId(request: PlayFabServerModels.LinkServerCustomIdRequest): PlayFabServerModels.LinkServerCustomIdResult;
+
+    /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
      * https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
      */
@@ -4948,6 +5121,12 @@ interface IPlayFabServerAPI {
     RemoveFriend(request: PlayFabServerModels.RemoveFriendRequest): PlayFabServerModels.EmptyResponse;
 
     /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     * https://api.playfab.com/Documentation/Server/method/RemoveGenericID
+     */
+    RemoveGenericID(request: PlayFabServerModels.RemoveGenericIDRequest): PlayFabServerModels.EmptyResult;
+
+    /**
      * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
      * https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
      */
@@ -4994,6 +5173,12 @@ interface IPlayFabServerAPI {
     RevokeInventoryItems(request: PlayFabServerModels.RevokeInventoryItemsRequest): PlayFabServerModels.RevokeInventoryItemsResult;
 
     /**
+     * Saves push notification template for title
+     * https://api.playfab.com/Documentation/Server/method/SavePushNotificationTemplate
+     */
+    SavePushNotificationTemplate(request: PlayFabServerModels.SavePushNotificationTemplateRequest): PlayFabServerModels.SavePushNotificationTemplateResult;
+
+    /**
      * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
      * email template
      * https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
@@ -5012,6 +5197,13 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/SendPushNotification
      */
     SendPushNotification(request: PlayFabServerModels.SendPushNotificationRequest): PlayFabServerModels.SendPushNotificationResult;
+
+    /**
+     * Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * https://api.playfab.com/Documentation/Server/method/SendPushNotificationFromTemplate
+     */
+    SendPushNotificationFromTemplate(request: PlayFabServerModels.SendPushNotificationFromTemplateRequest): PlayFabServerModels.SendPushNotificationResult;
 
     /**
      * Updates the tag list for a specified user in the friend list of another user
@@ -5075,6 +5267,12 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/SubtractUserVirtualCurrency
      */
     SubtractUserVirtualCurrency(request: PlayFabServerModels.SubtractUserVirtualCurrencyRequest): PlayFabServerModels.ModifyUserVirtualCurrencyResult;
+
+    /**
+     * Unlinks the custom server identifier from the user's PlayFab account.
+     * https://api.playfab.com/Documentation/Server/method/UnlinkServerCustomId
+     */
+    UnlinkServerCustomId(request: PlayFabServerModels.UnlinkServerCustomIdRequest): PlayFabServerModels.UnlinkServerCustomIdResult;
 
     /**
      * Unlinks the related Xbox Live account from the user's PlayFab account
@@ -5217,77 +5415,6 @@ interface IPlayFabServerAPI {
 
 /** AuthenticationAPI.Models as interfaces */
 declare namespace PlayFabAuthenticationModels {
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ActivateAPIKeyRequest */
-    interface ActivateAPIKeyRequest {
-        /** Unique identifier for the entity API key to activate. */
-        APIKeyId?: string,
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ActivateAPIKeyResponse */
-    interface ActivateAPIKeyResponse {
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyDetails */
-    interface CreateAPIKeyDetails {
-        /**
-         * Whether the key is active for authentication. Inactive keys cannot be used to authenticate.Keys can be activated or
-         * deactivate using the ActivateKey and DeactivateKey APIs.Deactivating a key is a way to verify that the key is not in use
-         * before deleting it.
-         */
-        Active: boolean,
-        /** Unique identifier for the entity API key. Set in the "X - EntityAPIKeyId" in authentication requests. */
-        APIKeyId?: string,
-        /**
-         * Secret used to authenticate requests with the key. Set in the "X - EntityAPIKeyId" in authentication requests.The secret
-         * value is returned only once in this response and cannot be retrieved afterward, either via API or in Game Manager.API
-         * key secrets should be stored securely only on trusted servers and never distributed in code or configuration to
-         * untrusted clients.
-         */
-        APIKeySecret?: string,
-        /** The time the API key was generated, in UTC. */
-        Created: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyRequest */
-    interface CreateAPIKeyRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.CreateAPIKeyResponse */
-    interface CreateAPIKeyResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The created API key */
-        Key?: CreateAPIKeyDetails,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeactivateAPIKeyRequest */
-    interface DeactivateAPIKeyRequest {
-        /** Unique identifier for the entity API key to activate. */
-        APIKeyId?: string,
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeactivateAPIKeyResponse */
-    interface DeactivateAPIKeyResponse {
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeleteAPIKeyRequest */
-    interface DeleteAPIKeyRequest {
-        /** Unique identifier for the entity API key to delete. */
-        APIKeyId?: string,
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.DeleteAPIKeyResponse */
-    interface DeleteAPIKeyResponse {
-    }
-
     /**
      * Combined entity type and ID structure which uniquely identifies a single entity.
      * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityKey
@@ -5297,34 +5424,6 @@ declare namespace PlayFabAuthenticationModels {
         Id: string,
         /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         Type?: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeyDetails */
-    interface GetAPIKeyDetails {
-        /**
-         * Whether the key is active for authentication. Inactive keys cannot be used to authenticate.Keys can be activated or
-         * deactivate using the SetAPIActivation API.Deactivating a key is a way to verify that the key is not in use be before
-         * deleting it.
-         */
-        Active: boolean,
-        /** Unique identifier for the entity API key. Set in the "X - EntityAPIKeyId" in authentication requests. */
-        APIKeyId?: string,
-        /** The time the API key was generated, in UTC. */
-        Created: string,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeysRequest */
-    interface GetAPIKeysRequest {
-        /** The entity to perform this action on. */
-        Entity?: EntityKey,
-    }
-
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetAPIKeysResponse */
-    interface GetAPIKeysResponse {
-        /** The entity id and type. */
-        Entity?: EntityKey,
-        /** The API keys associated with the given entity. */
-        Keys?: GetAPIKeyDetails[],
     }
 
     /**
@@ -5619,7 +5718,7 @@ declare namespace PlayFabEventsModels {
     interface EventContents {
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey,
-        /** The namespace in which the event is defined. It must be prepended with 'com.playfab.events.' */
+        /** The namespace in which the event is defined. It must begin with 'com.playfab.events.' */
         EventNamespace: string,
         /** The name of this event. */
         Name: string,
@@ -6334,6 +6433,8 @@ declare namespace PlayFabProfilesModels {
 
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileBody */
     interface EntityProfileBody {
+        /** Avatar URL for the entity. */
+        AvatarUrl?: string,
         /** The creation time of this profile in UTC. */
         Created: string,
         /**
@@ -6507,7 +6608,7 @@ declare namespace PlayFabProfilesModels {
     }
 
     /**
-     * Given an entity profile, will update its language to the one passed in if the profile's version is at least the one
+     * Given an entity profile, will update its language to the one passed in if the profile's version is equal to the one
      * passed in.
      * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetProfileLanguageRequest
      */
@@ -6534,42 +6635,11 @@ declare namespace PlayFabProfilesModels {
 interface IPlayFabEntityAPI {
 
     /**
-     * Activates the given API key. Active keys may be used for authentication.
-     * https://api.playfab.com/Documentation/Authentication/method/ActivateKey
-     */
-    ActivateKey(request: PlayFabAuthenticationModels.ActivateAPIKeyRequest): PlayFabAuthenticationModels.ActivateAPIKeyResponse;
-
-    /**
-     * Creates an API key for the given entity.
-     * https://api.playfab.com/Documentation/Authentication/method/CreateKey
-     */
-    CreateKey(request: PlayFabAuthenticationModels.CreateAPIKeyRequest): PlayFabAuthenticationModels.CreateAPIKeyResponse;
-
-    /**
-     * Deactivates the given API key, causing subsequent authentication attempts with it to fail.Deactivating a key is a way to
-     * verify that the key is not in use before deleting it.
-     * https://api.playfab.com/Documentation/Authentication/method/DeactivateKey
-     */
-    DeactivateKey(request: PlayFabAuthenticationModels.DeactivateAPIKeyRequest): PlayFabAuthenticationModels.DeactivateAPIKeyResponse;
-
-    /**
-     * Deletes the given API key.
-     * https://api.playfab.com/Documentation/Authentication/method/DeleteKey
-     */
-    DeleteKey(request: PlayFabAuthenticationModels.DeleteAPIKeyRequest): PlayFabAuthenticationModels.DeleteAPIKeyResponse;
-
-    /**
      * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
      * Entity Token.
      * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
      */
     GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest): PlayFabAuthenticationModels.GetEntityTokenResponse;
-
-    /**
-     * Gets the API keys associated with the given entity.
-     * https://api.playfab.com/Documentation/Authentication/method/GetKeys
-     */
-    GetKeys(request: PlayFabAuthenticationModels.GetAPIKeysRequest): PlayFabAuthenticationModels.GetAPIKeysResponse;
 
 
     /**
