@@ -1583,21 +1583,22 @@ declare namespace PlayFabServerModels {
         | "EntityAPIKeyOrSecretInvalid"
         | "EconomyServiceUnavailable"
         | "EconomyServiceInternalError"
-        | "KustoProxyQueryRateLimitExceeded"
+        | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
         | "StudioNotFound"
-        | "StudioDeletionInProgress"
+        | "StudioDeleted"
         | "StudioDeactivated"
+        | "StudioActivated"
         | "TitleCreationRateLimited"
         | "TitleCreationInProgress"
         | "DuplicateTitleName"
-        | "TitleNotFound"
-        | "TitleDeletionInProgress"
+        | "TitleActivationRateLimited"
+        | "TitleActivationInProgress"
         | "TitleDeactivated"
-        | "TitleAlreadyActivated"
+        | "TitleActivated"
         | "CloudScriptAzureFunctionsExecutionTimeLimitExceeded"
         | "CloudScriptAzureFunctionsArgumentSizeExceeded"
         | "CloudScriptAzureFunctionsReturnSizeExceeded"
@@ -1637,6 +1638,7 @@ declare namespace PlayFabServerModels {
         | "CatalogFeatureDisabled"
         | "CatalogConfigInvalid"
         | "CatalogUnauthorized"
+        | "CatalogItemTypeInvalid"
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
@@ -5426,6 +5428,22 @@ declare namespace PlayFabAuthenticationModels {
         Type?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityLineage */
+    interface EntityLineage {
+        /** The Character Id of the associated entity. */
+        CharacterId?: string,
+        /** The Group Id of the associated entity. */
+        GroupId?: string,
+        /** The Master Player Account Id of the associated entity. */
+        MasterPlayerAccountId?: string,
+        /** The Namespace Id of the associated entity. */
+        NamespaceId?: string,
+        /** The Title Id of the associated entity. */
+        TitleId?: string,
+        /** The Title Player Account Id of the associated entity. */
+        TitlePlayerAccountId?: string,
+    }
+
     /**
      * This API must be called with X-SecretKey, X-Authentication or X-EntityToken headers. An optional EntityKey may be
      * included to attempt to set the resulting EntityToken to a specific entity, however the entity must be a relation of the
@@ -5447,6 +5465,23 @@ declare namespace PlayFabAuthenticationModels {
         EntityToken?: string,
         /** The time the token will expire, if it is an expiring token, in UTC. */
         TokenExpiration?: string,
+    }
+
+    /**
+     * Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner.
+     * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest
+     */
+    interface ValidateEntityTokenRequest {
+        /** Client EntityToken */
+        EntityToken: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse */
+    interface ValidateEntityTokenResponse {
+        /** The entity id and type. */
+        Entity?: EntityKey,
+        /** The lineage of this profile. */
+        Lineage?: EntityLineage,
     }
 
 }
@@ -6640,6 +6675,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
      */
     GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest): PlayFabAuthenticationModels.GetEntityTokenResponse;
+
+    /**
+     * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
+     * https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
+     */
+    ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest): PlayFabAuthenticationModels.ValidateEntityTokenResponse;
 
 
     /**
