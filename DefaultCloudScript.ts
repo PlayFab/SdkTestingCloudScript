@@ -298,7 +298,6 @@ var RoomClosed = function (args): void {
 handlers["RoomClosed"] = RoomClosed;
 
 // Triggered automatically when a Photon room game property is updated.
-// Note: currentPlayerId is undefined in this function
 var RoomPropertyUpdated = function (args): void {
     log.debug("Room Property Updated - Game: " + args.GameId);
 }
