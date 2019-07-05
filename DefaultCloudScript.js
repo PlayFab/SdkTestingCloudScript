@@ -251,7 +251,7 @@ handlers["RoomPropertyUpdated"] = RoomPropertyUpdated;
 var RoomEventRaised = function (args) {
     var eventData = args.Data;
     log.debug("Event Raised - Game: " + args.GameId + " Event Type: " + eventData.eventType);
-    switch (eventData.eventType) {
+    switch (eventData.eventType) { // use args.EvCode instead of embedding eventType in payload
         case "playerMove":
             processPlayerMove(eventData);
             break;
