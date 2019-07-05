@@ -211,14 +211,6 @@ var UnlockHighSkillContent = function (args, context) {
     return { profile: context.playerProfile };
 };
 handlers["unlockHighSkillContent"] = UnlockHighSkillContent;
-// Photon Webhooks Integration
-//
-// The following functions are examples of Photon Cloud Webhook handlers. 
-// When you enable the Photon Add-on (https://playfab.com/marketplace/photon/)
-// in the Game Manager, your Photon applications are automatically configured
-// to authenticate players using their PlayFab accounts and to fire events that 
-// trigger your Cloud Script Webhook handlers, if defined. 
-// This makes it easier than ever to incorporate multiplayer server logic into your game.
 // Triggered automatically when a Photon room is first created
 var RoomCreated = function (args) {
     server.WritePlayerEvent({
@@ -235,6 +227,7 @@ var RoomCreated = function (args) {
             }
         }
     });
+    return { ResultCode: 0 };
 };
 handlers["RoomCreated"] = RoomCreated;
 // Triggered automatically when a player joins a Photon room
@@ -251,6 +244,7 @@ var RoomJoined = function (args) {
             }
         }
     });
+    return { ResultCode: 0 };
 };
 handlers["RoomJoined"] = RoomJoined;
 // Triggered automatically when a player leaves a Photon room
@@ -269,6 +263,7 @@ var RoomLeft = function (args) {
             }
         }
     });
+    return { ResultCode: 0 };
 };
 handlers["RoomLeft"] = RoomLeft;
 // Triggered automatically when a Photon room closes
@@ -286,6 +281,7 @@ var RoomClosed = function (args) {
             }
         }
     });
+    return { ResultCode: 0 };
 };
 handlers["RoomClosed"] = RoomClosed;
 // Triggered automatically when a Photon room game property is updated.
@@ -321,6 +317,7 @@ var RoomPropertyUpdated = function (args) {
             }
         });
     }
+    return { ResultCode: 0 };
 };
 handlers["RoomPropertyUpdated"] = RoomPropertyUpdated;
 // Triggered by calling "OpRaiseEvent" on the Photon client. The "args.Data" property is 
@@ -348,6 +345,7 @@ var RoomEventRaised = function (args) {
         default:
             break;
     }
+    return { ResultCode: 0 };
 };
 handlers["RoomEventRaised"] = RoomEventRaised;
 //# sourceMappingURL=DefaultCloudScript.js.map
