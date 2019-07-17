@@ -955,7 +955,10 @@ declare namespace PlayFabServerModels {
     interface DeletePlayerResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest */
+    /**
+     * Represents the request to delete a push notification template.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest
+     */
     interface DeletePushNotificationTemplateRequest {
         /** Id of the push notification template to be deleted. */
         PushNotificationTemplateId: string,
@@ -1585,6 +1588,7 @@ declare namespace PlayFabServerModels {
         | "EconomyServiceInternalError"
         | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
+        | "ForbiddenByEntityPolicy"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
@@ -1603,6 +1607,14 @@ declare namespace PlayFabServerModels {
         | "CloudScriptAzureFunctionsArgumentSizeExceeded"
         | "CloudScriptAzureFunctionsReturnSizeExceeded"
         | "CloudScriptAzureFunctionsHTTPRequestError"
+        | "VirtualCurrencyBetaGetError"
+        | "VirtualCurrencyBetaCreateError"
+        | "VirtualCurrencyBetaInitialDepositSaveError"
+        | "VirtualCurrencyBetaSaveError"
+        | "VirtualCurrencyBetaDeleteError"
+        | "VirtualCurrencyBetaRestoreError"
+        | "VirtualCurrencyBetaSaveConflict"
+        | "VirtualCurrencyBetaUpdateError"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1642,22 +1654,30 @@ declare namespace PlayFabServerModels {
         | "ExportInvalidStatusUpdate"
         | "ExportInvalidPrefix"
         | "ExportBlobContainerDoesNotExist"
-        | "ExportEventNameNotFound"
-        | "ExportExportTitleIdNotFound"
+        | "ExportNotFound"
         | "ExportCouldNotUpdate"
         | "ExportInvalidStorageType"
         | "ExportAmazonBucketDoesNotExist"
         | "ExportInvalidBlobStorage"
         | "ExportKustoException"
-        | "ExportKustoExceptionPartialErrorOnNewExport"
-        | "ExportKustoExceptionEdit"
         | "ExportKustoConnectionFailed"
         | "ExportUnknownError"
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
         | "ExportLimitEvents"
         | "TitleNotEnabledForParty"
-        | "PartyVersionNotFound";
+        | "PartyVersionNotFound"
+        | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "ExperimentationExperimentStopped"
+        | "ExperimentationExperimentRunning"
+        | "ExperimentationExperimentNotFound"
+        | "ExperimentationExperimentNeverStarted"
+        | "ExperimentationExperimentDeleted"
+        | "ExperimentationClientTimeout"
+        | "ExperimentationExceededVariantNameLength"
+        | "ExperimentationExceededMaxVariantLength"
+        | "ExperimentInvalidId"
+        | "SnapshotNotFound";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
     interface GenericPlayFabIdPair {
@@ -2798,7 +2818,10 @@ declare namespace PlayFabServerModels {
         Characters?: CharacterResult[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocalizedPushNotificationProperties */
+    /**
+     * Contains the localized push notification content.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocalizedPushNotificationProperties
+     */
     interface LocalizedPushNotificationProperties {
         /** Message of the localized push notification template. */
         Message?: string,
@@ -3540,7 +3563,10 @@ declare namespace PlayFabServerModels {
         Item?: RevokeInventoryItem,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest */
+    /**
+     * Represents the save push notification template request.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest
+     */
     interface SavePushNotificationTemplateRequest {
         /** Android JSON for the notification template. */
         AndroidPayload?: string,
@@ -3548,13 +3574,16 @@ declare namespace PlayFabServerModels {
         Id?: string,
         /** IOS JSON for the notification template. */
         IOSPayload?: string,
-        /** Dictionary of localized push notification templates. */
+        /** Dictionary of localized push notification templates with the language as the key. */
         LocalizedPushNotificationTemplates?: { [key: string]: LocalizedPushNotificationProperties },
         /** Name of the push notification template. */
         Name: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult */
+    /**
+     * Represents the save push notification template result.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult
+     */
     interface SavePushNotificationTemplateResult {
         /** Id of the push notification template that was saved. */
         PushNotificationTemplateId?: string,
@@ -3607,7 +3636,10 @@ declare namespace PlayFabServerModels {
     interface SendEmailFromTemplateResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest */
+    /**
+     * Represents the request for sending a push notification template to a recipient.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest
+     */
     interface SendPushNotificationFromTemplateRequest {
         /** Id of the push notification template. */
         PushNotificationTemplateId: string,
@@ -3735,7 +3767,7 @@ declare namespace PlayFabServerModels {
      */
     interface SetPlayerSecretRequest {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
-        PlayerSecret: string,
+        PlayerSecret?: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -6487,6 +6519,8 @@ declare namespace PlayFabProfilesModels {
         Files?: { [key: string]: EntityProfileFileMetadata },
         /** The language on this profile. */
         Language?: string,
+        /** Leaderboard metadata for the entity. */
+        LeaderboardMetadata?: string,
         /** The lineage of this profile. */
         Lineage?: EntityLineage,
         /** The objects on this profile. */
@@ -6603,6 +6637,23 @@ declare namespace PlayFabProfilesModels {
         Permissions?: EntityPermissionStatement[],
     }
 
+    /**
+     * Given a master player account id (PlayFab ID), returns all title player accounts associated with it.
+     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsRequest
+     */
+    interface GetTitlePlayersFromMasterPlayerAccountIdsRequest {
+        /** Master player account ids. */
+        MasterPlayerAccountIds: string[],
+        /** Id of title to get players from. */
+        TitleId?: string,
+    }
+
+    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsResponse */
+    interface GetTitlePlayersFromMasterPlayerAccountIdsResponse {
+        /** Dictionary of master player ids mapped to title player entity keys and id pairs */
+        TitlePlayerAccounts?: { [key: string]: EntityKey },
+    }
+
     /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.OperationTypes */
     type OperationTypes = "Created"
         | "Updated"
@@ -6653,7 +6704,7 @@ declare namespace PlayFabProfilesModels {
         /** The entity to perform this action on. */
         Entity?: EntityKey,
         /** The expected version of a profile to perform this update on */
-        ExpectedVersion: number,
+        ExpectedVersion?: number,
         /** The language to set on the given entity. Deletes the profile's language if passed in a null string. */
         Language?: string,
     }
@@ -6733,6 +6784,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Events/method/WriteEvents
      */
     WriteEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
+
+    /**
+     * Write batches of entity based events to as Telemetry events (bypass PlayStream).
+     * https://api.playfab.com/Documentation/Events/method/WriteTelemetryEvents
+     */
+    WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
 
 
     /**
@@ -6903,6 +6960,12 @@ interface IPlayFabEntityAPI {
      * https://api.playfab.com/Documentation/Profiles/method/GetProfiles
      */
     GetProfiles(request: PlayFabProfilesModels.GetEntityProfilesRequest): PlayFabProfilesModels.GetEntityProfilesResponse;
+
+    /**
+     * Retrieves the title player accounts associated with the given master player account.
+     * https://api.playfab.com/Documentation/Profiles/method/GetTitlePlayersFromMasterPlayerAccountIds
+     */
+    GetTitlePlayersFromMasterPlayerAccountIds(request: PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsRequest): PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse;
 
     /**
      * Sets the global title access policy
