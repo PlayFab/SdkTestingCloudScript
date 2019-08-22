@@ -2577,7 +2577,11 @@ declare namespace PlayFabServerModels {
     }
 
     /**
-     * Result of granting an item to a user
+     * Result of granting an item to a user. Note, to retrieve additional information for an item such as Tags, Description
+     * that are the same across all instances of the item, a call to GetCatalogItems is required. The ItemID of can be matched
+     * to a catalog entry, which contains the additional information. Also note that Custom Data is only set when the User's
+     * specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields such as
+     * UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
      * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantedItemInstance
      */
     interface GrantedItemInstance {
@@ -2614,9 +2618,9 @@ declare namespace PlayFabServerModels {
         RemainingUses?: number,
         /** Result of this operation. */
         Result: boolean,
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string,
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number,
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number,
@@ -2721,10 +2725,11 @@ declare namespace PlayFabServerModels {
     }
 
     /**
-     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such
-     * as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The
-     * Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note
-     * that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item such as Tags,
+     * Description that are the same across all instances of the item, a call to GetCatalogItems is required. The ItemID of can
+     * be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set when
+     * the User's specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields
+     * such as UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
      * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ItemInstance
      */
     interface ItemInstance {
@@ -2755,9 +2760,9 @@ declare namespace PlayFabServerModels {
         PurchaseDate?: string,
         /** Total number of remaining uses, if this is a consumable item. */
         RemainingUses?: number,
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         UnitCurrency?: string,
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         UnitPrice: number,
         /** The number of uses that were added or removed to this item in this call. */
         UsesIncrementedBy?: number,
@@ -2795,7 +2800,7 @@ declare namespace PlayFabServerModels {
         ForceLink?: boolean,
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string,
     }
 
@@ -2888,7 +2893,7 @@ declare namespace PlayFabServerModels {
         CreateAccount?: boolean,
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string,
     }
 
@@ -3972,7 +3977,7 @@ declare namespace PlayFabServerModels {
     interface UnlinkXboxAccountRequest {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         XboxToken: string,
     }
 
@@ -5501,6 +5506,27 @@ declare namespace PlayFabAuthenticationModels {
         TokenExpiration?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.LoginIdentityProvider */
+    type LoginIdentityProvider = "Unknown"
+        | "PlayFab"
+        | "Custom"
+        | "GameCenter"
+        | "GooglePlay"
+        | "Steam"
+        | "XBoxLive"
+        | "PSN"
+        | "Kongregate"
+        | "Facebook"
+        | "IOSDevice"
+        | "AndroidDevice"
+        | "Twitch"
+        | "WindowsHello"
+        | "GameServer"
+        | "CustomServer"
+        | "NintendoSwitch"
+        | "FacebookInstantGames"
+        | "OpenIdConnect";
+
     /**
      * Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner.
      * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest
@@ -5514,6 +5540,8 @@ declare namespace PlayFabAuthenticationModels {
     interface ValidateEntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
+        /** The identity provider for this entity, for the given login */
+        IdentityProvider?: LoginIdentityProvider,
         /** The lineage of this profile. */
         Lineage?: EntityLineage,
     }
