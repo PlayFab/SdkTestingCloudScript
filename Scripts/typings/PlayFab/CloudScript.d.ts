@@ -1589,6 +1589,7 @@ declare namespace PlayFabServerModels {
         | "QueryRateLimitExceeded"
         | "EntityAPIKeyCreationDisabledForEntity"
         | "ForbiddenByEntityPolicy"
+        | "UpdateInventoryRateLimitExceeded"
         | "StudioCreationRateLimited"
         | "StudioCreationInProgress"
         | "DuplicateStudioName"
@@ -2423,6 +2424,44 @@ declare namespace PlayFabServerModels {
         Members?: string[],
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsResult */
+    interface GetStoreItemsResult {
+        /** The base catalog that this store is a part of. */
+        CatalogVersion?: string,
+        /** Additional data about the store. */
+        MarketingData?: StoreMarketingModel,
+        /** How the store was last updated (Admin or a third party). */
+        Source?: SourceType,
+        /** Array of items which can be purchased from this store. */
+        Store?: StoreItem[],
+        /** The ID of this store. */
+        StoreId?: string,
+    }
+
+    /**
+     * A store contains an array of references to items defined in one or more catalog versions of the game, along with the
+     * prices for the item, in both real world and virtual currencies. These prices act as an override to any prices defined in
+     * the catalog. In this way, the base definitions of the items may be defined in the catalog, with all associated
+     * properties, while the pricing can be set for each store, as needed. This allows for subsets of goods to be defined for
+     * different purposes (in order to simplify showing some, but not all catalog items to users, based upon different
+     * characteristics), along with unique prices. Note that all prices defined in the catalog and store definitions for the
+     * item are considered valid, and that a compromised client can be made to send a request for an item based upon any of
+     * these definitions. If no price is specified in the store for an item, the price set in the catalog should be displayed
+     * to the user.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsServerRequest
+     */
+    interface GetStoreItemsServerRequest {
+        /** Catalog version to store items from. Use default catalog version if null */
+        CatalogVersion?: string,
+        /**
+         * Optional identifier for the player to use in requesting the store information - if used, segment overrides will be
+         * applied
+         */
+        PlayFabId?: string,
+        /** Unqiue identifier for the store which is being requested */
+        StoreId: string,
+    }
+
     /**
      * This query retrieves the current time from one of the servers in PlayFab. Please note that due to clock drift between
      * servers, there is a potential variance of up to 5 seconds.
@@ -2879,6 +2918,24 @@ declare namespace PlayFabServerModels {
         PlayerSecret?: string,
         /** The backend server identifier for this player. */
         ServerCustomId?: string,
+    }
+
+    /**
+     * If this is the first time a user has signed in with the Xbox ID and CreateAccount is set to true, a new PlayFab account
+     * will be created and linked to the Xbox Live account. In this case, no email or username will be associated with the
+     * PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error indicating this will be
+     * returned, so that the title can guide the user through creation of a PlayFab account.
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxIdRequest
+     */
+    interface LoginWithXboxIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean,
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
+        /** The id of Xbox Live sandbox. */
+        Sandbox: string,
+        /** Unique Xbox identifier for a user */
+        XboxId: string,
     }
 
     /**
@@ -3837,6 +3894,15 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
+    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SourceType */
+    type SourceType = "Admin"
+        | "BackEnd"
+        | "GameClient"
+        | "GameServer"
+        | "Partner"
+        | "Custom"
+        | "API";
+
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticModel */
     interface StatisticModel {
         /** Statistic name */
@@ -3884,6 +3950,39 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
         /** Unique Steam identifier for a user. */
         SteamStringId?: string,
+    }
+
+    /**
+     * A store entry that list a catalog item at a particular price
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StoreItem
+     */
+    interface StoreItem {
+        /** Store specific custom data. The data only exists as part of this store; it is not transferred to item instances */
+        CustomData?: any,
+        /** Intended display position for this item. Note that 0 is the first position */
+        DisplayPosition?: number,
+        /**
+         * Unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the
+         * catalog
+         */
+        ItemId: string,
+        /** Override prices for this item for specific currencies */
+        RealCurrencyPrices?: { [key: string]: number },
+        /** Override prices for this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies) */
+        VirtualCurrencyPrices?: { [key: string]: number },
+    }
+
+    /**
+     * Marketing data about a specific store
+     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StoreMarketingModel
+     */
+    interface StoreMarketingModel {
+        /** Tagline for a store. */
+        Description?: string,
+        /** Display name of a store as it will appear to users. */
+        DisplayName?: string,
+        /** Custom data about a store. */
+        Metadata?: any,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubscriptionModel */
@@ -4972,6 +5071,12 @@ interface IPlayFabServerAPI {
     GetSharedGroupData(request: PlayFabServerModels.GetSharedGroupDataRequest): PlayFabServerModels.GetSharedGroupDataResult;
 
     /**
+     * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+     * https://api.playfab.com/Documentation/Server/method/GetStoreItems
+     */
+    GetStoreItems(request: PlayFabServerModels.GetStoreItemsServerRequest): PlayFabServerModels.GetStoreItemsResult;
+
+    /**
      * Retrieves the current server time
      * https://api.playfab.com/Documentation/Server/method/GetTime
      */
@@ -5099,6 +5204,13 @@ interface IPlayFabServerAPI {
      * https://api.playfab.com/Documentation/Server/method/LoginWithXbox
      */
     LoginWithXbox(request: PlayFabServerModels.LoginWithXboxRequest): PlayFabServerModels.ServerLoginResult;
+
+    /**
+     * Signs the user in using an Xbox ID and Sandbox ID, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
+     * https://api.playfab.com/Documentation/Server/method/LoginWithXboxId
+     */
+    LoginWithXboxId(request: PlayFabServerModels.LoginWithXboxIdRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Modifies the number of remaining uses of a player's inventory item
