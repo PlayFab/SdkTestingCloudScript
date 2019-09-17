@@ -1004,7 +1004,7 @@ declare namespace PlayFabServerModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
@@ -1616,6 +1616,13 @@ declare namespace PlayFabServerModels {
         | "VirtualCurrencyBetaRestoreError"
         | "VirtualCurrencyBetaSaveConflict"
         | "VirtualCurrencyBetaUpdateError"
+        | "InsightsManagementDatabaseNotFound"
+        | "InsightsManagementOperationNotFound"
+        | "InsightsManagementErrorPendingOperationExists"
+        | "InsightsManagementSetPerformanceLevelInvalidParameter"
+        | "InsightsManagementSetStorageRetentionInvalidParameter"
+        | "InsightsManagementGetStorageUsageInvalidParameter"
+        | "InsightsManagementGetOperationStatusInvalidParameter"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1678,6 +1685,7 @@ declare namespace PlayFabServerModels {
         | "ExperimentationExceededVariantNameLength"
         | "ExperimentationExceededMaxVariantLength"
         | "ExperimentInvalidId"
+        | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
@@ -5575,7 +5583,7 @@ declare namespace PlayFabAuthenticationModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
@@ -5716,7 +5724,7 @@ declare namespace PlayFabDataModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
@@ -5919,7 +5927,7 @@ declare namespace PlayFabEventsModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
@@ -6174,7 +6182,7 @@ declare namespace PlayFabGroupsModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
@@ -6604,7 +6612,7 @@ declare namespace PlayFabProfilesModels {
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         Type?: string,
     }
 
