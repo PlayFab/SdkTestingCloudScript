@@ -1977,7 +1977,9 @@ declare namespace PlayFabServerModels {
     }
 
     /**
-     * Note that the Position of the user in the results is for the overall leaderboard.
+     * NOTE: The position of the character in the results is relative to the other characters for that specific user. This mean
+     * the values will always be between 0 and one less than the number of characters returned regardless of the size of the
+     * actual leaderboard.
      * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardForUsersCharactersResult
      */
     interface GetLeaderboardForUsersCharactersResult {
@@ -2645,7 +2647,10 @@ declare namespace PlayFabServerModels {
         CatalogVersion?: string,
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         CustomData?: { [key: string]: string | null },
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string,
@@ -2791,7 +2796,10 @@ declare namespace PlayFabServerModels {
         BundleParent?: string,
         /** Catalog version for the inventory item, when this instance was created. */
         CatalogVersion?: string,
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         CustomData?: { [key: string]: string | null },
         /** CatalogItem.DisplayName at the time this item was purchased. */
         DisplayName?: string,
