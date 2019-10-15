@@ -3188,6 +3188,8 @@ declare namespace PlayFabServerModels {
         Locations?: { [key: string]: PlayerLocation },
         /** Player account origination */
         Origination?: LoginIdentityProvider,
+        /** List of player variants for experimentation */
+        PlayerExperimentVariants?: string[],
         /** PlayFab Player ID */
         PlayerId?: string,
         /** Array of player statistics */
@@ -5943,7 +5945,7 @@ declare namespace PlayFabEventsModels {
     interface EventContents {
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey,
-        /** The namespace in which the event is defined. It must begin with 'com.playfab.events.' */
+        /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
         EventNamespace: string,
         /** The name of this event. */
         Name: string,
@@ -6671,6 +6673,8 @@ declare namespace PlayFabProfilesModels {
         Entity?: EntityKey,
         /** The chain of responsibility for this entity. Use Lineage. */
         EntityChain?: string,
+        /** The experiment variants of this profile. */
+        ExperimentVariants?: string[],
         /** The files on this profile. */
         Files?: { [key: string]: EntityProfileFileMetadata },
         /** The language on this profile. */
@@ -6936,13 +6940,14 @@ interface IPlayFabEntityAPI {
 
 
     /**
-     * Write batches of entity based events to PlayStream.
+     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
      * https://api.playfab.com/Documentation/Events/method/WriteEvents
      */
     WriteEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
 
     /**
-     * Write batches of entity based events to as Telemetry events (bypass PlayStream).
+     * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+     * with 'custom.'
      * https://api.playfab.com/Documentation/Events/method/WriteTelemetryEvents
      */
     WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
