@@ -29,9 +29,15 @@ interface IPlayFabHttp {
     request(url: string, method?: string, content?: string, contentType?: string, headers?: { [key: string]: string }): string
 }
 
+interface ITriggeredByTask {
+    Name: string;
+    Id: string;
+}
+
 interface IPlayFabContext {
     playStreamEvent: PlayStreamModels.IBasePlayStreamEvent;
     playerProfile: IPlayFabPlayerProfile;
+    triggeredByTask: ITriggeredByTask;
 }
 
 interface IPlayFabPlayerProfile {
@@ -1625,6 +1631,11 @@ declare namespace PlayFabServerModels {
         | "InsightsManagementGetOperationStatusInvalidParameter"
         | "DuplicatePurchaseTransactionId"
         | "EvaluationModePlayerCountExceeded"
+        | "GetPlayersInSegmentRateLimitExceeded"
+        | "CloudScriptFunctionNameSizeExceeded"
+        | "InsightsManagementTitleInEvaluationMode"
+        | "CloudScriptAzureFunctionsQueueRequestError"
+        | "EvaluationModeTitleCountExceeded"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1677,6 +1688,10 @@ declare namespace PlayFabServerModels {
         | "ExportCantEditPendingExport"
         | "ExportLimitExports"
         | "ExportLimitEvents"
+        | "ExportInvalidPartitionStatusModification"
+        | "ExportCouldNotCreate"
+        | "ExportNoBackingDatabaseFound"
+        | "ExportCouldNotDelete"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -1686,10 +1701,12 @@ declare namespace PlayFabServerModels {
         | "ExperimentationExperimentNeverStarted"
         | "ExperimentationExperimentDeleted"
         | "ExperimentationClientTimeout"
-        | "ExperimentationExceededVariantNameLength"
-        | "ExperimentationExceededMaxVariantLength"
+        | "ExperimentationInvalidVariantConfiguration"
+        | "ExperimentationInvalidVariableConfiguration"
         | "ExperimentInvalidId"
         | "ExperimentationNoScorecard"
+        | "ExperimentationTreatmentAssignmentFailed"
+        | "ExperimentationTreatmentAssignmentDisabled"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
@@ -2616,7 +2633,7 @@ declare namespace PlayFabServerModels {
      * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserRequest
      */
     interface GrantCharacterToUserRequest {
-        /** Non-unique display name of the character being granted (1-20 characters in length). */
+        /** Non-unique display name of the character being granted (1-40 characters in length). */
         CharacterName: string,
         /** Type of the character being granted; statistics can be sliced based on this value. */
         CharacterType: string,
@@ -4675,7 +4692,7 @@ declare namespace PlayFabServerModels {
         /** Name of the variable. */
         Name: string,
         /** Value of the variable. */
-        Value: string,
+        Value?: string,
     }
 
     /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.VirtualCurrencyRechargeTime */
@@ -4712,6 +4729,8 @@ declare namespace PlayFabServerModels {
         Body?: { [key: string]: any },
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4719,7 +4738,7 @@ declare namespace PlayFabServerModels {
         EventName: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string,
     }
 
@@ -4732,6 +4751,8 @@ declare namespace PlayFabServerModels {
     interface WriteServerPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4739,7 +4760,7 @@ declare namespace PlayFabServerModels {
         EventName: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string,
     }
 
@@ -4752,12 +4773,14 @@ declare namespace PlayFabServerModels {
     interface WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         EventName: string,
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         Timestamp?: string,
     }
 
@@ -5020,7 +5043,8 @@ interface IPlayFabServerAPI {
      * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
      * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
      * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-     * in the results. AB Test segments are currently not supported by this operation.
+     * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
+     * called 30 times in one minute. You will be returned an error if you exceed this threshold.
      * https://api.playfab.com/Documentation/Server/method/GetPlayersInSegment
      */
     GetPlayersInSegment(request: PlayFabServerModels.GetPlayersInSegmentRequest): PlayFabServerModels.GetPlayersInSegmentResult;
