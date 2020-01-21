@@ -80,7 +80,6 @@ declare var entity: IPlayFabEntityAPI;
 
 /** ServerAPI.Models as interfaces */
 declare namespace PlayFabServerModels {
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AdCampaignAttribution */
     interface AdCampaignAttribution {
         /** UTC time stamp of attribution */
         AttributedAt: string,
@@ -90,7 +89,6 @@ declare namespace PlayFabServerModels {
         Platform?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AdCampaignAttributionModel */
     interface AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         AttributedAt: string,
@@ -100,7 +98,6 @@ declare namespace PlayFabServerModels {
         Platform?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddCharacterVirtualCurrencyRequest */
     interface AddCharacterVirtualCurrencyRequest {
         /**
          * Amount to be added to the character balance of the specified virtual currency. Maximum VC balance is Int32
@@ -115,7 +112,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrency: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddFriendRequest */
     interface AddFriendRequest {
         /** Email address of the user being added. */
         FriendEmail?: string,
@@ -129,7 +125,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddGenericIDRequest */
     interface AddGenericIDRequest {
         /** Generic service identifier to add to the player account. */
         GenericId: GenericServiceId,
@@ -141,7 +136,6 @@ declare namespace PlayFabServerModels {
      * This API will trigger a player_tag_added event and add a tag with the given TagName and PlayFabID to the corresponding
      * player profile. TagName can be used for segmentation and it is limited to 256 characters. Also there is a limit on the
      * number of tags a title can have.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddPlayerTagRequest
      */
     interface AddPlayerTagRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -150,11 +144,9 @@ declare namespace PlayFabServerModels {
         TagName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddPlayerTagResult */
     interface AddPlayerTagResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersRequest */
     interface AddSharedGroupMembersRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[],
@@ -162,11 +154,9 @@ declare namespace PlayFabServerModels {
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddSharedGroupMembersResult */
     interface AddSharedGroupMembersResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AddUserVirtualCurrencyRequest */
     interface AddUserVirtualCurrencyRequest {
         /**
          * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647).
@@ -179,7 +169,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrency: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AdvancedPushPlatformMsg */
     interface AdvancedPushPlatformMsg {
         /** The Json the platform should receive. */
         Json: string,
@@ -191,20 +180,17 @@ declare namespace PlayFabServerModels {
      * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AuthenticateSessionTicketRequest
      */
     interface AuthenticateSessionTicketRequest {
         /** Session ticket as issued by a PlayFab client login API. */
         SessionTicket: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AuthenticateSessionTicketResult */
     interface AuthenticateSessionTicketResult {
         /** Account info for the user whose session ticket was supplied. */
         UserInfo?: UserAccountInfo,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AwardSteamAchievementItem */
     interface AwardSteamAchievementItem {
         /** Unique Steam achievement name. */
         AchievementName: string,
@@ -214,22 +200,17 @@ declare namespace PlayFabServerModels {
         Result: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AwardSteamAchievementRequest */
     interface AwardSteamAchievementRequest {
         /** Array of achievements to grant and the users to whom they are to be granted. */
         Achievements: AwardSteamAchievementItem[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.AwardSteamAchievementResult */
     interface AwardSteamAchievementResult {
         /** Array of achievements granted. */
         AchievementResults?: AwardSteamAchievementItem[],
     }
 
-    /**
-     * Contains information for a ban.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanInfo
-     */
+    /** Contains information for a ban. */
     interface BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
         Active: boolean,
@@ -249,10 +230,7 @@ declare namespace PlayFabServerModels {
         Reason?: string,
     }
 
-    /**
-     * Represents a single ban request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanRequest
-     */
+    /** Represents a single ban request. */
     interface BanRequest {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         DurationInHours?: number,
@@ -269,23 +247,18 @@ declare namespace PlayFabServerModels {
     /**
      * The existence of each user will not be verified. When banning by IP or MAC address, multiple players may be affected, so
      * use this feature with caution. Returns information about the new bans.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanUsersRequest
      */
     interface BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
         Bans: BanRequest[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.BanUsersResult */
     interface BanUsersResult {
         /** Information on the bans that were applied */
         BanData?: BanInfo[],
     }
 
-    /**
-     * A purchasable item from the item catalog
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CatalogItem
-     */
+    /** A purchasable item from the item catalog */
     interface CatalogItem {
         /**
          * defines the bundle properties for the item - bundles are items which contain other items, including random drop tables
@@ -343,7 +316,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyPrices?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CatalogItemBundleInfo */
     interface CatalogItemBundleInfo {
         /** unique ItemId values for all items which will be added to the player inventory when the bundle is added */
         BundledItems?: string[],
@@ -356,7 +328,6 @@ declare namespace PlayFabServerModels {
         BundledVirtualCurrencies?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CatalogItemConsumableInfo */
     interface CatalogItemConsumableInfo {
         /** number of times this object can be used, after which it will be removed from the player inventory */
         UsageCount?: number,
@@ -379,7 +350,6 @@ declare namespace PlayFabServerModels {
      * anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is
      * unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog
      * defintiions, unless the intent is for the player to be able to re-use them infinitely.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CatalogItemContainerInfo
      */
     interface CatalogItemContainerInfo {
         /** unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked */
@@ -398,7 +368,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyContents?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CharacterInventory */
     interface CharacterInventory {
         /** The id of this character. */
         CharacterId?: string,
@@ -406,7 +375,6 @@ declare namespace PlayFabServerModels {
         Inventory?: ItemInstance[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CharacterLeaderboardEntry */
     interface CharacterLeaderboardEntry {
         /** PlayFab unique identifier of the character that belongs to the user for this leaderboard entry. */
         CharacterId?: string,
@@ -424,7 +392,6 @@ declare namespace PlayFabServerModels {
         StatValue: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CharacterResult */
     interface CharacterResult {
         /** The id for this character on this player. */
         CharacterId?: string,
@@ -434,12 +401,10 @@ declare namespace PlayFabServerModels {
         CharacterType?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CloudScriptRevisionOption */
     type CloudScriptRevisionOption = "Live"
         | "Latest"
         | "Specific";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ConsumeItemRequest */
     interface ConsumeItemRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
@@ -451,7 +416,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ConsumeItemResult */
     interface ConsumeItemResult {
         /** Unique instance identifier of the item with uses consumed. */
         ItemInstanceId?: string,
@@ -459,7 +423,6 @@ declare namespace PlayFabServerModels {
         RemainingUses: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContactEmailInfo */
     interface ContactEmailInfo {
         /** The email address */
         EmailAddress?: string,
@@ -469,7 +432,6 @@ declare namespace PlayFabServerModels {
         VerificationStatus?: EmailVerificationStatus,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContactEmailInfoModel */
     interface ContactEmailInfoModel {
         /** The email address */
         EmailAddress?: string,
@@ -479,7 +441,6 @@ declare namespace PlayFabServerModels {
         VerificationStatus?: EmailVerificationStatus,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ContinentCode */
     type ContinentCode = "AF"
         | "AN"
         | "AS"
@@ -488,7 +449,6 @@ declare namespace PlayFabServerModels {
         | "OC"
         | "SA";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CountryCode */
     type CountryCode = "AF"
         | "AX"
         | "AL"
@@ -742,20 +702,17 @@ declare namespace PlayFabServerModels {
     /**
      * If SharedGroupId is specified, the service will attempt to create a group with that identifier, and will return an error
      * if it is already in use. If no SharedGroupId is specified, a random identifier will be assigned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupRequest
      */
     interface CreateSharedGroupRequest {
         /** Unique identifier for the shared group (a random identifier will be assigned, if one is not specified). */
         SharedGroupId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.CreateSharedGroupResult */
     interface CreateSharedGroupResult {
         /** Unique identifier for the shared group. */
         SharedGroupId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.Currency */
     type Currency = "AED"
         | "AFN"
         | "ALL"
@@ -923,7 +880,6 @@ declare namespace PlayFabServerModels {
      * This function will delete the specified character from the list allowed by the user, and will also delete any inventory
      * or VC currently held by that character. It will NOT delete any statistics associated for this character, in order to
      * preserve leaderboard integrity.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteCharacterFromUserRequest
      */
     interface DeleteCharacterFromUserRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -937,7 +893,6 @@ declare namespace PlayFabServerModels {
         SaveCharacterInventory: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteCharacterFromUserResult */
     interface DeleteCharacterFromUserResult {
     }
 
@@ -950,63 +905,48 @@ declare namespace PlayFabServerModels {
      * before all player data is fully deleted. Until the player data is fully deleted, attempts to recreate the player with
      * the same user account in the same title will fail with the 'AccountDeleted' error. This API must be enabled for use as
      * an option in the game manager website. It is disabled by default.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerRequest
      */
     interface DeletePlayerRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePlayerResult */
     interface DeletePlayerResult {
     }
 
-    /**
-     * Represents the request to delete a push notification template.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateRequest
-     */
+    /** Represents the request to delete a push notification template. */
     interface DeletePushNotificationTemplateRequest {
         /** Id of the push notification template to be deleted. */
         PushNotificationTemplateId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeletePushNotificationTemplateResult */
     interface DeletePushNotificationTemplateResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeleteSharedGroupRequest */
     interface DeleteSharedGroupRequest {
         /** Unique identifier for the shared group. */
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameRequest */
     interface DeregisterGameRequest {
         /** Unique identifier for the Game Server Instance that is being deregistered. */
         LobbyId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.DeregisterGameResponse */
     interface DeregisterGameResponse {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmailVerificationStatus */
     type EmailVerificationStatus = "Unverified"
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResponse */
     interface EmptyResponse {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EmptyResult */
     interface EmptyResult {
     }
 
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -1014,7 +954,6 @@ declare namespace PlayFabServerModels {
         Type?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EntityTokenResponse */
     interface EntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -1024,7 +963,6 @@ declare namespace PlayFabServerModels {
         TokenExpiration?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableRequest */
     interface EvaluateRandomResultTableRequest {
         /**
          * Specifies the catalog version that should be used to evaluate the Random Result Table. If unspecified, uses
@@ -1038,14 +976,12 @@ declare namespace PlayFabServerModels {
     /**
      * Note that if the Random Result Table contains no entries, or does not exist for the catalog specified (the Primary
      * catalog if one is not specified), an InvalidDropTable error will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.EvaluateRandomResultTableResult
      */
     interface EvaluateRandomResultTableResult {
         /** Unique identifier for the item returned from the Random Result Table evaluation, for the given catalog. */
         ResultItemId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ExecuteCloudScriptResult */
     interface ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number,
@@ -1083,7 +1019,6 @@ declare namespace PlayFabServerModels {
         Revision: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ExecuteCloudScriptServerRequest */
     interface ExecuteCloudScriptServerRequest {
         /** The name of the CloudScript function to execute */
         FunctionName: string,
@@ -1106,7 +1041,6 @@ declare namespace PlayFabServerModels {
         SpecificRevision?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.FacebookInstantGamesPlayFabIdPair */
     interface FacebookInstantGamesPlayFabIdPair {
         /** Unique Facebook Instant Games identifier for a user. */
         FacebookInstantGamesId?: string,
@@ -1114,7 +1048,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.FacebookPlayFabIdPair */
     interface FacebookPlayFabIdPair {
         /** Unique Facebook identifier for a user. */
         FacebookId?: string,
@@ -1122,7 +1055,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.FriendInfo */
     interface FriendInfo {
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         FacebookInfo?: UserFacebookInfo,
@@ -1146,11 +1078,9 @@ declare namespace PlayFabServerModels {
         XboxInfo?: UserXboxInfo,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GameInstanceState */
     type GameInstanceState = "Open"
         | "Closed";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericErrorCodes */
     type GenericErrorCodes = "Success"
         | "UnkownError"
         | "InvalidParams"
@@ -1636,6 +1566,7 @@ declare namespace PlayFabServerModels {
         | "InsightsManagementTitleInEvaluationMode"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
+        | "InsightsManagementTitleNotInFlight"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1710,7 +1641,6 @@ declare namespace PlayFabServerModels {
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericPlayFabIdPair */
     interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
         GenericId?: GenericServiceId,
@@ -1718,7 +1648,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GenericServiceId */
     interface GenericServiceId {
         /** Name of the service for which the player has a unique identifier. */
         ServiceName: string,
@@ -1726,26 +1655,20 @@ declare namespace PlayFabServerModels {
         UserId: string,
     }
 
-    /**
-     * Request has no paramaters.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsRequest
-     */
+    /** Request has no paramaters. */
     interface GetAllSegmentsRequest {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetAllSegmentsResult */
     interface GetAllSegmentsResult {
         /** Array of segments for this title. */
         Segments?: GetSegmentResult[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCatalogItemsRequest */
     interface GetCatalogItemsRequest {
         /** Which catalog is being requested. If null, uses the default catalog. */
         CatalogVersion?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCatalogItemsResult */
     interface GetCatalogItemsResult {
         /** Array of items which can be purchased. */
         Catalog?: CatalogItem[],
@@ -1754,7 +1677,6 @@ declare namespace PlayFabServerModels {
     /**
      * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
      * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataRequest
      */
     interface GetCharacterDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -1770,7 +1692,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterDataResult */
     interface GetCharacterDataResult {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
@@ -1789,7 +1710,6 @@ declare namespace PlayFabServerModels {
      * All items currently in the character inventory will be returned, irrespective of how they were acquired (via purchasing,
      * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
      * user's current inventory, and so will not be not included. Also returns their virtual currency balances.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterInventoryRequest
      */
     interface GetCharacterInventoryRequest {
         /** Used to limit results to only those from a specific catalog version. */
@@ -1800,7 +1720,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterInventoryResult */
     interface GetCharacterInventoryResult {
         /** Unique identifier of the character for this inventory. */
         CharacterId?: string,
@@ -1814,7 +1733,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyRechargeTimes?: { [key: string]: VirtualCurrencyRechargeTime },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterLeaderboardRequest */
     interface GetCharacterLeaderboardRequest {
         /** Optional character type on which to filter the leaderboard entries. */
         CharacterType?: string,
@@ -1826,10 +1744,7 @@ declare namespace PlayFabServerModels {
         StatisticName: string,
     }
 
-    /**
-     * Note that the Position of the character in the results is for the overall leaderboard.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterLeaderboardResult
-     */
+    /** Note that the Position of the character in the results is for the overall leaderboard. */
     interface GetCharacterLeaderboardResult {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[],
@@ -1839,7 +1754,6 @@ declare namespace PlayFabServerModels {
      * Character statistics are similar to user statistics in that they are numeric values which may only be updated by a
      * server operation, in order to minimize the opportunity for unauthorized changes. In addition to being available for use
      * by the title, the statistics are used for all leaderboard operations in PlayFab.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterStatisticsRequest
      */
     interface GetCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -1848,7 +1762,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetCharacterStatisticsResult */
     interface GetCharacterStatisticsResult {
         /** Unique identifier of the character for the statistics. */
         CharacterId?: string,
@@ -1858,7 +1771,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlRequest */
     interface GetContentDownloadUrlRequest {
         /** HTTP method to fetch item - GET or HEAD. Use HEAD when only fetching metadata. Default is GET. */
         HttpMethod?: string,
@@ -1871,13 +1783,11 @@ declare namespace PlayFabServerModels {
         ThruCDN?: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetContentDownloadUrlResult */
     interface GetContentDownloadUrlResult {
         /** URL for downloading content via HTTP GET or HEAD method. The URL will expire in approximately one hour. */
         URL?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendLeaderboardRequest */
     interface GetFriendLeaderboardRequest {
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean,
@@ -1903,7 +1813,6 @@ declare namespace PlayFabServerModels {
         XboxToken?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListRequest */
     interface GetFriendsListRequest {
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean,
@@ -1925,14 +1834,12 @@ declare namespace PlayFabServerModels {
      * If any additional services are queried for the user's friends, those friends who also have a PlayFab account registered
      * for the title will be returned in the results. For Facebook, user has to have logged into the title's Facebook app
      * recently, and only friends who also plays this game will be included.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetFriendsListResult
      */
     interface GetFriendsListResult {
         /** Array of friends found. */
         Friends?: FriendInfo[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundCharacterRequest */
     interface GetLeaderboardAroundCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
@@ -1949,14 +1856,12 @@ declare namespace PlayFabServerModels {
     /**
      * Note: When calling 'GetLeaderboardAround...' APIs, the position of the character defaults to 0 when the character does
      * not have the corresponding statistic.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundCharacterResult
      */
     interface GetLeaderboardAroundCharacterResult {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserRequest */
     interface GetLeaderboardAroundUserRequest {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
@@ -1977,7 +1882,6 @@ declare namespace PlayFabServerModels {
     /**
      * Note: When calling 'GetLeaderboardAround...' APIs, the position of the user defaults to 0 when the user does not have
      * the corresponding statistic.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardAroundUserResult
      */
     interface GetLeaderboardAroundUserResult {
         /** Ordered listing of users and their positions in the requested leaderboard. */
@@ -1988,7 +1892,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardForUsersCharactersRequest */
     interface GetLeaderboardForUsersCharactersRequest {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
@@ -2002,14 +1905,12 @@ declare namespace PlayFabServerModels {
      * NOTE: The position of the character in the results is relative to the other characters for that specific user. This mean
      * the values will always be between 0 and one less than the number of characters returned regardless of the size of the
      * actual leaderboard.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardForUsersCharactersResult
      */
     interface GetLeaderboardForUsersCharactersResult {
         /** Ordered list of leaderboard entries. */
         Leaderboard?: CharacterLeaderboardEntry[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardRequest */
     interface GetLeaderboardRequest {
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
@@ -2027,10 +1928,7 @@ declare namespace PlayFabServerModels {
         Version?: number,
     }
 
-    /**
-     * Note that the Position of the user in the results is for the overall leaderboard.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetLeaderboardResult
-     */
+    /** Note that the Position of the user in the results is for the overall leaderboard. */
     interface GetLeaderboardResult {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         Leaderboard?: PlayerLeaderboardEntry[],
@@ -2040,7 +1938,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoRequest */
     interface GetPlayerCombinedInfoRequest {
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters: GetPlayerCombinedInfoRequestParams,
@@ -2048,7 +1945,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoRequestParams */
     interface GetPlayerCombinedInfoRequestParams {
         /** Whether to get character inventories. Defaults to false. */
         GetCharacterInventories: boolean,
@@ -2085,7 +1981,6 @@ declare namespace PlayFabServerModels {
         UserReadOnlyDataKeys?: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResult */
     interface GetPlayerCombinedInfoResult {
         /** Results for requested info. */
         InfoResultPayload?: GetPlayerCombinedInfoResultPayload,
@@ -2093,7 +1988,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerCombinedInfoResultPayload */
     interface GetPlayerCombinedInfoResultPayload {
         /** Account information for the user. This is always retrieved. */
         AccountInfo?: UserAccountInfo,
@@ -2131,7 +2025,6 @@ declare namespace PlayFabServerModels {
      * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileRequest
      */
     interface GetPlayerProfileRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2144,7 +2037,6 @@ declare namespace PlayFabServerModels {
         ProfileConstraints?: PlayerProfileViewConstraints,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerProfileResult */
     interface GetPlayerProfileResult {
         /**
          * The profile of the player. This profile is not guaranteed to be up-to-date. For a new player, this profile will not
@@ -2153,7 +2045,6 @@ declare namespace PlayFabServerModels {
         PlayerProfile?: PlayerProfileModel,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerSegmentsResult */
     interface GetPlayerSegmentsResult {
         /** Array of segments the requested player currently belongs to. */
         Segments?: GetSegmentResult[],
@@ -2167,7 +2058,6 @@ declare namespace PlayFabServerModels {
      * returned and paging will be terminated. This API is resource intensive and should not be used in scenarios which might
      * generate high request volumes. Only one request to this API at a time should be made per title. Concurrent requests to
      * the API may be rejected with the APIConcurrentRequestLimitExceeded error.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentRequest
      */
     interface GetPlayersInSegmentRequest {
         /** Continuation token if retrieving subsequent pages of results. */
@@ -2183,7 +2073,6 @@ declare namespace PlayFabServerModels {
         SegmentId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersInSegmentResult */
     interface GetPlayersInSegmentResult {
         /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
         ContinuationToken?: string,
@@ -2193,13 +2082,11 @@ declare namespace PlayFabServerModels {
         ProfilesInSegment: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayersSegmentsRequest */
     interface GetPlayersSegmentsRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticsRequest */
     interface GetPlayerStatisticsRequest {
         /** user for whom statistics are being requested */
         PlayFabId: string,
@@ -2212,10 +2099,7 @@ declare namespace PlayFabServerModels {
         StatisticNameVersions?: StatisticNameVersion[],
     }
 
-    /**
-     * In addition to being available for use by the title, the statistics are used for all leaderboard operations in PlayFab.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticsResult
-     */
+    /** In addition to being available for use by the title, the statistics are used for all leaderboard operations in PlayFab. */
     interface GetPlayerStatisticsResult {
         /** PlayFab unique identifier of the user whose statistics are being returned */
         PlayFabId?: string,
@@ -2223,13 +2107,11 @@ declare namespace PlayFabServerModels {
         Statistics?: StatisticValue[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticVersionsRequest */
     interface GetPlayerStatisticVersionsRequest {
         /** unique name of the statistic */
         StatisticName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerStatisticVersionsResult */
     interface GetPlayerStatisticVersionsResult {
         /** version change history of the statistic */
         StatisticVersions?: PlayerStatisticVersion[],
@@ -2239,7 +2121,6 @@ declare namespace PlayFabServerModels {
      * This API will return a list of canonical tags which includes both namespace and tag's name. If namespace is not
      * provided, the result is a list of all canonical tags. TagName can be used for segmentation and Namespace is limited to
      * 128 characters.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerTagsRequest
      */
     interface GetPlayerTagsRequest {
         /** Optional namespace to filter results by */
@@ -2248,7 +2129,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayerTagsResult */
     interface GetPlayerTagsResult {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
@@ -2256,37 +2136,28 @@ declare namespace PlayFabServerModels {
         Tags: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookIDsRequest */
     interface GetPlayFabIDsFromFacebookIDsRequest {
         /** Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. */
         FacebookIDs: string[],
     }
 
-    /**
-     * For Facebook identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookIDsResult
-     */
+    /** For Facebook identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromFacebookIDsResult {
         /** Mapping of Facebook identifiers to PlayFab identifiers. */
         Data?: FacebookPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsRequest */
     interface GetPlayFabIDsFromFacebookInstantGamesIdsRequest {
         /** Array of unique Facebook Instant Games identifiers for which the title needs to get PlayFab identifiers. */
         FacebookInstantGamesIds: string[],
     }
 
-    /**
-     * For Facebook Instant Games identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromFacebookInstantGamesIdsResult
-     */
+    /** For Facebook Instant Games identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromFacebookInstantGamesIdsResult {
         /** Mapping of Facebook Instant Games identifiers to PlayFab identifiers. */
         Data?: FacebookInstantGamesPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsRequest */
     interface GetPlayFabIDsFromGenericIDsRequest {
         /**
          * Array of unique generic service identifiers for which the title needs to get PlayFab identifiers. Currently limited to a
@@ -2295,31 +2166,23 @@ declare namespace PlayFabServerModels {
         GenericIDs: GenericServiceId[],
     }
 
-    /**
-     * For generic service identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromGenericIDsResult
-     */
+    /** For generic service identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromGenericIDsResult {
         /** Mapping of generic service identifiers to PlayFab identifiers. */
         Data?: GenericPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest */
     interface GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
         /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
         NintendoSwitchDeviceIds: string[],
     }
 
-    /**
-     * For Nintendo Switch Device identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
-     */
+    /** For Nintendo Switch Device identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromNintendoSwitchDeviceIdsResult {
         /** Mapping of Nintendo Switch Device identifiers to PlayFab identifiers. */
         Data?: NintendoSwitchPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsRequest */
     interface GetPlayFabIDsFromPSNAccountIDsRequest {
         /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         IssuerId?: number,
@@ -2327,31 +2190,23 @@ declare namespace PlayFabServerModels {
         PSNAccountIDs: string[],
     }
 
-    /**
-     * For PlayStation Network identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromPSNAccountIDsResult
-     */
+    /** For PlayStation Network identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromPSNAccountIDsResult {
         /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
         Data?: PSNAccountPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsRequest */
     interface GetPlayFabIDsFromSteamIDsRequest {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
         SteamStringIDs?: string[],
     }
 
-    /**
-     * For Steam identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromSteamIDsResult
-     */
+    /** For Steam identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromSteamIDsResult {
         /** Mapping of Steam identifiers to PlayFab identifiers. */
         Data?: SteamPlayFabIdPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsRequest */
     interface GetPlayFabIDsFromXboxLiveIDsRequest {
         /** The ID of Xbox Live sandbox. */
         Sandbox?: string,
@@ -2359,10 +2214,7 @@ declare namespace PlayFabServerModels {
         XboxLiveAccountIDs: string[],
     }
 
-    /**
-     * For XboxLive identifiers which have not been linked to PlayFab accounts, null will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPlayFabIDsFromXboxLiveIDsResult
-     */
+    /** For XboxLive identifiers which have not been linked to PlayFab accounts, null will be returned. */
     interface GetPlayFabIDsFromXboxLiveIDsResult {
         /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
         Data?: XboxLiveAccountPlayFabIdPair[],
@@ -2373,20 +2225,17 @@ declare namespace PlayFabServerModels {
      * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
      * assigned to a publisher can use this API. For more information email devrel@playfab.com. Note that there may up to a
      * minute delay in between updating title data and this API call returning the newest value.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataRequest
      */
     interface GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         Keys: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetPublisherDataResult */
     interface GetPublisherDataResult {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesRequest */
     interface GetRandomResultTablesRequest {
         /**
          * Specifies the catalog version that should be used to retrieve the Random Result Tables. If unspecified, uses
@@ -2400,14 +2249,12 @@ declare namespace PlayFabServerModels {
     /**
      * Note that if a specified Random Result Table contains no entries, or does not exist in the catalog, an InvalidDropTable
      * error will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetRandomResultTablesResult
      */
     interface GetRandomResultTablesResult {
         /** array of random result tables currently available */
         Tables?: { [key: string]: RandomResultTableListing },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSegmentResult */
     interface GetSegmentResult {
         /** Identifier of the segments AB Test, if it is attached to one. */
         ABTestParent?: string,
@@ -2417,7 +2264,6 @@ declare namespace PlayFabServerModels {
         Name?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsRequest */
     interface GetServerCustomIDsFromPlayFabIDsRequest {
         /**
          * Array of unique PlayFab player identifiers for which the title needs to get server custom identifiers. Cannot contain
@@ -2426,16 +2272,12 @@ declare namespace PlayFabServerModels {
         PlayFabIDs: string[],
     }
 
-    /**
-     * For a PlayFab account that isn't associated with a server custom identity, ServerCustomId will be null.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetServerCustomIDsFromPlayFabIDsResult
-     */
+    /** For a PlayFab account that isn't associated with a server custom identity, ServerCustomId will be null. */
     interface GetServerCustomIDsFromPlayFabIDsResult {
         /** Mapping of server custom player identifiers to PlayFab identifiers. */
         Data?: ServerCustomIDPlayFabIDPair[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataRequest */
     interface GetSharedGroupDataRequest {
         /** If true, return the list of all members of the shared group. */
         GetMembers?: boolean,
@@ -2448,7 +2290,6 @@ declare namespace PlayFabServerModels {
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetSharedGroupDataResult */
     interface GetSharedGroupDataResult {
         /** Data for the requested keys. */
         Data?: { [key: string]: SharedGroupDataRecord },
@@ -2456,7 +2297,6 @@ declare namespace PlayFabServerModels {
         Members?: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsResult */
     interface GetStoreItemsResult {
         /** The base catalog that this store is a part of. */
         CatalogVersion?: string,
@@ -2480,7 +2320,6 @@ declare namespace PlayFabServerModels {
      * item are considered valid, and that a compromised client can be made to send a request for an item based upon any of
      * these definitions. If no price is specified in the store for an item, the price set in the catalog should be displayed
      * to the user.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetStoreItemsServerRequest
      */
     interface GetStoreItemsServerRequest {
         /** Catalog version to store items from. Use default catalog version if null */
@@ -2497,15 +2336,11 @@ declare namespace PlayFabServerModels {
     /**
      * This query retrieves the current time from one of the servers in PlayFab. Please note that due to clock drift between
      * servers, there is a potential variance of up to 5 seconds.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTimeRequest
      */
     interface GetTimeRequest {
     }
 
-    /**
-     * Time is always returned as Coordinated Universal Time (UTC).
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTimeResult
-     */
+    /** Time is always returned as Coordinated Universal Time (UTC). */
     interface GetTimeResult {
         /** Current server time when the request was received, in UTC */
         Time: string,
@@ -2517,26 +2352,22 @@ declare namespace PlayFabServerModels {
      * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
      * build. Note that there may up to a minute delay in between updating title data and this API call returning the newest
      * value.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataRequest
      */
     interface GetTitleDataRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleDataResult */
     interface GetTitleDataResult {
         /** a dictionary object of key / value pairs */
         Data?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsRequest */
     interface GetTitleNewsRequest {
         /** Limits the results to the last n entries. Defaults to 10 if not set. */
         Count?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetTitleNewsResult */
     interface GetTitleNewsResult {
         /** Array of localized news items. */
         News?: TitleNewsItem[],
@@ -2547,29 +2378,23 @@ declare namespace PlayFabServerModels {
      * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserAccountInfoRequest
      */
     interface GetUserAccountInfoRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserAccountInfoResult */
     interface GetUserAccountInfoResult {
         /** Account details for the user whose information was requested. */
         UserInfo?: UserAccountInfo,
     }
 
-    /**
-     * Get all bans for a user, including inactive and expired bans.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserBansRequest
-     */
+    /** Get all bans for a user, including inactive and expired bans. */
     interface GetUserBansRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserBansResult */
     interface GetUserBansResult {
         /** Information about the bans */
         BanData?: BanInfo[],
@@ -2578,7 +2403,6 @@ declare namespace PlayFabServerModels {
     /**
      * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
      * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataRequest
      */
     interface GetUserDataRequest {
         /**
@@ -2592,7 +2416,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserDataResult */
     interface GetUserDataResult {
         /** User specific data for this title. */
         Data?: { [key: string]: UserDataRecord },
@@ -2609,14 +2432,12 @@ declare namespace PlayFabServerModels {
      * All items currently in the user inventory will be returned, irrespective of how they were acquired (via purchasing,
      * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
      * user's current inventory, and so will not be not included.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserInventoryRequest
      */
     interface GetUserInventoryRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GetUserInventoryResult */
     interface GetUserInventoryResult {
         /** Array of inventory items belonging to the user. */
         Inventory?: ItemInstance[],
@@ -2628,10 +2449,7 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyRechargeTimes?: { [key: string]: VirtualCurrencyRechargeTime },
     }
 
-    /**
-     * Grants a character to the user of the type and name specified in the request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserRequest
-     */
+    /** Grants a character to the user of the type and name specified in the request. */
     interface GrantCharacterToUserRequest {
         /** Non-unique display name of the character being granted (1-40 characters in length). */
         CharacterName: string,
@@ -2641,7 +2459,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantCharacterToUserResult */
     interface GrantCharacterToUserResult {
         /** Unique identifier tagged to this character. */
         CharacterId?: string,
@@ -2653,7 +2470,6 @@ declare namespace PlayFabServerModels {
      * to a catalog entry, which contains the additional information. Also note that Custom Data is only set when the User's
      * specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields such as
      * UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantedItemInstance
      */
     interface GrantedItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
@@ -2705,7 +2521,6 @@ declare namespace PlayFabServerModels {
      * will not be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the
      * processing time for inventory grants and purchases increases fractionally the more items are in the inventory, and the
      * more items are in the grant/purchase operation.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToCharacterRequest
      */
     interface GrantItemsToCharacterRequest {
         /** String detailing any additional information concerning this operation. */
@@ -2720,7 +2535,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToCharacterResult */
     interface GrantItemsToCharacterResult {
         /** Array of items granted to users. */
         ItemGrantResults?: GrantedItemInstance[],
@@ -2731,7 +2545,6 @@ declare namespace PlayFabServerModels {
      * be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the processing
      * time for inventory grants and purchases increases fractionally the more items are in the inventory, and the more items
      * are in the grant/purchase operation.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUserRequest
      */
     interface GrantItemsToUserRequest {
         /** String detailing any additional information concerning this operation. */
@@ -2744,10 +2557,7 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /**
-     * Please note that the order of the items in the response may not match the order of items in the request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUserResult
-     */
+    /** Please note that the order of the items in the response may not match the order of items in the request. */
     interface GrantItemsToUserResult {
         /** Array of items granted to users. */
         ItemGrantResults?: GrantedItemInstance[],
@@ -2758,7 +2568,6 @@ declare namespace PlayFabServerModels {
      * charged any transaction fee, regardless of the inventory item catalog definition. Please note that the processing time
      * for inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in
      * the grant/purchase operation.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUsersRequest
      */
     interface GrantItemsToUsersRequest {
         /** Catalog version from which items are to be granted. */
@@ -2767,16 +2576,12 @@ declare namespace PlayFabServerModels {
         ItemGrants: ItemGrant[],
     }
 
-    /**
-     * Please note that the order of the items in the response may not match the order of items in the request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.GrantItemsToUsersResult
-     */
+    /** Please note that the order of the items in the response may not match the order of items in the request. */
     interface GrantItemsToUsersResult {
         /** Array of items granted to users. */
         ItemGrantResults?: GrantedItemInstance[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ItemGrant */
     interface ItemGrant {
         /** String detailing any additional information concerning this operation. */
         Annotation?: string,
@@ -2804,7 +2609,6 @@ declare namespace PlayFabServerModels {
      * be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set when
      * the User's specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields
      * such as UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ItemInstance
      */
     interface ItemInstance {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
@@ -2845,7 +2649,6 @@ declare namespace PlayFabServerModels {
         UsesIncrementedBy?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkedPlatformAccountModel */
     interface LinkedPlatformAccountModel {
         /** Linked account email of the user on the platform, if available */
         Email?: string,
@@ -2857,7 +2660,22 @@ declare namespace PlayFabServerModels {
         Username?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdRequest */
+    interface LinkPSNAccountRequest {
+        /** Authentication code provided by the PlayStation Network. */
+        AuthCode: string,
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        ForceLink?: boolean,
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        IssuerId?: number,
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+        /** Redirect URI supplied to PSN when requesting an auth code */
+        RedirectUri: string,
+    }
+
+    interface LinkPSNAccountResult {
+    }
+
     interface LinkServerCustomIdRequest {
         /** If another user is already linked to the custom ID, unlink the other user and re-link. */
         ForceLink?: boolean,
@@ -2867,11 +2685,9 @@ declare namespace PlayFabServerModels {
         ServerCustomId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkServerCustomIdResult */
     interface LinkServerCustomIdResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountRequest */
     interface LinkXboxAccountRequest {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean,
@@ -2881,29 +2697,21 @@ declare namespace PlayFabServerModels {
         XboxToken: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LinkXboxAccountResult */
     interface LinkXboxAccountResult {
     }
 
-    /**
-     * Returns a list of every character that currently belongs to a user.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersRequest
-     */
+    /** Returns a list of every character that currently belongs to a user. */
     interface ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ListUsersCharactersResult */
     interface ListUsersCharactersResult {
         /** The requested list of characters. */
         Characters?: CharacterResult[],
     }
 
-    /**
-     * Contains the localized push notification content.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocalizedPushNotificationProperties
-     */
+    /** Contains the localized push notification content. */
     interface LocalizedPushNotificationProperties {
         /** Message of the localized push notification template. */
         Message?: string,
@@ -2911,7 +2719,6 @@ declare namespace PlayFabServerModels {
         Subject?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LocationModel */
     interface LocationModel {
         /** City name. */
         City?: string,
@@ -2925,7 +2732,6 @@ declare namespace PlayFabServerModels {
         Longitude?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginIdentityProvider */
     type LoginIdentityProvider = "Unknown"
         | "PlayFab"
         | "Custom"
@@ -2946,7 +2752,6 @@ declare namespace PlayFabServerModels {
         | "FacebookInstantGames"
         | "OpenIdConnect";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithServerCustomIdRequest */
     interface LoginWithServerCustomIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean,
@@ -2963,7 +2768,6 @@ declare namespace PlayFabServerModels {
      * will be created and linked to the Xbox Live account. In this case, no email or username will be associated with the
      * PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error indicating this will be
      * returned, so that the title can guide the user through creation of a PlayFab account.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxIdRequest
      */
     interface LoginWithXboxIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -2981,7 +2785,6 @@ declare namespace PlayFabServerModels {
      * PlayFab account will be created and linked to the Xbox Live account. In this case, no email or username will be
      * associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error
      * indicating this will be returned, so that the title can guide the user through creation of a PlayFab account.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LoginWithXboxRequest
      */
     interface LoginWithXboxRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -2992,7 +2795,6 @@ declare namespace PlayFabServerModels {
         XboxToken: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.LogStatement */
     interface LogStatement {
         /** Optional object accompanying the message as contextual information */
         Data?: any,
@@ -3001,7 +2803,6 @@ declare namespace PlayFabServerModels {
         Message?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MembershipModel */
     interface MembershipModel {
         /** Whether this membership is active. That is, whether the MembershipExpiration time has been reached. */
         IsActive: boolean,
@@ -3018,7 +2819,6 @@ declare namespace PlayFabServerModels {
         Subscriptions?: SubscriptionModel[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyCharacterVirtualCurrencyResult */
     interface ModifyCharacterVirtualCurrencyResult {
         /** Balance of the virtual currency after modification. */
         Balance: number,
@@ -3029,7 +2829,6 @@ declare namespace PlayFabServerModels {
     /**
      * This function can both add and remove uses of an inventory item. If the number of uses drops below zero, the item will
      * be removed from active inventory.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyItemUsesRequest
      */
     interface ModifyItemUsesRequest {
         /** Unique instance identifier of the item to be modified. */
@@ -3040,7 +2839,6 @@ declare namespace PlayFabServerModels {
         UsesToAdd: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyItemUsesResult */
     interface ModifyItemUsesResult {
         /** Unique instance identifier of the item with uses consumed. */
         ItemInstanceId?: string,
@@ -3048,7 +2846,6 @@ declare namespace PlayFabServerModels {
         RemainingUses: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ModifyUserVirtualCurrencyResult */
     interface ModifyUserVirtualCurrencyResult {
         /** Balance of the virtual currency after modification. */
         Balance: number,
@@ -3067,7 +2864,6 @@ declare namespace PlayFabServerModels {
      * Transfers an item from a character to another character that is owned by the same user. This will remove the item from
      * the character's inventory (until and unless it is moved back), and will enable the other character to make use of the
      * item instead.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromCharacterRequest
      */
     interface MoveItemToCharacterFromCharacterRequest {
         /** Unique identifier of the character that currently has the item. */
@@ -3080,14 +2876,12 @@ declare namespace PlayFabServerModels {
         ReceivingCharacterId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromCharacterResult */
     interface MoveItemToCharacterFromCharacterResult {
     }
 
     /**
      * Transfers an item from a user to a character she owns. This will remove the item from the user's inventory (until and
      * unless it is moved back), and will enable the character to make use of the item instead.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromUserRequest
      */
     interface MoveItemToCharacterFromUserRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3098,14 +2892,12 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToCharacterFromUserResult */
     interface MoveItemToCharacterFromUserResult {
     }
 
     /**
      * Transfers an item from a character to the owning user. This will remove the item from the character's inventory (until
      * and unless it is moved back), and will enable the user to make use of the item instead.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToUserFromCharacterRequest
      */
     interface MoveItemToUserFromCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3116,11 +2908,9 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.MoveItemToUserFromCharacterResult */
     interface MoveItemToUserFromCharacterResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NintendoSwitchPlayFabIdPair */
     interface NintendoSwitchPlayFabIdPair {
         /** Unique Nintendo Switch Device identifier for a user. */
         NintendoSwitchDeviceId?: string,
@@ -3128,7 +2918,6 @@ declare namespace PlayFabServerModels {
         PlayFabId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftRequest */
     interface NotifyMatchmakerPlayerLeftRequest {
         /** Unique identifier of the Game Instance the user is leaving. */
         LobbyId: string,
@@ -3136,19 +2925,16 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.NotifyMatchmakerPlayerLeftResult */
     interface NotifyMatchmakerPlayerLeftResult {
         /** State of user leaving the Game Server Instance. */
         PlayerState?: PlayerConnectionState,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerConnectionState */
     type PlayerConnectionState = "Unassigned"
         | "Connecting"
         | "Participating"
         | "Participated";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerLeaderboardEntry */
     interface PlayerLeaderboardEntry {
         /** Title-specific display name of the user for this leaderboard entry. */
         DisplayName?: string,
@@ -3162,7 +2948,6 @@ declare namespace PlayFabServerModels {
         StatValue: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerLinkedAccount */
     interface PlayerLinkedAccount {
         /** Linked account's email */
         Email?: string,
@@ -3174,7 +2959,6 @@ declare namespace PlayFabServerModels {
         Username?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerLocation */
     interface PlayerLocation {
         /** City of the player's geographic location. */
         City?: string,
@@ -3188,7 +2972,6 @@ declare namespace PlayFabServerModels {
         Longitude?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfile */
     interface PlayerProfile {
         /** Array of ad campaigns player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttribution[],
@@ -3234,7 +3017,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyBalances?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileModel */
     interface PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttributionModel[],
@@ -3281,7 +3063,6 @@ declare namespace PlayFabServerModels {
         ValuesToDate?: ValueToDateModel[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerProfileViewConstraints */
     interface PlayerProfileViewConstraints {
         /** Whether to show player's avatar URL. Defaults to false */
         ShowAvatarUrl: boolean,
@@ -3319,7 +3100,6 @@ declare namespace PlayFabServerModels {
         ShowValuesToDate: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerStatistic */
     interface PlayerStatistic {
         /** Statistic ID */
         Id?: string,
@@ -3331,7 +3111,6 @@ declare namespace PlayFabServerModels {
         StatisticVersion: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PlayerStatisticVersion */
     interface PlayerStatisticVersion {
         /** time when the statistic version became active */
         ActivationTime: string,
@@ -3347,7 +3126,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PSNAccountPlayFabIdPair */
     interface PSNAccountPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
         PlayFabId?: string,
@@ -3355,7 +3133,6 @@ declare namespace PlayFabServerModels {
         PSNAccountId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPackage */
     interface PushNotificationPackage {
         /** Numerical badge to display on App icon (iOS only) */
         Badge: number,
@@ -3371,11 +3148,9 @@ declare namespace PlayFabServerModels {
         Title: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationPlatform */
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationRegistration */
     interface PushNotificationRegistration {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string,
@@ -3383,7 +3158,6 @@ declare namespace PlayFabServerModels {
         Platform?: PushNotificationPlatform,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.PushNotificationRegistrationModel */
     interface PushNotificationRegistrationModel {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string,
@@ -3391,7 +3165,6 @@ declare namespace PlayFabServerModels {
         Platform?: PushNotificationPlatform,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RandomResultTableListing */
     interface RandomResultTableListing {
         /** Catalog version this table is associated with */
         CatalogVersion?: string,
@@ -3405,7 +3178,6 @@ declare namespace PlayFabServerModels {
      * Coupon codes can be created for any item, or set of items, in the catalog for the title. This operation causes the
      * coupon to be consumed, and the specific items to be awarded to the user. Attempting to re-use an already consumed code,
      * or a code which has not yet been created in the service, will result in an error.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponRequest
      */
     interface RedeemCouponRequest {
         /** Catalog version of the coupon. */
@@ -3418,7 +3190,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemCouponResult */
     interface RedeemCouponResult {
         /** Items granted to the player as a result of redeeming the coupon. */
         GrantedItems?: ItemInstance[],
@@ -3432,7 +3203,6 @@ declare namespace PlayFabServerModels {
      * Identifying Information (PII), such as email address, and so care should be taken in how this data is stored and
      * managed. Since this call will always return the relevant information for users who have accessed the title, the
      * recommendation is to not store this data locally.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemMatchmakerTicketRequest
      */
     interface RedeemMatchmakerTicketRequest {
         /** Unique identifier of the Game Server Instance that is asking for validation of the authorization ticket. */
@@ -3441,7 +3211,6 @@ declare namespace PlayFabServerModels {
         Ticket: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RedeemMatchmakerTicketResult */
     interface RedeemMatchmakerTicketResult {
         /** Error value if the ticket was not validated. */
         Error?: string,
@@ -3451,17 +3220,14 @@ declare namespace PlayFabServerModels {
         UserInfo?: UserAccountInfo,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatRequest */
     interface RefreshGameServerInstanceHeartbeatRequest {
         /** Unique identifier of the Game Server Instance for which the heartbeat is updated. */
         LobbyId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RefreshGameServerInstanceHeartbeatResult */
     interface RefreshGameServerInstanceHeartbeatResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.Region */
     type Region = "USCentral"
         | "USEast"
         | "EUWest"
@@ -3470,7 +3236,6 @@ declare namespace PlayFabServerModels {
         | "Brazil"
         | "Australia";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameRequest */
     interface RegisterGameRequest {
         /** Unique identifier of the build running on the Game Server Instance. */
         Build: string,
@@ -3498,7 +3263,6 @@ declare namespace PlayFabServerModels {
         Tags?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RegisterGameResponse */
     interface RegisterGameResponse {
         /**
          * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
@@ -3507,7 +3271,6 @@ declare namespace PlayFabServerModels {
         LobbyId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveFriendRequest */
     interface RemoveFriendRequest {
         /** PlayFab identifier of the friend account which is to be removed. */
         FriendPlayFabId: string,
@@ -3515,7 +3278,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveGenericIDRequest */
     interface RemoveGenericIDRequest {
         /** Generic service identifier to be removed from the player. */
         GenericId: GenericServiceId,
@@ -3526,7 +3288,6 @@ declare namespace PlayFabServerModels {
     /**
      * This API will trigger a player_tag_removed event and remove a tag with the given TagName and PlayFabID from the
      * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemovePlayerTagRequest
      */
     interface RemovePlayerTagRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3535,11 +3296,9 @@ declare namespace PlayFabServerModels {
         TagName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemovePlayerTagResult */
     interface RemovePlayerTagResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersRequest */
     interface RemoveSharedGroupMembersRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabIds: string[],
@@ -3547,11 +3306,9 @@ declare namespace PlayFabServerModels {
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RemoveSharedGroupMembersResult */
     interface RemoveSharedGroupMembersResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerRequest */
     interface ReportPlayerServerRequest {
         /** Optional additional comment by reporting player. */
         Comment?: string,
@@ -3564,14 +3321,12 @@ declare namespace PlayFabServerModels {
     /**
      * Players are currently limited to five reports per day. Attempts by a single user account to submit reports beyond five
      * will result in Updated being returned as false.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ReportPlayerServerResult
      */
     interface ReportPlayerServerResult {
         /** The number of remaining reports which may be filed today by this reporting player. */
         SubmissionsRemaining: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ResultTableNode */
     interface ResultTableNode {
         /** Either an ItemId, or the TableId of another random result table */
         ResultItem: string,
@@ -3581,21 +3336,18 @@ declare namespace PlayFabServerModels {
         Weight: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ResultTableNodeType */
     type ResultTableNodeType = "ItemId"
         | "TableId";
 
     /**
      * Setting the active state of all non-expired bans for a user to Inactive. Expired bans with an Active state will be
      * ignored, however. Returns information about applied updates only.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeAllBansForUserRequest
      */
     interface RevokeAllBansForUserRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeAllBansForUserResult */
     interface RevokeAllBansForUserResult {
         /** Information on the bans that were revoked. */
         BanData?: BanInfo[],
@@ -3604,20 +3356,17 @@ declare namespace PlayFabServerModels {
     /**
      * Setting the active state of all bans requested to Inactive regardless of whether that ban has already expired. BanIds
      * that do not exist will be skipped. Returns information about applied updates only.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeBansRequest
      */
     interface RevokeBansRequest {
         /** Ids of the bans to be revoked. Maximum 100. */
         BanIds: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeBansResult */
     interface RevokeBansResult {
         /** Information on the bans that were revoked */
         BanData?: BanInfo[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItem */
     interface RevokeInventoryItem {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
@@ -3630,7 +3379,6 @@ declare namespace PlayFabServerModels {
     /**
      * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
      * will not revoke access or otherwise remove the items which were dispensed.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemRequest
      */
     interface RevokeInventoryItemRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3644,24 +3392,20 @@ declare namespace PlayFabServerModels {
     /**
      * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
      * will not revoke access or otherwise remove the items which were dispensed.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemsRequest
      */
     interface RevokeInventoryItemsRequest {
         /** Array of player items to revoke, between 1 and 25 items. */
         Items: RevokeInventoryItem[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryItemsResult */
     interface RevokeInventoryItemsResult {
         /** Collection of any errors that occurred during processing. */
         Errors?: RevokeItemError[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeInventoryResult */
     interface RevokeInventoryResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.RevokeItemError */
     interface RevokeItemError {
         /** Specific error that was encountered. */
         Error?: GenericErrorCodes,
@@ -3669,10 +3413,7 @@ declare namespace PlayFabServerModels {
         Item?: RevokeInventoryItem,
     }
 
-    /**
-     * Represents the save push notification template request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateRequest
-     */
+    /** Represents the save push notification template request. */
     interface SavePushNotificationTemplateRequest {
         /** Android JSON for the notification template. */
         AndroidPayload?: string,
@@ -3686,16 +3427,12 @@ declare namespace PlayFabServerModels {
         Name: string,
     }
 
-    /**
-     * Represents the save push notification template result.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SavePushNotificationTemplateResult
-     */
+    /** Represents the save push notification template result. */
     interface SavePushNotificationTemplateResult {
         /** Id of the push notification template that was saved. */
         PushNotificationTemplateId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ScriptExecutionError */
     interface ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
@@ -3711,7 +3448,6 @@ declare namespace PlayFabServerModels {
     /**
      * PlayFab accounts which have valid email address or username will be able to receive a password reset email using this
      * API.The email sent must be an account recovery email template. The username or email can be passed in to send the email
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailRequest
      */
     interface SendCustomAccountRecoveryEmailRequest {
         /** User email address attached to their account */
@@ -3722,14 +3458,12 @@ declare namespace PlayFabServerModels {
         Username?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendCustomAccountRecoveryEmailResult */
     interface SendCustomAccountRecoveryEmailResult {
     }
 
     /**
      * Sends an email for only players that have contact emails associated with them. Takes in an email template ID
      * specifyingthe email template to send.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateRequest
      */
     interface SendEmailFromTemplateRequest {
         /** The email template id of the email template to send. */
@@ -3738,14 +3472,10 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendEmailFromTemplateResult */
     interface SendEmailFromTemplateResult {
     }
 
-    /**
-     * Represents the request for sending a push notification template to a recipient.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationFromTemplateRequest
-     */
+    /** Represents the request for sending a push notification template to a recipient. */
     interface SendPushNotificationFromTemplateRequest {
         /** Id of the push notification template. */
         PushNotificationTemplateId: string,
@@ -3753,7 +3483,6 @@ declare namespace PlayFabServerModels {
         Recipient: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationRequest */
     interface SendPushNotificationRequest {
         /**
          * Allows you to provide precisely formatted json to target devices. This is an advanced feature, allowing you to deliver
@@ -3775,11 +3504,9 @@ declare namespace PlayFabServerModels {
         TargetPlatforms?: PushNotificationPlatform[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SendPushNotificationResult */
     interface SendPushNotificationResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerCustomIDPlayFabIDPair */
     interface ServerCustomIDPlayFabIDPair {
         /** Unique PlayFab identifier. */
         PlayFabId?: string,
@@ -3787,7 +3514,6 @@ declare namespace PlayFabServerModels {
         ServerCustomId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ServerLoginResult */
     interface ServerLoginResult {
         /**
          * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
@@ -3814,7 +3540,6 @@ declare namespace PlayFabServerModels {
      * This operation is not additive. It will completely replace the tag list for the specified user. Please note that only
      * users in the PlayFab friends list can be assigned tags. Attempting to set a tag on a friend only included in the friends
      * list from a social site integration (such as Facebook or Steam) will return the AccountNotFound error.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetFriendTagsRequest
      */
     interface SetFriendTagsRequest {
         /** PlayFab identifier of the friend account to which the tag(s) should be applied. */
@@ -3825,7 +3550,6 @@ declare namespace PlayFabServerModels {
         Tags: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataRequest */
     interface SetGameServerInstanceDataRequest {
         /** Custom data to set for the specified game server instance. */
         GameServerData: string,
@@ -3833,11 +3557,9 @@ declare namespace PlayFabServerModels {
         LobbyId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceDataResult */
     interface SetGameServerInstanceDataResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceStateRequest */
     interface SetGameServerInstanceStateRequest {
         /** Unique identifier of the Game Instance to be updated, in decimal format. */
         LobbyId: string,
@@ -3845,11 +3567,9 @@ declare namespace PlayFabServerModels {
         State: GameInstanceState,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceStateResult */
     interface SetGameServerInstanceStateResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsRequest */
     interface SetGameServerInstanceTagsRequest {
         /** Unique identifier of the Game Server Instance to be updated. */
         LobbyId: string,
@@ -3860,7 +3580,6 @@ declare namespace PlayFabServerModels {
         Tags: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetGameServerInstanceTagsResult */
     interface SetGameServerInstanceTagsResult {
     }
 
@@ -3871,7 +3590,6 @@ declare namespace PlayFabServerModels {
      * current time in UTC formatted to ISO 8601, and the players secret formatted as 'body.date.secret'. Place the resulting
      * hash into the header X-PlayFab-Signature, along with a header X-PlayFab-Timestamp of the same UTC timestamp used in the
      * signature.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretRequest
      */
     interface SetPlayerSecretRequest {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3880,7 +3598,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPlayerSecretResult */
     interface SetPlayerSecretResult {
     }
 
@@ -3890,7 +3607,6 @@ declare namespace PlayFabServerModels {
      * assigned to a publisher can use this API. This operation is additive. If a Key does not exist in the current dataset, it
      * will be added with the specified Value. If it already exists, the Value for that key will be overwritten with the new
      * Value. For more information email devrel@playfab.com
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPublisherDataRequest
      */
     interface SetPublisherDataRequest {
         /**
@@ -3902,7 +3618,6 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetPublisherDataResult */
     interface SetPublisherDataResult {
     }
 
@@ -3912,7 +3627,6 @@ declare namespace PlayFabServerModels {
      * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
      * build. This operation is additive. If a Key does not exist in the current dataset, it will be added with the specified
      * Value. If it already exists, the Value for that key will be overwritten with the new Value.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataRequest
      */
     interface SetTitleDataRequest {
         /**
@@ -3924,11 +3638,9 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SetTitleDataResult */
     interface SetTitleDataResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SharedGroupDataRecord */
     interface SharedGroupDataRecord {
         /** Timestamp for when this data was last updated. */
         LastUpdated: string,
@@ -3940,7 +3652,6 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SourceType */
     type SourceType = "Admin"
         | "BackEnd"
         | "GameClient"
@@ -3949,7 +3660,6 @@ declare namespace PlayFabServerModels {
         | "Custom"
         | "API";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticModel */
     interface StatisticModel {
         /** Statistic name */
         Name?: string,
@@ -3959,7 +3669,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticNameVersion */
     interface StatisticNameVersion {
         /** unique name of the statistic */
         StatisticName: string,
@@ -3967,7 +3676,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticUpdate */
     interface StatisticUpdate {
         /** unique name of the statistic */
         StatisticName: string,
@@ -3980,7 +3688,6 @@ declare namespace PlayFabServerModels {
         Version?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StatisticValue */
     interface StatisticValue {
         /** unique name of the statistic */
         StatisticName?: string,
@@ -3990,7 +3697,6 @@ declare namespace PlayFabServerModels {
         Version: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SteamPlayFabIdPair */
     interface SteamPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier. */
         PlayFabId?: string,
@@ -3998,10 +3704,7 @@ declare namespace PlayFabServerModels {
         SteamStringId?: string,
     }
 
-    /**
-     * A store entry that list a catalog item at a particular price
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StoreItem
-     */
+    /** A store entry that list a catalog item at a particular price */
     interface StoreItem {
         /** Store specific custom data. The data only exists as part of this store; it is not transferred to item instances */
         CustomData?: any,
@@ -4018,10 +3721,7 @@ declare namespace PlayFabServerModels {
         VirtualCurrencyPrices?: { [key: string]: number },
     }
 
-    /**
-     * Marketing data about a specific store
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.StoreMarketingModel
-     */
+    /** Marketing data about a specific store */
     interface StoreMarketingModel {
         /** Tagline for a store. */
         Description?: string,
@@ -4031,7 +3731,6 @@ declare namespace PlayFabServerModels {
         Metadata?: any,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubscriptionModel */
     interface SubscriptionModel {
         /** When this subscription expires. */
         Expiration: string,
@@ -4049,7 +3748,6 @@ declare namespace PlayFabServerModels {
         SubscriptionProvider?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubscriptionProviderStatus */
     type SubscriptionProviderStatus = "NoError"
         | "Cancelled"
         | "UnknownError"
@@ -4059,7 +3757,6 @@ declare namespace PlayFabServerModels {
         | "FreeTrial"
         | "PaymentPending";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractCharacterVirtualCurrencyRequest */
     interface SubtractCharacterVirtualCurrencyRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number,
@@ -4071,7 +3768,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrency: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.SubtractUserVirtualCurrencyRequest */
     interface SubtractUserVirtualCurrencyRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number,
@@ -4081,20 +3777,17 @@ declare namespace PlayFabServerModels {
         VirtualCurrency: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TagModel */
     interface TagModel {
         /** Full value of the tag, including namespace */
         TagValue?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TitleActivationStatus */
     type TitleActivationStatus = "None"
         | "ActivatedTitleKey"
         | "PendingSteam"
         | "ActivatedSteam"
         | "RevokedSteam";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TitleNewsItem */
     interface TitleNewsItem {
         /** News item body. */
         Body?: string,
@@ -4106,7 +3799,6 @@ declare namespace PlayFabServerModels {
         Title?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.TreatmentAssignment */
     interface TreatmentAssignment {
         /** List of the experiment variables. */
         Variables?: Variable[],
@@ -4114,7 +3806,14 @@ declare namespace PlayFabServerModels {
         Variants?: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdRequest */
+    interface UnlinkPSNAccountRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        PlayFabId: string,
+    }
+
+    interface UnlinkPSNAccountResult {
+    }
+
     interface UnlinkServerCustomIdRequest {
         /** Unique PlayFab identifier. */
         PlayFabId: string,
@@ -4122,11 +3821,9 @@ declare namespace PlayFabServerModels {
         ServerCustomId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkServerCustomIdResult */
     interface UnlinkServerCustomIdResult {
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountRequest */
     interface UnlinkXboxAccountRequest {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
@@ -4134,14 +3831,10 @@ declare namespace PlayFabServerModels {
         XboxToken: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlinkXboxAccountResult */
     interface UnlinkXboxAccountResult {
     }
 
-    /**
-     * Specify the container and optionally the catalogVersion for the container to open
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerInstanceRequest
-     */
+    /** Specify the container and optionally the catalogVersion for the container to open */
     interface UnlockContainerInstanceRequest {
         /**
          * Specifies the catalog version that should be used to determine container contents. If unspecified, uses catalog
@@ -4161,10 +3854,7 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /**
-     * Specify the type of container to open and optionally the catalogVersion for the container to open
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemRequest
-     */
+    /** Specify the type of container to open and optionally the catalogVersion for the container to open */
     interface UnlockContainerItemRequest {
         /**
          * Specifies the catalog version that should be used to determine container contents. If unspecified, uses default/primary
@@ -4179,10 +3869,7 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /**
-     * The items and vc found within the container. These will be added and stacked in your inventory as appropriate.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UnlockContainerItemResult
-     */
+    /** The items and vc found within the container. These will be added and stacked in your inventory as appropriate. */
     interface UnlockContainerItemResult {
         /** Items granted to the player as a result of unlocking the container. */
         GrantedItems?: ItemInstance[],
@@ -4194,7 +3881,6 @@ declare namespace PlayFabServerModels {
         VirtualCurrency?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateAvatarUrlRequest */
     interface UpdateAvatarUrlRequest {
         /** URL of the avatar image. If empty, it removes the existing avatar URL. */
         ImageUrl: string,
@@ -4202,10 +3888,7 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /**
-     * Represents a single update ban request.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateBanRequest
-     */
+    /** Represents a single update ban request. */
     interface UpdateBanRequest {
         /** The updated active state for the ban. Null for no change. */
         Active?: boolean,
@@ -4226,14 +3909,12 @@ declare namespace PlayFabServerModels {
     /**
      * For each ban, only updates the values that are set. Leave any value to null for no change. If a ban could not be found,
      * the rest are still applied. Returns information about applied updates only.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateBansRequest
      */
     interface UpdateBansRequest {
         /** List of bans to be updated. Maximum 100. */
         Bans: UpdateBanRequest[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateBansResult */
     interface UpdateBansResult {
         /** Information on the bans that were updated */
         BanData?: BanInfo[],
@@ -4243,7 +3924,6 @@ declare namespace PlayFabServerModels {
      * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
      * updating the custom data object, keys which already exist in the object will have their values overwritten, while keys
      * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataRequest
      */
     interface UpdateCharacterDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -4264,7 +3944,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterDataResult */
     interface UpdateCharacterDataResult {
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of
@@ -4277,7 +3956,6 @@ declare namespace PlayFabServerModels {
      * Character statistics are similar to user statistics in that they are numeric values which may only be updated by a
      * server operation, in order to minimize the opportunity for unauthorized changes. In addition to being available for use
      * by the title, the statistics are used for all leaderboard operations in PlayFab.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterStatisticsRequest
      */
     interface UpdateCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -4288,14 +3966,12 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateCharacterStatisticsResult */
     interface UpdateCharacterStatisticsResult {
     }
 
     /**
      * This operation is additive. Statistics not currently defined will be added, while those already defined will be updated
      * with the given values. All other user statistics will remain unchanged.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdatePlayerStatisticsRequest
      */
     interface UpdatePlayerStatisticsRequest {
         /**
@@ -4309,7 +3985,6 @@ declare namespace PlayFabServerModels {
         Statistics: StatisticUpdate[],
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdatePlayerStatisticsResult */
     interface UpdatePlayerStatisticsResult {
     }
 
@@ -4318,7 +3993,6 @@ declare namespace PlayFabServerModels {
      * PlayFab service will determine the value available to subsequent read operations. For scenarios requiring coordination
      * of data updates, it is recommended that titles make use of user data with read permission set to public, or a
      * combination of user data and shared group data.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataRequest
      */
     interface UpdateSharedGroupDataRequest {
         /**
@@ -4337,7 +4011,6 @@ declare namespace PlayFabServerModels {
         SharedGroupId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateSharedGroupDataResult */
     interface UpdateSharedGroupDataResult {
     }
 
@@ -4345,7 +4018,6 @@ declare namespace PlayFabServerModels {
      * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
      * updating the custom data object, keys which already exist in the object will have their values overwritten, while keys
      * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataRequest
      */
     interface UpdateUserDataRequest {
         /**
@@ -4364,7 +4036,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserDataResult */
     interface UpdateUserDataResult {
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of
@@ -4377,7 +4048,6 @@ declare namespace PlayFabServerModels {
      * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
      * updating the custom data object, keys which already exist in the object will have their values overwritten, keys with
      * null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserInternalDataRequest
      */
     interface UpdateUserInternalDataRequest {
         /**
@@ -4399,7 +4069,6 @@ declare namespace PlayFabServerModels {
      * which belongs to the specified user. In updating the custom data object, keys which already exist in the object will
      * have their values overwritten, while keys with null values will be removed. No other key-value pairs will be changed
      * apart from those specified in the call.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UpdateUserInventoryItemDataRequest
      */
     interface UpdateUserInventoryItemDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -4420,7 +4089,6 @@ declare namespace PlayFabServerModels {
         PlayFabId: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserAccountInfo */
     interface UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         AndroidDeviceInfo?: UserAndroidDeviceInfo,
@@ -4464,13 +4132,11 @@ declare namespace PlayFabServerModels {
         XboxInfo?: UserXboxInfo,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserAndroidDeviceInfo */
     interface UserAndroidDeviceInfo {
         /** Android device ID */
         AndroidDeviceId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserCustomIdInfo */
     interface UserCustomIdInfo {
         /** Custom ID */
         CustomId?: string,
@@ -4479,12 +4145,10 @@ declare namespace PlayFabServerModels {
     /**
      * Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a
      * player makes a GetUserData request about another player, only keys marked Public will be returned.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserDataPermission
      */
     type UserDataPermission = "Private"
         | "Public";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserDataRecord */
     interface UserDataRecord {
         /** Timestamp for when this data was last updated. */
         LastUpdated: string,
@@ -4497,7 +4161,6 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserFacebookInfo */
     interface UserFacebookInfo {
         /** Facebook identifier */
         FacebookId?: string,
@@ -4505,19 +4168,16 @@ declare namespace PlayFabServerModels {
         FullName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserFacebookInstantGamesIdInfo */
     interface UserFacebookInstantGamesIdInfo {
         /** Facebook Instant Games ID */
         FacebookInstantGamesId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserGameCenterInfo */
     interface UserGameCenterInfo {
         /** Gamecenter identifier */
         GameCenterId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserGoogleInfo */
     interface UserGoogleInfo {
         /** Email address of the Google account */
         GoogleEmail?: string,
@@ -4531,13 +4191,11 @@ declare namespace PlayFabServerModels {
         GoogleName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserIosDeviceInfo */
     interface UserIosDeviceInfo {
         /** iOS device ID */
         IosDeviceId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserKongregateInfo */
     interface UserKongregateInfo {
         /** Kongregate ID */
         KongregateId?: string,
@@ -4545,13 +4203,11 @@ declare namespace PlayFabServerModels {
         KongregateName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserNintendoSwitchDeviceIdInfo */
     interface UserNintendoSwitchDeviceIdInfo {
         /** Nintendo Switch Device ID */
         NintendoSwitchDeviceId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserOpenIdInfo */
     interface UserOpenIdInfo {
         /** OpenID Connection ID */
         ConnectionId?: string,
@@ -4561,7 +4217,6 @@ declare namespace PlayFabServerModels {
         Subject?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserOrigination */
     type UserOrigination = "Organic"
         | "Steam"
         | "Google"
@@ -4585,13 +4240,11 @@ declare namespace PlayFabServerModels {
         | "FacebookInstantGamesId"
         | "OpenIdConnect";
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserPrivateAccountInfo */
     interface UserPrivateAccountInfo {
         /** user email address */
         Email?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserPsnInfo */
     interface UserPsnInfo {
         /** PSN account ID */
         PsnAccountId?: string,
@@ -4599,7 +4252,6 @@ declare namespace PlayFabServerModels {
         PsnOnlineId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserSettings */
     interface UserSettings {
         /** Boolean for whether this player is eligible for gathering device info. */
         GatherDeviceInfo: boolean,
@@ -4609,7 +4261,6 @@ declare namespace PlayFabServerModels {
         NeedsAttribution: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserSteamInfo */
     interface UserSteamInfo {
         /** what stage of game ownership the user is listed as being in, from Steam */
         SteamActivationStatus?: TitleActivationStatus,
@@ -4623,7 +4274,6 @@ declare namespace PlayFabServerModels {
         SteamName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserTitleInfo */
     interface UserTitleInfo {
         /** URL to the player's avatar. */
         AvatarUrl?: string,
@@ -4649,7 +4299,6 @@ declare namespace PlayFabServerModels {
         TitlePlayerAccount?: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserTwitchInfo */
     interface UserTwitchInfo {
         /** Twitch ID */
         TwitchId?: string,
@@ -4657,7 +4306,6 @@ declare namespace PlayFabServerModels {
         TwitchUserName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserWindowsHelloInfo */
     interface UserWindowsHelloInfo {
         /** Windows Hello Device Name */
         WindowsHelloDeviceName?: string,
@@ -4665,13 +4313,11 @@ declare namespace PlayFabServerModels {
         WindowsHelloPublicKeyHash?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.UserXboxInfo */
     interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.ValueToDateModel */
     interface ValueToDateModel {
         /** ISO 4217 code of the currency used in the purchases */
         Currency?: string,
@@ -4687,7 +4333,6 @@ declare namespace PlayFabServerModels {
         TotalValueAsDecimal?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.Variable */
     interface Variable {
         /** Name of the variable. */
         Name: string,
@@ -4695,7 +4340,6 @@ declare namespace PlayFabServerModels {
         Value?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.VirtualCurrencyRechargeTime */
     interface VirtualCurrencyRechargeTime {
         /**
          * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value
@@ -4709,7 +4353,6 @@ declare namespace PlayFabServerModels {
         SecondsToRecharge: number,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteEventResponse */
     interface WriteEventResponse {
         /**
          * The unique identifier of the event. The values of this identifier consist of ASCII characters and are not constrained to
@@ -4722,15 +4365,12 @@ declare namespace PlayFabServerModels {
      * This API is designed to write a multitude of different event types into PlayStream. It supports a flexible JSON schema,
      * which allowsfor arbitrary key-value pairs to describe any character-based event. The created event will be locked to the
      * authenticated title.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteServerCharacterEventRequest
      */
     interface WriteServerCharacterEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4746,13 +4386,10 @@ declare namespace PlayFabServerModels {
      * This API is designed to write a multitude of different event types into PlayStream. It supports a flexible JSON schema,
      * which allowsfor arbitrary key-value pairs to describe any player-based event. The created event will be locked to the
      * authenticated title.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteServerPlayerEventRequest
      */
     interface WriteServerPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4768,13 +4405,10 @@ declare namespace PlayFabServerModels {
      * This API is designed to write a multitude of different event types into PlayStream. It supports a flexible JSON schema,
      * which allowsfor arbitrary key-value pairs to describe any title-based event. The created event will be locked to the
      * authenticated title.
-     * https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.WriteTitleEventRequest
      */
     interface WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        EventCustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4784,7 +4418,6 @@ declare namespace PlayFabServerModels {
         Timestamp?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Server/datatype/PlayFab.Server.Models/PlayFab.Server.Models.XboxLiveAccountPlayFabIdPair */
     interface XboxLiveAccountPlayFabIdPair {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId?: string,
@@ -4798,14 +4431,14 @@ declare namespace PlayFabServerModels {
 interface IPlayFabServerAPI {
     /**
      * Increments the character's balance of the specified virtual currency by the stated amount
-     * https://api.playfab.com/Documentation/Server/method/AddCharacterVirtualCurrency
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/addcharactervirtualcurrency
      */
     AddCharacterVirtualCurrency(request: PlayFabServerModels.AddCharacterVirtualCurrencyRequest): PlayFabServerModels.ModifyCharacterVirtualCurrencyResult;
 
     /**
      * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
      * FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
-     * https://api.playfab.com/Documentation/Server/method/AddFriend
+     * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/addfriend
      */
     AddFriend(request: PlayFabServerModels.AddFriendRequest): PlayFabServerModels.EmptyResponse;
 
@@ -4813,51 +4446,52 @@ interface IPlayFabServerAPI {
      * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
      * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
      * authentication credentials, as the intent is that it is easily accessible by other players.
-     * https://api.playfab.com/Documentation/Server/method/AddGenericID
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/addgenericid
      */
     AddGenericID(request: PlayFabServerModels.AddGenericIDRequest): PlayFabServerModels.EmptyResult;
 
     /**
      * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     * https://api.playfab.com/Documentation/Server/method/AddPlayerTag
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/addplayertag
      */
     AddPlayerTag(request: PlayFabServerModels.AddPlayerTagRequest): PlayFabServerModels.AddPlayerTagResult;
 
     /**
      * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
      * in the group (and the server) can add new members. Shared Groups are designed for sharing data between a very small
-     * number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/AddSharedGroupMembers
+     * number of players, please see our guide:
+     * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/addsharedgroupmembers
      */
     AddSharedGroupMembers(request: PlayFabServerModels.AddSharedGroupMembersRequest): PlayFabServerModels.AddSharedGroupMembersResult;
 
     /**
      * Increments the user's balance of the specified virtual currency by the stated amount
-     * https://api.playfab.com/Documentation/Server/method/AddUserVirtualCurrency
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/adduservirtualcurrency
      */
     AddUserVirtualCurrency(request: PlayFabServerModels.AddUserVirtualCurrencyRequest): PlayFabServerModels.ModifyUserVirtualCurrencyResult;
 
     /**
      * Validated a client's session ticket, and if successful, returns details for that user
-     * https://api.playfab.com/Documentation/Server/method/AuthenticateSessionTicket
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/authenticatesessionticket
      */
     AuthenticateSessionTicket(request: PlayFabServerModels.AuthenticateSessionTicketRequest): PlayFabServerModels.AuthenticateSessionTicketResult;
 
     /**
      * Awards the specified users the specified Steam achievements
-     * https://api.playfab.com/Documentation/Server/method/AwardSteamAchievement
+     * https://docs.microsoft.com/rest/api/playfab/server/platform-specific-methods/awardsteamachievement
      */
     AwardSteamAchievement(request: PlayFabServerModels.AwardSteamAchievementRequest): PlayFabServerModels.AwardSteamAchievementResult;
 
     /**
      * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
-     * https://api.playfab.com/Documentation/Server/method/BanUsers
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/banusers
      */
     BanUsers(request: PlayFabServerModels.BanUsersRequest): PlayFabServerModels.BanUsersResult;
 
     /**
      * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
-     * https://api.playfab.com/Documentation/Server/method/ConsumeItem
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/consumeitem
      */
     ConsumeItem(request: PlayFabServerModels.ConsumeItemRequest): PlayFabServerModels.ConsumeItemResult;
 
@@ -4865,109 +4499,109 @@ interface IPlayFabServerAPI {
      * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
      * group. When created by a server, the group will initially have no members. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/CreateSharedGroup
+     * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/createsharedgroup
      */
     CreateSharedGroup(request: PlayFabServerModels.CreateSharedGroupRequest): PlayFabServerModels.CreateSharedGroupResult;
 
     /**
      * Deletes the specific character ID from the specified user.
-     * https://api.playfab.com/Documentation/Server/method/DeleteCharacterFromUser
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/deletecharacterfromuser
      */
     DeleteCharacterFromUser(request: PlayFabServerModels.DeleteCharacterFromUserRequest): PlayFabServerModels.DeleteCharacterFromUserResult;
 
     /**
      * Removes a user's player account from a title and deletes all associated data
-     * https://api.playfab.com/Documentation/Server/method/DeletePlayer
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/deleteplayer
      */
     DeletePlayer(request: PlayFabServerModels.DeletePlayerRequest): PlayFabServerModels.DeletePlayerResult;
 
     /**
      * Deletes push notification template for title
-     * https://api.playfab.com/Documentation/Server/method/DeletePushNotificationTemplate
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/deletepushnotificationtemplate
      */
     DeletePushNotificationTemplate(request: PlayFabServerModels.DeletePushNotificationTemplateRequest): PlayFabServerModels.DeletePushNotificationTemplateResult;
 
     /**
      * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/DeleteSharedGroup
+     * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/deletesharedgroup
      */
     DeleteSharedGroup(request: PlayFabServerModels.DeleteSharedGroupRequest): PlayFabServerModels.EmptyResponse;
 
     /**
      * Inform the matchmaker that a Game Server Instance is removed.
-     * https://api.playfab.com/Documentation/Server/method/DeregisterGame
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/deregistergame
      */
     DeregisterGame(request: PlayFabServerModels.DeregisterGameRequest): PlayFabServerModels.DeregisterGameResponse;
 
     /**
      * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
      * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
-     * https://api.playfab.com/Documentation/Server/method/EvaluateRandomResultTable
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/evaluaterandomresulttable
      */
     EvaluateRandomResultTable(request: PlayFabServerModels.EvaluateRandomResultTableRequest): PlayFabServerModels.EvaluateRandomResultTableResult;
 
     /**
      * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
-     * https://api.playfab.com/Documentation/Server/method/ExecuteCloudScript
+     * https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript
      */
     ExecuteCloudScript(request: PlayFabServerModels.ExecuteCloudScriptServerRequest): PlayFabServerModels.ExecuteCloudScriptResult;
 
     /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
      * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
-     * https://api.playfab.com/Documentation/Server/method/GetAllSegments
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/getallsegments
      */
     GetAllSegments(request: PlayFabServerModels.GetAllSegmentsRequest): PlayFabServerModels.GetAllSegmentsResult;
 
     /**
      * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
      * evaluated with the parent PlayFabId to guarantee uniqueness.
-     * https://api.playfab.com/Documentation/Server/method/GetAllUsersCharacters
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/getalluserscharacters
      */
     GetAllUsersCharacters(request: PlayFabServerModels.ListUsersCharactersRequest): PlayFabServerModels.ListUsersCharactersResult;
 
     /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
-     * https://api.playfab.com/Documentation/Server/method/GetCatalogItems
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getcatalogitems
      */
     GetCatalogItems(request: PlayFabServerModels.GetCatalogItemsRequest): PlayFabServerModels.GetCatalogItemsResult;
 
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterdata
      */
     GetCharacterData(request: PlayFabServerModels.GetCharacterDataRequest): PlayFabServerModels.GetCharacterDataResult;
 
     /**
      * Retrieves the title-specific custom data for the user's character which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterinternaldata
      */
     GetCharacterInternalData(request: PlayFabServerModels.GetCharacterDataRequest): PlayFabServerModels.GetCharacterDataResult;
 
     /**
      * Retrieves the specified character's current inventory of virtual goods
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterInventory
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getcharacterinventory
      */
     GetCharacterInventory(request: PlayFabServerModels.GetCharacterInventoryRequest): PlayFabServerModels.GetCharacterInventoryResult;
 
     /**
      * Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterLeaderboard
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterleaderboard
      */
     GetCharacterLeaderboard(request: PlayFabServerModels.GetCharacterLeaderboardRequest): PlayFabServerModels.GetCharacterLeaderboardResult;
 
     /**
      * Retrieves the title-specific custom data for the user's character which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/getcharacterreadonlydata
      */
     GetCharacterReadOnlyData(request: PlayFabServerModels.GetCharacterDataRequest): PlayFabServerModels.GetCharacterDataResult;
 
     /**
      * Retrieves the details of all title-specific statistics for the specific character
-     * https://api.playfab.com/Documentation/Server/method/GetCharacterStatistics
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/getcharacterstatistics
      */
     GetCharacterStatistics(request: PlayFabServerModels.GetCharacterStatisticsRequest): PlayFabServerModels.GetCharacterStatisticsResult;
 
@@ -4976,66 +4610,66 @@ interface IPlayFabServerAPI {
      * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
      * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * https://community.playfab.com/hc/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
      * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
-     * https://api.playfab.com/Documentation/Server/method/GetContentDownloadUrl
+     * https://docs.microsoft.com/rest/api/playfab/server/content/getcontentdownloadurl
      */
     GetContentDownloadUrl(request: PlayFabServerModels.GetContentDownloadUrlRequest): PlayFabServerModels.GetContentDownloadUrlResult;
 
     /**
      * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
      * leaderboard
-     * https://api.playfab.com/Documentation/Server/method/GetFriendLeaderboard
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getfriendleaderboard
      */
     GetFriendLeaderboard(request: PlayFabServerModels.GetFriendLeaderboardRequest): PlayFabServerModels.GetLeaderboardResult;
 
     /**
      * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
      * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
-     * https://api.playfab.com/Documentation/Server/method/GetFriendsList
+     * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/getfriendslist
      */
     GetFriendsList(request: PlayFabServerModels.GetFriendsListRequest): PlayFabServerModels.GetFriendsListResult;
 
     /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
-     * https://api.playfab.com/Documentation/Server/method/GetLeaderboard
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboard
      */
     GetLeaderboard(request: PlayFabServerModels.GetLeaderboardRequest): PlayFabServerModels.GetLeaderboardResult;
 
     /**
      * Retrieves a list of ranked characters for the given statistic, centered on the requested user
-     * https://api.playfab.com/Documentation/Server/method/GetLeaderboardAroundCharacter
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardaroundcharacter
      */
     GetLeaderboardAroundCharacter(request: PlayFabServerModels.GetLeaderboardAroundCharacterRequest): PlayFabServerModels.GetLeaderboardAroundCharacterResult;
 
     /**
      * Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
-     * https://api.playfab.com/Documentation/Server/method/GetLeaderboardAroundUser
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getleaderboardarounduser
      */
     GetLeaderboardAroundUser(request: PlayFabServerModels.GetLeaderboardAroundUserRequest): PlayFabServerModels.GetLeaderboardAroundUserResult;
 
     /**
      * Retrieves a list of all of the user's characters for the given statistic.
-     * https://api.playfab.com/Documentation/Server/method/GetLeaderboardForUserCharacters
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/getleaderboardforusercharacters
      */
     GetLeaderboardForUserCharacters(request: PlayFabServerModels.GetLeaderboardForUsersCharactersRequest): PlayFabServerModels.GetLeaderboardForUsersCharactersResult;
 
     /**
      * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
      * returned. All parameters default to false.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerCombinedInfo
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayercombinedinfo
      */
     GetPlayerCombinedInfo(request: PlayFabServerModels.GetPlayerCombinedInfoRequest): PlayFabServerModels.GetPlayerCombinedInfoResult;
 
     /**
      * Retrieves the player's profile
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerProfile
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayerprofile
      */
     GetPlayerProfile(request: PlayFabServerModels.GetPlayerProfileRequest): PlayFabServerModels.GetPlayerProfileResult;
 
     /**
      * List all segments that a player currently belongs to at this moment in time.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerSegments
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersegments
      */
     GetPlayerSegments(request: PlayFabServerModels.GetPlayersSegmentsRequest): PlayFabServerModels.GetPlayerSegmentsResult;
 
@@ -5045,37 +4679,37 @@ interface IPlayFabServerAPI {
      * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
      * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
      * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayersInSegment
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayersinsegment
      */
     GetPlayersInSegment(request: PlayFabServerModels.GetPlayersInSegmentRequest): PlayFabServerModels.GetPlayersInSegmentResult;
 
     /**
      * Retrieves the current version and values for the indicated statistics, for the local player.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerStatistics
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatistics
      */
     GetPlayerStatistics(request: PlayFabServerModels.GetPlayerStatisticsRequest): PlayFabServerModels.GetPlayerStatisticsResult;
 
     /**
      * Retrieves the information on the available versions of the specified statistic.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerStatisticVersions
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getplayerstatisticversions
      */
     GetPlayerStatisticVersions(request: PlayFabServerModels.GetPlayerStatisticVersionsRequest): PlayFabServerModels.GetPlayerStatisticVersionsResult;
 
     /**
      * Get all tags with a given Namespace (optional) from a player profile.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayerTags
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/getplayertags
      */
     GetPlayerTags(request: PlayFabServerModels.GetPlayerTagsRequest): PlayFabServerModels.GetPlayerTagsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookids
      */
     GetPlayFabIDsFromFacebookIDs(request: PlayFabServerModels.GetPlayFabIDsFromFacebookIDsRequest): PlayFabServerModels.GetPlayFabIDsFromFacebookIDsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromFacebookInstantGamesIds
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromfacebookinstantgamesids
      */
     GetPlayFabIDsFromFacebookInstantGamesIds(request: PlayFabServerModels.GetPlayFabIDsFromFacebookInstantGamesIdsRequest): PlayFabServerModels.GetPlayFabIDsFromFacebookInstantGamesIdsResult;
 
@@ -5083,274 +4717,280 @@ interface IPlayFabServerAPI {
      * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
      * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
      * added to the player account.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromGenericIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromgenericids
      */
     GetPlayFabIDsFromGenericIDs(request: PlayFabServerModels.GetPlayFabIDsFromGenericIDsRequest): PlayFabServerModels.GetPlayFabIDsFromGenericIDsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromNintendoSwitchDeviceIds
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoswitchdeviceids
      */
     GetPlayFabIDsFromNintendoSwitchDeviceIds(request: PlayFabServerModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest): PlayFabServerModels.GetPlayFabIDsFromNintendoSwitchDeviceIdsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromPSNAccountIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfrompsnaccountids
      */
     GetPlayFabIDsFromPSNAccountIDs(request: PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsRequest): PlayFabServerModels.GetPlayFabIDsFromPSNAccountIDsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromSteamIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromsteamids
      */
     GetPlayFabIDsFromSteamIDs(request: PlayFabServerModels.GetPlayFabIDsFromSteamIDsRequest): PlayFabServerModels.GetPlayFabIDsFromSteamIDsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetPlayFabIDsFromXboxLiveIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromxboxliveids
      */
     GetPlayFabIDsFromXboxLiveIDs(request: PlayFabServerModels.GetPlayFabIDsFromXboxLiveIDsRequest): PlayFabServerModels.GetPlayFabIDsFromXboxLiveIDsResult;
 
     /**
      * Retrieves the key-value store of custom publisher settings
-     * https://api.playfab.com/Documentation/Server/method/GetPublisherData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getpublisherdata
      */
     GetPublisherData(request: PlayFabServerModels.GetPublisherDataRequest): PlayFabServerModels.GetPublisherDataResult;
 
     /**
      * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
      * values and weights
-     * https://api.playfab.com/Documentation/Server/method/GetRandomResultTables
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getrandomresulttables
      */
     GetRandomResultTables(request: PlayFabServerModels.GetRandomResultTablesRequest): PlayFabServerModels.GetRandomResultTablesResult;
 
     /**
      * Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
-     * https://api.playfab.com/Documentation/Server/method/GetServerCustomIDsFromPlayFabIDs
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getservercustomidsfromplayfabids
      */
     GetServerCustomIDsFromPlayFabIDs(request: PlayFabServerModels.GetServerCustomIDsFromPlayFabIDsRequest): PlayFabServerModels.GetServerCustomIDsFromPlayFabIDsResult;
 
     /**
      * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
      * public and private group data. Shared Groups are designed for sharing data between a very small number of players,
-     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/GetSharedGroupData
+     * please see our guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/getsharedgroupdata
      */
     GetSharedGroupData(request: PlayFabServerModels.GetSharedGroupDataRequest): PlayFabServerModels.GetSharedGroupDataResult;
 
     /**
      * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
-     * https://api.playfab.com/Documentation/Server/method/GetStoreItems
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/getstoreitems
      */
     GetStoreItems(request: PlayFabServerModels.GetStoreItemsServerRequest): PlayFabServerModels.GetStoreItemsResult;
 
     /**
      * Retrieves the current server time
-     * https://api.playfab.com/Documentation/Server/method/GetTime
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettime
      */
     GetTime(request: PlayFabServerModels.GetTimeRequest): PlayFabServerModels.GetTimeResult;
 
     /**
      * Retrieves the key-value store of custom title settings
-     * https://api.playfab.com/Documentation/Server/method/GetTitleData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitledata
      */
     GetTitleData(request: PlayFabServerModels.GetTitleDataRequest): PlayFabServerModels.GetTitleDataResult;
 
     /**
      * Retrieves the key-value store of custom internal title settings
-     * https://api.playfab.com/Documentation/Server/method/GetTitleInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitleinternaldata
      */
     GetTitleInternalData(request: PlayFabServerModels.GetTitleDataRequest): PlayFabServerModels.GetTitleDataResult;
 
     /**
      * Retrieves the title news feed, as configured in the developer portal
-     * https://api.playfab.com/Documentation/Server/method/GetTitleNews
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/gettitlenews
      */
     GetTitleNews(request: PlayFabServerModels.GetTitleNewsRequest): PlayFabServerModels.GetTitleNewsResult;
 
     /**
      * Retrieves the relevant details for a specified user
-     * https://api.playfab.com/Documentation/Server/method/GetUserAccountInfo
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getuseraccountinfo
      */
     GetUserAccountInfo(request: PlayFabServerModels.GetUserAccountInfoRequest): PlayFabServerModels.GetUserAccountInfoResult;
 
     /**
      * Gets all bans for a user.
-     * https://api.playfab.com/Documentation/Server/method/GetUserBans
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getuserbans
      */
     GetUserBans(request: PlayFabServerModels.GetUserBansRequest): PlayFabServerModels.GetUserBansResult;
 
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserdata
      */
     GetUserData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Retrieves the title-specific custom data for the user which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserinternaldata
      */
     GetUserInternalData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Retrieves the specified user's current inventory of virtual goods
-     * https://api.playfab.com/Documentation/Server/method/GetUserInventory
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/getuserinventory
      */
     GetUserInventory(request: PlayFabServerModels.GetUserInventoryRequest): PlayFabServerModels.GetUserInventoryResult;
 
     /**
      * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserPublisherData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherdata
      */
     GetUserPublisherData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserPublisherInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherinternaldata
      */
     GetUserPublisherInternalData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Retrieves the publisher-specific custom data for the user which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserPublisherReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserpublisherreadonlydata
      */
     GetUserPublisherReadOnlyData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Retrieves the title-specific custom data for the user which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/GetUserReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/getuserreadonlydata
      */
     GetUserReadOnlyData(request: PlayFabServerModels.GetUserDataRequest): PlayFabServerModels.GetUserDataResult;
 
     /**
      * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
      * with the parent PlayFabId to guarantee uniqueness.
-     * https://api.playfab.com/Documentation/Server/method/GrantCharacterToUser
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/grantcharactertouser
      */
     GrantCharacterToUser(request: PlayFabServerModels.GrantCharacterToUserRequest): PlayFabServerModels.GrantCharacterToUserResult;
 
     /**
      * Adds the specified items to the specified character's inventory
-     * https://api.playfab.com/Documentation/Server/method/GrantItemsToCharacter
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstocharacter
      */
     GrantItemsToCharacter(request: PlayFabServerModels.GrantItemsToCharacterRequest): PlayFabServerModels.GrantItemsToCharacterResult;
 
     /**
      * Adds the specified items to the specified user's inventory
-     * https://api.playfab.com/Documentation/Server/method/GrantItemsToUser
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstouser
      */
     GrantItemsToUser(request: PlayFabServerModels.GrantItemsToUserRequest): PlayFabServerModels.GrantItemsToUserResult;
 
     /**
      * Adds the specified items to the specified user inventories
-     * https://api.playfab.com/Documentation/Server/method/GrantItemsToUsers
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/grantitemstousers
      */
     GrantItemsToUsers(request: PlayFabServerModels.GrantItemsToUsersRequest): PlayFabServerModels.GrantItemsToUsersResult;
 
     /**
+     * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/linkpsnaccount
+     */
+    LinkPSNAccount(request: PlayFabServerModels.LinkPSNAccountRequest): PlayFabServerModels.LinkPSNAccountResult;
+
+    /**
      * Links the custom server identifier, generated by the title, to the user's PlayFab account.
-     * https://api.playfab.com/Documentation/Server/method/LinkServerCustomId
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/linkservercustomid
      */
     LinkServerCustomId(request: PlayFabServerModels.LinkServerCustomIdRequest): PlayFabServerModels.LinkServerCustomIdResult;
 
     /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
-     * https://api.playfab.com/Documentation/Server/method/LinkXboxAccount
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/linkxboxaccount
      */
     LinkXboxAccount(request: PlayFabServerModels.LinkXboxAccountRequest): PlayFabServerModels.LinkXboxAccountResult;
 
     /**
      * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
      * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
-     * https://api.playfab.com/Documentation/Server/method/LoginWithServerCustomId
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid
      */
     LoginWithServerCustomId(request: PlayFabServerModels.LoginWithServerCustomIdRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
      * subsequently be used for API calls which require an authenticated user
-     * https://api.playfab.com/Documentation/Server/method/LoginWithXbox
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxbox
      */
     LoginWithXbox(request: PlayFabServerModels.LoginWithXboxRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Signs the user in using an Xbox ID and Sandbox ID, returning a session identifier that can subsequently be used for API
      * calls which require an authenticated user
-     * https://api.playfab.com/Documentation/Server/method/LoginWithXboxId
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithxboxid
      */
     LoginWithXboxId(request: PlayFabServerModels.LoginWithXboxIdRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Modifies the number of remaining uses of a player's inventory item
-     * https://api.playfab.com/Documentation/Server/method/ModifyItemUses
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/modifyitemuses
      */
     ModifyItemUses(request: PlayFabServerModels.ModifyItemUsesRequest): PlayFabServerModels.ModifyItemUsesResult;
 
     /**
      * Moves an item from a character's inventory into another of the users's character's inventory.
-     * https://api.playfab.com/Documentation/Server/method/MoveItemToCharacterFromCharacter
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromcharacter
      */
     MoveItemToCharacterFromCharacter(request: PlayFabServerModels.MoveItemToCharacterFromCharacterRequest): PlayFabServerModels.MoveItemToCharacterFromCharacterResult;
 
     /**
      * Moves an item from a user's inventory into their character's inventory.
-     * https://api.playfab.com/Documentation/Server/method/MoveItemToCharacterFromUser
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtocharacterfromuser
      */
     MoveItemToCharacterFromUser(request: PlayFabServerModels.MoveItemToCharacterFromUserRequest): PlayFabServerModels.MoveItemToCharacterFromUserResult;
 
     /**
      * Moves an item from a character's inventory into the owning user's inventory.
-     * https://api.playfab.com/Documentation/Server/method/MoveItemToUserFromCharacter
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/moveitemtouserfromcharacter
      */
     MoveItemToUserFromCharacter(request: PlayFabServerModels.MoveItemToUserFromCharacterRequest): PlayFabServerModels.MoveItemToUserFromCharacterResult;
 
     /**
      * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
-     * https://api.playfab.com/Documentation/Server/method/NotifyMatchmakerPlayerLeft
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/notifymatchmakerplayerleft
      */
     NotifyMatchmakerPlayerLeft(request: PlayFabServerModels.NotifyMatchmakerPlayerLeftRequest): PlayFabServerModels.NotifyMatchmakerPlayerLeftResult;
 
     /**
      * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
-     * https://api.playfab.com/Documentation/Server/method/RedeemCoupon
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/redeemcoupon
      */
     RedeemCoupon(request: PlayFabServerModels.RedeemCouponRequest): PlayFabServerModels.RedeemCouponResult;
 
     /**
      * Validates a Game Server session ticket and returns details about the user
-     * https://api.playfab.com/Documentation/Server/method/RedeemMatchmakerTicket
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/redeemmatchmakerticket
      */
     RedeemMatchmakerTicket(request: PlayFabServerModels.RedeemMatchmakerTicketRequest): PlayFabServerModels.RedeemMatchmakerTicketResult;
 
     /**
      * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
-     * https://api.playfab.com/Documentation/Server/method/RefreshGameServerInstanceHeartbeat
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat
      */
     RefreshGameServerInstanceHeartbeat(request: PlayFabServerModels.RefreshGameServerInstanceHeartbeatRequest): PlayFabServerModels.RefreshGameServerInstanceHeartbeatResult;
 
     /**
      * Inform the matchmaker that a new Game Server Instance is added.
-     * https://api.playfab.com/Documentation/Server/method/RegisterGame
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
      */
     RegisterGame(request: PlayFabServerModels.RegisterGameRequest): PlayFabServerModels.RegisterGameResponse;
 
     /**
      * Removes the specified friend from the the user's friend list
-     * https://api.playfab.com/Documentation/Server/method/RemoveFriend
+     * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/removefriend
      */
     RemoveFriend(request: PlayFabServerModels.RemoveFriendRequest): PlayFabServerModels.EmptyResponse;
 
     /**
      * Removes the specified generic service identifier from the player's PlayFab account.
-     * https://api.playfab.com/Documentation/Server/method/RemoveGenericID
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/removegenericid
      */
     RemoveGenericID(request: PlayFabServerModels.RemoveGenericIDRequest): PlayFabServerModels.EmptyResult;
 
     /**
      * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     * https://api.playfab.com/Documentation/Server/method/RemovePlayerTag
+     * https://docs.microsoft.com/rest/api/playfab/server/playstream/removeplayertag
      */
     RemovePlayerTag(request: PlayFabServerModels.RemovePlayerTagRequest): PlayFabServerModels.RemovePlayerTagResult;
 
@@ -5358,147 +4998,153 @@ interface IPlayFabServerAPI {
      * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
      * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
      * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
-     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/RemoveSharedGroupMembers
+     * guide: https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/removesharedgroupmembers
      */
     RemoveSharedGroupMembers(request: PlayFabServerModels.RemoveSharedGroupMembersRequest): PlayFabServerModels.RemoveSharedGroupMembersResult;
 
     /**
      * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
      * representatives for the title can take action concerning potentially toxic players.
-     * https://api.playfab.com/Documentation/Server/method/ReportPlayer
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/reportplayer
      */
     ReportPlayer(request: PlayFabServerModels.ReportPlayerServerRequest): PlayFabServerModels.ReportPlayerServerResult;
 
     /**
      * Revoke all active bans for a user.
-     * https://api.playfab.com/Documentation/Server/method/RevokeAllBansForUser
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/revokeallbansforuser
      */
     RevokeAllBansForUser(request: PlayFabServerModels.RevokeAllBansForUserRequest): PlayFabServerModels.RevokeAllBansForUserResult;
 
     /**
      * Revoke all active bans specified with BanId.
-     * https://api.playfab.com/Documentation/Server/method/RevokeBans
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/revokebans
      */
     RevokeBans(request: PlayFabServerModels.RevokeBansRequest): PlayFabServerModels.RevokeBansResult;
 
     /**
      * Revokes access to an item in a user's inventory
-     * https://api.playfab.com/Documentation/Server/method/RevokeInventoryItem
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitem
      */
     RevokeInventoryItem(request: PlayFabServerModels.RevokeInventoryItemRequest): PlayFabServerModels.RevokeInventoryResult;
 
     /**
      * Revokes access for up to 25 items across multiple users and characters.
-     * https://api.playfab.com/Documentation/Server/method/RevokeInventoryItems
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/revokeinventoryitems
      */
     RevokeInventoryItems(request: PlayFabServerModels.RevokeInventoryItemsRequest): PlayFabServerModels.RevokeInventoryItemsResult;
 
     /**
      * Saves push notification template for title
-     * https://api.playfab.com/Documentation/Server/method/SavePushNotificationTemplate
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/savepushnotificationtemplate
      */
     SavePushNotificationTemplate(request: PlayFabServerModels.SavePushNotificationTemplateRequest): PlayFabServerModels.SavePushNotificationTemplateResult;
 
     /**
      * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
      * email template
-     * https://api.playfab.com/Documentation/Server/method/SendCustomAccountRecoveryEmail
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/sendcustomaccountrecoveryemail
      */
     SendCustomAccountRecoveryEmail(request: PlayFabServerModels.SendCustomAccountRecoveryEmailRequest): PlayFabServerModels.SendCustomAccountRecoveryEmailResult;
 
     /**
      * Sends an email based on an email template to a player's contact email
-     * https://api.playfab.com/Documentation/Server/method/SendEmailFromTemplate
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/sendemailfromtemplate
      */
     SendEmailFromTemplate(request: PlayFabServerModels.SendEmailFromTemplateRequest): PlayFabServerModels.SendEmailFromTemplateResult;
 
     /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
      * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
-     * https://api.playfab.com/Documentation/Server/method/SendPushNotification
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotification
      */
     SendPushNotification(request: PlayFabServerModels.SendPushNotificationRequest): PlayFabServerModels.SendPushNotificationResult;
 
     /**
      * Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
      * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
-     * https://api.playfab.com/Documentation/Server/method/SendPushNotificationFromTemplate
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/sendpushnotificationfromtemplate
      */
     SendPushNotificationFromTemplate(request: PlayFabServerModels.SendPushNotificationFromTemplateRequest): PlayFabServerModels.SendPushNotificationResult;
 
     /**
      * Updates the tag list for a specified user in the friend list of another user
-     * https://api.playfab.com/Documentation/Server/method/SetFriendTags
+     * https://docs.microsoft.com/rest/api/playfab/server/friend-list-management/setfriendtags
      */
     SetFriendTags(request: PlayFabServerModels.SetFriendTagsRequest): PlayFabServerModels.EmptyResponse;
 
     /**
      * Sets the custom data of the indicated Game Server Instance
-     * https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceData
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancedata
      */
     SetGameServerInstanceData(request: PlayFabServerModels.SetGameServerInstanceDataRequest): PlayFabServerModels.SetGameServerInstanceDataResult;
 
     /**
      * Set the state of the indicated Game Server Instance.
-     * https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceState
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancestate
      */
     SetGameServerInstanceState(request: PlayFabServerModels.SetGameServerInstanceStateRequest): PlayFabServerModels.SetGameServerInstanceStateResult;
 
     /**
      * Set custom tags for the specified Game Server Instance
-     * https://api.playfab.com/Documentation/Server/method/SetGameServerInstanceTags
+     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/setgameserverinstancetags
      */
     SetGameServerInstanceTags(request: PlayFabServerModels.SetGameServerInstanceTagsRequest): PlayFabServerModels.SetGameServerInstanceTagsResult;
 
     /**
      * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
      * secret use the Admin or Server API method SetPlayerSecret.
-     * https://api.playfab.com/Documentation/Server/method/SetPlayerSecret
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/setplayersecret
      */
     SetPlayerSecret(request: PlayFabServerModels.SetPlayerSecretRequest): PlayFabServerModels.SetPlayerSecretResult;
 
     /**
      * Updates the key-value store of custom publisher settings
-     * https://api.playfab.com/Documentation/Server/method/SetPublisherData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/setpublisherdata
      */
     SetPublisherData(request: PlayFabServerModels.SetPublisherDataRequest): PlayFabServerModels.SetPublisherDataResult;
 
     /**
      * Updates the key-value store of custom title settings
-     * https://api.playfab.com/Documentation/Server/method/SetTitleData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitledata
      */
     SetTitleData(request: PlayFabServerModels.SetTitleDataRequest): PlayFabServerModels.SetTitleDataResult;
 
     /**
      * Updates the key-value store of custom title settings
-     * https://api.playfab.com/Documentation/Server/method/SetTitleInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/title-wide-data-management/settitleinternaldata
      */
     SetTitleInternalData(request: PlayFabServerModels.SetTitleDataRequest): PlayFabServerModels.SetTitleDataResult;
 
     /**
      * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
      * balance negative with this API.
-     * https://api.playfab.com/Documentation/Server/method/SubtractCharacterVirtualCurrency
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractcharactervirtualcurrency
      */
     SubtractCharacterVirtualCurrency(request: PlayFabServerModels.SubtractCharacterVirtualCurrencyRequest): PlayFabServerModels.ModifyCharacterVirtualCurrencyResult;
 
     /**
      * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
      * balance negative with this API.
-     * https://api.playfab.com/Documentation/Server/method/SubtractUserVirtualCurrency
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/subtractuservirtualcurrency
      */
     SubtractUserVirtualCurrency(request: PlayFabServerModels.SubtractUserVirtualCurrencyRequest): PlayFabServerModels.ModifyUserVirtualCurrencyResult;
 
     /**
+     * Unlinks the related PSN account from the user's PlayFab account
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkpsnaccount
+     */
+    UnlinkPSNAccount(request: PlayFabServerModels.UnlinkPSNAccountRequest): PlayFabServerModels.UnlinkPSNAccountResult;
+
+    /**
      * Unlinks the custom server identifier from the user's PlayFab account.
-     * https://api.playfab.com/Documentation/Server/method/UnlinkServerCustomId
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkservercustomid
      */
     UnlinkServerCustomId(request: PlayFabServerModels.UnlinkServerCustomIdRequest): PlayFabServerModels.UnlinkServerCustomIdResult;
 
     /**
      * Unlinks the related Xbox Live account from the user's PlayFab account
-     * https://api.playfab.com/Documentation/Server/method/UnlinkXboxAccount
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/unlinkxboxaccount
      */
     UnlinkXboxAccount(request: PlayFabServerModels.UnlinkXboxAccountRequest): PlayFabServerModels.UnlinkXboxAccountResult;
 
@@ -5506,7 +5152,7 @@ interface IPlayFabServerAPI {
      * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
      * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
      * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
-     * https://api.playfab.com/Documentation/Server/method/UnlockContainerInstance
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontainerinstance
      */
     UnlockContainerInstance(request: PlayFabServerModels.UnlockContainerInstanceRequest): PlayFabServerModels.UnlockContainerItemResult;
 
@@ -5515,49 +5161,49 @@ interface IPlayFabServerAPI {
      * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
      * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
      * ConsumeItem.
-     * https://api.playfab.com/Documentation/Server/method/UnlockContainerItem
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/unlockcontaineritem
      */
     UnlockContainerItem(request: PlayFabServerModels.UnlockContainerItemRequest): PlayFabServerModels.UnlockContainerItemResult;
 
     /**
      * Update the avatar URL of the specified player
-     * https://api.playfab.com/Documentation/Server/method/UpdateAvatarUrl
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/updateavatarurl
      */
     UpdateAvatarUrl(request: PlayFabServerModels.UpdateAvatarUrlRequest): PlayFabServerModels.EmptyResponse;
 
     /**
      * Updates information of a list of existing bans specified with Ban Ids.
-     * https://api.playfab.com/Documentation/Server/method/UpdateBans
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/updatebans
      */
     UpdateBans(request: PlayFabServerModels.UpdateBansRequest): PlayFabServerModels.UpdateBansResult;
 
     /**
      * Updates the title-specific custom data for the user's character which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateCharacterData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterdata
      */
     UpdateCharacterData(request: PlayFabServerModels.UpdateCharacterDataRequest): PlayFabServerModels.UpdateCharacterDataResult;
 
     /**
      * Updates the title-specific custom data for the user's character which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateCharacterInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterinternaldata
      */
     UpdateCharacterInternalData(request: PlayFabServerModels.UpdateCharacterDataRequest): PlayFabServerModels.UpdateCharacterDataResult;
 
     /**
      * Updates the title-specific custom data for the user's character which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateCharacterReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/character-data/updatecharacterreadonlydata
      */
     UpdateCharacterReadOnlyData(request: PlayFabServerModels.UpdateCharacterDataRequest): PlayFabServerModels.UpdateCharacterDataResult;
 
     /**
      * Updates the values of the specified title-specific statistics for the specific character
-     * https://api.playfab.com/Documentation/Server/method/UpdateCharacterStatistics
+     * https://docs.microsoft.com/rest/api/playfab/server/characters/updatecharacterstatistics
      */
     UpdateCharacterStatistics(request: PlayFabServerModels.UpdateCharacterStatisticsRequest): PlayFabServerModels.UpdateCharacterStatisticsResult;
 
     /**
      * Updates the values of the specified title-specific statistics for the user
-     * https://api.playfab.com/Documentation/Server/method/UpdatePlayerStatistics
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateplayerstatistics
      */
     UpdatePlayerStatistics(request: PlayFabServerModels.UpdatePlayerStatisticsRequest): PlayFabServerModels.UpdatePlayerStatisticsResult;
 
@@ -5566,68 +5212,68 @@ interface IPlayFabServerAPI {
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
      * Regardless of the permission setting, only members of the group (and the server) can update the data. Shared Groups are
      * designed for sharing data between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
-     * https://api.playfab.com/Documentation/Server/method/UpdateSharedGroupData
+     * https://docs.microsoft.com/gaming/playfab/features/social/groups/using-shared-group-data
+     * https://docs.microsoft.com/rest/api/playfab/server/shared-group-data/updatesharedgroupdata
      */
     UpdateSharedGroupData(request: PlayFabServerModels.UpdateSharedGroupDataRequest): PlayFabServerModels.UpdateSharedGroupDataResult;
 
     /**
      * Updates the title-specific custom data for the user which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserdata
      */
     UpdateUserData(request: PlayFabServerModels.UpdateUserDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Updates the title-specific custom data for the user which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserinternaldata
      */
     UpdateUserInternalData(request: PlayFabServerModels.UpdateUserInternalDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserInventoryItemCustomData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-item-management/updateuserinventoryitemcustomdata
      */
     UpdateUserInventoryItemCustomData(request: PlayFabServerModels.UpdateUserInventoryItemDataRequest): PlayFabServerModels.EmptyResponse;
 
     /**
      * Updates the publisher-specific custom data for the user which is readable and writable by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherdata
      */
     UpdateUserPublisherData(request: PlayFabServerModels.UpdateUserDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Updates the publisher-specific custom data for the user which cannot be accessed by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherInternalData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherinternaldata
      */
     UpdateUserPublisherInternalData(request: PlayFabServerModels.UpdateUserInternalDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Updates the publisher-specific custom data for the user which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserPublisherReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserpublisherreadonlydata
      */
     UpdateUserPublisherReadOnlyData(request: PlayFabServerModels.UpdateUserDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Updates the title-specific custom data for the user which can only be read by the client
-     * https://api.playfab.com/Documentation/Server/method/UpdateUserReadOnlyData
+     * https://docs.microsoft.com/rest/api/playfab/server/player-data-management/updateuserreadonlydata
      */
     UpdateUserReadOnlyData(request: PlayFabServerModels.UpdateUserDataRequest): PlayFabServerModels.UpdateUserDataResult;
 
     /**
      * Writes a character-based event into PlayStream.
-     * https://api.playfab.com/Documentation/Server/method/WriteCharacterEvent
+     * https://docs.microsoft.com/rest/api/playfab/server/analytics/writecharacterevent
      */
     WriteCharacterEvent(request: PlayFabServerModels.WriteServerCharacterEventRequest): PlayFabServerModels.WriteEventResponse;
 
     /**
      * Writes a player-based event into PlayStream.
-     * https://api.playfab.com/Documentation/Server/method/WritePlayerEvent
+     * https://docs.microsoft.com/rest/api/playfab/server/analytics/writeplayerevent
      */
     WritePlayerEvent(request: PlayFabServerModels.WriteServerPlayerEventRequest): PlayFabServerModels.WriteEventResponse;
 
     /**
      * Writes a title-based event into PlayStream.
-     * https://api.playfab.com/Documentation/Server/method/WriteTitleEvent
+     * https://docs.microsoft.com/rest/api/playfab/server/analytics/writetitleevent
      */
     WriteTitleEvent(request: PlayFabServerModels.WriteTitleEventRequest): PlayFabServerModels.WriteEventResponse;
 
@@ -5637,10 +5283,7 @@ interface IPlayFabServerAPI {
 
 /** AuthenticationAPI.Models as interfaces */
 declare namespace PlayFabAuthenticationModels {
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -5648,7 +5291,6 @@ declare namespace PlayFabAuthenticationModels {
         Type?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.EntityLineage */
     interface EntityLineage {
         /** The Character Id of the associated entity. */
         CharacterId?: string,
@@ -5670,14 +5312,12 @@ declare namespace PlayFabAuthenticationModels {
      * caller, such as the master_player_account of a character. If sending X-EntityToken the account will be marked as freshly
      * logged in and will issue a new token. If using X-Authentication or X-EntityToken the header must still be valid and
      * cannot be expired or revoked.
-     * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenRequest
      */
     interface GetEntityTokenRequest {
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.GetEntityTokenResponse */
     interface GetEntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5687,7 +5327,6 @@ declare namespace PlayFabAuthenticationModels {
         TokenExpiration?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.LoginIdentityProvider */
     type LoginIdentityProvider = "Unknown"
         | "PlayFab"
         | "Custom"
@@ -5708,16 +5347,12 @@ declare namespace PlayFabAuthenticationModels {
         | "FacebookInstantGames"
         | "OpenIdConnect";
 
-    /**
-     * Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner.
-     * https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenRequest
-     */
+    /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     interface ValidateEntityTokenRequest {
         /** Client EntityToken */
         EntityToken: string,
     }
 
-    /** https://api.playfab.com/Documentation/Authentication/datatype/PlayFab.Authentication.Models/PlayFab.Authentication.Models.ValidateEntityTokenResponse */
     interface ValidateEntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5730,10 +5365,7 @@ declare namespace PlayFabAuthenticationModels {
 }
 /** DataAPI.Models as interfaces */
 declare namespace PlayFabDataModels {
-    /**
-     * Aborts the pending upload of the requested files.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.AbortFileUploadsRequest
-     */
+    /** Aborts the pending upload of the requested files. */
     interface AbortFileUploadsRequest {
         /** The entity to perform this action on. */
         Entity: EntityKey,
@@ -5746,7 +5378,6 @@ declare namespace PlayFabDataModels {
         ProfileVersion?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.AbortFileUploadsResponse */
     interface AbortFileUploadsResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5754,10 +5385,7 @@ declare namespace PlayFabDataModels {
         ProfileVersion: number,
     }
 
-    /**
-     * Deletes the requested files from the entity's profile.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.DeleteFilesRequest
-     */
+    /** Deletes the requested files from the entity's profile. */
     interface DeleteFilesRequest {
         /** The entity to perform this action on. */
         Entity: EntityKey,
@@ -5770,7 +5398,6 @@ declare namespace PlayFabDataModels {
         ProfileVersion?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.DeleteFilesResponse */
     interface DeleteFilesResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5778,10 +5405,7 @@ declare namespace PlayFabDataModels {
         ProfileVersion: number,
     }
 
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -5792,7 +5416,6 @@ declare namespace PlayFabDataModels {
     /**
      * Finalizes the upload of the requested files. Verifies that the files have been successfully uploaded and moves the file
      * pointers from pending to live.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.FinalizeFileUploadsRequest
      */
     interface FinalizeFileUploadsRequest {
         /** The entity to perform this action on. */
@@ -5801,7 +5424,6 @@ declare namespace PlayFabDataModels {
         FileNames: string[],
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.FinalizeFileUploadsResponse */
     interface FinalizeFileUploadsResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5811,7 +5433,6 @@ declare namespace PlayFabDataModels {
         ProfileVersion: number,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFileMetadata */
     interface GetFileMetadata {
         /** Checksum value for the file */
         Checksum?: string,
@@ -5829,14 +5450,12 @@ declare namespace PlayFabDataModels {
      * Returns URLs that may be used to download the files for a profile for a limited length of time. Only returns files that
      * have been successfully uploaded, files that are still pending will either return the old value, if it exists, or
      * nothing.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFilesRequest
      */
     interface GetFilesRequest {
         /** The entity to perform this action on. */
         Entity: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetFilesResponse */
     interface GetFilesResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5846,10 +5465,7 @@ declare namespace PlayFabDataModels {
         ProfileVersion: number,
     }
 
-    /**
-     * Gets JSON objects from an entity profile and returns it.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetObjectsRequest
-     */
+    /** Gets JSON objects from an entity profile and returns it. */
     interface GetObjectsRequest {
         /** The entity to perform this action on. */
         Entity: EntityKey,
@@ -5860,7 +5476,6 @@ declare namespace PlayFabDataModels {
         EscapeObject?: boolean,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.GetObjectsResponse */
     interface GetObjectsResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5870,7 +5485,6 @@ declare namespace PlayFabDataModels {
         ProfileVersion: number,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadMetadata */
     interface InitiateFileUploadMetadata {
         /** Name of the file. */
         FileName?: string,
@@ -5881,7 +5495,6 @@ declare namespace PlayFabDataModels {
     /**
      * Returns URLs that may be used to upload the files for a profile 5 minutes. After using the upload calls
      * FinalizeFileUploads must be called to move the file status from pending to live.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadsRequest
      */
     interface InitiateFileUploadsRequest {
         /** The entity to perform this action on. */
@@ -5895,7 +5508,6 @@ declare namespace PlayFabDataModels {
         ProfileVersion?: number,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.InitiateFileUploadsResponse */
     interface InitiateFileUploadsResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
@@ -5905,7 +5517,6 @@ declare namespace PlayFabDataModels {
         UploadDetails?: InitiateFileUploadMetadata[],
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.ObjectResult */
     interface ObjectResult {
         /** Un-escaped JSON object, if EscapeObject false or default. */
         DataObject?: any,
@@ -5915,13 +5526,11 @@ declare namespace PlayFabDataModels {
         ObjectName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.OperationTypes */
     type OperationTypes = "Created"
         | "Updated"
         | "Deleted"
         | "None";
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObject */
     interface SetObject {
         /**
          * Body of the object to be saved. If empty and DeleteObject is true object will be deleted if it exists, or no operation
@@ -5939,7 +5548,6 @@ declare namespace PlayFabDataModels {
         ObjectName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectInfo */
     interface SetObjectInfo {
         /** Name of the object */
         ObjectName?: string,
@@ -5955,7 +5563,6 @@ declare namespace PlayFabDataModels {
      * ignored. If no version is set on the request then the value will always be updated if the values differ. Using the
      * version value does not guarantee a write though, ConcurrentEditError may still occur if multiple clients are attempting
      * to update the same profile.
-     * https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectsRequest
      */
     interface SetObjectsRequest {
         /** The entity to perform this action on. */
@@ -5970,7 +5577,6 @@ declare namespace PlayFabDataModels {
         Objects: SetObject[],
     }
 
-    /** https://api.playfab.com/Documentation/Data/datatype/PlayFab.Data.Models/PlayFab.Data.Models.SetObjectsResponse */
     interface SetObjectsResponse {
         /** New version of the entity profile. */
         ProfileVersion: number,
@@ -5981,10 +5587,7 @@ declare namespace PlayFabDataModels {
 }
 /** EventsAPI.Models as interfaces */
 declare namespace PlayFabEventsModels {
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -5992,7 +5595,6 @@ declare namespace PlayFabEventsModels {
         Type?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.EventContents */
     interface EventContents {
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey,
@@ -6019,13 +5621,11 @@ declare namespace PlayFabEventsModels {
         PayloadJSON?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.WriteEventsRequest */
     interface WriteEventsRequest {
         /** Collection of events to write to PlayStream. */
         Events: EventContents[],
     }
 
-    /** https://api.playfab.com/Documentation/Events/datatype/PlayFab.Events.Models/PlayFab.Events.Models.WriteEventsResponse */
     interface WriteEventsResponse {
         /**
          * The unique identifiers assigned by the server to the events, in the same order as the events in the request. Only
@@ -6040,7 +5640,6 @@ declare namespace PlayFabGroupsModels {
     /**
      * Accepts an outstanding invitation to to join a group if the invited entity is not blocked by the group. Nothing is
      * returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.AcceptGroupApplicationRequest
      */
     interface AcceptGroupApplicationRequest {
         /**
@@ -6056,7 +5655,6 @@ declare namespace PlayFabGroupsModels {
      * Accepts an outstanding invitation to join the group if the invited entity is not blocked by the group. Only the invited
      * entity or a parent in its chain (e.g. title) may accept the invitation on the invited entity's behalf. Nothing is
      * returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.AcceptGroupInvitationRequest
      */
     interface AcceptGroupInvitationRequest {
         /** The entity to perform this action on. */
@@ -6069,7 +5667,6 @@ declare namespace PlayFabGroupsModels {
      * Adds members to a group or role. Existing members of the group will added to roles within the group, but if the user is
      * not already a member of the group, only title claimants may add them to the group, and others must use the group
      * application or invite system to add new members to a group. Returns nothing if successful.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.AddMembersRequest
      */
     interface AddMembersRequest {
         /** The identifier of the group */
@@ -6089,7 +5686,6 @@ declare namespace PlayFabGroupsModels {
      * has an invitation to join the group outstanding, this will accept the invitation to join the group instead and return an
      * error indicating such, rather than creating a duplicate application to join that will need to be cleaned up later.
      * Returns information about the application or an error indicating an invitation was accepted instead.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ApplyToGroupRequest
      */
     interface ApplyToGroupRequest {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
@@ -6100,10 +5696,7 @@ declare namespace PlayFabGroupsModels {
         Group: EntityKey,
     }
 
-    /**
-     * Describes an application to join a group
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ApplyToGroupResponse
-     */
+    /** Describes an application to join a group */
     interface ApplyToGroupResponse {
         /** Type of entity that requested membership */
         Entity?: EntityWithLineage,
@@ -6117,7 +5710,6 @@ declare namespace PlayFabGroupsModels {
      * Blocks a list of entities from joining a group. Blocked entities may not create new applications to join, be invited to
      * join, accept an invitation, or have an application accepted. Failure due to being blocked does not clean up existing
      * applications or invitations to the group. No data is returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.BlockEntityRequest
      */
     interface BlockEntityRequest {
         /** The entity to perform this action on. */
@@ -6130,7 +5722,6 @@ declare namespace PlayFabGroupsModels {
      * Changes the role membership of a list of entities from one role to another in in a single operation. The destination
      * role must already exist. This is equivalent to adding the entities to the destination role and removing from the origin
      * role. Returns nothing if successful.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ChangeMemberRoleRequest
      */
     interface ChangeMemberRoleRequest {
         /**
@@ -6152,7 +5743,6 @@ declare namespace PlayFabGroupsModels {
     /**
      * Creates a new group, as well as administration and member roles, based off of a title's group template. Returns
      * information about the group that was created.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.CreateGroupRequest
      */
     interface CreateGroupRequest {
         /** The entity to perform this action on. */
@@ -6161,7 +5751,6 @@ declare namespace PlayFabGroupsModels {
         GroupName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.CreateGroupResponse */
     interface CreateGroupResponse {
         /** The ID of the administrator role for the group. */
         AdminRoleId?: string,
@@ -6183,7 +5772,6 @@ declare namespace PlayFabGroupsModels {
      * Creates a new role within an existing group, with no members. Both the role ID and role name must be unique within the
      * group, but the name can be the same as the ID. The role ID is set at creation and cannot be changed. Returns information
      * about the role that was created.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.CreateGroupRoleRequest
      */
     interface CreateGroupRoleRequest {
         /** The identifier of the group */
@@ -6200,7 +5788,6 @@ declare namespace PlayFabGroupsModels {
         RoleName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.CreateGroupRoleResponse */
     interface CreateGroupRoleResponse {
         /** The current version of the group profile, can be used for concurrency control during updates. */
         ProfileVersion: number,
@@ -6214,17 +5801,13 @@ declare namespace PlayFabGroupsModels {
      * Deletes a group and all roles, invitations, join requests, and blocks associated with it. Permission to delete is only
      * required the group itself to execute this action. The group and data cannot be cannot be recovered once removed, but any
      * abuse reports about the group will remain. No data is returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.DeleteGroupRequest
      */
     interface DeleteGroupRequest {
         /** ID of the group or role to remove */
         Group: EntityKey,
     }
 
-    /**
-     * Returns information about the role
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.DeleteRoleRequest
-     */
+    /** Returns information about the role */
     interface DeleteRoleRequest {
         /** The identifier of the group */
         Group: EntityKey,
@@ -6232,14 +5815,10 @@ declare namespace PlayFabGroupsModels {
         RoleId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.EmptyResponse */
     interface EmptyResponse {
     }
 
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -6247,7 +5826,6 @@ declare namespace PlayFabGroupsModels {
         Type?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.EntityMemberRole */
     interface EntityMemberRole {
         /** The list of members in the role */
         Members?: EntityWithLineage[],
@@ -6257,10 +5835,7 @@ declare namespace PlayFabGroupsModels {
         RoleName?: string,
     }
 
-    /**
-     * Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.EntityWithLineage
-     */
+    /** Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity. */
     interface EntityWithLineage {
         /** The entity key for the specified entity */
         Key?: EntityKey,
@@ -6268,10 +5843,7 @@ declare namespace PlayFabGroupsModels {
         Lineage?: { [key: string]: EntityKey },
     }
 
-    /**
-     * Returns the ID, name, role list and other non-membership related information about a group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GetGroupRequest
-     */
+    /** Returns the ID, name, role list and other non-membership related information about a group. */
     interface GetGroupRequest {
         /** The identifier of the group */
         Group?: EntityKey,
@@ -6279,7 +5851,6 @@ declare namespace PlayFabGroupsModels {
         GroupName?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GetGroupResponse */
     interface GetGroupResponse {
         /** The ID of the administrator role for the group. */
         AdminRoleId?: string,
@@ -6297,10 +5868,7 @@ declare namespace PlayFabGroupsModels {
         Roles?: { [key: string]: string | null },
     }
 
-    /**
-     * Describes an application to join a group
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GroupApplication
-     */
+    /** Describes an application to join a group */
     interface GroupApplication {
         /** Type of entity that requested membership */
         Entity?: EntityWithLineage,
@@ -6310,10 +5878,7 @@ declare namespace PlayFabGroupsModels {
         Group?: EntityKey,
     }
 
-    /**
-     * Describes an entity that is blocked from joining a group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GroupBlock
-     */
+    /** Describes an entity that is blocked from joining a group. */
     interface GroupBlock {
         /** The entity that is blocked */
         Entity?: EntityWithLineage,
@@ -6321,10 +5886,7 @@ declare namespace PlayFabGroupsModels {
         Group: EntityKey,
     }
 
-    /**
-     * Describes an invitation to a group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GroupInvitation
-     */
+    /** Describes an invitation to a group. */
     interface GroupInvitation {
         /** When the invitation will expire and be deleted */
         Expires: string,
@@ -6338,10 +5900,7 @@ declare namespace PlayFabGroupsModels {
         RoleId?: string,
     }
 
-    /**
-     * Describes a group role
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GroupRole
-     */
+    /** Describes a group role */
     interface GroupRole {
         /** ID for the role */
         RoleId?: string,
@@ -6349,10 +5908,7 @@ declare namespace PlayFabGroupsModels {
         RoleName?: string,
     }
 
-    /**
-     * Describes a group and the roles that it contains
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.GroupWithRoles
-     */
+    /** Describes a group and the roles that it contains */
     interface GroupWithRoles {
         /** ID for the group */
         Group?: EntityKey,
@@ -6370,7 +5926,6 @@ declare namespace PlayFabGroupsModels {
      * to the group outstanding, this will accept the application instead and return an error indicating such, rather than
      * creating a duplicate invitation to join that will need to be cleaned up later. Returns information about the new
      * invitation or an error indicating an existing application to join was accepted.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.InviteToGroupRequest
      */
     interface InviteToGroupRequest {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
@@ -6386,10 +5941,7 @@ declare namespace PlayFabGroupsModels {
         RoleId?: string,
     }
 
-    /**
-     * Describes an invitation to a group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.InviteToGroupResponse
-     */
+    /** Describes an invitation to a group. */
     interface InviteToGroupResponse {
         /** When the invitation will expire and be deleted */
         Expires: string,
@@ -6407,7 +5959,6 @@ declare namespace PlayFabGroupsModels {
      * Checks to see if an entity is a member of a group or role within the group. A result indicating if the entity is a
      * member of the group is returned, or a permission error if the caller does not have permission to read the group's member
      * list.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.IsMemberRequest
      */
     interface IsMemberRequest {
         /** The entity to perform this action on. */
@@ -6421,7 +5972,6 @@ declare namespace PlayFabGroupsModels {
         RoleId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.IsMemberResponse */
     interface IsMemberResponse {
         /** A value indicating whether or not the entity is a member. */
         IsMember: boolean,
@@ -6430,29 +5980,23 @@ declare namespace PlayFabGroupsModels {
     /**
      * Lists all outstanding requests to join a group. Returns a list of all requests to join, as well as when the request will
      * expire. To get the group applications for a specific entity, use ListMembershipOpportunities.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupApplicationsRequest
      */
     interface ListGroupApplicationsRequest {
         /** The identifier of the group */
         Group: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupApplicationsResponse */
     interface ListGroupApplicationsResponse {
         /** The requested list of applications to the group. */
         Applications?: GroupApplication[],
     }
 
-    /**
-     * Lists all entities blocked from joining a group. A list of blocked entities is returned
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupBlocksRequest
-     */
+    /** Lists all entities blocked from joining a group. A list of blocked entities is returned */
     interface ListGroupBlocksRequest {
         /** The identifier of the group */
         Group: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupBlocksResponse */
     interface ListGroupBlocksResponse {
         /** The requested list blocked entities. */
         BlockedEntities?: GroupBlock[],
@@ -6461,14 +6005,12 @@ declare namespace PlayFabGroupsModels {
     /**
      * Lists all outstanding invitations for a group. Returns a list of entities that have been invited, as well as when the
      * invitation will expire. To get the group invitations for a specific entity, use ListMembershipOpportunities.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupInvitationsRequest
      */
     interface ListGroupInvitationsRequest {
         /** The identifier of the group */
         Group: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupInvitationsResponse */
     interface ListGroupInvitationsResponse {
         /** The requested list of group invitations. */
         Invitations?: GroupInvitation[],
@@ -6478,14 +6020,12 @@ declare namespace PlayFabGroupsModels {
      * Gets a list of members and the roles they belong to within the group. If the caller does not have permission to view the
      * role, and the member is in no other role, the member is not displayed. Returns a list of entities that are members of
      * the group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupMembersRequest
      */
     interface ListGroupMembersRequest {
         /** ID of the group to list the members and roles for */
         Group: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListGroupMembersResponse */
     interface ListGroupMembersResponse {
         /** The requested list of roles and member entity IDs. */
         Members?: EntityMemberRole[],
@@ -6495,14 +6035,12 @@ declare namespace PlayFabGroupsModels {
      * Lists all outstanding group applications and invitations for an entity. Anyone may call this for any entity, but data
      * will only be returned for the entity or a parent of that entity. To list invitations or applications for a group to
      * check if a player is trying to join, use ListGroupInvitations and ListGroupApplications.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListMembershipOpportunitiesRequest
      */
     interface ListMembershipOpportunitiesRequest {
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListMembershipOpportunitiesResponse */
     interface ListMembershipOpportunitiesResponse {
         /** The requested list of group applications. */
         Applications?: GroupApplication[],
@@ -6514,20 +6052,17 @@ declare namespace PlayFabGroupsModels {
      * Lists the groups and roles that an entity is a part of, checking to see if group and role metadata and memberships
      * should be visible to the caller. If the entity is not in any roles that are visible to the caller, the group is not
      * returned in the results, even if the caller otherwise has permission to see that the entity is a member of that group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListMembershipRequest
      */
     interface ListMembershipRequest {
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.ListMembershipResponse */
     interface ListMembershipResponse {
         /** The list of groups */
         Groups?: GroupWithRoles[],
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.OperationTypes */
     type OperationTypes = "Created"
         | "Updated"
         | "Deleted"
@@ -6537,7 +6072,6 @@ declare namespace PlayFabGroupsModels {
      * Removes an existing application to join the group. This is used for both rejection of an application as well as
      * withdrawing an application. The applying entity or a parent in its chain (e.g. title) may withdraw the application, and
      * any caller with appropriate access in the group may reject an application. No data is returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.RemoveGroupApplicationRequest
      */
     interface RemoveGroupApplicationRequest {
         /** The entity to perform this action on. */
@@ -6551,7 +6085,6 @@ declare namespace PlayFabGroupsModels {
      * an invitation. The invited entity or a parent in its chain (e.g. title) may reject the invitation by calling this
      * method, and any caller with appropriate access in the group may rescind an invitation. No data is returned in the case
      * of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.RemoveGroupInvitationRequest
      */
     interface RemoveGroupInvitationRequest {
         /** The entity to perform this action on. */
@@ -6563,7 +6096,6 @@ declare namespace PlayFabGroupsModels {
     /**
      * Removes members from a group. A member can always remove themselves from a group, regardless of permissions. Returns
      * nothing if successful.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.RemoveMembersRequest
      */
     interface RemoveMembersRequest {
         /** The identifier of the group */
@@ -6574,10 +6106,7 @@ declare namespace PlayFabGroupsModels {
         RoleId?: string,
     }
 
-    /**
-     * Unblocks a list of entities from joining a group. No data is returned in the case of success.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.UnblockEntityRequest
-     */
+    /** Unblocks a list of entities from joining a group. No data is returned in the case of success. */
     interface UnblockEntityRequest {
         /** The entity to perform this action on. */
         Entity: EntityKey,
@@ -6588,7 +6117,6 @@ declare namespace PlayFabGroupsModels {
     /**
      * Updates data about a group, such as the name or default member role. Returns information about whether the update was
      * successful. Only title claimants may modify the administration role for a group.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.UpdateGroupRequest
      */
     interface UpdateGroupRequest {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
@@ -6607,7 +6135,6 @@ declare namespace PlayFabGroupsModels {
         MemberRoleId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.UpdateGroupResponse */
     interface UpdateGroupResponse {
         /** Optional reason to explain why the operation was the result that it was. */
         OperationReason?: string,
@@ -6617,10 +6144,7 @@ declare namespace PlayFabGroupsModels {
         SetResult?: OperationTypes,
     }
 
-    /**
-     * Updates the role name. Returns information about whether the update was successful.
-     * https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.UpdateGroupRoleRequest
-     */
+    /** Updates the role name. Returns information about whether the update was successful. */
     interface UpdateGroupRoleRequest {
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
@@ -6636,7 +6160,6 @@ declare namespace PlayFabGroupsModels {
         RoleName: string,
     }
 
-    /** https://api.playfab.com/Documentation/Groups/datatype/PlayFab.Groups.Models/PlayFab.Groups.Models.UpdateGroupRoleResponse */
     interface UpdateGroupRoleResponse {
         /** Optional reason to explain why the operation was the result that it was. */
         OperationReason?: string,
@@ -6649,14 +6172,10 @@ declare namespace PlayFabGroupsModels {
 }
 /** ProfilesAPI.Models as interfaces */
 declare namespace PlayFabProfilesModels {
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EffectType */
     type EffectType = "Allow"
         | "Deny";
 
-    /**
-     * An entity object and its associated meta data.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityDataObject
-     */
+    /** An entity object and its associated meta data. */
     interface EntityDataObject {
         /** Un-escaped JSON object, if DataAsObject is true. */
         DataObject?: any,
@@ -6666,10 +6185,7 @@ declare namespace PlayFabProfilesModels {
         ObjectName?: string,
     }
 
-    /**
-     * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityKey
-     */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     interface EntityKey {
         /** Unique ID of the entity. */
         Id: string,
@@ -6677,7 +6193,6 @@ declare namespace PlayFabProfilesModels {
         Type?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityLineage */
     interface EntityLineage {
         /** The Character Id of the associated entity. */
         CharacterId?: string,
@@ -6693,7 +6208,6 @@ declare namespace PlayFabProfilesModels {
         TitlePlayerAccountId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityPermissionStatement */
     interface EntityPermissionStatement {
         /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
         Action: string,
@@ -6709,7 +6223,6 @@ declare namespace PlayFabProfilesModels {
         Resource: string,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileBody */
     interface EntityProfileBody {
         /** Avatar URL for the entity. */
         AvatarUrl?: string,
@@ -6750,10 +6263,7 @@ declare namespace PlayFabProfilesModels {
         VersionNumber: number,
     }
 
-    /**
-     * An entity file's meta data. To get a download URL call File/GetFiles API.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityProfileFileMetadata
-     */
+    /** An entity file's meta data. To get a download URL call File/GetFiles API. */
     interface EntityProfileFileMetadata {
         /** Checksum value for the file */
         Checksum?: string,
@@ -6765,7 +6275,6 @@ declare namespace PlayFabProfilesModels {
         Size: number,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityStatisticChildValue */
     interface EntityStatisticChildValue {
         /** Child name value, if child statistic */
         ChildName?: string,
@@ -6775,7 +6284,6 @@ declare namespace PlayFabProfilesModels {
         Value: number,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.EntityStatisticValue */
     interface EntityStatisticValue {
         /** Child statistic values */
         ChildStatistics?: { [key: string]: EntityStatisticChildValue },
@@ -6795,7 +6303,6 @@ declare namespace PlayFabProfilesModels {
      * read means that we do not guarantee all committed writes have occurred before reading the profile, allowing for a stale
      * read. If consistency is important the Version Number on the result can be used to compare which version of the profile
      * any reader has.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetEntityProfileRequest
      */
     interface GetEntityProfileRequest {
         /**
@@ -6807,7 +6314,6 @@ declare namespace PlayFabProfilesModels {
         Entity?: EntityKey,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetEntityProfileResponse */
     interface GetEntityProfileResponse {
         /** Entity profile */
         Profile?: EntityProfileBody,
@@ -6816,7 +6322,6 @@ declare namespace PlayFabProfilesModels {
     /**
      * Given a set of entity types and entity identifiers will retrieve all readable profiles properties for the caller.
      * Profiles that the caller is not allowed to read will silently not be included in the results.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetEntityProfilesRequest
      */
     interface GetEntityProfilesRequest {
         /**
@@ -6828,7 +6333,6 @@ declare namespace PlayFabProfilesModels {
         Entities: EntityKey[],
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetEntityProfilesResponse */
     interface GetEntityProfilesResponse {
         /** Entity profiles */
         Profiles?: EntityProfileBody[],
@@ -6837,21 +6341,16 @@ declare namespace PlayFabProfilesModels {
     /**
      * Retrieves the title access policy that is used before the profile's policy is inspected during a request. If never
      * customized this will return the default starter policy built by PlayFab.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetGlobalPolicyRequest
      */
     interface GetGlobalPolicyRequest {
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetGlobalPolicyResponse */
     interface GetGlobalPolicyResponse {
         /** The permissions that govern access to all entities under this title or namespace. */
         Permissions?: EntityPermissionStatement[],
     }
 
-    /**
-     * Given a master player account id (PlayFab ID), returns all title player accounts associated with it.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsRequest
-     */
+    /** Given a master player account id (PlayFab ID), returns all title player accounts associated with it. */
     interface GetTitlePlayersFromMasterPlayerAccountIdsRequest {
         /** Master player account ids. */
         MasterPlayerAccountIds: string[],
@@ -6859,7 +6358,6 @@ declare namespace PlayFabProfilesModels {
         TitleId?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.GetTitlePlayersFromMasterPlayerAccountIdsResponse */
     interface GetTitlePlayersFromMasterPlayerAccountIdsResponse {
         /** Optional id of title to get players from, required if calling using a master_player_account. */
         TitleId?: string,
@@ -6867,7 +6365,6 @@ declare namespace PlayFabProfilesModels {
         TitlePlayerAccounts?: { [key: string]: EntityKey },
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.OperationTypes */
     type OperationTypes = "Created"
         | "Updated"
         | "Deleted"
@@ -6876,7 +6373,6 @@ declare namespace PlayFabProfilesModels {
     /**
      * This will set the access policy statements on the given entity profile. This is not additive, any existing statements
      * will be replaced with the statements in this request.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetEntityProfilePolicyRequest
      */
     interface SetEntityProfilePolicyRequest {
         /** The entity to perform this action on. */
@@ -6885,7 +6381,6 @@ declare namespace PlayFabProfilesModels {
         Statements?: EntityPermissionStatement[],
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetEntityProfilePolicyResponse */
     interface SetEntityProfilePolicyResponse {
         /**
          * The permissions that govern access to this entity profile and its properties. Only includes permissions set on this
@@ -6897,21 +6392,18 @@ declare namespace PlayFabProfilesModels {
     /**
      * Updates the title access policy that is used before the profile's policy is inspected during a request. Policies are
      * compiled and cached for several minutes so an update here may not be reflected in behavior for a short time.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetGlobalPolicyRequest
      */
     interface SetGlobalPolicyRequest {
         /** The permissions that govern access to all entities under this title or namespace. */
         Permissions?: EntityPermissionStatement[],
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetGlobalPolicyResponse */
     interface SetGlobalPolicyResponse {
     }
 
     /**
      * Given an entity profile, will update its language to the one passed in if the profile's version is equal to the one
      * passed in.
-     * https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetProfileLanguageRequest
      */
     interface SetProfileLanguageRequest {
         /** The entity to perform this action on. */
@@ -6922,7 +6414,6 @@ declare namespace PlayFabProfilesModels {
         Language?: string,
     }
 
-    /** https://api.playfab.com/Documentation/Profiles/datatype/PlayFab.Profiles.Models/PlayFab.Profiles.Models.SetProfileLanguageResponse */
     interface SetProfileLanguageResponse {
         /** The type of operation that occured on the profile's language */
         OperationResult?: OperationTypes,
@@ -6938,265 +6429,265 @@ interface IPlayFabEntityAPI {
     /**
      * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
      * Entity Token.
-     * https://api.playfab.com/Documentation/Authentication/method/GetEntityToken
+     * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/getentitytoken
      */
     GetEntityToken(request: PlayFabAuthenticationModels.GetEntityTokenRequest): PlayFabAuthenticationModels.GetEntityTokenResponse;
 
     /**
      * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
-     * https://api.playfab.com/Documentation/Authentication/method/ValidateEntityToken
+     * https://docs.microsoft.com/rest/api/playfab/authentication/authentication/validateentitytoken
      */
     ValidateEntityToken(request: PlayFabAuthenticationModels.ValidateEntityTokenRequest): PlayFabAuthenticationModels.ValidateEntityTokenResponse;
 
 
     /**
      * Abort pending file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/AbortFileUploads
+     * https://docs.microsoft.com/rest/api/playfab/data/file/abortfileuploads
      */
     AbortFileUploads(request: PlayFabDataModels.AbortFileUploadsRequest): PlayFabDataModels.AbortFileUploadsResponse;
 
     /**
      * Delete files on an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/DeleteFiles
+     * https://docs.microsoft.com/rest/api/playfab/data/file/deletefiles
      */
     DeleteFiles(request: PlayFabDataModels.DeleteFilesRequest): PlayFabDataModels.DeleteFilesResponse;
 
     /**
      * Finalize file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/FinalizeFileUploads
+     * https://docs.microsoft.com/rest/api/playfab/data/file/finalizefileuploads
      */
     FinalizeFileUploads(request: PlayFabDataModels.FinalizeFileUploadsRequest): PlayFabDataModels.FinalizeFileUploadsResponse;
 
     /**
      * Retrieves file metadata from an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/GetFiles
+     * https://docs.microsoft.com/rest/api/playfab/data/file/getfiles
      */
     GetFiles(request: PlayFabDataModels.GetFilesRequest): PlayFabDataModels.GetFilesResponse;
 
     /**
      * Retrieves objects from an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/GetObjects
+     * https://docs.microsoft.com/rest/api/playfab/data/object/getobjects
      */
     GetObjects(request: PlayFabDataModels.GetObjectsRequest): PlayFabDataModels.GetObjectsResponse;
 
     /**
      * Initiates file uploads to an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/InitiateFileUploads
+     * https://docs.microsoft.com/rest/api/playfab/data/file/initiatefileuploads
      */
     InitiateFileUploads(request: PlayFabDataModels.InitiateFileUploadsRequest): PlayFabDataModels.InitiateFileUploadsResponse;
 
     /**
      * Sets objects on an entity's profile.
-     * https://api.playfab.com/Documentation/Data/method/SetObjects
+     * https://docs.microsoft.com/rest/api/playfab/data/object/setobjects
      */
     SetObjects(request: PlayFabDataModels.SetObjectsRequest): PlayFabDataModels.SetObjectsResponse;
 
 
     /**
      * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
-     * https://api.playfab.com/Documentation/Events/method/WriteEvents
+     * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writeevents
      */
     WriteEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
 
     /**
      * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
      * with 'custom.'
-     * https://api.playfab.com/Documentation/Events/method/WriteTelemetryEvents
+     * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writetelemetryevents
      */
     WriteTelemetryEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
 
 
     /**
      * Accepts an outstanding invitation to to join a group
-     * https://api.playfab.com/Documentation/Groups/method/AcceptGroupApplication
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/acceptgroupapplication
      */
     AcceptGroupApplication(request: PlayFabGroupsModels.AcceptGroupApplicationRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Accepts an invitation to join a group
-     * https://api.playfab.com/Documentation/Groups/method/AcceptGroupInvitation
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/acceptgroupinvitation
      */
     AcceptGroupInvitation(request: PlayFabGroupsModels.AcceptGroupInvitationRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Adds members to a group or role.
-     * https://api.playfab.com/Documentation/Groups/method/AddMembers
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/addmembers
      */
     AddMembers(request: PlayFabGroupsModels.AddMembersRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Applies to join a group
-     * https://api.playfab.com/Documentation/Groups/method/ApplyToGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/applytogroup
      */
     ApplyToGroup(request: PlayFabGroupsModels.ApplyToGroupRequest): PlayFabGroupsModels.ApplyToGroupResponse;
 
     /**
      * Blocks a list of entities from joining a group.
-     * https://api.playfab.com/Documentation/Groups/method/BlockEntity
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/blockentity
      */
     BlockEntity(request: PlayFabGroupsModels.BlockEntityRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Changes the role membership of a list of entities from one role to another.
-     * https://api.playfab.com/Documentation/Groups/method/ChangeMemberRole
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/changememberrole
      */
     ChangeMemberRole(request: PlayFabGroupsModels.ChangeMemberRoleRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Creates a new group.
-     * https://api.playfab.com/Documentation/Groups/method/CreateGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/creategroup
      */
     CreateGroup(request: PlayFabGroupsModels.CreateGroupRequest): PlayFabGroupsModels.CreateGroupResponse;
 
     /**
      * Creates a new group role.
-     * https://api.playfab.com/Documentation/Groups/method/CreateRole
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/createrole
      */
     CreateRole(request: PlayFabGroupsModels.CreateGroupRoleRequest): PlayFabGroupsModels.CreateGroupRoleResponse;
 
     /**
      * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
-     * https://api.playfab.com/Documentation/Groups/method/DeleteGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/deletegroup
      */
     DeleteGroup(request: PlayFabGroupsModels.DeleteGroupRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Deletes an existing role in a group.
-     * https://api.playfab.com/Documentation/Groups/method/DeleteRole
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/deleterole
      */
     DeleteRole(request: PlayFabGroupsModels.DeleteRoleRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Gets information about a group and its roles
-     * https://api.playfab.com/Documentation/Groups/method/GetGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/getgroup
      */
     GetGroup(request: PlayFabGroupsModels.GetGroupRequest): PlayFabGroupsModels.GetGroupResponse;
 
     /**
      * Invites a player to join a group
-     * https://api.playfab.com/Documentation/Groups/method/InviteToGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/invitetogroup
      */
     InviteToGroup(request: PlayFabGroupsModels.InviteToGroupRequest): PlayFabGroupsModels.InviteToGroupResponse;
 
     /**
      * Checks to see if an entity is a member of a group or role within the group
-     * https://api.playfab.com/Documentation/Groups/method/IsMember
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/ismember
      */
     IsMember(request: PlayFabGroupsModels.IsMemberRequest): PlayFabGroupsModels.IsMemberResponse;
 
     /**
      * Lists all outstanding requests to join a group
-     * https://api.playfab.com/Documentation/Groups/method/ListGroupApplications
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupapplications
      */
     ListGroupApplications(request: PlayFabGroupsModels.ListGroupApplicationsRequest): PlayFabGroupsModels.ListGroupApplicationsResponse;
 
     /**
      * Lists all entities blocked from joining a group
-     * https://api.playfab.com/Documentation/Groups/method/ListGroupBlocks
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupblocks
      */
     ListGroupBlocks(request: PlayFabGroupsModels.ListGroupBlocksRequest): PlayFabGroupsModels.ListGroupBlocksResponse;
 
     /**
      * Lists all outstanding invitations for a group
-     * https://api.playfab.com/Documentation/Groups/method/ListGroupInvitations
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupinvitations
      */
     ListGroupInvitations(request: PlayFabGroupsModels.ListGroupInvitationsRequest): PlayFabGroupsModels.ListGroupInvitationsResponse;
 
     /**
      * Lists all members for a group
-     * https://api.playfab.com/Documentation/Groups/method/ListGroupMembers
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listgroupmembers
      */
     ListGroupMembers(request: PlayFabGroupsModels.ListGroupMembersRequest): PlayFabGroupsModels.ListGroupMembersResponse;
 
     /**
      * Lists all groups and roles for an entity
-     * https://api.playfab.com/Documentation/Groups/method/ListMembership
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listmembership
      */
     ListMembership(request: PlayFabGroupsModels.ListMembershipRequest): PlayFabGroupsModels.ListMembershipResponse;
 
     /**
      * Lists all outstanding invitations and group applications for an entity
-     * https://api.playfab.com/Documentation/Groups/method/ListMembershipOpportunities
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/listmembershipopportunities
      */
     ListMembershipOpportunities(request: PlayFabGroupsModels.ListMembershipOpportunitiesRequest): PlayFabGroupsModels.ListMembershipOpportunitiesResponse;
 
     /**
      * Removes an application to join a group
-     * https://api.playfab.com/Documentation/Groups/method/RemoveGroupApplication
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/removegroupapplication
      */
     RemoveGroupApplication(request: PlayFabGroupsModels.RemoveGroupApplicationRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Removes an invitation join a group
-     * https://api.playfab.com/Documentation/Groups/method/RemoveGroupInvitation
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/removegroupinvitation
      */
     RemoveGroupInvitation(request: PlayFabGroupsModels.RemoveGroupInvitationRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Removes members from a group.
-     * https://api.playfab.com/Documentation/Groups/method/RemoveMembers
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/removemembers
      */
     RemoveMembers(request: PlayFabGroupsModels.RemoveMembersRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Unblocks a list of entities from joining a group
-     * https://api.playfab.com/Documentation/Groups/method/UnblockEntity
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/unblockentity
      */
     UnblockEntity(request: PlayFabGroupsModels.UnblockEntityRequest): PlayFabGroupsModels.EmptyResponse;
 
     /**
      * Updates non-membership data about a group.
-     * https://api.playfab.com/Documentation/Groups/method/UpdateGroup
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/updategroup
      */
     UpdateGroup(request: PlayFabGroupsModels.UpdateGroupRequest): PlayFabGroupsModels.UpdateGroupResponse;
 
     /**
      * Updates metadata about a role.
-     * https://api.playfab.com/Documentation/Groups/method/UpdateRole
+     * https://docs.microsoft.com/rest/api/playfab/groups/groups/updaterole
      */
     UpdateRole(request: PlayFabGroupsModels.UpdateGroupRoleRequest): PlayFabGroupsModels.UpdateGroupRoleResponse;
 
 
     /**
      * Gets the global title access policy
-     * https://api.playfab.com/Documentation/Profiles/method/GetGlobalPolicy
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getglobalpolicy
      */
     GetGlobalPolicy(request: PlayFabProfilesModels.GetGlobalPolicyRequest): PlayFabProfilesModels.GetGlobalPolicyResponse;
 
     /**
      * Retrieves the entity's profile.
-     * https://api.playfab.com/Documentation/Profiles/method/GetProfile
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getprofile
      */
     GetProfile(request: PlayFabProfilesModels.GetEntityProfileRequest): PlayFabProfilesModels.GetEntityProfileResponse;
 
     /**
      * Retrieves the entity's profile.
-     * https://api.playfab.com/Documentation/Profiles/method/GetProfiles
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/getprofiles
      */
     GetProfiles(request: PlayFabProfilesModels.GetEntityProfilesRequest): PlayFabProfilesModels.GetEntityProfilesResponse;
 
     /**
      * Retrieves the title player accounts associated with the given master player account.
-     * https://api.playfab.com/Documentation/Profiles/method/GetTitlePlayersFromMasterPlayerAccountIds
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/gettitleplayersfrommasterplayeraccountids
      */
     GetTitlePlayersFromMasterPlayerAccountIds(request: PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsRequest): PlayFabProfilesModels.GetTitlePlayersFromMasterPlayerAccountIdsResponse;
 
     /**
      * Sets the global title access policy
-     * https://api.playfab.com/Documentation/Profiles/method/SetGlobalPolicy
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setglobalpolicy
      */
     SetGlobalPolicy(request: PlayFabProfilesModels.SetGlobalPolicyRequest): PlayFabProfilesModels.SetGlobalPolicyResponse;
 
     /**
      * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
      * language, Master Player Account language, and then title default language if the first two aren't set or supported.
-     * https://api.playfab.com/Documentation/Profiles/method/SetProfileLanguage
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setprofilelanguage
      */
     SetProfileLanguage(request: PlayFabProfilesModels.SetProfileLanguageRequest): PlayFabProfilesModels.SetProfileLanguageResponse;
 
     /**
      * Sets the profiles access policy
-     * https://api.playfab.com/Documentation/Profiles/method/SetProfilePolicy
+     * https://docs.microsoft.com/rest/api/playfab/profiles/account-management/setprofilepolicy
      */
     SetProfilePolicy(request: PlayFabProfilesModels.SetEntityProfilePolicyRequest): PlayFabProfilesModels.SetEntityProfilePolicyResponse;
 

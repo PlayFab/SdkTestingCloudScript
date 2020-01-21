@@ -7,7 +7,7 @@ declare namespace PlayStreamModels {
      * PlayStream Group: none
      */
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_created */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/entity-created */
     interface entity_created extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -19,7 +19,7 @@ declare namespace PlayStreamModels {
      * This event is optionally triggered when an Entity CloudScript function is executed, either by calling the
      * ExecuteCloudScript API with the GeneratePlayStreamEvent option or triggered by a PlayStream event action with the
      * 'Publish results as a PlayStream Event' box checked.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_executed_cloud_script
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/entity-executed-cloud-script
      */
     interface entity_executed_cloud_script extends IBasePlayStreamEvent {
         /** Result of the CloudScript function, including diagnostic information that is useful for debugging. */
@@ -32,7 +32,7 @@ declare namespace PlayStreamModels {
         FunctionName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_files_set */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/entity-files-set */
     interface entity_files_set extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -42,7 +42,7 @@ declare namespace PlayStreamModels {
         Files?: FileSet[],
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_language_updated */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/entity-language-updated */
     interface entity_language_updated extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -52,7 +52,7 @@ declare namespace PlayStreamModels {
         Language?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_logged_in */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/entity-logged-in */
     interface entity_logged_in extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -60,7 +60,7 @@ declare namespace PlayStreamModels {
         EntityLineage?: EntityLineage,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_objects_set */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/entity-objects-set */
     interface entity_objects_set extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -72,7 +72,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an entity's virtual currency balance changes.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/entity_virtual_currency_balances_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/entity-virtual-currency-balances-changed
      */
     interface entity_virtual_currency_balances_changed extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
@@ -89,7 +89,7 @@ declare namespace PlayStreamModels {
         VirtualCurrencyPreviousBalances?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_created */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-created */
     interface group_created extends IBasePlayStreamEvent {
         /** The identifier for the entity that created the group to which this event applies. */
         CreatorEntityId?: string,
@@ -103,7 +103,7 @@ declare namespace PlayStreamModels {
         GroupName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_deleted */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-deleted */
     interface group_deleted extends IBasePlayStreamEvent {
         /** The identifier for the entity that deleted the group to which this event applies. */
         DeleterEntityId?: string,
@@ -117,7 +117,7 @@ declare namespace PlayStreamModels {
         GroupName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_added */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-members-added */
     interface group_members_added extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -133,7 +133,7 @@ declare namespace PlayStreamModels {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_members_removed */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-members-removed */
     interface group_members_removed extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -145,7 +145,7 @@ declare namespace PlayStreamModels {
         Members?: Member[],
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_created */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-role-created */
     interface group_role_created extends IBasePlayStreamEvent {
         /** The identifier for that the entity that created the role to which this event applies. */
         CreatorEntityId?: string,
@@ -163,7 +163,7 @@ declare namespace PlayStreamModels {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_deleted */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-role-deleted */
     interface group_role_deleted extends IBasePlayStreamEvent {
         /** The identifier for the entity that deleted the role to which this event applies. */
         DeleterEntityId?: string,
@@ -181,7 +181,7 @@ declare namespace PlayStreamModels {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_added */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-role-members-added */
     interface group_role_members_added extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -197,7 +197,7 @@ declare namespace PlayStreamModels {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_members_removed */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-role-members-removed */
     interface group_role_members_removed extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -213,7 +213,7 @@ declare namespace PlayStreamModels {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_role_updated */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-role-updated */
     interface group_role_updated extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -235,7 +235,7 @@ declare namespace PlayStreamModels {
         UpdaterEntityType?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/group_updated */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/group-updated */
     interface group_updated extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -255,7 +255,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a group of tickets are matched together.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/matchmaking_match_found
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/matchmaking-match-found
      */
     interface matchmaking_match_found extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -268,7 +268,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a matchmaking ticket reaches a completion state.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/matchmaking_ticket_completed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/matchmaking-ticket-completed
      */
     interface matchmaking_ticket_completed extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -282,7 +282,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a matchmaking ticket reaches a completion state. This event is sent to each of the users in
      * the completed ticket
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/matchmaking_user_ticket_completed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/matchmaking-user-ticket-completed
      */
     interface matchmaking_user_ticket_completed extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -295,7 +295,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a ticket with an invited user is created. The event will be sent to the invited user.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/matchmaking_user_ticket_invite
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/matchmaking-user-ticket-invite
      */
     interface matchmaking_user_ticket_invite extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -308,7 +308,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server build is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-deleted
      */
     interface multiplayer_server_build_deleted extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -331,7 +331,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server's build region status is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_region_status_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-region-status-changed
      */
     interface multiplayer_server_build_region_status_changed extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -354,7 +354,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server build region is updated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_build_region_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-region-updated
      */
     interface multiplayer_server_build_region_updated extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -377,7 +377,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server certificate is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_certificate_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-certificate-deleted
      */
     interface multiplayer_server_certificate_deleted extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -400,7 +400,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server certificate is uploaded.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_certificate_uploaded
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-certificate-uploaded
      */
     interface multiplayer_server_certificate_uploaded extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -423,7 +423,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server build is initiated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_create_build_initiated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-create-build-initiated
      */
     interface multiplayer_server_create_build_initiated extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -446,7 +446,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server game asset is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_game_asset_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-game-asset-deleted
      */
     interface multiplayer_server_game_asset_deleted extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -469,7 +469,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server shutdown is requested.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_requested
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-requested
      */
     interface multiplayer_server_requested extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -492,7 +492,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server's state is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_state_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-state-changed
      */
     interface multiplayer_server_state_changed extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -515,7 +515,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a virtual machine is assigned to a multiplayer server build.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_assigned
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-assigned
      */
     interface multiplayer_server_vm_assigned extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -538,7 +538,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server virtual machine remote user is created.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_remote_user_created
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-remote-user-created
      */
     interface multiplayer_server_vm_remote_user_created extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -561,7 +561,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer server virtual machine remote user is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_remote_user_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-remote-user-deleted
      */
     interface multiplayer_server_vm_remote_user_deleted extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -584,7 +584,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a virtual machine is unassigned from a multiplayer server build.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_unassignment_started
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-unassignment-started
      */
     interface multiplayer_server_vm_unassignment_started extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -607,7 +607,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a virtual machine is found to be unhealthy.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/multiplayer_server_vm_unhealthy
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-unhealthy
      */
     interface multiplayer_server_vm_unhealthy extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -628,7 +628,7 @@ declare namespace PlayStreamModels {
         WriterEntity?: EntityKey,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_created */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/studio-created */
     interface studio_created extends IBasePlayStreamEvent {
         /** Authentication provider's id for the user who created the studio */
         CreatorAuthenticationId?: string,
@@ -640,7 +640,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggererd when a user accepts a studio invitation.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_user_added
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/studio-user-added
      */
     interface studio_user_added extends IBasePlayStreamEvent {
         /** Authentication provider's ID for this user */
@@ -663,7 +663,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggererd when a user is invited to a studio.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_user_invited
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/studio-user-invited
      */
     interface studio_user_invited extends IBasePlayStreamEvent {
         /** Authentication provider type required for user to register with */
@@ -689,7 +689,7 @@ declare namespace PlayStreamModels {
         TitlePermissions?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_user_removed */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/studio-user-removed */
     interface studio_user_removed extends IBasePlayStreamEvent {
         /** Authentication provider's ID for this user */
         AuthenticationId?: string,
@@ -705,7 +705,7 @@ declare namespace PlayStreamModels {
         TitlePermissions?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/tenacy_connector_onboard */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/tenacy-connector-onboard */
     interface tenacy_connector_onboard extends IBasePlayStreamEvent {
         /** The chain of ownership for this entity. */
         EntityChain?: string,
@@ -715,7 +715,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a studio tier is updated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/none/studio_tier_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/studio-tier-updated
      */
     interface studio_tier_updated extends IBasePlayStreamEvent {
         /** Contact Company Name */
@@ -752,7 +752,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a character consumes an item from their inventory.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_consumed_item
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-consumed-item
      */
     interface character_consumed_item extends IBasePlayStreamEvent {
         /** Version of the catalog from which the consumed inventory item was created. */
@@ -774,7 +774,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a character is created for the first time.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_created
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-created
      */
     interface character_created extends IBasePlayStreamEvent {
         /** Name of the character. */
@@ -787,7 +787,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an item is granted to a character.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_inventory_item_added
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-inventory-item-added
      */
     interface character_inventory_item_added extends IBasePlayStreamEvent {
         /** Optional details about the inventory item. */
@@ -816,7 +816,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a character statistic is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_statistic_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-statistic-changed
      */
     interface character_statistic_changed extends IBasePlayStreamEvent {
         PlayerId?: string,
@@ -836,7 +836,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a character statistic is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_statistic_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-statistic-deleted
      */
     interface character_statistic_deleted extends IBasePlayStreamEvent {
         PlayerId?: string,
@@ -852,7 +852,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when the character makes a purchase using virtual currency.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_vc_item_purchased
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-vc-item-purchased
      */
     interface character_vc_item_purchased extends IBasePlayStreamEvent {
         /** Version of the catalog from which the item was purchased. */
@@ -875,7 +875,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a character's virtual currency balance changes.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/character/character_virtual_currency_balance_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/character-virtual-currency-balance-changed
      */
     interface character_virtual_currency_balance_changed extends IBasePlayStreamEvent {
         /** Id of the order that triggered the balance changes */
@@ -896,7 +896,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a display name is filtered by community sift.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/display_name_filtered
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/display-name-filtered
      */
     interface display_name_filtered extends IBasePlayStreamEvent {
         /** Value of the display name that was filtered */
@@ -911,7 +911,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a display name is filtered by community sift only if there is an associated player EntityId
      * for the event.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/player_display_name_filtered
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-display-name-filtered
      */
     interface player_display_name_filtered extends IBasePlayStreamEvent {
         /** Value of the display name that was filtered */
@@ -923,7 +923,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player connects to a Photon Cloud application and authenticates with PlayFab using Photon
      * custom authentication.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/partner/player_photon_session_authenticated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-photon-session-authenticated
      */
     interface player_photon_session_authenticated extends IBasePlayStreamEvent {
         /** Unique identifier of the Photon Cloud application to which the player is connected */
@@ -940,7 +940,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an email confirmation link is clicked.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/auth_token_validated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/auth-token-validated
      */
     interface auth_token_validated extends IBasePlayStreamEvent {
         /** The email template id, if the auth token was sent via an email template. */
@@ -953,7 +953,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a GDPR delete is finished.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/title_deleted_master_player
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-deleted-master-player
      */
     interface title_deleted_master_player extends IBasePlayStreamEvent {
         /** Identitfying information for title entered by developer. */
@@ -966,7 +966,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an action linked to a segmentation change or event rule executes on a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_action_executed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-action-executed
      */
     interface player_action_executed extends IBasePlayStreamEvent {
         /** Name of the action that was triggered. */
@@ -991,7 +991,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered by an attribution tracking Add-on when a player is matched to a paid acquisition campaign.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_campaign_attribution
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-campaign-attribution
      */
     interface player_ad_campaign_attribution extends IBasePlayStreamEvent {
         /** The ID of the campaign, as passed in by the attribution provider. */
@@ -1002,7 +1002,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player closes an ad.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_closed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-closed
      */
     interface player_ad_closed extends IBasePlayStreamEvent {
         /** Id of the placement */
@@ -1022,7 +1022,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player creates a new account for a title. Note: this event is triggered once per title
      * rather than once per publisher.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_added_title
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-added-title
      */
     interface player_added_title extends IBasePlayStreamEvent {
         /** Player's display name when they added this title. */
@@ -1037,7 +1037,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player finishes an ad.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_ended
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-ended
      */
     interface player_ad_ended extends IBasePlayStreamEvent {
         /** Id of the placement */
@@ -1056,7 +1056,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player opens an ad.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_opened
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-opened
      */
     interface player_ad_opened extends IBasePlayStreamEvent {
         /** Id of the placement */
@@ -1075,7 +1075,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player recieves an ad reward.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_rewarded
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-rewarded
      */
     interface player_ad_rewarded extends IBasePlayStreamEvent {
         /** Debug messages from the reward actions */
@@ -1098,7 +1098,7 @@ declare namespace PlayStreamModels {
 
     /**
      * Event triggered when reported value of ad view is recorded
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_activity_valued
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-activity-valued
      */
     interface player_ad_activity_valued extends IBasePlayStreamEvent {
         /** Id of the placement */
@@ -1122,7 +1122,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player starts an ad.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ad_started
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ad-started
      */
     interface player_ad_started extends IBasePlayStreamEvent {
         /** Id of the placement */
@@ -1141,7 +1141,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player is banned.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_banned
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-banned
      */
     interface player_banned extends IBasePlayStreamEvent {
         /** When the ban expires. The value is null if the ban is permanent. */
@@ -1158,7 +1158,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player's avatar URL is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_changed_avatar
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-changed-avatar
      */
     interface player_changed_avatar extends IBasePlayStreamEvent {
         /** URL of the avatar image. */
@@ -1172,7 +1172,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player completes the password reset process by visiting the link URL that was sent to
      * them and choosing a new password.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_completed_password_reset
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-completed-password-reset
      */
     interface player_completed_password_reset extends IBasePlayStreamEvent {
         /** IP address from which the password reset process was completed. */
@@ -1197,7 +1197,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player consumes an item from their inventory.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_consumed_item
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-consumed-item
      */
     interface player_consumed_item extends IBasePlayStreamEvent {
         /** Version of the catalog from which the consumed inventory item was created. */
@@ -1220,7 +1220,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player account is created for the first time. Note: this event is only triggered once per
      * publisher, not once per title.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_created
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-created
      */
     interface player_created extends IBasePlayStreamEvent {
         /** When the player account was created. */
@@ -1233,7 +1233,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player's data is exported.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_data_exported
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-data-exported
      */
     interface player_data_exported extends IBasePlayStreamEvent {
         /** URL to download the export. */
@@ -1248,7 +1248,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered once after the player logs in based on the settings for your title.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_device_info
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-device-info
      */
     interface player_device_info extends IBasePlayStreamEvent {
         DeviceInfo?: { [key: string]: any },
@@ -1258,7 +1258,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player's display name is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_displayname_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-displayname-changed
      */
     interface player_displayname_changed extends IBasePlayStreamEvent {
         /** New display name after the change. */
@@ -1273,7 +1273,7 @@ declare namespace PlayStreamModels {
      * This event is optionally triggered when a CloudScript function is executed, either by calling the ExecuteCloudScript API
      * with the GeneratePlayStreamEvent option or triggered by a PlayStream event action with the 'Publish results as a
      * PlayStream Event' box checked.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_executed_cloudscript
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-executed-cloudscript
      */
     interface player_executed_cloudscript extends IBasePlayStreamEvent {
         /** Result of the CloudScript function, including diagnostic information that is useful for debugging. */
@@ -1286,7 +1286,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an item is granted to a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_inventory_item_added
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-inventory-item-added
      */
     interface player_inventory_item_added extends IBasePlayStreamEvent {
         /** Optional details about the inventory item. */
@@ -1315,7 +1315,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player joins a multiplayer game session.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_joined_lobby
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-joined-lobby
      */
     interface player_joined_lobby extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player joined. */
@@ -1342,7 +1342,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player leaves a multiplayer game session.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_left_lobby
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-left-lobby
      */
     interface player_left_lobby extends IBasePlayStreamEvent {
         /** Game mode of the game session the player joined. */
@@ -1369,7 +1369,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a new authentication method is linked to a player's account.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_linked_account
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-linked-account
      */
     interface player_linked_account extends IBasePlayStreamEvent {
         /** Player's email linked with the given provider */
@@ -1386,7 +1386,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player logs in.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_logged_in
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-logged-in
      */
     interface player_logged_in extends IBasePlayStreamEvent {
         /**
@@ -1407,7 +1407,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player is assigned to a game lobby and issued a connection ticket, before the player has
      * connected to the game lobby.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_matched_with_lobby
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-matched-with-lobby
      */
     interface player_matched_with_lobby extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player was assigned to. */
@@ -1434,7 +1434,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player is sent a link to reset their password.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_password_reset_link_sent
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-password-reset-link-sent
      */
     interface player_password_reset_link_sent extends IBasePlayStreamEvent {
         /** Source that initiated the password reset process. */
@@ -1453,7 +1453,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when the second step of the payment process completes, paying for the purchase.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_paid_for_purchase
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-paid-for-purchase
      */
     interface player_paid_for_purchase extends IBasePlayStreamEvent {
         /** Purchase order identifier. */
@@ -1484,7 +1484,7 @@ declare namespace PlayStreamModels {
      * This event is triggered for the top-ranked players on a leaderboard when the leaderboard version changes (e.g. when a
      * leaderboard statistic version is incremented). The maximum number of leaderboard entries for which the event is
      * generated is controlled by the "Leaderboard version change top rank events sent" title limit.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_ranked_on_leaderboard_version
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-ranked-on-leaderboard-version
      */
     interface player_ranked_on_leaderboard_version extends IBasePlayStreamEvent {
         /** Source of the values for the leaderboard. */
@@ -1506,7 +1506,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player makes a real money purchase, and generates revenue for the game.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_realmoney_purchase
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-realmoney-purchase
      */
     interface player_realmoney_purchase extends IBasePlayStreamEvent {
         /** Unique identifier of the order. */
@@ -1532,7 +1532,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player attempts to make a real money purchase and the purchase receipt is being
      * validated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_receipt_validation
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-receipt-validation
      */
     interface player_receipt_validation extends IBasePlayStreamEvent {
         /** The error that occured during a receipt validation. */
@@ -1551,7 +1551,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player redeems a coupon.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_redeemed_coupon
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-redeemed-coupon
      */
     interface player_redeemed_coupon extends IBasePlayStreamEvent {
         /** Coupon code the player redeemed. */
@@ -1564,7 +1564,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player registers for push notifications.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_registered_push_notifications
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-registered-push-notifications
      */
     interface player_registered_push_notifications extends IBasePlayStreamEvent {
         /** Unique device token registered for push notifications. */
@@ -1578,7 +1578,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a player account for a title is removed. Note: this event is triggered once per title
      * rather than once per publisher.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_removed_title
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-removed-title
      */
     interface player_removed_title extends IBasePlayStreamEvent {
         /** The ID of the title to which this player event applies. */
@@ -1587,7 +1587,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player is reported by another player as abusive.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_reported_as_abusive
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-reported-as-abusive
      */
     interface player_reported_as_abusive extends IBasePlayStreamEvent {
         /** Comment submitted by the player who made the report. */
@@ -1600,7 +1600,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when PlayFab makes an internal adjustment to a player profile.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_set_profile_property
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-set-profile-property
      */
     interface player_set_profile_property extends IBasePlayStreamEvent {
         /** Property of the profile to be set */
@@ -1613,7 +1613,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player starts a purchase.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_started_purchase
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-started-purchase
      */
     interface player_started_purchase extends IBasePlayStreamEvent {
         /** Catalog version for the items to be purchased. Defaults to most recent catalog. */
@@ -1630,7 +1630,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player statistic is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_statistic_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-statistic-changed
      */
     interface player_statistic_changed extends IBasePlayStreamEvent {
         /** Aggregation method applied for calculating the new value of the statistic. */
@@ -1654,7 +1654,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player statistic is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_statistic_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-statistic-deleted
      */
     interface player_statistic_deleted extends IBasePlayStreamEvent {
         /** Unique ID of the statistic that was deleted. */
@@ -1674,7 +1674,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a tag is added to a player profile.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_tag_added
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-tag-added
      */
     interface player_tag_added extends IBasePlayStreamEvent {
         /** Namespace for this tag */
@@ -1687,7 +1687,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a tag is removed from a player profile.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_tag_removed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-tag-removed
      */
     interface player_tag_removed extends IBasePlayStreamEvent {
         /** Namespace for this tag */
@@ -1701,7 +1701,7 @@ declare namespace PlayStreamModels {
     /**
      * This event is triggered when a CloudScript function is run as the result of a PlayStream action, and the 'Publish
      * results as a PlayStream Event' box was checked.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_triggered_action_executed_cloudscript
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-triggered-action-executed-cloudscript
      */
     interface player_triggered_action_executed_cloudscript extends IBasePlayStreamEvent {
         /** Result of the CloudScript function, including an error information. Useful for debugging. */
@@ -1720,7 +1720,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an authentication method is unlinked from a player's account.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_unlinked_account
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-unlinked-account
      */
     interface player_unlinked_account extends IBasePlayStreamEvent {
         /** Authentication method being unlinked from a player's account. */
@@ -1733,7 +1733,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player updates a contact email on their profile.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_updated_contact_email
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-updated-contact-email
      */
     interface player_updated_contact_email extends IBasePlayStreamEvent {
         /** The name of the contact email that was updated or added in the player's profile. */
@@ -1748,7 +1748,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when the player makes a purchase using virtual currency.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_vc_item_purchased
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-vc-item-purchased
      */
     interface player_vc_item_purchased extends IBasePlayStreamEvent {
         /** Version of the catalog from which the item was purchased. */
@@ -1771,7 +1771,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a contact email is verified for a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_verified_contact_email
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-verified-contact-email
      */
     interface player_verified_contact_email extends IBasePlayStreamEvent {
         /** The email address of the player's contact email that was verified. */
@@ -1784,7 +1784,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a player's virtual currency balance changes.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/player_virtual_currency_balance_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/player-virtual-currency-balance-changed
      */
     interface player_virtual_currency_balance_changed extends IBasePlayStreamEvent {
         /** Id of the order that triggered the balance changes */
@@ -1801,7 +1801,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a push notification is sent or fails to be sent to a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_push_notification
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/sent-push-notification
      */
     interface sent_push_notification extends IBasePlayStreamEvent {
         /** The content of the push notification body, truncated to 4096 characters. */
@@ -1826,7 +1826,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an email is sent or fails to send to a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/player/sent_email
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/sent-email
      */
     interface sent_email extends IBasePlayStreamEvent {
         /** The content of the email body, truncated to 4096 characters. */
@@ -1861,7 +1861,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered every time the application enters or exits focus on the player's device.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_focus_change
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/client-focus-change
      */
     interface client_focus_change extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -1884,7 +1884,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a new client session starts.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/client_session_start
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/client-session-start
      */
     interface client_session_start extends IBasePlayStreamEvent {
         /** Entities that this entity is a child of. */
@@ -1907,7 +1907,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer game lobby ends.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_ended
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/gamelobby-ended
      */
     interface gamelobby_ended extends IBasePlayStreamEvent {
         /** Game mode of the game lobby the player joined. */
@@ -1936,7 +1936,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer game lobby starts.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gamelobby_started
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/gamelobby-started
      */
     interface gamelobby_started extends IBasePlayStreamEvent {
         /** Custom command line arguments passed to the server process running the game lobby. */
@@ -1971,7 +1971,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer game lobby starts.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_started
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/gameserverhost-started
      */
     interface gameserverhost_started extends IBasePlayStreamEvent {
         /** Unique identifier of the host. */
@@ -1998,7 +1998,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a multiplayer game lobby stops.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/gameserverhost_stopped
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/gameserverhost-stopped
      */
     interface gameserverhost_stopped extends IBasePlayStreamEvent {
         /** Unique identifier of the host. */
@@ -2029,7 +2029,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a session ends
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/session_ended
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/session-ended
      */
     interface session_ended extends IBasePlayStreamEvent {
         /** Whether or not the session was marked as a crash */
@@ -2051,7 +2051,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a session starts.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/session/session_started
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/session-started
      */
     interface session_started extends IBasePlayStreamEvent {
         /** The pre-signed S3 URL associated with the session, which has PUT permissions. */
@@ -2066,7 +2066,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a task instance is aborted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_aborted_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-aborted-task
      */
     interface title_aborted_task extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2077,7 +2077,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when new CloudScript is uploaded to PlayFab.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_added_cloudscript
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-added-cloudscript
      */
     interface title_added_cloudscript extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2097,7 +2097,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a new game build is uploaded for a game title.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_game_build_added
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-game-build-added
      */
     interface title_game_build_added extends IBasePlayStreamEvent {
         /** Unique identifier of the build that was uploaded. */
@@ -2114,7 +2114,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an API Features setting is changed for the title.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_api_settings_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-api-settings-changed
      */
     interface title_api_settings_changed extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2127,7 +2127,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a catalog is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_catalog_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-catalog-updated
      */
     interface title_catalog_updated extends IBasePlayStreamEvent {
         /** Version of the catalog that was updated. */
@@ -2140,7 +2140,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a single IP address generates too many API calls to PlayFab and is throttled.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_client_rate_limited_alert
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-client-rate-limited-alert
      */
     interface title_client_rate_limited_alert extends IBasePlayStreamEvent {
         /** Unique identifier of the alert that triggered this event. */
@@ -2159,7 +2159,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a scheduled task has completed
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_completed_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-completed-task
      */
     interface title_completed_task extends IBasePlayStreamEvent {
         /** Timestamp on when the task was aborted. Null if task never was aborted. */
@@ -2178,7 +2178,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a task is created.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_created_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-created-task
      */
     interface title_created_task extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2189,14 +2189,14 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a game title is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_deleted
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-deleted
      */
     interface title_deleted extends IBasePlayStreamEvent {
     }
 
     /**
      * This event is triggered when a task is deleted.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_deleted_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-deleted-task
      */
     interface title_deleted_task extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2207,7 +2207,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggererd when a title exceeds a service limit and receives an error.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_exceeded_limit
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-exceeded-limit
      */
     interface title_exceeded_limit extends IBasePlayStreamEvent {
         /** Additional details about the exceeded limit */
@@ -2226,7 +2226,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a game title experiences a high rate of errors.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_high_error_rate_alert
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-high-error-rate-alert
      */
     interface title_high_error_rate_alert extends IBasePlayStreamEvent {
         /** Unique identifier of the alert that triggered this event. */
@@ -2245,7 +2245,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a title initiates the account recovery process for a player.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_initiated_player_password_reset
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-initiated-player-password-reset
      */
     interface title_initiated_player_password_reset extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2260,7 +2260,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a title changes a service limit.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_limit_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-limit-changed
      */
     interface title_limit_changed extends IBasePlayStreamEvent {
         /** The display name of the limit that changed. */
@@ -2283,7 +2283,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when any of the game build settings are modified.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_game_build_modified
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-game-build-modified
      */
     interface title_game_build_modified extends IBasePlayStreamEvent {
         /** Unique identifier of the build that was modified. */
@@ -2300,7 +2300,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a title news is created or updated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_news_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-news-updated
      */
     interface title_news_updated extends IBasePlayStreamEvent {
         /** When the title news was initially created. */
@@ -2315,7 +2315,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when an update occurs to a a title's permission policies.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_permission_policy_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-permission-policy-changed
      */
     interface title_permission_policy_changed extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2328,7 +2328,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a profile view constraint is changed for the title.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_profile_view_constraints_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-profile-view-constraints-changed
      */
     interface title_profile_view_constraints_changed extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2343,7 +2343,7 @@ declare namespace PlayStreamModels {
 
     /**
      * An inactive revision of CloudScript has been made into the active 'live' version.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_published_cloudscript
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-published-cloudscript
      */
     interface title_published_cloudscript extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2354,7 +2354,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a queue config is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_queue_config_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-queue-config-updated
      */
     interface title_queue_config_updated extends IBasePlayStreamEvent {
         /** Was the queue config deleted. */
@@ -2367,7 +2367,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a title requests a service limit change.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_requested_limit_change
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-requested-limit-change
      */
     interface title_requested_limit_change extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2396,7 +2396,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a game's survey is saved.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_saved_survey
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-saved-survey
      */
     interface title_saved_survey extends IBasePlayStreamEvent {
         /** Title Genre */
@@ -2415,7 +2415,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a CloudScript function is run by a scheduled task.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_scheduled_cloudscript_executed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-scheduled-cloudscript-executed
      */
     interface title_scheduled_cloudscript_executed extends IBasePlayStreamEvent {
         /** Result of the CloudScript function, including an error information. Useful for debugging. */
@@ -2428,7 +2428,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a title adds or updates a Secret Key
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_secret_key_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-secret-key-changed
      */
     interface title_secret_key_changed extends IBasePlayStreamEvent {
         /** Flag indicating if the key was deleted by this operation. Either true or null. */
@@ -2447,7 +2447,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a task is scheduled to run.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_started_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-started-task
      */
     interface title_started_task extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2466,7 +2466,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when the version of a statistic changes, causing its leaderboard to reset.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_statistic_version_changed
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-statistic-version-changed
      */
     interface title_statistic_version_changed extends IBasePlayStreamEvent {
         /** The interval on which the statistic leaderboard was configured to reset, if any. */
@@ -2481,7 +2481,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a store is changed.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_store_updated
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-store-updated
      */
     interface title_store_updated extends IBasePlayStreamEvent {
         /** Catalog version that the updated store belongs to. */
@@ -2496,7 +2496,7 @@ declare namespace PlayStreamModels {
 
     /**
      * This event is triggered when a task is updated.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/title/title_updated_task
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/title-updated-task
      */
     interface title_updated_task extends IBasePlayStreamEvent {
         DeveloperId?: string,
@@ -2510,7 +2510,7 @@ declare namespace PlayStreamModels {
      * PlayStream Group: child types
      */
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EntityLineage */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/entitylineage */
     interface EntityLineage {
         /** The Character Id of the associated entity. */
         CharacterId?: string,
@@ -2526,7 +2526,7 @@ declare namespace PlayStreamModels {
         TitlePlayerAccountId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LogStatement */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/logstatement */
     interface LogStatement {
         /** Optional object accompanying the message as contextual information */
         Data?: any,
@@ -2535,7 +2535,7 @@ declare namespace PlayStreamModels {
         Message?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ScriptExecutionError */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/scriptexecutionerror */
     interface ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded,
@@ -2548,7 +2548,7 @@ declare namespace PlayStreamModels {
         StackTrace?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ExecuteCloudScriptResult */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/executecloudscriptresult */
     interface ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         APIRequestsIssued: number,
@@ -2586,13 +2586,13 @@ declare namespace PlayStreamModels {
         Revision: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/OperationTypes */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/operationtypes */
     type OperationTypes = "Created"
         | "Updated"
         | "Deleted"
         | "None";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/FileSet */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/fileset */
     interface FileSet {
         /** The storage size according to the underlying provider. */
         ByteCount: number,
@@ -2612,7 +2612,7 @@ declare namespace PlayStreamModels {
         StoragePath?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ObjectSet */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/objectset */
     interface ObjectSet {
         /** The JSON Object that was last set on the profile. */
         DataObject?: any,
@@ -2622,7 +2622,7 @@ declare namespace PlayStreamModels {
         Operation?: OperationTypes,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Member */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/member */
     interface Member {
         /** The identifier for the member entity. */
         EntityId?: string,
@@ -2630,19 +2630,19 @@ declare namespace PlayStreamModels {
         EntityType?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/RolePropertyValues */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/rolepropertyvalues */
     interface RolePropertyValues {
         RoleName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GroupPropertyValues */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/grouppropertyvalues */
     interface GroupPropertyValues {
         AdminRoleId?: string,
         GroupName?: string,
         MemberRoleId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildDeletedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuilddeletedeventpayload */
     interface MultiplayerServerBuildDeletedEventPayload {
         /** The guid string ID of the multiplayer server build that was deleted. */
         BuildId?: string,
@@ -2650,7 +2650,7 @@ declare namespace PlayStreamModels {
 
     /**
      * Combined entity type and ID structure which uniquely identifies a single entity.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EntityKey
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/entitykey
      */
     interface EntityKey {
         /** Unique ID of the entity. */
@@ -2661,7 +2661,7 @@ declare namespace PlayStreamModels {
         TypeString?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AzureRegion */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/azureregion */
     type AzureRegion = "AustraliaEast"
         | "AustraliaSoutheast"
         | "BrazilSouth"
@@ -2680,7 +2680,7 @@ declare namespace PlayStreamModels {
         | "ChinaEast2"
         | "ChinaNorth2";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildRegionStatusChangedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuildregionstatuschangedeventpayload */
     interface MultiplayerServerBuildRegionStatusChangedEventPayload {
         /** The guid string ID of the build. */
         BuildId?: string,
@@ -2694,7 +2694,7 @@ declare namespace PlayStreamModels {
         Region?: AzureRegion,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/BuildRegion */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/buildregion */
     interface BuildRegion {
         /** The maximum number of multiplayer servers for the region. */
         MaxServers: number,
@@ -2704,7 +2704,7 @@ declare namespace PlayStreamModels {
         StandbyServers: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerBuildRegionUpdatedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuildregionupdatedeventpayload */
     interface MultiplayerServerBuildRegionUpdatedEventPayload {
         /** The guid string ID of the multiplayer server build that regions were updated on. */
         BuildId?: string,
@@ -2712,19 +2712,19 @@ declare namespace PlayStreamModels {
         BuildRegions?: BuildRegion[],
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCertificateDeletedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercertificatedeletedeventpayload */
     interface MultiplayerServerCertificateDeletedEventPayload {
         /** The name of the certificate that was deleted. */
         CertificateName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCertificateUploadedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercertificateuploadedeventpayload */
     interface MultiplayerServerCertificateUploadedEventPayload {
         /** The name of the certificate that was uploaded. */
         CertificateName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerCreateBuildInitiatedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercreatebuildinitiatedeventpayload */
     interface MultiplayerServerCreateBuildInitiatedEventPayload {
         /** The guid string ID of the build */
         BuildId?: string,
@@ -2736,13 +2736,13 @@ declare namespace PlayStreamModels {
         Metadata?: { [key: string]: string | null },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerGameAssetDeletedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservergameassetdeletedeventpayload */
     interface MultiplayerServerGameAssetDeletedEventPayload {
         /** The filename of the asset that was deleted. */
         AssetFileName?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GenericErrorCodes */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/genericerrorcodes */
     type GenericErrorCodes = "Success"
         | "UnkownError"
         | "InvalidParams"
@@ -3203,7 +3203,7 @@ declare namespace PlayStreamModels {
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerRequestedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverrequestedeventpayload */
     interface MultiplayerServerRequestedEventPayload {
         /** The region where the multiplayer server was allocated. */
         AllocatedRegion?: AzureRegion,
@@ -3221,7 +3221,7 @@ declare namespace PlayStreamModels {
         SessionId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerStateChangedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverstatechangedeventpayload */
     interface MultiplayerServerStateChangedEventPayload {
         /** The guid string ID of the build. */
         BuildId?: string,
@@ -3239,7 +3239,7 @@ declare namespace PlayStreamModels {
         VmId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmAssignedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmassignedeventpayload */
     interface MultiplayerServerVmAssignedEventPayload {
         /** The time (UTC) the virtual machine was assigned. */
         AssignmentEventTimestamp: string,
@@ -3255,7 +3255,7 @@ declare namespace PlayStreamModels {
         VmId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmRemoteUserCreatedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmremoteusercreatedeventpayload */
     interface MultiplayerServerVmRemoteUserCreatedEventPayload {
         /** The expiration time for the remote user that was created. */
         ExpirationTime?: string,
@@ -3265,7 +3265,7 @@ declare namespace PlayStreamModels {
         VmId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmRemoteUserDeletedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmremoteuserdeletedeventpayload */
     interface MultiplayerServerVmRemoteUserDeletedEventPayload {
         /** The guid string build ID of the multiplayer server where the remote user was deleted. */
         BuildId?: string,
@@ -3275,7 +3275,7 @@ declare namespace PlayStreamModels {
         VmId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmUnassignmentStartedEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmunassignmentstartedeventpayload */
     interface MultiplayerServerVmUnassignmentStartedEventPayload {
         /** The duration (milliseconds) that the VM has been assigned. */
         AssignmentDurationMs: number,
@@ -3295,7 +3295,7 @@ declare namespace PlayStreamModels {
         VmOs?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MultiplayerServerVmUnhealthyEventPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmunhealthyeventpayload */
     interface MultiplayerServerVmUnhealthyEventPayload {
         /** The guid string ID of the build. */
         BuildId?: string,
@@ -3307,7 +3307,7 @@ declare namespace PlayStreamModels {
         VmId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MatchmakingMatchFoundPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/matchmakingmatchfoundpayload */
     interface MatchmakingMatchFoundPayload {
         /** The identifier for the match. */
         MatchId?: string,
@@ -3317,7 +3317,7 @@ declare namespace PlayStreamModels {
         TicketIds?: string[],
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MatchmakingTicketCompletePayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/matchmakingticketcompletepayload */
     interface MatchmakingTicketCompletePayload {
         /**
          * If the ticket result is "Canceled" then this string provides the reason why the ticket was canceled otherwise it is
@@ -3340,7 +3340,7 @@ declare namespace PlayStreamModels {
         TicketId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MatchmakingUserTicketCompletePayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/matchmakinguserticketcompletepayload */
     interface MatchmakingUserTicketCompletePayload {
         /**
          * If the ticket result is "Canceled" then this string provides the reason why the ticket was canceled otherwise it is
@@ -3357,7 +3357,7 @@ declare namespace PlayStreamModels {
         TicketId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MatchmakingUserTicketInvitePayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/matchmakinguserticketinvitepayload */
     interface MatchmakingUserTicketInvitePayload {
         /** Entity that invited the user to join the ticket. */
         CreatorEntity?: EntityKey,
@@ -3367,20 +3367,20 @@ declare namespace PlayStreamModels {
         TicketId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfileProperty */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playerprofileproperty */
     type PlayerProfileProperty = "TotalValueToDateInUSD"
         | "PlayerValuesToDate";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailTemplateType */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/emailtemplatetype */
     type EmailTemplateType = "AccountRecovery"
         | "EmailVerification"
         | "Custom";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AuthenticationProvider */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/authenticationprovider */
     type AuthenticationProvider = "PlayFab"
         | "SAML";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientFocusChangePayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/clientfocuschangepayload */
     interface ClientFocusChangePayload {
         /** The Client Sesssion Id of the associated entity. */
         ClientSessionID?: string,
@@ -3394,7 +3394,7 @@ declare namespace PlayStreamModels {
         FocusStateDuration: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ClientSessionStartPayload */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/clientsessionstartpayload */
     interface ClientSessionStartPayload {
         /** The Client Session Id of the associated entity. */
         ClientSessionID?: string,
@@ -3408,18 +3408,18 @@ declare namespace PlayStreamModels {
         UserID?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/GameServerHostStopReason */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/gameserverhoststopreason */
     type GameServerHostStopReason = "Other"
         | "ExcessCapacity"
         | "LimitExceeded"
         | "BuildNotActiveInRegion"
         | "Unresponsive";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/SegmentMembershipChangeType */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/segmentmembershipchangetype */
     type SegmentMembershipChangeType = "Entered"
         | "Exited";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/SegmentMembershipChange */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/segmentmembershipchange */
     interface SegmentMembershipChange {
         /** Type of the segment membership status change. */
         Change?: SegmentMembershipChangeType,
@@ -3429,7 +3429,7 @@ declare namespace PlayStreamModels {
         SegmentId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EventRuleMatch */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/eventrulematch */
     interface EventRuleMatch {
         /** ID of the PlayStream event that matched the rule. */
         EventId?: string,
@@ -3437,7 +3437,7 @@ declare namespace PlayStreamModels {
         RuleId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ActionExecutionError */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/actionexecutionerror */
     interface ActionExecutionError {
         /** Error code. */
         Error?: string,
@@ -3445,7 +3445,7 @@ declare namespace PlayStreamModels {
         Message?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LoginIdentityProvider */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/loginidentityprovider */
     type LoginIdentityProvider = "Unknown"
         | "PlayFab"
         | "Custom"
@@ -3466,11 +3466,11 @@ declare namespace PlayStreamModels {
         | "FacebookInstantGames"
         | "OpenIdConnect";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PasswordResetInitiationSource */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/passwordresetinitiationsource */
     type PasswordResetInitiationSource = "Self"
         | "Admin";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContinentCode */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/continentcode */
     type ContinentCode = "AF"
         | "AN"
         | "AS"
@@ -3479,7 +3479,7 @@ declare namespace PlayStreamModels {
         | "OC"
         | "SA";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/CountryCode */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/countrycode */
     type CountryCode = "AF"
         | "AX"
         | "AL"
@@ -3730,7 +3730,7 @@ declare namespace PlayStreamModels {
         | "ZM"
         | "ZW";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EventLocation */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/eventlocation */
     interface EventLocation {
         /** City of the geographic location. */
         City?: string,
@@ -3744,7 +3744,7 @@ declare namespace PlayStreamModels {
         Longitude?: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TransactionStatus */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/transactionstatus */
     type TransactionStatus = "CreateCart"
         | "Init"
         | "Approved"
@@ -3766,12 +3766,12 @@ declare namespace PlayStreamModels {
         | "Other"
         | "Failed";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardVersionChangeBehavior */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/leaderboardversionchangebehavior */
     type LeaderboardVersionChangeBehavior = "ResetValues"
 
     /**
      * Statistic used as the source of leaderboard values.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticLeaderboardSource
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/statisticleaderboardsource
      */
     interface StatisticLeaderboardSource {
         /** Unique ID of the statistic. */
@@ -3783,18 +3783,18 @@ declare namespace PlayStreamModels {
     /**
      * The source of values for the leaderboard. The properties are mutually exclusive - only one of them will be set and the
      * rest will be null.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/LeaderboardSource
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/leaderboardsource
      */
     interface LeaderboardSource {
         /** Statistic associated with the leaderboard. */
         Statistic?: StatisticLeaderboardSource,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentType */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/paymenttype */
     type PaymentType = "Purchase"
         | "ReceiptValidation";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Currency */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/currency */
     type Currency = "AED"
         | "AFN"
         | "ALL"
@@ -3958,7 +3958,7 @@ declare namespace PlayStreamModels {
         | "ZMW"
         | "ZWD";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/CouponGrantedInventoryItem */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/coupongrantedinventoryitem */
     interface CouponGrantedInventoryItem {
         /** Catalog version of the inventory item. */
         CatalogVersion?: string,
@@ -3968,11 +3968,11 @@ declare namespace PlayStreamModels {
         ItemId?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PushNotificationPlatform */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/pushnotificationplatform */
     type PushNotificationPlatform = "ApplePushNotificationService"
         | "GoogleCloudMessaging";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/CartItem */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/cartitem */
     interface CartItem {
         /** Description of the catalog item. */
         Description?: string,
@@ -3992,13 +3992,13 @@ declare namespace PlayStreamModels {
         VirtualCurrencyPrices?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticAggregationMethod */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/statisticaggregationmethod */
     type StatisticAggregationMethod = "Last"
         | "Min"
         | "Max"
         | "Sum";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerLocation */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playerlocation */
     interface PlayerLocation {
         /** City of the player's geographic location. */
         City?: string,
@@ -4012,7 +4012,7 @@ declare namespace PlayStreamModels {
         Longitude?: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AdCampaignAttribution */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/adcampaignattribution */
     interface AdCampaignAttribution {
         /** UTC time stamp of attribution */
         AttributedAt: string,
@@ -4022,7 +4022,7 @@ declare namespace PlayStreamModels {
         Platform?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PushNotificationRegistration */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/pushnotificationregistration */
     interface PushNotificationRegistration {
         /** Notification configured endpoint */
         NotificationEndpointARN?: string,
@@ -4030,7 +4030,7 @@ declare namespace PlayStreamModels {
         Platform?: PushNotificationPlatform,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerLinkedAccount */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playerlinkedaccount */
     interface PlayerLinkedAccount {
         /** Linked account's email */
         Email?: string,
@@ -4042,7 +4042,7 @@ declare namespace PlayStreamModels {
         Username?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerStatistic */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playerstatistic */
     interface PlayerStatistic {
         /** Statistic ID */
         Id?: string,
@@ -4054,12 +4054,12 @@ declare namespace PlayStreamModels {
         StatisticVersion: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/EmailVerificationStatus */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/emailverificationstatus */
     type EmailVerificationStatus = "Unverified"
         | "Pending"
         | "Confirmed";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/ContactEmailInfo */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/contactemailinfo */
     interface ContactEmailInfo {
         /** The email address */
         EmailAddress?: string,
@@ -4069,7 +4069,7 @@ declare namespace PlayStreamModels {
         VerificationStatus?: EmailVerificationStatus,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayerProfile */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playerprofile */
     interface PlayerProfile {
         /** Array of ad campaigns player has been attributed to */
         AdCampaignAttributions?: AdCampaignAttribution[],
@@ -4113,11 +4113,11 @@ declare namespace PlayStreamModels {
         VirtualCurrencyBalances?: { [key: string]: number },
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/IEnumerable_String */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/ienumerable_string */
     interface IEnumerable_String {
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/MetricUnit */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/metricunit */
     type MetricUnit = "Value"
         | "Count"
         | "Percent"
@@ -4135,7 +4135,7 @@ declare namespace PlayStreamModels {
         | "MonthlyActiveUsers"
         | "EnableDisable";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PaymentOptionPerMauPriceTier */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/paymentoptionpermaupricetier */
     interface PaymentOptionPerMauPriceTier {
         LowerBoundInclusive?: number,
         Name?: string,
@@ -4146,7 +4146,7 @@ declare namespace PlayStreamModels {
         UpperBoundInclusive?: number,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/Region */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/region */
     type Region = "USCentral"
         | "USEast"
         | "EUWest"
@@ -4155,7 +4155,7 @@ declare namespace PlayStreamModels {
         | "Brazil"
         | "Australia";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/APISettings */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/apisettings */
     interface APISettings {
         /** Allow game clients to add to virtual currency balances via API. */
         AllowClientToAddVirtualCurrency: boolean,
@@ -4194,17 +4194,17 @@ declare namespace PlayStreamModels {
         UseSandboxPayments: boolean,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AlertLevel */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/alertlevel */
     type AlertLevel = "Warn"
         | "Alert"
         | "Critical";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/AlertStates */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/alertstates */
     type AlertStates = "Triggered"
         | "Recovered"
         | "ReTriggered";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/TaskInstanceStatus */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/taskinstancestatus */
     type TaskInstanceStatus = "Succeeded"
         | "Starting"
         | "InProgress"
@@ -4215,7 +4215,7 @@ declare namespace PlayStreamModels {
     /**
      * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is
      * immutable and unique.
-     * https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NameIdentifier
+     * https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/nameidentifier
      */
     interface NameIdentifier {
         /** Id Identifier, if present */
@@ -4224,31 +4224,31 @@ declare namespace PlayStreamModels {
         Name?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NewsStatus */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/newsstatus */
     type NewsStatus = "None"
         | "Unpublished"
         | "Published"
         | "Archived";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/NameId */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/nameid */
     interface NameId {
         Id?: string,
         Name?: string,
     }
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/StatisticResetIntervalOption */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/statisticresetintervaloption */
     type StatisticResetIntervalOption = "Never"
         | "Hour"
         | "Day"
         | "Week"
         | "Month";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PhotonServicesEnum */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/photonservicesenum */
     type PhotonServicesEnum = "Realtime"
         | "Turnbased"
         | "Chat";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/SourceType */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/sourcetype */
     type SourceType = "Admin"
         | "BackEnd"
         | "GameClient"
@@ -4257,7 +4257,7 @@ declare namespace PlayStreamModels {
         | "Custom"
         | "API";
 
-    /** https://api.playfab.com/playstream/docs/PlayStreamEventModels/childtypes/PlayStreamEventHistory */
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playstreameventhistory */
     interface PlayStreamEventHistory {
         /** The ID of the previous event that caused this event to be created by hitting a trigger. */
         ParentEventId?: string,
