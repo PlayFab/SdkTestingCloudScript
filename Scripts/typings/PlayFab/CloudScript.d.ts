@@ -1638,6 +1638,8 @@ declare namespace PlayFabServerModels {
         | "ExperimentationNoScorecard"
         | "ExperimentationTreatmentAssignmentFailed"
         | "ExperimentationTreatmentAssignmentDisabled"
+        | "ExperimentationInvalidDuration"
+        | "ExperimentationMaxExperimentsReached"
         | "MaxActionDepthExceeded"
         | "SnapshotNotFound";
 
