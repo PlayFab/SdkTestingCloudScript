@@ -1567,6 +1567,12 @@ declare namespace PlayFabServerModels {
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
+        | "LimitNotFound"
+        | "LimitNotAvailableViaAPI"
+        | "InsightsManagementSetStorageRetentionBelowMinimum"
+        | "InsightsManagementSetStorageRetentionAboveMaximum"
+        | "AppleNotEnabledForTitle"
+        | "InsightsManagementNewActiveEventArchiveLimitInvalid"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -2752,7 +2758,8 @@ declare namespace PlayFabServerModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple";
 
     interface LoginWithServerCustomIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -3830,7 +3837,7 @@ declare namespace PlayFabServerModels {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
-        XboxToken: string,
+        XboxToken?: string,
     }
 
     interface UnlinkXboxAccountResult {
@@ -5347,7 +5354,8 @@ declare namespace PlayFabAuthenticationModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple";
 
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     interface ValidateEntityTokenRequest {
