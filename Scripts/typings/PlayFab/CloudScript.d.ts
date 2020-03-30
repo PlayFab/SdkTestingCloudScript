@@ -1572,7 +1572,11 @@ declare namespace PlayFabServerModels {
         | "InsightsManagementSetStorageRetentionBelowMinimum"
         | "InsightsManagementSetStorageRetentionAboveMaximum"
         | "AppleNotEnabledForTitle"
-        | "InsightsManagementNewActiveEventArchiveLimitInvalid"
+        | "InsightsManagementNewActiveEventExportLimitInvalid"
+        | "InsightsManagementSetPerformanceRateLimited"
+        | "PartyRequestsThrottledFromRateLimiter"
+        | "XboxServiceTooManyRequests"
+        | "NintendoSwitchNotEnabledForTitle"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1629,6 +1633,11 @@ declare namespace PlayFabServerModels {
         | "ExportCouldNotCreate"
         | "ExportNoBackingDatabaseFound"
         | "ExportCouldNotDelete"
+        | "ExportCannotDetermineEventQuery"
+        | "ExportInvalidQuerySchemaModification"
+        | "ExportQuerySchemaMissingRequiredColumns"
+        | "ExportCannotParseQuery"
+        | "ExportControlCommandsNotAllowed"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -1647,6 +1656,7 @@ declare namespace PlayFabServerModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "MaxActionDepthExceeded"
+        | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
 
     interface GenericPlayFabIdPair {
@@ -1841,7 +1851,8 @@ declare namespace PlayFabServerModels {
     /**
      * If any additional services are queried for the user's friends, those friends who also have a PlayFab account registered
      * for the title will be returned in the results. For Facebook, user has to have logged into the title's Facebook app
-     * recently, and only friends who also plays this game will be included.
+     * recently, and only friends who also plays this game will be included. For Xbox Live, user has to have logged into the
+     * Xbox Live recently, and only friends who also play this game will be included.
      */
     interface GetFriendsListResult {
         /** Array of friends found. */
@@ -2759,7 +2770,8 @@ declare namespace PlayFabServerModels {
         | "NintendoSwitch"
         | "FacebookInstantGames"
         | "OpenIdConnect"
-        | "Apple";
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     interface LoginWithServerCustomIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -4101,6 +4113,8 @@ declare namespace PlayFabServerModels {
     interface UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         AndroidDeviceInfo?: UserAndroidDeviceInfo,
+        /** Sign in with Apple account information, if an Apple account has been linked */
+        AppleAccountInfo?: UserAppleIdInfo,
         /** Timestamp indicating when the user account was created */
         Created: string,
         /** Custom ID information, if a custom ID has been assigned */
@@ -4118,6 +4132,8 @@ declare namespace PlayFabServerModels {
         /** User Kongregate account information, if a Kongregate account has been linked */
         KongregateInfo?: UserKongregateInfo,
         /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        NintendoSwitchAccountInfo?: UserNintendoSwitchAccountIdInfo,
+        /** Nintendo Switch device information, if a Nintendo Switch device has been linked */
         NintendoSwitchDeviceIdInfo?: UserNintendoSwitchDeviceIdInfo,
         /** OpenID Connect information, if any OpenID Connect accounts have been linked */
         OpenIdInfo?: UserOpenIdInfo[],
@@ -4144,6 +4160,11 @@ declare namespace PlayFabServerModels {
     interface UserAndroidDeviceInfo {
         /** Android device ID */
         AndroidDeviceId?: string,
+    }
+
+    interface UserAppleIdInfo {
+        /** Apple subject ID */
+        AppleSubjectId?: string,
     }
 
     interface UserCustomIdInfo {
@@ -4212,6 +4233,11 @@ declare namespace PlayFabServerModels {
         KongregateName?: string,
     }
 
+    interface UserNintendoSwitchAccountIdInfo {
+        /** Nintendo Switch account subject ID */
+        NintendoSwitchAccountSubjectId?: string,
+    }
+
     interface UserNintendoSwitchDeviceIdInfo {
         /** Nintendo Switch Device ID */
         NintendoSwitchDeviceId?: string,
@@ -4247,7 +4273,9 @@ declare namespace PlayFabServerModels {
         | "ServerCustomId"
         | "NintendoSwitchDeviceId"
         | "FacebookInstantGamesId"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     interface UserPrivateAccountInfo {
         /** user email address */
@@ -5355,7 +5383,8 @@ declare namespace PlayFabAuthenticationModels {
         | "NintendoSwitch"
         | "FacebookInstantGames"
         | "OpenIdConnect"
-        | "Apple";
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     interface ValidateEntityTokenRequest {
