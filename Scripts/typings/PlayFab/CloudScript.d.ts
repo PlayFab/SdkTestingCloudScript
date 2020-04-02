@@ -1638,6 +1638,7 @@ declare namespace PlayFabServerModels {
         | "ExportQuerySchemaMissingRequiredColumns"
         | "ExportCannotParseQuery"
         | "ExportControlCommandsNotAllowed"
+        | "ExportQueryMissingTableReference"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -1655,6 +1656,7 @@ declare namespace PlayFabServerModels {
         | "ExperimentationTreatmentAssignmentDisabled"
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
+        | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";

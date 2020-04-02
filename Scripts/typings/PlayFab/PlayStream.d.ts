@@ -7,6 +7,16 @@ declare namespace PlayStreamModels {
      * PlayStream Group: none
      */
 
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/batch-action-event */
+    interface batch_action_event extends IBasePlayStreamEvent {
+        ActionBatchId?: string,
+        ActionBatchS3Key?: string,
+        HeadProcessorEnvironment?: PlayFabEnvironment,
+        HeadStreamEventBatchBeginSequenceId?: string,
+        HeadStreamEventBatchEndSequenceId?: string,
+        HeadStreamShardId?: string,
+    }
+
     /**
      * This event is triggered when a catalog item is created.
      * https://docs.microsoft.com/gaming/playfab/api-references/events/entity-catalog-item-created
@@ -439,328 +449,6 @@ declare namespace PlayStreamModels {
         UpdaterEntityId?: string,
         /** The type of entity that updated the group to which this event applies. */
         UpdaterEntityType?: string,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server build is deleted.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-deleted
-     */
-    interface multiplayer_server_build_deleted extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server build region deleted event payload. */
-        Payload?: MultiplayerServerBuildDeletedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server's build region status is changed.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-region-status-changed
-     */
-    interface multiplayer_server_build_region_status_changed extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server build region status changed event payload. */
-        Payload?: MultiplayerServerBuildRegionStatusChangedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server build region is updated.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-build-region-updated
-     */
-    interface multiplayer_server_build_region_updated extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server build region updated event payload. */
-        Payload?: MultiplayerServerBuildRegionUpdatedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server certificate is deleted.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-certificate-deleted
-     */
-    interface multiplayer_server_certificate_deleted extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server certificate deleted event payload. */
-        Payload?: MultiplayerServerCertificateDeletedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server certificate is uploaded.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-certificate-uploaded
-     */
-    interface multiplayer_server_certificate_uploaded extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server certificate uploaded event payload. */
-        Payload?: MultiplayerServerCertificateUploadedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server build is initiated.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-create-build-initiated
-     */
-    interface multiplayer_server_create_build_initiated extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server create build initiated event payload. */
-        Payload?: MultiplayerServerCreateBuildInitiatedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server game asset is deleted.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-game-asset-deleted
-     */
-    interface multiplayer_server_game_asset_deleted extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server game asset deleted event payload. */
-        Payload?: MultiplayerServerGameAssetDeletedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server shutdown is requested.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-requested
-     */
-    interface multiplayer_server_requested extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server requested event payload. */
-        Payload?: MultiplayerServerRequestedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server's state is changed.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-state-changed
-     */
-    interface multiplayer_server_state_changed extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server state changed event payload. */
-        Payload?: MultiplayerServerStateChangedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a virtual machine is assigned to a multiplayer server build.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-assigned
-     */
-    interface multiplayer_server_vm_assigned extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server virtual machine assigned event payload. */
-        Payload?: MultiplayerServerVmAssignedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server virtual machine remote user is created.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-remote-user-created
-     */
-    interface multiplayer_server_vm_remote_user_created extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server virtual machine remote user created event payload. */
-        Payload?: MultiplayerServerVmRemoteUserCreatedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a multiplayer server virtual machine remote user is deleted.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-remote-user-deleted
-     */
-    interface multiplayer_server_vm_remote_user_deleted extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server virtual machine remote user deleted event payload. */
-        Payload?: MultiplayerServerVmRemoteUserDeletedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a virtual machine is unassigned from a multiplayer server build.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-unassignment-started
-     */
-    interface multiplayer_server_vm_unassignment_started extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server virtual machine unassignment started event payload. */
-        Payload?: MultiplayerServerVmUnassignmentStartedEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
-    }
-
-    /**
-     * This event is triggered when a virtual machine is found to be unhealthy.
-     * https://docs.microsoft.com/gaming/playfab/api-references/events/multiplayer-server-vm-unhealthy
-     */
-    interface multiplayer_server_vm_unhealthy extends IBasePlayStreamEvent {
-        /** Entities that this entity is a child of. */
-        EntityLineage?: EntityLineage,
-        /**
-         * The original unique identifier associated with this event before it was posted to PlayFab. The value might differ from
-         * the EventId value, which is assigned when the event is received by the server.
-         */
-        OriginalEventId?: string,
-        /**
-         * The original time (in UTC) associated with this event before it was posted to PlayFab. The value might differ from the
-         * Timestamp value, which is set at the time the event is received by the server.
-         */
-        OriginalTimestamp?: string,
-        /** The multiplayer server virtual machine unassignment started event payload. */
-        Payload?: MultiplayerServerVmUnhealthyEventPayload,
-        /** Entity that wrote this event, included only if different than the event's entity. */
-        WriterEntity?: EntityKey,
     }
 
     /**
@@ -3190,6 +2878,16 @@ declare namespace PlayStreamModels {
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
+        | "LimitNotFound"
+        | "LimitNotAvailableViaAPI"
+        | "InsightsManagementSetStorageRetentionBelowMinimum"
+        | "InsightsManagementSetStorageRetentionAboveMaximum"
+        | "AppleNotEnabledForTitle"
+        | "InsightsManagementNewActiveEventExportLimitInvalid"
+        | "InsightsManagementSetPerformanceRateLimited"
+        | "PartyRequestsThrottledFromRateLimiter"
+        | "XboxServiceTooManyRequests"
+        | "NintendoSwitchNotEnabledForTitle"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3246,6 +2944,12 @@ declare namespace PlayStreamModels {
         | "ExportCouldNotCreate"
         | "ExportNoBackingDatabaseFound"
         | "ExportCouldNotDelete"
+        | "ExportCannotDetermineEventQuery"
+        | "ExportInvalidQuerySchemaModification"
+        | "ExportQuerySchemaMissingRequiredColumns"
+        | "ExportCannotParseQuery"
+        | "ExportControlCommandsNotAllowed"
+        | "ExportQueryMissingTableReference"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
@@ -3263,7 +2967,9 @@ declare namespace PlayStreamModels {
         | "ExperimentationTreatmentAssignmentDisabled"
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
+        | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
+        | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
 
     /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/entitycatalogdraftitemcreatedeventpayload */
@@ -3451,198 +3157,6 @@ declare namespace PlayStreamModels {
         MemberRoleId?: string,
     }
 
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuilddeletedeventpayload */
-    interface MultiplayerServerBuildDeletedEventPayload {
-        /** The guid string ID of the multiplayer server build that was deleted. */
-        BuildId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/azureregion */
-    type AzureRegion = "AustraliaEast"
-        | "AustraliaSoutheast"
-        | "BrazilSouth"
-        | "CentralUs"
-        | "EastAsia"
-        | "EastUs"
-        | "EastUs2"
-        | "JapanEast"
-        | "JapanWest"
-        | "NorthCentralUs"
-        | "NorthEurope"
-        | "SouthCentralUs"
-        | "SoutheastAsia"
-        | "WestEurope"
-        | "WestUs"
-        | "ChinaEast2"
-        | "ChinaNorth2"
-        | "SouthAfricaNorth";
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuildregionstatuschangedeventpayload */
-    interface MultiplayerServerBuildRegionStatusChangedEventPayload {
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The duration (minutes) in the old build status. */
-        MinutesInOldStatus: number,
-        /** The new build region status. */
-        NewStatus?: string,
-        /** The old build region status. */
-        OldStatus?: string,
-        /** The build region. */
-        Region?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/buildregion */
-    interface BuildRegion {
-        /** The maximum number of multiplayer servers for the region. */
-        MaxServers: number,
-        /** The build region. */
-        Region?: string,
-        /** The number of standby multiplayer servers for the region. */
-        StandbyServers: number,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverbuildregionupdatedeventpayload */
-    interface MultiplayerServerBuildRegionUpdatedEventPayload {
-        /** The guid string ID of the multiplayer server build that regions were updated on. */
-        BuildId?: string,
-        /** The updated region configuration that should be applied to the specified build. */
-        BuildRegions?: BuildRegion[],
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercertificatedeletedeventpayload */
-    interface MultiplayerServerCertificateDeletedEventPayload {
-        /** The name of the certificate that was deleted. */
-        CertificateName?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercertificateuploadedeventpayload */
-    interface MultiplayerServerCertificateUploadedEventPayload {
-        /** The name of the certificate that was uploaded. */
-        CertificateName?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservercreatebuildinitiatedeventpayload */
-    interface MultiplayerServerCreateBuildInitiatedEventPayload {
-        /** The guid string ID of the build */
-        BuildId?: string,
-        /** The build name. */
-        BuildName?: string,
-        /** The time (UTC) that the build was created. */
-        CreationTime?: string,
-        /** The developer defined metadata of the build. */
-        Metadata?: { [key: string]: string | null },
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservergameassetdeletedeventpayload */
-    interface MultiplayerServerGameAssetDeletedEventPayload {
-        /** The filename of the asset that was deleted. */
-        AssetFileName?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverrequestedeventpayload */
-    interface MultiplayerServerRequestedEventPayload {
-        /** The region where the multiplayer server was allocated. */
-        AllocatedRegion?: string,
-        /** The integer ranking of what region that the multiplayer server was allocated in from the PreferredRegions list. */
-        AllocatedRegionPreferenceRanking?: number,
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The error when a multiplayer server request fails to allocate. If there was no failure, returns null. */
-        ErrorCode?: GenericErrorCodes,
-        /** The list of preferred region to request a server from. */
-        PreferredRegions?: string[],
-        /** The string ID of the server which is generated by PlayFab. */
-        ServerId?: string,
-        /** The guid string ID of the session. */
-        SessionId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerserverstatechangedeventpayload */
-    interface MultiplayerServerStateChangedEventPayload {
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The new multiplayer server state. */
-        NewState?: string,
-        /** The old multiplayer server state. */
-        OldState?: string,
-        /** The build region. */
-        Region?: string,
-        /** The multiplayer server ID. */
-        ServerId?: string,
-        /** The guid string ID of the session. */
-        SessionId?: string,
-        /** The virtual machine ID the multiplayer server is located on. */
-        VmId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmassignedeventpayload */
-    interface MultiplayerServerVmAssignedEventPayload {
-        /** The time (UTC) the virtual machine was assigned. */
-        AssignmentEventTimestamp: string,
-        /** The guid string ID of the billing assignment. */
-        BillingAssignmentCorrelationId?: string,
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The build region. */
-        Region?: string,
-        /** The guid string ID of the session. */
-        SessionId?: string,
-        /** The ID of the virtual machine that was assigned. */
-        VmId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmremoteusercreatedeventpayload */
-    interface MultiplayerServerVmRemoteUserCreatedEventPayload {
-        /** The expiration time for the remote user that was created. */
-        ExpirationTime?: string,
-        /** The username for the remote user that was created. */
-        Username?: string,
-        /** The ID of the virtual machine where the remote user was created. */
-        VmId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmremoteuserdeletedeventpayload */
-    interface MultiplayerServerVmRemoteUserDeletedEventPayload {
-        /** The guid string build ID of the multiplayer server where the remote user was deleted. */
-        BuildId?: string,
-        /** The username for the remote user that was deleted. */
-        Username?: string,
-        /** The virtual machine ID the multiplayer server is located on where the remote user was deleted on. */
-        VmId?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmunassignmentstartedeventpayload */
-    interface MultiplayerServerVmUnassignmentStartedEventPayload {
-        /** The duration (milliseconds) that the VM has been assigned. */
-        AssignmentDurationMs: number,
-        /** The guid string ID of the billing assignment. */
-        BillingAssignmentCorrelationId?: string,
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The build region. */
-        Region?: string,
-        /** The guid string ID of the session. */
-        SessionId?: string,
-        /** The time (UTC) the virtual machine unassignment started. */
-        UnassignmentEventTimestamp: string,
-        /** The virtual machine ID that is being unassigned. */
-        VmId?: string,
-        /** The virtual machine's operating system. */
-        VmOs?: string,
-    }
-
-    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/multiplayerservervmunhealthyeventpayload */
-    interface MultiplayerServerVmUnhealthyEventPayload {
-        /** The guid string ID of the build. */
-        BuildId?: string,
-        /** The health status of the virtual machine. */
-        HealthStatus?: string,
-        /** The build region. */
-        Region?: string,
-        /** The ID of the unhealthy virtual machine. */
-        VmId?: string,
-    }
-
     /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/entityusergeneratedcontentdraftitemcreatedeventpayload */
     interface EntityUserGeneratedContentDraftItemCreatedEventPayload {
         /** The error when a User Generated Content item create request fails. If there was no failure, will be null. */
@@ -3817,7 +3331,9 @@ declare namespace PlayStreamModels {
         | "CustomServer"
         | "NintendoSwitch"
         | "FacebookInstantGames"
-        | "OpenIdConnect";
+        | "OpenIdConnect"
+        | "Apple"
+        | "NintendoSwitchAccount";
 
     /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/passwordresetinitiationsource */
     type PasswordResetInitiationSource = "Self"
@@ -4652,6 +4168,14 @@ declare namespace PlayStreamModels {
     type PhotonServicesEnum = "Realtime"
         | "Turnbased"
         | "Chat";
+
+    /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/playfabenvironment */
+    interface PlayFabEnvironment {
+        Application?: string,
+        Cloud?: string,
+        Commit?: string,
+        Vertical?: string,
+    }
 
     /** https://docs.microsoft.com/gaming/playfab/api-references/events/data-types/sourcetype */
     type SourceType = "Admin"
