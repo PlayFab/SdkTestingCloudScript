@@ -1577,6 +1577,7 @@ declare namespace PlayFabServerModels {
         | "PartyRequestsThrottledFromRateLimiter"
         | "XboxServiceTooManyRequests"
         | "NintendoSwitchNotEnabledForTitle"
+        | "RequestMultiplayerServersThrottledFromRateLimiter"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
