@@ -1578,6 +1578,8 @@ declare namespace PlayFabServerModels {
         | "XboxServiceTooManyRequests"
         | "NintendoSwitchNotEnabledForTitle"
         | "RequestMultiplayerServersThrottledFromRateLimiter"
+        | "TitleDataInstanceNotFound"
+        | "DuplicateTitleDataOverrideInstanceName"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1658,6 +1660,7 @@ declare namespace PlayFabServerModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
+        | "ExperimentationExistingCodelessScheduled"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
