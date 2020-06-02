@@ -2248,8 +2248,8 @@ declare namespace PlayFabServerModels {
     /**
      * This API is designed to return publisher-specific values which can be read, but not written to, by the client. This data
      * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
-     * assigned to a publisher can use this API. For more information email devrel@playfab.com. Note that there may up to a
-     * minute delay in between updating title data and this API call returning the newest value.
+     * assigned to a publisher can use this API. For more information email helloplayfab@microsoft.com. Note that there may up
+     * to a minute delay in between updating title data and this API call returning the newest value.
      */
     interface GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
@@ -3633,7 +3633,7 @@ declare namespace PlayFabServerModels {
      * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
      * assigned to a publisher can use this API. This operation is additive. If a Key does not exist in the current dataset, it
      * will be added with the specified Value. If it already exists, the Value for that key will be overwritten with the new
-     * Value. For more information email devrel@playfab.com
+     * Value. For more information email helloplayfab@microsoft.com
      */
     interface SetPublisherDataRequest {
         /**
@@ -6529,7 +6529,7 @@ interface IPlayFabEntityAPI {
 
 
     /**
-     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
+     * Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
      * https://docs.microsoft.com/rest/api/playfab/events/playstream-events/writeevents
      */
     WriteEvents(request: PlayFabEventsModels.WriteEventsRequest): PlayFabEventsModels.WriteEventsResponse;
