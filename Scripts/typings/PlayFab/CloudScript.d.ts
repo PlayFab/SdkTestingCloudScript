@@ -38,6 +38,7 @@ interface IPlayFabContext {
     playStreamEvent: PlayStreamModels.IBasePlayStreamEvent;
     playerProfile: IPlayFabPlayerProfile;
     triggeredByTask: ITriggeredByTask;
+    currentEntity?: EntityProfileBody;
 }
 
 interface IPlayFabPlayerProfile {
