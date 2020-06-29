@@ -3856,8 +3856,6 @@ declare namespace PlayFabServerModels {
     interface UnlinkXboxAccountRequest {
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
-        XboxToken?: string,
     }
 
     interface UnlinkXboxAccountResult {
