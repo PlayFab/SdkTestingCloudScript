@@ -106,6 +106,8 @@ declare namespace PlayFabServerModels {
         Amount: number,
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** PlayFab unique identifier of the user whose virtual currency balance is to be incremented. */
         PlayFabId: string,
         /** Name of the virtual currency which is to be incremented. */
@@ -138,6 +140,8 @@ declare namespace PlayFabServerModels {
      * number of tags a title can have.
      */
     interface AddPlayerTagRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /** Unique tag for player profile. */
@@ -163,6 +167,8 @@ declare namespace PlayFabServerModels {
          * Any increase over this value will be discarded.
          */
         Amount: number,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** PlayFab unique identifier of the user whose virtual currency balance is to be increased. */
         PlayFabId: string,
         /** Name of the virtual currency which is to be incremented. */
@@ -251,6 +257,8 @@ declare namespace PlayFabServerModels {
     interface BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
         Bans: BanRequest[],
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
     }
 
     interface BanUsersResult {
@@ -410,6 +418,8 @@ declare namespace PlayFabServerModels {
         CharacterId?: string,
         /** Number of uses to consume from the item. */
         ConsumeCount: number,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique instance identifier of the item to be consumed. */
         ItemInstanceId: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -884,6 +894,8 @@ declare namespace PlayFabServerModels {
     interface DeleteCharacterFromUserRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /**
@@ -929,6 +941,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface DeregisterGameRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique identifier for the Game Server Instance that is being deregistered. */
         LobbyId: string,
     }
@@ -1020,6 +1034,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface ExecuteCloudScriptServerRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The name of the CloudScript function to execute */
         FunctionName: string,
         /** Object that is passed in to the function as the first argument */
@@ -1580,6 +1596,7 @@ declare namespace PlayFabServerModels {
         | "RequestMultiplayerServersThrottledFromRateLimiter"
         | "TitleDataOverrideNotFound"
         | "DuplicateKeys"
+        | "WasNotCreatedWithCloudRoot"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1740,6 +1757,8 @@ declare namespace PlayFabServerModels {
         CatalogVersion?: string,
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -1813,6 +1832,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetFriendLeaderboardRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean,
         /** Indicates whether Steam service friends should be included in the response. Default is true. */
@@ -1838,6 +1859,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetFriendsListRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
         IncludeFacebookFriends?: boolean,
         /** Indicates whether Steam service friends should be included in the response. Default is true. */
@@ -1888,6 +1911,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetLeaderboardAroundUserRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -1937,6 +1962,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetLeaderboardRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Maximum number of entries to retrieve. */
         MaxResultsCount: number,
         /**
@@ -1964,6 +1991,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetPlayerCombinedInfoRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters: GetPlayerCombinedInfoRequestParams,
         /** PlayFabId of the user whose data will be returned */
@@ -2052,6 +2081,8 @@ declare namespace PlayFabServerModels {
      * have accessed the title, the recommendation is to not store this data locally.
      */
     interface GetPlayerProfileRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /**
@@ -2087,6 +2118,8 @@ declare namespace PlayFabServerModels {
     interface GetPlayersInSegmentRequest {
         /** Continuation token if retrieving subsequent pages of results. */
         ContinuationToken?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Maximum number of profiles to load. Default is 1,000. Maximum is 10,000. */
         MaxBatchSize?: number,
         /**
@@ -2108,11 +2141,15 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetPlayersSegmentsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
 
     interface GetPlayerStatisticsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** user for whom statistics are being requested */
         PlayFabId: string,
         /** statistics to return */
@@ -2133,6 +2170,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetPlayerStatisticVersionsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** unique name of the statistic */
         StatisticName?: string,
     }
@@ -2148,6 +2187,8 @@ declare namespace PlayFabServerModels {
      * 128 characters.
      */
     interface GetPlayerTagsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Optional namespace to filter results by */
         Namespace?: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2349,6 +2390,8 @@ declare namespace PlayFabServerModels {
     interface GetStoreItemsServerRequest {
         /** Catalog version to store items from. Use default catalog version if null */
         CatalogVersion?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Optional identifier for the player to use in requesting the store information - if used, segment overrides will be
          * applied
@@ -2461,6 +2504,8 @@ declare namespace PlayFabServerModels {
      * user's current inventory, and so will not be not included.
      */
     interface GetUserInventoryRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -2482,6 +2527,8 @@ declare namespace PlayFabServerModels {
         CharacterName: string,
         /** Type of the character being granted; statistics can be sliced based on this value. */
         CharacterType: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -2556,6 +2603,8 @@ declare namespace PlayFabServerModels {
         CatalogVersion?: string,
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Array of itemIds to grant to the user. */
         ItemIds?: string[],
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2578,6 +2627,8 @@ declare namespace PlayFabServerModels {
         Annotation?: string,
         /** Catalog version from which items are to be granted. */
         CatalogVersion?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Array of itemIds to grant to the user. */
         ItemIds: string[],
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2599,6 +2650,8 @@ declare namespace PlayFabServerModels {
     interface GrantItemsToUsersRequest {
         /** Catalog version from which items are to be granted. */
         CatalogVersion?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Array of items to grant and the users to whom the items are to be granted. */
         ItemGrants: ItemGrant[],
     }
@@ -2690,6 +2743,8 @@ declare namespace PlayFabServerModels {
     interface LinkPSNAccountRequest {
         /** Authentication code provided by the PlayStation Network. */
         AuthCode: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean,
         /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
@@ -2704,6 +2759,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface LinkServerCustomIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** If another user is already linked to the custom ID, unlink the other user and re-link. */
         ForceLink?: boolean,
         /** Unique PlayFab identifier. */
@@ -2716,6 +2773,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface LinkXboxAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean,
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
@@ -2784,6 +2843,8 @@ declare namespace PlayFabServerModels {
     interface LoginWithServerCustomIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2801,6 +2862,8 @@ declare namespace PlayFabServerModels {
     interface LoginWithXboxIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
         /** The id of Xbox Live sandbox. */
@@ -2818,6 +2881,8 @@ declare namespace PlayFabServerModels {
     interface LoginWithXboxRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         CreateAccount?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Flags for which pieces of info to return for the user. */
         InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
@@ -2860,6 +2925,8 @@ declare namespace PlayFabServerModels {
      * be removed from active inventory.
      */
     interface ModifyItemUsesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique instance identifier of the item to be modified. */
         ItemInstanceId: string,
         /** PlayFab unique identifier of the user whose item is being modified. */
@@ -2948,6 +3015,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface NotifyMatchmakerPlayerLeftRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique identifier of the Game Instance the user is leaving. */
         LobbyId: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3215,6 +3284,8 @@ declare namespace PlayFabServerModels {
         CharacterId?: string,
         /** Generated coupon code to redeem. */
         CouponCode: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -3234,6 +3305,8 @@ declare namespace PlayFabServerModels {
      * recommendation is to not store this data locally.
      */
     interface RedeemMatchmakerTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique identifier of the Game Server Instance that is asking for validation of the authorization ticket. */
         LobbyId: string,
         /** Server authorization ticket passed back from a call to Matchmake or StartGame. */
@@ -3268,6 +3341,8 @@ declare namespace PlayFabServerModels {
     interface RegisterGameRequest {
         /** Unique identifier of the build running on the Game Server Instance. */
         Build: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
          * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
@@ -3319,6 +3394,8 @@ declare namespace PlayFabServerModels {
      * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
      */
     interface RemovePlayerTagRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /** Unique tag for player profile. */
@@ -3341,6 +3418,8 @@ declare namespace PlayFabServerModels {
     interface ReportPlayerServerRequest {
         /** Optional additional comment by reporting player. */
         Comment?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab identifier of the reported player. */
         ReporteeId: string,
         /** PlayFabId of the reporting player. */
@@ -3479,6 +3558,8 @@ declare namespace PlayFabServerModels {
      * API.The email sent must be an account recovery email template. The username or email can be passed in to send the email
      */
     interface SendCustomAccountRecoveryEmailRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** User email address attached to their account */
         Email?: string,
         /** The email template id of the account recovery email template to send. */
@@ -3495,6 +3576,8 @@ declare namespace PlayFabServerModels {
      * specifyingthe email template to send.
      */
     interface SendEmailFromTemplateRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The email template id of the email template to send. */
         EmailTemplateId: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3506,6 +3589,8 @@ declare namespace PlayFabServerModels {
 
     /** Represents the request for sending a push notification template to a recipient. */
     interface SendPushNotificationFromTemplateRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Id of the push notification template. */
         PushNotificationTemplateId: string,
         /** PlayFabId of the push notification recipient. */
@@ -3518,6 +3603,8 @@ declare namespace PlayFabServerModels {
          * to custom plugin logic, fields, or functionality not natively supported by PlayFab.
          */
         AdvancedPlatformDelivery?: AdvancedPushPlatformMsg[],
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Text of message to send. */
         Message?: string,
         /**
@@ -3791,6 +3878,8 @@ declare namespace PlayFabServerModels {
         Amount: number,
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /** Name of the virtual currency which is to be decremented. */
@@ -3800,6 +3889,8 @@ declare namespace PlayFabServerModels {
     interface SubtractUserVirtualCurrencyRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         Amount: number,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** PlayFab unique identifier of the user whose virtual currency balance is to be decreased. */
         PlayFabId: string,
         /** Name of the virtual currency which is to be decremented. */
@@ -3836,6 +3927,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface UnlinkPSNAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -3844,6 +3937,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface UnlinkServerCustomIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab identifier. */
         PlayFabId: string,
         /** Unique server custom identifier for this player. */
@@ -3854,6 +3949,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface UnlinkXboxAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
         PlayFabId: string,
     }
@@ -3872,6 +3969,8 @@ declare namespace PlayFabServerModels {
         CharacterId?: string,
         /** ItemInstanceId of the container to unlock. */
         ContainerItemInstanceId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * ItemInstanceId of the key that will be consumed by unlocking this container. If the container requires a key, this
          * parameter is required.
@@ -3892,6 +3991,8 @@ declare namespace PlayFabServerModels {
         CharacterId?: string,
         /** Catalog ItemId of the container type to unlock. */
         ContainerItemId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -3955,6 +4056,8 @@ declare namespace PlayFabServerModels {
     interface UpdateCharacterDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -3989,6 +4092,8 @@ declare namespace PlayFabServerModels {
         CharacterId: string,
         /** Statistics to be updated with the provided values. */
         CharacterStatistics?: { [key: string]: number },
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
     }
@@ -4001,6 +4106,8 @@ declare namespace PlayFabServerModels {
      * with the given values. All other user statistics will remain unchanged.
      */
     interface UpdatePlayerStatisticsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Indicates whether the statistics provided should be set, regardless of the aggregation method set on the statistic.
          * Default is false.
@@ -4022,6 +4129,8 @@ declare namespace PlayFabServerModels {
      * combination of user data and shared group data.
      */
     interface UpdateSharedGroupDataRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4047,6 +4156,8 @@ declare namespace PlayFabServerModels {
      * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     interface UpdateUserDataRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4077,6 +4188,8 @@ declare namespace PlayFabServerModels {
      * null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     interface UpdateUserInternalDataRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4100,6 +4213,8 @@ declare namespace PlayFabServerModels {
     interface UpdateUserInventoryItemDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4414,6 +4529,8 @@ declare namespace PlayFabServerModels {
         Body?: { [key: string]: any },
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         CharacterId: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4433,6 +4550,8 @@ declare namespace PlayFabServerModels {
     interface WriteServerPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4452,6 +4571,8 @@ declare namespace PlayFabServerModels {
     interface WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         Body?: { [key: string]: any },
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -5357,6 +5478,8 @@ declare namespace PlayFabAuthenticationModels {
      * cannot be expired or revoked.
      */
     interface GetEntityTokenRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
@@ -5394,6 +5517,8 @@ declare namespace PlayFabAuthenticationModels {
 
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     interface ValidateEntityTokenRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Client EntityToken */
         EntityToken: string,
     }
@@ -5412,6 +5537,8 @@ declare namespace PlayFabAuthenticationModels {
 declare namespace PlayFabDataModels {
     /** Aborts the pending upload of the requested files. */
     interface AbortFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** Names of the files to have their pending uploads aborted. */
@@ -5432,6 +5559,8 @@ declare namespace PlayFabDataModels {
 
     /** Deletes the requested files from the entity's profile. */
     interface DeleteFilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** Names of the files to be deleted. */
@@ -5463,6 +5592,8 @@ declare namespace PlayFabDataModels {
      * pointers from pending to live.
      */
     interface FinalizeFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -5497,6 +5628,8 @@ declare namespace PlayFabDataModels {
      * nothing.
      */
     interface GetFilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
     }
@@ -5512,6 +5645,8 @@ declare namespace PlayFabDataModels {
 
     /** Gets JSON objects from an entity profile and returns it. */
     interface GetObjectsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /**
@@ -5542,6 +5677,8 @@ declare namespace PlayFabDataModels {
      * FinalizeFileUploads must be called to move the file status from pending to live.
      */
     interface InitiateFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -5610,6 +5747,8 @@ declare namespace PlayFabDataModels {
      * to update the same profile.
      */
     interface SetObjectsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /**
@@ -5641,6 +5780,12 @@ declare namespace PlayFabEventsModels {
     }
 
     interface EventContents {
+        /**
+         * The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). Before an
+         * event is written, this collection and the base request custom tags will be merged, but not overriden. This enables the
+         * caller to specify static tags and per event tags.
+         */
+        CustomTags?: { [key: string]: string | null },
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         Entity?: EntityKey,
         /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
@@ -5667,6 +5812,8 @@ declare namespace PlayFabEventsModels {
     }
 
     interface WriteEventsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Collection of events to write to PlayStream. */
         Events: EventContents[],
     }
@@ -5687,6 +5834,8 @@ declare namespace PlayFabGroupsModels {
      * returned in the case of success.
      */
     interface AcceptGroupApplicationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
          * child of the claimant entity. Defaults to the claimant entity.
@@ -5702,6 +5851,8 @@ declare namespace PlayFabGroupsModels {
      * returned in the case of success.
      */
     interface AcceptGroupInvitationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
         /** The identifier of the group */
@@ -5714,6 +5865,8 @@ declare namespace PlayFabGroupsModels {
      * application or invite system to add new members to a group. Returns nothing if successful.
      */
     interface AddMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
         /** List of entities to add to the group. Only entities of type title_player_account and character may be added to groups. */
@@ -5735,6 +5888,8 @@ declare namespace PlayFabGroupsModels {
     interface ApplyToGroupRequest {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
         AutoAcceptOutstandingInvite?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
         /** The identifier of the group */
@@ -5757,6 +5912,8 @@ declare namespace PlayFabGroupsModels {
      * applications or invitations to the group. No data is returned in the case of success.
      */
     interface BlockEntityRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -5769,6 +5926,8 @@ declare namespace PlayFabGroupsModels {
      * role. Returns nothing if successful.
      */
     interface ChangeMemberRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
          * and 64 characters long.
@@ -5790,6 +5949,8 @@ declare namespace PlayFabGroupsModels {
      * information about the group that was created.
      */
     interface CreateGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
         /** The name of the group. This is unique at the title level by default. */
@@ -5819,6 +5980,8 @@ declare namespace PlayFabGroupsModels {
      * about the role that was created.
      */
     interface CreateGroupRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
         /**
@@ -5848,12 +6011,16 @@ declare namespace PlayFabGroupsModels {
      * abuse reports about the group will remain. No data is returned in the case of success.
      */
     interface DeleteGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** ID of the group or role to remove */
         Group: EntityKey,
     }
 
     /** Returns information about the role */
     interface DeleteRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
         /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
@@ -5890,6 +6057,8 @@ declare namespace PlayFabGroupsModels {
 
     /** Returns the ID, name, role list and other non-membership related information about a group. */
     interface GetGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group?: EntityKey,
         /** The full name of the group */
@@ -5975,6 +6144,8 @@ declare namespace PlayFabGroupsModels {
     interface InviteToGroupRequest {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
         AutoAcceptOutstandingApplication?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -6006,6 +6177,8 @@ declare namespace PlayFabGroupsModels {
      * list.
      */
     interface IsMemberRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -6027,6 +6200,8 @@ declare namespace PlayFabGroupsModels {
      * expire. To get the group applications for a specific entity, use ListMembershipOpportunities.
      */
     interface ListGroupApplicationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
     }
@@ -6038,6 +6213,8 @@ declare namespace PlayFabGroupsModels {
 
     /** Lists all entities blocked from joining a group. A list of blocked entities is returned */
     interface ListGroupBlocksRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
     }
@@ -6052,6 +6229,8 @@ declare namespace PlayFabGroupsModels {
      * invitation will expire. To get the group invitations for a specific entity, use ListMembershipOpportunities.
      */
     interface ListGroupInvitationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
     }
@@ -6067,6 +6246,8 @@ declare namespace PlayFabGroupsModels {
      * the group.
      */
     interface ListGroupMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** ID of the group to list the members and roles for */
         Group: EntityKey,
     }
@@ -6082,6 +6263,8 @@ declare namespace PlayFabGroupsModels {
      * check if a player is trying to join, use ListGroupInvitations and ListGroupApplications.
      */
     interface ListMembershipOpportunitiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
@@ -6099,6 +6282,8 @@ declare namespace PlayFabGroupsModels {
      * returned in the results, even if the caller otherwise has permission to see that the entity is a member of that group.
      */
     interface ListMembershipRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
     }
@@ -6119,6 +6304,8 @@ declare namespace PlayFabGroupsModels {
      * any caller with appropriate access in the group may reject an application. No data is returned in the case of success.
      */
     interface RemoveGroupApplicationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -6132,6 +6319,8 @@ declare namespace PlayFabGroupsModels {
      * of success.
      */
     interface RemoveGroupInvitationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -6143,6 +6332,8 @@ declare namespace PlayFabGroupsModels {
      * nothing if successful.
      */
     interface RemoveMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The identifier of the group */
         Group: EntityKey,
         /** List of entities to remove */
@@ -6153,6 +6344,8 @@ declare namespace PlayFabGroupsModels {
 
     /** Unblocks a list of entities from joining a group. No data is returned in the case of success. */
     interface UnblockEntityRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The identifier of the group */
@@ -6166,6 +6359,8 @@ declare namespace PlayFabGroupsModels {
     interface UpdateGroupRequest {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
         AdminRoleId?: string,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
@@ -6191,6 +6386,8 @@ declare namespace PlayFabGroupsModels {
 
     /** Updates the role name. Returns information about whether the update was successful. */
     interface UpdateGroupRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
@@ -6350,6 +6547,8 @@ declare namespace PlayFabProfilesModels {
      * any reader has.
      */
     interface GetEntityProfileRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
          * JSON string.
@@ -6369,6 +6568,8 @@ declare namespace PlayFabProfilesModels {
      * Profiles that the caller is not allowed to read will silently not be included in the results.
      */
     interface GetEntityProfilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
          * JSON string.
@@ -6388,6 +6589,8 @@ declare namespace PlayFabProfilesModels {
      * customized this will return the default starter policy built by PlayFab.
      */
     interface GetGlobalPolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
     }
 
     interface GetGlobalPolicyResponse {
@@ -6397,6 +6600,8 @@ declare namespace PlayFabProfilesModels {
 
     /** Given a master player account id (PlayFab ID), returns all title player accounts associated with it. */
     interface GetTitlePlayersFromMasterPlayerAccountIdsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** Master player account ids. */
         MasterPlayerAccountIds: string[],
         /** Id of title to get players from. */
@@ -6420,6 +6625,8 @@ declare namespace PlayFabProfilesModels {
      * will be replaced with the statements in this request.
      */
     interface SetEntityProfilePolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity: EntityKey,
         /** The statements to include in the access policy. */
@@ -6439,6 +6646,8 @@ declare namespace PlayFabProfilesModels {
      * compiled and cached for several minutes so an update here may not be reflected in behavior for a short time.
      */
     interface SetGlobalPolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The permissions that govern access to all entities under this title or namespace. */
         Permissions?: EntityPermissionStatement[],
     }
@@ -6451,6 +6660,8 @@ declare namespace PlayFabProfilesModels {
      * passed in.
      */
     interface SetProfileLanguageRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
         /** The entity to perform this action on. */
         Entity?: EntityKey,
         /** The expected version of a profile to perform this update on */
