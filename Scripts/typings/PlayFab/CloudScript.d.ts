@@ -1677,7 +1677,6 @@ declare namespace PlayFabServerModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
-        | "ExperimentationExistingCodelessScheduled"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SnapshotNotFound";
@@ -5497,6 +5496,10 @@ declare namespace PlayFabAuthenticationModels {
         TokenExpiration?: string,
     }
 
+    type IdentifiedDeviceType = "Unknown"
+        | "XboxOne"
+        | "Scarlett";
+
     type LoginIdentityProvider = "Unknown"
         | "PlayFab"
         | "Custom"
@@ -5519,7 +5522,7 @@ declare namespace PlayFabAuthenticationModels {
         | "Apple"
         | "NintendoSwitchAccount";
 
-    /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
+    /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */
     interface ValidateEntityTokenRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
@@ -5530,6 +5533,8 @@ declare namespace PlayFabAuthenticationModels {
     interface ValidateEntityTokenResponse {
         /** The entity id and type. */
         Entity?: EntityKey,
+        /** The authenticated device for this entity, for the given login */
+        IdentifiedDeviceType?: IdentifiedDeviceType,
         /** The identity provider for this entity, for the given login */
         IdentityProvider?: LoginIdentityProvider,
         /** The lineage of this profile. */
