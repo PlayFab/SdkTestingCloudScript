@@ -193,6 +193,8 @@ declare namespace PlayFabServerModels {
     }
 
     interface AuthenticateSessionTicketResult {
+        /** Indicates if token was expired at request time. */
+        IsSessionTicketExpired?: boolean,
         /** Account info for the user whose session ticket was supplied. */
         UserInfo?: UserAccountInfo,
     }
@@ -1597,6 +1599,7 @@ declare namespace PlayFabServerModels {
         | "TitleDataOverrideNotFound"
         | "DuplicateKeys"
         | "WasNotCreatedWithCloudRoot"
+        | "LegacyMultiplayerServersDeprecated"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
