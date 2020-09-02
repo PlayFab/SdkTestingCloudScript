@@ -1682,6 +1682,10 @@ declare namespace PlayFabServerModels {
         | "ExperimentationExperimentSchedulingInProgress"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
+        | "SegmentManagementTitleNotInFlight"
+        | "SegmentManagementNoExpressionTree"
+        | "SegmentManagementTriggerActionCountOverLimit"
+        | "SegmentManagementSegmentCountOverLimit"
         | "SnapshotNotFound";
 
     interface GenericPlayFabIdPair {
