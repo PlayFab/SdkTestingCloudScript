@@ -1686,6 +1686,7 @@ declare namespace PlayFabServerModels {
         | "SegmentManagementNoExpressionTree"
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
+        | "SegmentManagementInvalidSegmentId"
         | "SnapshotNotFound";
 
     interface GenericPlayFabIdPair {
