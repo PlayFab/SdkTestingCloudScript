@@ -1,6 +1,6 @@
 {
   "name": "playfab-cloudscriptexample",
-  "version": "0.0.200914",
+  "version": "0.0.201014",
   "description": "PlayFab CloudScriptExample",
   "main": "ExampleCloudScript.js",
   "author": {

@@ -176,6 +176,11 @@ declare namespace PlayFabServerModels {
     }
 
     interface AdvancedPushPlatformMsg {
+        /**
+         * Stops GoogleCloudMessaging notifications from including both notification and data properties and instead only sends the
+         * data property.
+         */
+        GCMDataOnly?: boolean,
         /** The Json the platform should receive. */
         Json: string,
         /** The platform that should receive the Json. */
@@ -1680,6 +1685,13 @@ declare namespace PlayFabServerModels {
         | "ExperimentationInvalidDuration"
         | "ExperimentationMaxExperimentsReached"
         | "ExperimentationExperimentSchedulingInProgress"
+        | "ExperimentationInvalidEndDate"
+        | "ExperimentationInvalidStartDate"
+        | "ExperimentationMaxDurationExceeded"
+        | "ExperimentationExclusionGroupNotFound"
+        | "ExperimentationExclusionGroupInsufficientCapacity"
+        | "ExperimentationExclusionGroupCannotDelete"
+        | "ExperimentationExclusionGroupInvalidTrafficAllocation"
         | "MaxActionDepthExceeded"
         | "TitleNotOnUpdatedPricingPlan"
         | "SegmentManagementTitleNotInFlight"
@@ -1687,6 +1699,8 @@ declare namespace PlayFabServerModels {
         | "SegmentManagementTriggerActionCountOverLimit"
         | "SegmentManagementSegmentCountOverLimit"
         | "SegmentManagementInvalidSegmentId"
+        | "SegmentManagementInvalidInput"
+        | "SegmentManagementInvalidSegmentName"
         | "SnapshotNotFound";
 
     interface GenericPlayFabIdPair {
@@ -2433,8 +2447,8 @@ declare namespace PlayFabServerModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         Keys?: string[],
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         OverrideLabel?: string,
     }
@@ -5615,6 +5629,8 @@ declare namespace PlayFabDataModels {
         Entity: EntityKey,
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
         FileNames: string[],
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        ProfileVersion: number,
     }
 
     interface FinalizeFileUploadsResponse {
