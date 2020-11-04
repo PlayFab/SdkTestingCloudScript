@@ -1639,7 +1639,6 @@ declare namespace PlayFabServerModels {
         | "CatalogSearchParameterInvalid"
         | "CatalogFeatureDisabled"
         | "CatalogConfigInvalid"
-        | "CatalogUnauthorized"
         | "CatalogItemTypeInvalid"
         | "CatalogBadRequest"
         | "CatalogTooManyRequests"
@@ -1701,6 +1700,10 @@ declare namespace PlayFabServerModels {
         | "SegmentManagementInvalidSegmentId"
         | "SegmentManagementInvalidInput"
         | "SegmentManagementInvalidSegmentName"
+        | "DeleteSegmentRateLimitExceeded"
+        | "CreateSegmentRateLimitExceeded"
+        | "UpdateSegmentRateLimitExceeded"
+        | "GetSegmentsRateLimitExceeded"
         | "SnapshotNotFound";
 
     interface GenericPlayFabIdPair {
