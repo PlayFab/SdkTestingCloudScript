@@ -1681,6 +1681,7 @@ declare namespace PlayFabServerModels {
         | "ExplorerBasicDeleteQueryError"
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
+        | "ExplorerBasicSavedQueryNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
