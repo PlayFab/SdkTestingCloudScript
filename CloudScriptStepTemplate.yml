@@ -1,0 +1,87 @@
+# STEPS LEVEL TEMPLATE:
+# Used to build CloudScript
+# Reusable
+# Used to "hide" the additional variables specific to this SDK which shouldn't be set from a higher level, or
+#   shared from a multi-build pipeline like a publish
+
+parameters:
+- name: ApiSpecSource
+  displayName: ApiSpecSource
+  type: string
+  default: -apiSpecGitUrl https://raw.githubusercontent.com/PlayFab/API_Specs/master/
+- name: CommitMessage
+  displayName: CommitMessage
+  type: string
+  default: Automated build from ADO Pipeline
+- name: GitDestBranch
+  displayName: GitDestBranch
+  type: string
+  default: doNotCommit
+- name: SdkName
+  displayName: SdkName
+  type: string
+  default: SDKTestingCloudscript
+- name: GitJSetupBranch
+  displayName: GitJSetupBranch
+  type: string
+  default: master
+- name: GitSdkGenBranch
+  displayName: GitSdkGenBranch
+  type: string
+  default: tb/newpipeline
+- name: isVersioned
+  displayName: isVersioned
+  type: boolean
+  default: false
+- name: SelfTemplateResource
+  displayName: SelfTemplateResource
+  type: string
+  default: self
+
+steps:
+- checkout: JenkinsSdkSetupScripts
+  clean: true
+  path: s
+- checkout: API_Specs
+  clean: true
+  path: s/API_Specs
+- checkout: SdkGenerator
+  clean: true
+  path: s/SdkGenerator
+- checkout: ${{ parameters.SelfTemplateResource }}
+  clean: true
+  submodules: true
+  path: s/sdks/CloudScriptSamples
+  persistCredentials: true
+- bash: |
+    set -e
+    
+    echo alias the ADO variables into local variables
+    ApiSpecSource="${{ parameters.ApiSpecSource }}"
+    CommitMessage="${{ parameters.CommitMessage }}"
+    GitDestBranch="${{ parameters.GitDestBranch }}"
+    SdkName="${{ parameters.SdkName }}"
+    WORKSPACE=$(pwd)
+    # Hack attempt to get WORKSPACE into a sub-environment
+    export WORKSPACE="$WORKSPACE"
+    
+    . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh"
+    . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
+
+    cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
+    . ./shared_build.sh
+    
+    echo === Build the CloudScript Project ===
+    Find2019MsBuild || Find2017MsBuild
+    cd $WORKSPACE/sdks/$SdkName/
+    "$MSBUILD_EXE" CloudScriptExample.sln
+
+    if [ "$isVersioned" = "true" ]; then
+        echo === TODO: consider creating a github release ===
+    fi
+  displayName: 'Build/Test/Report'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '*.xml'
+    testRunTitle: CloudScriptTemplate
