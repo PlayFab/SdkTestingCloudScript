@@ -2291,7 +2291,7 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetPlayFabIDsFromPSNAccountIDsRequest {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number,
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         PSNAccountIDs: string[],
@@ -2792,7 +2792,7 @@ declare namespace PlayFabServerModels {
         CustomTags?: { [key: string]: string | null },
         /** If another user is already linked to the account, unlink the other user and re-link. */
         ForceLink?: boolean,
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         IssuerId?: number,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
