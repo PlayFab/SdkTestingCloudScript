@@ -1606,6 +1606,8 @@ declare namespace PlayFabServerModels {
         | "WasNotCreatedWithCloudRoot"
         | "LegacyMultiplayerServersDeprecated"
         | "VirtualCurrencyCurrentlyUnavailable"
+        | "SteamUserNotFound"
+        | "ElasticSearchOperationFailed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1630,6 +1632,7 @@ declare namespace PlayFabServerModels {
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
+        | "CatalogApiNotImplemented"
         | "CatalogEntityInvalid"
         | "CatalogTitleIdMissing"
         | "CatalogPlayerIdMissing"
@@ -1721,7 +1724,8 @@ declare namespace PlayFabServerModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
-        | "SnapshotNotFound";
+        | "SnapshotNotFound"
+        | "InventoryApiNotImplemented";
 
     interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
@@ -2896,6 +2900,25 @@ declare namespace PlayFabServerModels {
         PlayerSecret?: string,
         /** The backend server identifier for this player. */
         ServerCustomId?: string,
+    }
+
+    /**
+     * If this is the first time a user has signed in with the Steam ID and CreateAccount is set to true, a new PlayFab account
+     * will be created and linked to the Steam account. In this case, no email or username will be associated with the PlayFab
+     * account. Otherwise, if no PlayFab account is linked to the Steam account, an error indicating this will be returned, so
+     * that the title can guide the user through creation of a PlayFab account. Steam users that are not logged into the Steam
+     * Client app will only have their Steam username synced, other data, such as currency and country will not be available
+     * until they login while the Client is open.
+     */
+    interface LoginWithSteamIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        CreateAccount?: boolean,
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        CustomTags?: { [key: string]: string | null },
+        /** Flags for which pieces of info to return for the user. */
+        InfoRequestParameters?: GetPlayerCombinedInfoRequestParams,
+        /** Unique Steam identifier for a user */
+        SteamId: string,
     }
 
     /**
@@ -5115,6 +5138,13 @@ interface IPlayFabServerAPI {
      * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithservercustomid
      */
     LoginWithServerCustomId(request: PlayFabServerModels.LoginWithServerCustomIdRequest): PlayFabServerModels.ServerLoginResult;
+
+    /**
+     * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user
+     * https://docs.microsoft.com/rest/api/playfab/server/authentication/loginwithsteamid
+     */
+    LoginWithSteamId(request: PlayFabServerModels.LoginWithSteamIdRequest): PlayFabServerModels.ServerLoginResult;
 
     /**
      * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
