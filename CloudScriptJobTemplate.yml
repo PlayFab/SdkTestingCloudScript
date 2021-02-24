@@ -17,10 +17,6 @@ parameters:
   displayName: GitDestBranch
   type: string
   default: doNotCommit
-- name: isVersioned
-  displayName: isVersioned
-  type: boolean
-  default: false
 - name: SelfTemplateResource
   displayName: SelfTemplateResource
   type: string

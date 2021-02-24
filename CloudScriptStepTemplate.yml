@@ -21,10 +21,6 @@ parameters:
   displayName: SdkName
   type: string
   default: SDKTestingCloudscript
-- name: isVersioned
-  displayName: isVersioned
-  type: boolean
-  default: false
 - name: SelfTemplateResource
   displayName: SelfTemplateResource
   type: string
@@ -68,12 +64,7 @@ steps:
     cd $WORKSPACE/sdks/$SdkName/
     "$MSBUILD_EXE" CloudScriptExample.sln
 
-    if [ "$isVersioned" = "true" ]; then
-        . "$WORKSPACE/SDKGenerator/JenkinsConsoleUtility/JenkinsScripts/gitFinalize.sh"
-    fi
+    . "$WORKSPACE/SDKGenerator/JenkinsConsoleUtility/JenkinsScripts/gitFinalize.sh"
+
   displayName: 'Build/Test/Report'
-- task: PublishTestResults@2
-  inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '*.xml'
-    testRunTitle: CloudScriptTemplate
+
