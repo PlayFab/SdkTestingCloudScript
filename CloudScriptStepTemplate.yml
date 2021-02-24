@@ -43,7 +43,7 @@ steps:
 - checkout: ${{ parameters.SelfTemplateResource }}
   clean: true
   submodules: true
-  path: s/sdks/CloudScriptSamples
+  path: s/sdks/SdkTestingCloudScript
   persistCredentials: true
 - bash: |
     set -e
