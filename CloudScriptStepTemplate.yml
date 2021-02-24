@@ -77,7 +77,7 @@ steps:
     "$MSBUILD_EXE" CloudScriptExample.sln
 
     if [ "$isVersioned" = "true" ]; then
-        echo === TODO: consider creating a github release ===
+        . "$WORKSPACE/SDKGenerator/JenkinsConsoleUtility/JenkinsScripts/gitFinalize.sh"
     fi
   displayName: 'Build/Test/Report'
 - task: PublishTestResults@2
