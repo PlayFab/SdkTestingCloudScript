@@ -17,14 +17,6 @@ parameters:
   displayName: GitDestBranch
   type: string
   default: doNotCommit
-- name: GitJSetupBranch
-  displayName: GitJSetupBranch
-  type: string
-  default: master
-- name: GitSdkGenBranch
-  displayName: GitSdkGenBranch
-  type: string
-  default: master
 - name: isVersioned
   displayName: isVersioned
   type: boolean
@@ -47,7 +39,5 @@ jobs:
       ApiSpecSource: ${{ parameters.ApiSpecSource }}
       CommitMessage: ${{ parameters.CommitMessage }}
       GitDestBranch: ${{ parameters.GitDestBranch }}
-      GitJSetupBranch: ${{ parameters.GitJSetupBranch }}
-      GitSdkGenBranch: ${{ parameters.GitSdkGenBranch }}
       isVersioned: ${{ parameters.isVersioned }}
       SelfTemplateResource: ${{ parameters.SelfTemplateResource }}

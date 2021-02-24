@@ -21,14 +21,6 @@ parameters:
   displayName: SdkName
   type: string
   default: SDKTestingCloudscript
-- name: GitJSetupBranch
-  displayName: GitJSetupBranch
-  type: string
-  default: master
-- name: GitSdkGenBranch
-  displayName: GitSdkGenBranch
-  type: string
-  default: tb/newpipeline
 - name: isVersioned
   displayName: isVersioned
   type: boolean
