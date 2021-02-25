@@ -35,5 +35,4 @@ jobs:
       ApiSpecSource: ${{ parameters.ApiSpecSource }}
       CommitMessage: ${{ parameters.CommitMessage }}
       GitDestBranch: ${{ parameters.GitDestBranch }}
-      isVersioned: ${{ parameters.isVersioned }}
       SelfTemplateResource: ${{ parameters.SelfTemplateResource }}
