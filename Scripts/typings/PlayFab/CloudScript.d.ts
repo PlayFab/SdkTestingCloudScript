@@ -1586,7 +1586,7 @@ declare namespace PlayFabServerModels {
         | "EvaluationModePlayerCountExceeded"
         | "GetPlayersInSegmentRateLimitExceeded"
         | "CloudScriptFunctionNameSizeExceeded"
-        | "InsightsManagementTitleInEvaluationMode"
+        | "PaidInsightsFeaturesNotEnabled"
         | "CloudScriptAzureFunctionsQueueRequestError"
         | "EvaluationModeTitleCountExceeded"
         | "InsightsManagementTitleNotInFlight"
@@ -1608,6 +1608,7 @@ declare namespace PlayFabServerModels {
         | "VirtualCurrencyCurrentlyUnavailable"
         | "SteamUserNotFound"
         | "ElasticSearchOperationFailed"
+        | "NotImplemented"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1724,6 +1725,7 @@ declare namespace PlayFabServerModels {
         | "CreateSegmentRateLimitExceeded"
         | "UpdateSegmentRateLimitExceeded"
         | "GetSegmentsRateLimitExceeded"
+        | "AsyncExportNotInFlight"
         | "SnapshotNotFound"
         | "InventoryApiNotImplemented";
 
@@ -5693,7 +5695,7 @@ declare namespace PlayFabDataModels {
     }
 
     interface GetFileMetadata {
-        /** Checksum value for the file */
+        /** Checksum value for the file, can be used to check if the file on the server has changed. */
         Checksum?: string,
         /** Download URL where the file can be retrieved */
         DownloadUrl?: string,
@@ -6590,7 +6592,7 @@ declare namespace PlayFabProfilesModels {
 
     /** An entity file's meta data. To get a download URL call File/GetFiles API. */
     interface EntityProfileFileMetadata {
-        /** Checksum value for the file */
+        /** Checksum value for the file, can be used to check if the file on the server has changed. */
         Checksum?: string,
         /** Name of the file */
         FileName?: string,
