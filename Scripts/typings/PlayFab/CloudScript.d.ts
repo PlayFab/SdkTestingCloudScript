@@ -1689,6 +1689,7 @@ declare namespace PlayFabServerModels {
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
+        | "MultiplayerServerBuildReferencedByBuildAlias"
         | "ExperimentationExperimentStopped"
         | "ExperimentationExperimentRunning"
         | "ExperimentationExperimentNotFound"
