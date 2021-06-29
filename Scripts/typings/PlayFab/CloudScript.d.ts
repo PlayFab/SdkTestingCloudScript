@@ -1686,6 +1686,7 @@ declare namespace PlayFabServerModels {
         | "ExplorerBasicUpdateQueryError"
         | "ExplorerBasicSavedQueriesLimit"
         | "ExplorerBasicSavedQueryNotFound"
+        | "TenantShardMapperShardNotFound"
         | "TitleNotEnabledForParty"
         | "PartyVersionNotFound"
         | "MultiplayerServerBuildReferencedByMatchmakingQueue"
