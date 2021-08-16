@@ -1609,6 +1609,8 @@ declare namespace PlayFabServerModels {
         | "SteamUserNotFound"
         | "ElasticSearchOperationFailed"
         | "NotImplemented"
+        | "PublisherNotFound"
+        | "PublisherDeleted"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1630,6 +1632,8 @@ declare namespace PlayFabServerModels {
         | "MatchmakingQueueLimitExceeded"
         | "MatchmakingRequestTypeMismatch"
         | "MatchmakingBadRequest"
+        | "PubSubFeatureNotEnabledForTitle"
+        | "PubSubTooManyRequests"
         | "TitleConfigNotFound"
         | "TitleConfigUpdateConflict"
         | "TitleConfigSerializationError"
@@ -5935,8 +5939,8 @@ declare namespace PlayFabGroupsModels {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
         /**
-         * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
-         * child of the claimant entity. Defaults to the claimant entity.
+         * Type of the entity to accept as. Must be the same entity as the claimant or an entity that is a child of the claimant
+         * entity.
          */
         Entity: EntityKey,
         /** The identifier of the group */
