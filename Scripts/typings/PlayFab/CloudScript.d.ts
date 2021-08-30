@@ -1611,6 +1611,8 @@ declare namespace PlayFabServerModels {
         | "NotImplemented"
         | "PublisherNotFound"
         | "PublisherDeleted"
+        | "ApiDisabledForMigration"
+        | "ResourceNameUpdateNotAllowed"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -1749,6 +1751,7 @@ declare namespace PlayFabServerModels {
         | "LobbyCurrentOwnerStillConnected"
         | "LobbyMemberIsNotOwner"
         | "EventSamplingInvalidRatio"
+        | "EventSamplingInvalidEventNamespace"
         | "EventSamplingInvalidEventName"
         | "EventSamplingRatioNotFound";
 
@@ -2013,8 +2016,6 @@ declare namespace PlayFabServerModels {
     }
 
     interface GetLeaderboardForUsersCharactersRequest {
-        /** Maximum number of entries to retrieve. */
-        MaxResultsCount?: number,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId: string,
         /** Unique identifier for the title-specific statistic for the leaderboard. */
