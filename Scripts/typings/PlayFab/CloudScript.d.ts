@@ -1617,6 +1617,7 @@ declare namespace PlayFabServerModels {
         | "DuplicateTitleNameForPublisher"
         | "AzureTitleCreationInProgress"
         | "DuplicateAzureResourceId"
+        | "TitleContraintsPublisherDeletion"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
