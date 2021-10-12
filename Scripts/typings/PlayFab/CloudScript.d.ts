@@ -5634,6 +5634,8 @@ declare namespace PlayFabAuthenticationModels {
         IdentifiedDeviceType?: IdentifiedDeviceType,
         /** The identity provider for this entity, for the given login */
         IdentityProvider?: LoginIdentityProvider,
+        /** The ID issued by the identity provider, e.g. a XUID on Xbox Live */
+        IdentityProviderIssuedId?: string,
         /** The lineage of this profile. */
         Lineage?: EntityLineage,
     }
