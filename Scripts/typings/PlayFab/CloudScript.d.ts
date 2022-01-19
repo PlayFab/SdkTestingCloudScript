@@ -250,8 +250,6 @@ declare namespace PlayFabServerModels {
         Expires?: string,
         /** The IP address on which the ban was applied. May affect multiple players. */
         IPAddress?: string,
-        /** The MAC address on which the ban was applied. May affect multiple players. */
-        MACAddress?: string,
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         PlayFabId?: string,
         /** The reason why this ban was applied. */
@@ -1631,7 +1629,6 @@ declare namespace PlayFabServerModels {
         | "ApiNotEnabledForTitle"
         | "DuplicateTitleNameForPublisher"
         | "AzureTitleCreationInProgress"
-        | "DuplicateAzureResourceId"
         | "TitleConstraintsPublisherDeletion"
         | "InvalidPlayerAccountPoolId"
         | "PlayerAccountPoolNotFound"
@@ -1667,7 +1664,7 @@ declare namespace PlayFabServerModels {
         | "MatchmakingBadRequest"
         | "PubSubFeatureNotEnabledForTitle"
         | "PubSubTooManyRequests"
-        | "PubSubConnectionHandleAccessDenied"
+        | "PubSubConnectionNotFoundForEntity"
         | "PubSubConnectionHandleInvalid"
         | "PubSubSubscriptionLimitExceeded"
         | "TitleConfigNotFound"
@@ -1791,7 +1788,9 @@ declare namespace PlayFabServerModels {
         | "EventSinkConnectionInvalid"
         | "EventSinkConnectionUnauthorized"
         | "EventSinkRegionInvalid"
-        | "OperationCanceled";
+        | "OperationCanceled"
+        | "InvalidDisplayNameRandomSuffixLength"
+        | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
 
     interface GenericPlayFabIdPair {
         /** Unique generic service identifier for a user. */
