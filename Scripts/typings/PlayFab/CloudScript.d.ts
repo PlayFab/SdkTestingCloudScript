@@ -3882,8 +3882,6 @@ declare namespace PlayFabServerModels {
      * Value. If it already exists, the Value for that key will be overwritten with the new Value.
      */
     interface SetTitleDataRequest {
-        /** Id of azure resource */
-        AzureResourceId?: string,
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
         /**
@@ -3891,8 +3889,6 @@ declare namespace PlayFabServerModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         Key: string,
-        /** System Data of the Azure Resource */
-        SystemData?: AzureResourceSystemData,
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -3903,8 +3899,6 @@ declare namespace PlayFabServerModels {
     }
 
     interface SetTitleDataResult {
-        /** Id of azure resource */
-        AzureResourceId?: string,
     }
 
     interface SharedGroupDataRecord {
