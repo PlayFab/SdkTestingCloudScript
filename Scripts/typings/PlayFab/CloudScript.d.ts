@@ -223,21 +223,6 @@ declare namespace PlayFabServerModels {
         AchievementResults?: AwardSteamAchievementItem[],
     }
 
-    interface AzureResourceSystemData {
-        /** The timestamp of resource creation (UTC) */
-        CreatedAt?: string,
-        /** The identity that created the resource */
-        CreatedBy?: string,
-        /** The type of identity that created the resource */
-        CreatedByType?: string,
-        /** The type of identity that last modified the resource */
-        LastModifiedAt?: string,
-        /** The identity that last modified the resource */
-        LastModifiedBy?: string,
-        /** The type of identity that last modified the resource */
-        LastModifiedByType?: string,
-    }
-
     /** Contains information for a ban. */
     interface BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
@@ -1643,6 +1628,7 @@ declare namespace PlayFabServerModels {
         | "GoogleAPIServiceUnknownError"
         | "NoValidIdentityForAad"
         | "PlayerIdentityLinkNotFound"
+        | "PhotonApplicationIdAlreadyInUse"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -3467,51 +3453,6 @@ declare namespace PlayFabServerModels {
     interface RefreshGameServerInstanceHeartbeatResult {
     }
 
-    type Region = "USCentral"
-        | "USEast"
-        | "EUWest"
-        | "Singapore"
-        | "Japan"
-        | "Brazil"
-        | "Australia";
-
-    interface RegisterGameRequest {
-        /** Unique identifier of the build running on the Game Server Instance. */
-        Build: string,
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        CustomTags?: { [key: string]: string | null },
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
-         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        GameMode: string,
-        /** Previous lobby id if re-registering an existing game. */
-        LobbyId?: string,
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
-         * region and use Tags (below) to specify your custom region.
-         */
-        Region: Region,
-        /** IPV4 address of the game server instance. */
-        ServerIPV4Address?: string,
-        /** IPV6 address (if any) of the game server instance. */
-        ServerIPV6Address?: string,
-        /** Port number for communication with the Game Server Instance. */
-        ServerPort: string,
-        /** Public DNS name (if any) of the server */
-        ServerPublicDNSName?: string,
-        /** Tags for the Game Server Instance */
-        Tags?: { [key: string]: string | null },
-    }
-
-    interface RegisterGameResponse {
-        /**
-         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
-         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
-         */
-        LobbyId?: string,
-    }
-
     interface RemoveFriendRequest {
         /** PlayFab identifier of the friend account which is to be removed. */
         FriendPlayFabId: string,
@@ -5274,12 +5215,6 @@ interface IPlayFabServerAPI {
      * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/refreshgameserverinstanceheartbeat
      */
     RefreshGameServerInstanceHeartbeat(request: PlayFabServerModels.RefreshGameServerInstanceHeartbeatRequest): PlayFabServerModels.RefreshGameServerInstanceHeartbeatResult;
-
-    /**
-     * Inform the matchmaker that a new Game Server Instance is added.
-     * https://docs.microsoft.com/rest/api/playfab/server/matchmaking/registergame
-     */
-    RegisterGame(request: PlayFabServerModels.RegisterGameRequest): PlayFabServerModels.RegisterGameResponse;
 
     /**
      * Removes the specified friend from the the user's friend list
