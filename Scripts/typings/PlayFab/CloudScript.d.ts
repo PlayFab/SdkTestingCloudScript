@@ -1629,6 +1629,7 @@ declare namespace PlayFabServerModels {
         | "NoValidIdentityForAad"
         | "PlayerIdentityLinkNotFound"
         | "PhotonApplicationIdAlreadyInUse"
+        | "CloudScriptUnableToDeleteProductionRevision"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
