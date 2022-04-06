@@ -1630,6 +1630,7 @@ declare namespace PlayFabServerModels {
         | "PlayerIdentityLinkNotFound"
         | "PhotonApplicationIdAlreadyInUse"
         | "CloudScriptUnableToDeleteProductionRevision"
+        | "CustomIdNotFound"
         | "MatchmakingEntityInvalid"
         | "MatchmakingPlayerAttributesInvalid"
         | "MatchmakingQueueNotFound"
@@ -5612,7 +5613,7 @@ declare namespace PlayFabAuthenticationModels {
     interface GetEntityTokenRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
     }
 
@@ -5995,7 +5996,7 @@ declare namespace PlayFabGroupsModels {
     interface AcceptGroupInvitationRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
         /** The identifier of the group */
         Group: EntityKey,
@@ -6032,7 +6033,7 @@ declare namespace PlayFabGroupsModels {
         AutoAcceptOutstandingInvite?: boolean,
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
         /** The identifier of the group */
         Group: EntityKey,
@@ -6093,7 +6094,7 @@ declare namespace PlayFabGroupsModels {
     interface CreateGroupRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
         /** The name of the group. This is unique at the title level by default. */
         GroupName: string,
@@ -6407,7 +6408,7 @@ declare namespace PlayFabGroupsModels {
     interface ListMembershipOpportunitiesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
     }
 
@@ -6426,7 +6427,7 @@ declare namespace PlayFabGroupsModels {
     interface ListMembershipRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
     }
 
@@ -6696,7 +6697,7 @@ declare namespace PlayFabProfilesModels {
          * JSON string.
          */
         DataAsObject?: boolean,
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
     }
 
@@ -6733,6 +6734,8 @@ declare namespace PlayFabProfilesModels {
     interface GetGlobalPolicyRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        Entity?: EntityKey,
     }
 
     interface GetGlobalPolicyResponse {
@@ -6804,7 +6807,7 @@ declare namespace PlayFabProfilesModels {
     interface SetProfileLanguageRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         CustomTags?: { [key: string]: string | null },
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         Entity?: EntityKey,
         /** The expected version of a profile to perform this update on */
         ExpectedVersion?: number,
