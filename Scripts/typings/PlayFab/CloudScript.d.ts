@@ -1782,6 +1782,8 @@ declare namespace PlayFabServerModels {
         | "EventSinkSasTokenInvalid"
         | "EventSinkNotFound"
         | "EventSinkNameInvalid"
+        | "EventSinkSasTokenPermissionInvalid"
+        | "EventSinkSecretInvalid"
         | "OperationCanceled"
         | "InvalidDisplayNameRandomSuffixLength"
         | "AllowNonUniquePlayerDisplayNamesDisableNotAllowed";
@@ -2338,6 +2340,17 @@ declare namespace PlayFabServerModels {
     interface GetPlayFabIDsFromGenericIDsResult {
         /** Mapping of generic service identifiers to PlayFab identifiers. */
         Data?: GenericPlayFabIdPair[],
+    }
+
+    interface GetPlayFabIDsFromNintendoServiceAccountIdsRequest {
+        /** Array of unique Nintendo Switch Account identifiers for which the title needs to get PlayFab identifiers. */
+        NintendoAccountIds: string[],
+    }
+
+    /** For Nintendo Service Account identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    interface GetPlayFabIDsFromNintendoServiceAccountIdsResult {
+        /** Mapping of Nintendo Switch Service Account identifiers to PlayFab identifiers. */
+        Data?: NintendoServiceAccountPlayFabIdPair[],
     }
 
     interface GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
@@ -3130,6 +3143,16 @@ declare namespace PlayFabServerModels {
     }
 
     interface MoveItemToUserFromCharacterResult {
+    }
+
+    interface NintendoServiceAccountPlayFabIdPair {
+        /** Unique Nintendo Switch Service Account identifier for a user. */
+        NintendoServiceAccountId?: string,
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Service Account
+         * identifier.
+         */
+        PlayFabId?: string,
     }
 
     interface NintendoSwitchPlayFabIdPair {
@@ -4600,6 +4623,8 @@ declare namespace PlayFabServerModels {
     interface UserXboxInfo {
         /** XBox user ID */
         XboxUserId?: string,
+        /** XBox user sandbox */
+        XboxUserSandbox?: string,
     }
 
     interface ValueToDateModel {
@@ -4834,7 +4859,8 @@ interface IPlayFabServerAPI {
     EvaluateRandomResultTable(request: PlayFabServerModels.EvaluateRandomResultTableRequest): PlayFabServerModels.EvaluateRandomResultTableResult;
 
     /**
-     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
      * https://docs.microsoft.com/rest/api/playfab/server/server-side-cloud-script/executecloudscript
      */
     ExecuteCloudScript(request: PlayFabServerModels.ExecuteCloudScriptServerRequest): PlayFabServerModels.ExecuteCloudScriptResult;
@@ -5010,6 +5036,12 @@ interface IPlayFabServerAPI {
      * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromgenericids
      */
     GetPlayFabIDsFromGenericIDs(request: PlayFabServerModels.GetPlayFabIDsFromGenericIDsRequest): PlayFabServerModels.GetPlayFabIDsFromGenericIDsResult;
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+     * https://docs.microsoft.com/rest/api/playfab/server/account-management/getplayfabidsfromnintendoserviceaccountids
+     */
+    GetPlayFabIDsFromNintendoServiceAccountIds(request: PlayFabServerModels.GetPlayFabIDsFromNintendoServiceAccountIdsRequest): PlayFabServerModels.GetPlayFabIDsFromNintendoServiceAccountIdsResult;
 
     /**
      * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
