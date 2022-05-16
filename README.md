@@ -1,8 +1,13 @@
 # Sdk-Testing Cloud Script README
 
+Cloud Script example, and TypeScript typings for PlayFab Cloud Script Environment
+
+Cloud Script is optional.  It allows you to define logic that runs on a secure PlayFab server.  TypeScript is additionally optional, as it allows you to write your Cloud Script with additional validation.
+
+
 ## 1. Community Support
 
-This is a community supported SDK. 
+This is a community supported set of samples.
 
 For new and existing users, you can use the current version as it is. The team at Microsoft would no longer be providing official support for those using this SDK. You can continue to get community support and updates at [PlayFab forums](https://community.playfab.com/index.html).
 
@@ -16,11 +21,6 @@ What you have to do:
 * Write a post with a link to your forked repo so everyone knows about them
 
 We're excited to hear from you. Thank you for your support and happy coding.
-
-Cloud Script example, and TypeScript typings for PlayFab Cloud Script Environment
-
-Cloud Script is optional.  It allows you to define logic that runs on a secure PlayFab server.  TypeScript is additionally optional, as it allows you to write your Cloud Script with additional validation.
-
 
 ## 2. Overview:
 
